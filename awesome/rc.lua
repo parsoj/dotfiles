@@ -170,7 +170,7 @@ rbracket:set_text(']')
 lbracket = wibox.widget.textbox()
 lbracket:set_text('[')
 space = wibox.widget.textbox()
-space:set_text('   ')
+space:set_text('  ')
 
 
 
@@ -292,16 +292,14 @@ for s = 1, screen.count() do
     --right_layout:add(pacwidget)
     --right_layout:add(rbracket)
     --right_layout:add(space)
-
-    --right_layout:add(lbracketb)
-    right_layout:add(wifiicon)
-    right_layout:add(wifiwidget)
-    right_layout:add(space)
-    right_layout:add(downicon)
+	right_layout:add(downicon)
     right_layout:add(networkdown)
     right_layout:add(upicon)
     right_layout:add(networkup)
-    --right_layout:add(rbracketb)
+
+    right_layout:add(space)
+    right_layout:add(wifiicon)
+    right_layout:add(wifiwidget)
     right_layout:add(space)
 
 
