@@ -1,0 +1,87 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+"
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+"Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+"Bundle 'scrooloose/syntastic'
+"
+"filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+"
+"
+
+"easymotion - remap colon to leader key
+let g:mapleader=";"
+let g:EasyMotion_leader_key = '<Leader>'
+"noremap ; <Leader><Leader> 
+
+
+"enable syntax highlighting
+syntax enable
+
+"color theming
+set background=light
+colorscheme desert 
+
+"autoscrolls the screen if there are less than 5 lines between the selected
+"line and the top/bottom of the screen
+set scrolloff=5
+
+"sets line numering to be relative to the cursor
+set nu
+
+set autoindent
+
+
+"sets cursor color and blink rate depending on what mode you are in (only works when vim is run from xterm)
+if &term =~ "xterm\\|rxvt"
+  " use an orange cursor in insert mode
+  let &t_SI = "\<Esc>]12;orange\x7"
+  " use a red cursor otherwise
+  let &t_EI = "\<Esc>]12;red\x7"
+  silent !echo -ne "\033]12;red\007"
+  " reset cursor when vim exits
+  autocmd VimLeave * silent !echo -ne "\033]112\007"
+  " use \003]12;gray\007 for gnome-terminal
+endif
+
+
+:command -nargs=* Make make <args> | cwindow 3
+" Powerline
+set nocompatible
+set laststatus=2
+set encoding=utf-8
+set t_Co=256
+
+
+
+"key mappings
+"allow saving of of files without permission with w!!
+cmap w!! %!sudo tee /dev/null %
+"use the spacebar to enter insert mode
+nmap <Space> i 
+"fix the annoying fact that W and Q are not recognized
+cmap W w
+cmap Q q
+
+"set tab width
+set tabstop=4

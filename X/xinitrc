@@ -1,0 +1,18 @@
+
+
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+
+
+xmodmap -e 'clear Lock'
+xmodmap -e 'keycode 0x42 = Escape'
+
+
+#screen powersave
+xset +dpms
+xset dpms 0 0 300
+exec awesome
+
+
+
+

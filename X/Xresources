@@ -1,0 +1,44 @@
+! Molokai theme
+*background: #121212
+*foreground: #d0d0d0
+!*cursorcolor: #d0d0d0
+*color0: #101010
+*color1: #960050
+*color2: #66aa11
+*color3: #c47f2c
+*color4: #30309b
+*color5: #7e40a5
+*color6: #3579a8
+*color7: #9999aa
+*color8: #303030
+*color9: #ff0090
+*color10: #80ff00
+*color11: #ffba68
+*color12: #5f5fee
+*color13: #bb88dd
+*color14: #4eb4fa
+*color15: #d0d0d0
+
+
+URxvt.scrollBar: false
+URxvt.font: xft:inconsolata:regular:size=12
+URxvt.boldFont: xft:inconsolata:bold:size=12
+
+
+
+
+  
+URxvt.colorIT:      #555555
+URxvt.colorBD:      #66aa11
+URxvt.colorUL:      #3579a8
+
+
+
+!*faceSize: 12
+!
+!
+!for coloring man pages (xterm)
+!*VT100.colorBDMode:     true
+!*VT100.colorBD:         purple
+!*VT100.colorULMode:     true
+!*VT100.colorUL:         cyan
