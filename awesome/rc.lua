@@ -114,7 +114,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock( "[ <span color=\"#77b1c6\">%a %b %d</span> |<span color=\"#d00924\"> %I:%M</span> ]", 1)
+mytextclock = awful.widget.textclock( "[ <span color=\"#77b1c6\">%a %b %d</span> |<span color=\"#ffffff\"> %I:%M</span> ]", 1)
 
 --Vicious widgets
 
@@ -168,7 +168,11 @@ rbracketb:set_markup("<span color=\"#458aef\">]]</span>")
 lbracketb = wibox.widget.textbox()
 lbracketb:set_markup("<span color=\"#458aef\">[[</span>")
 
-
+--volume wiget
+volicon = wibox.widget.imagebox()
+volicon:set_image("/home/jeff/.config/awesome/icons/spkr.png")
+volumewidget = wibox.widget.textbox()
+vicious.register( volumewidget, vicious.widgets.volume, "<span color=\"#7788af\">$1%</span>", 1, "Master" )
 
 --brackets and spaces for outlining widgets
 rbracket = wibox.widget.textbox()
@@ -321,6 +325,10 @@ for s = 1, screen.count() do
 
     right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
+    right_layout:add(space)
+
+    right_layout:add(volicon)
+    right_layout:add(volumewidget)
     right_layout:add(space)
 
     right_layout:add(mytextclock)
