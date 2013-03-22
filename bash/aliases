@@ -2,7 +2,6 @@
 
 
 
-alias sudoo="sudo !!"
 alias am="alsamixer"
 
 alias extvga="xrandr --output VGA1 --auto"
