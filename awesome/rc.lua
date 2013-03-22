@@ -114,17 +114,23 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock( "[ %a %b %d | %I:%M ]", 1)
+mytextclock = awful.widget.textclock( "[ <span color=\"#77b1c6\">%a %b %d</span> |<span color=\"#d00924\"> %I:%M</span> ]", 1)
 
 --Vicious widgets
 
 --Memory Usage (textbox)
 memwidget =  wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, "RAM: $2MB", 1)
+vicious.register(memwidget, vicious.widgets.mem, "<span color=\"#94738c\">$2MB</span>", 1)
+memicon = wibox.widget.imagebox()
+memicon:set_image("/home/jeff/.config/awesome/icons/mem.png")
+
 
 --CPU usage (textbox)
 cpuwidget =  wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "CPU: $1%")
+vicious.register(cpuwidget, vicious.widgets.cpu, "<span color=\"#ce5666\">$1%</span>")
+cpuicon = wibox.widget.imagebox()
+cpuicon:set_image("/home/jeff/.config/awesome/icons/cpu.png")
+
 
 --battery widget
 battwidget = wibox.widget.textbox()
@@ -309,14 +315,12 @@ for s = 1, screen.count() do
     --right_layout:add(rbracket)
     right_layout:add(space)
 
-    right_layout:add(lbracket)
+    right_layout:add(memicon)
     right_layout:add(memwidget)
-    right_layout:add(rbracket)
     right_layout:add(space)
 
-    right_layout:add(lbracket)
+    right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
-    right_layout:add(rbracket)
     right_layout:add(space)
 
     right_layout:add(mytextclock)
