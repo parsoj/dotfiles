@@ -3,9 +3,12 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 
-
+#map capslock key to escape
 xmodmap -e 'clear Lock'
 xmodmap -e 'keycode 0x42 = Escape'
+
+#bind unbound keys (such as media/volume keys) with xbindkeys
+xbindkeys
 
 
 #screen powersave
