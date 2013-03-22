@@ -180,7 +180,7 @@ rbracket:set_text(']')
 lbracket = wibox.widget.textbox()
 lbracket:set_text('[')
 space = wibox.widget.textbox()
-space:set_text('  ')
+space:set_text('   ')
 
 
 
@@ -294,14 +294,16 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(lbracket)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(rbracket)
 	
 
     --right_layout:add(mygmail)
     --right_layout:add(lbracket)
     --right_layout:add(pacwidget)
     --right_layout:add(rbracket)
-    --right_layout:add(space)
+	right_layout:add(space)
 	right_layout:add(downicon)
     right_layout:add(networkdown)
     right_layout:add(upicon)
