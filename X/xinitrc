@@ -18,4 +18,11 @@ exec awesome
 
 
 
+#touchpad configuration
+synclient HorizTwoFingerScroll=1
+synclient CoastingFriction=40
+synclient PalmDetect=1
 
+
+#restart dropbox so we can see the icon in the system tray
+systemctl restart dropbox@jeff
