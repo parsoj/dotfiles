@@ -48,7 +48,7 @@ function extmon(){
 	esac
 }
 
-alias naw="sudo systemctl restart net-auto-wireless";
+alias naw="sudo systemctl restart netctl-auto@wlp3s0";
 alias wifi="sudo wifi-menu"
  
 function sch(){
