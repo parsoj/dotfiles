@@ -13,8 +13,26 @@ Bundle 'gmarik/vundle'
 " original repos on github
 "Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
+"easymotion - remap colon to leader key
+let g:mapleader= " "
+let g:EasyMotion_leader_key = '<Leader>'
+
+
+
+
 Bundle 'Lokaltog/vim-powerline'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
+
+
+
+Bundle 'Valloric/YouCompleteMe'
+"get rid of top "preview window" created by vim YouCompleteMe
+set completeopt -= preview
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_confirm_extra_conf = 1
+
+
+
 "
 "filetype plugin indent on     " required!
 "
@@ -28,11 +46,12 @@ Bundle 'Lokaltog/vim-powerline'
 " NOTE: comments after Bundle command are not allowed..
 "
 "
+"
 
-"easymotion - remap colon to leader key
-let g:mapleader=";"
-let g:EasyMotion_leader_key = '<Leader>'
-"noremap ; <Leader><Leader> 
+
+"enable mouse stuff
+set mouse = a
+
 
 
 "enable syntax highlighting
@@ -78,10 +97,10 @@ set t_Co=256
 "allow saving of of files without permission with w!!
 cmap w!! %!sudo tee /dev/null %
 "use the spacebar to enter insert mode
-nmap <Space> i 
+"nmap <Space> i 
 "fix the annoying fact that W and Q are not recognized
-cmap W w
-cmap Q q
+"cmap W w
+"cmap Q q
 
 "set tab width
 set tabstop=4
