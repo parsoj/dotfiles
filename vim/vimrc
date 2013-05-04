@@ -21,7 +21,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 
 Bundle 'Lokaltog/vim-powerline'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 
 
 
