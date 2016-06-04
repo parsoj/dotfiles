@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/workspace/docs'
+let g:netrw_dirhist_2='/Users/jeffpars/.cfg/installScripts'
+let g:netrw_dirhist_3='/workspace'
+let g:netrw_dirhist_4='/workspace/docs'
+let g:netrw_dirhist_5='/Users/jeffpars/.cfg/zshrc'
+let g:netrw_dirhist_6='/Users/jeff/.cfg/tmux/vendor/tmux-mem-cpu-load'
+let g:netrw_dirhist_7='/Users/jeff/.cfg/tmux/vendor/tmux-mem-cpu-load/osx'

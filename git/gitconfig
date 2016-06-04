@@ -1,0 +1,14 @@
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = false
+[user]
+	name = Jeff Parsons
+	email = jeffpars@amazon.com
+[color]
+	ui = true
+[push]
+	default = matching

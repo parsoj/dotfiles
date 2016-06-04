@@ -1,0 +1,88 @@
+######################################## antigen stuff ###############################
+source $(brew --prefix)/share/antigen.zsh
+
+antigen use oh-my-zsh
+antigen theme pygmalion 
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle osx
+antigen bundle git
+
+antigen apply
+
+################### MISC  ##############################
+
+
+#colored man pages!
+man() {
+      env LESS_TERMCAP_mb=$'\E[01;31m' \
+      LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+      LESS_TERMCAP_me=$'\E[0m' \
+      LESS_TERMCAP_se=$'\E[0m' \
+      LESS_TERMCAP_so=$'\E[31;5;246m' \
+      LESS_TERMCAP_ue=$'\E[0m' \
+      LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+      man "$@"
+}
+
+#vim terminal commands
+bindkey -v
+
+
+######################################### aliases ########################################
+
+alias x='exit'
+alias cl'=clear'
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+
+
+##################################### PATH additions #######################################
+
+export PATH="/usr/local/bin:$PATH"
+
+
+############################## Helpful scripts ##########################
+
+#create an apple notification that a thingy is done!
+function nfy() {
+
+ read piped
+  echo $piped > /tmp/nfyOutput
+   curl -k -H "Content-Type: application/json" -X POST -d "{\"value1\":\"$nfyOutput\",\"value2\":\"$piped\"}" https://maker.ifttt.com/trigger/nfy/with/key/cKZUpQDcIkjvFXnJxw1dEC
+
+
+
+}
+
+
+
+function setjdk() {
+  if [ $# -ne 0 ]; then
+   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+   if [ -n "${JAVA_HOME+x}" ]; then
+    removeFromPath $JAVA_HOME
+   fi
+   export JAVA_HOME=`/usr/libexec/java_home -v 1.$@`
+   export PATH=$JAVA_HOME/bin:$PATH
+  fi
+ }
+ function removeFromPath() {
+  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
+ }
+
+#checkHostLogs() {
+#  1="ObsidianDC"
+#  2="obsidian-dc-prod-cn-pek-1pod-34001.pek4.amazon.com"
+#
+#
+#  local excludeString="PublisherRestrictionsUpdater|kinesis|origin url|FutureTracker|HeisenbergClient|Malformed URL"
+#
+#  ssh -o ConnectTimeout=0 $2 "grep -r \"ERROR\"  /apollo/env/$1/var/output/logs/application.log*  | grep -vE \"$excludeString\" "
+#
+#
+#}
+
+#pullProgressForHost() {
+#      ssh -o ConnectTimeout=0 $1 'tail -f /apollo/var/logs/apollo-update.root.log.*(om[1]) | grep --line-buffered \ "Getting\|exit code" \
+#                | sed -u "s/pullPackage .*: Getting package \(.*\) by\|from .*/Pull Started: \1/" \
+#                        | sed -u "s/pullPackage .*: .*exit code: \(.*\)/Pull Ended:   Exit Code: \1/"'
+#}
