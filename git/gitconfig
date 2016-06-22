@@ -12,3 +12,5 @@
 	ui = true
 [push]
 	default = matching
+[core]
+	editor = emacs
