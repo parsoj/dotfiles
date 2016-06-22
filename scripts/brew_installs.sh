@@ -7,6 +7,7 @@ brew tap caskroom/cask
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 brew tap d12frosted/emacs-plus
 brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
+tic -o ~/.terminfo /usr/local/Cellar/emacs-plus/24.5/share/emacs/24.5/etc/e/eterm-color.ti
 brew linkapps
 
 #other stuff
