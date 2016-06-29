@@ -1,6 +1,0 @@
-[submodule "spacemacs"]
-	path = spacemacs
-	url = https://github.com/syl20bnr/spacemacs
-[submodule "hammerspoon"]
-	path = hammerspoon
-	url = https://github.com/BrianGilbert/.hammerspoon.git
