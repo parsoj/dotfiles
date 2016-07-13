@@ -17,11 +17,6 @@
 (defconst spacemacs-version         "0.105.21" "Spacemacs version.")
 (defconst spacemacs-emacs-min-version   "24.3" "Minimal version of Emacs.")
 
-(setq scroll-step 1)
-(scroll-conservatively 10000)
-(setq auto-window-vscroll nil)
-
-
 (if (not (version<= spacemacs-emacs-min-version emacs-version))
     (message (concat "Your version of Emacs (%s) is too old. "
                      "Spacemacs requires Emacs version %d or above.")
@@ -34,3 +29,15 @@
   (spacemacs/setup-startup-hook)
   (require 'server)
   (unless (server-running-p) (server-start)))
+
+
+;;smooth scrolling
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+
+;;prompt disabling/reducing (ripped from mastering emacs)
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;;use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
