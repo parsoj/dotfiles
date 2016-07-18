@@ -9,7 +9,7 @@
 	name = Jeff Parsons
 	email = jeff.parsons@donuts.co
 [color]
-	ui = true
+	ui = always
 [push]
 	default = matching
 [core]
