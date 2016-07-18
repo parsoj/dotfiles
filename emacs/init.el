@@ -41,3 +41,28 @@
 ;;use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+;;helm settings
+(setq helm-ag-fuzzy-match t)
+(global-set-key (kbd "M-m bf") 'helm-ag-project-root)
+
+;;eshell colored prompt
+(defmacro with-face (str &rest properties)
+  `(propertize ,str 'face (list ,@properties)))
+
+(defun shk-eshell-prompt ()
+  (let ((header-bg "#000"))
+    (concat
+     (with-face user-login-name :foreground "blue")
+     "@"
+     (with-face "localhost" :foreground "green")
+     (with-face (format-time-string " (%Y-%m-%d %H:%M) " (current-time)) :foreground "#888")
+     (with-face "\n" )
+     (with-face (concat (eshell/pwd) " ") )
+     (with-face
+      (or (ignore-errors (format "(%s)" (vc-responsible-backend default-directory))) ""))
+     (if (= (user-uid) 0)
+         (with-face " #" :foreground "red")
+       (with-face " $" :foreground "green"))
+     " ")))
+(setq eshell-prompt-function 'shk-eshell-prompt)
+(setq eshell-highlight-prompt nil)
