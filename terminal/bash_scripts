@@ -10,7 +10,7 @@ function pull() {
          currPath=$(pwd)
 
          #rsync over standard port of 873
-         rsync -avzhe ssh --progress jeff.parsons@localhost$pwd $pwd
+         rsync -avzhe ssh --progress jeff.parsons@localhost$currPath $currPath
 
 
 }
