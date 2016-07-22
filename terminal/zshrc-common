@@ -73,20 +73,3 @@ function notify() {
          osascript -e "display notification \"the $* task is finished\" with title \"$* Finished\""
 }
 
-#checkHostLogs() {
-#  1="ObsidianDC"
-#  2="obsidian-dc-prod-cn-pek-1pod-34001.pek4.amazon.com"
-#
-#
-#  local excludeString="PublisherRestrictionsUpdater|kinesis|origin url|FutureTracker|HeisenbergClient|Malformed URL"
-#
-#  ssh -o ConnectTimeout=0 $2 "grep -r \"ERROR\"  /apollo/env/$1/var/output/logs/application.log*  | grep -vE \"$excludeString\" "
-#
-#
-#}
-
-#pullProgressForHost() {
-#      ssh -o ConnectTimeout=0 $1 'tail -f /apollo/var/logs/apollo-update.root.log.*(om[1]) | grep --line-buffered \ "Getting\|exit code" \
-#                | sed -u "s/pullPackage .*: Getting package \(.*\) by\|from .*/Pull Started: \1/" \
-#                        | sed -u "s/pullPackage .*: .*exit code: \(.*\)/Pull Ended:   Exit Code: \1/"'
-#}

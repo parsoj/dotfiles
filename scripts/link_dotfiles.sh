@@ -1,4 +1,4 @@
-rm ~/.zshrc ; ln -s ~/.dotfiles/zshrc/zshrc-common ~/.zshrc
+rm ~/.zshrc ; ln -s ~/.dotfiles/terminal/zshrc-common ~/.zshrc
 rm -rf ~/.vim ; ln -s ~/.dotfiles/vim ~/.vim
 rm ~/.vimrc ; ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 rm -rf ~/.emacs.d ; mkdir ~/.emacs.d && cp -r ~/.dotfiles/spacemacs/* ~/.emacs.d/

@@ -1,0 +1,15 @@
+function dbx() {
+
+         ssh -l 4000:localhost:4000 jeff.parsons@$1
+
+}
+
+function pull() {
+
+         currPath=$(pwd)
+
+         #rsync over port 4000
+         rsync -avzhe ssh --progress jeff.parsons@localhost:4000$pwd $pwd
+
+
+}
