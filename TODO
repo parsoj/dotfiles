@@ -1,0 +1,10 @@
+linking /Users to /home on Macs
+   *this requires a system restart, but the steps are
+          1) edit /etc/auto_master and add '#' to begining of line with "/home", save
+          2) reboot (maybe there is a scripted way to get automount to release /home?)
+          3) ln -s /Users /home
+
+
+OSX and remote-host setup scripts (can call into other scripts)
+
+fix vim loading problem

@@ -13,7 +13,11 @@ brew linkapps
 
 #other stuff
 brew install antigen
-
 brew cask install google-chrome
-
 brew install the_silver_searcher
+
+brew install skype
+brew install slack
+brew install iTerm2
+
+
