@@ -1,6 +1,7 @@
 function dbx() {
 
-         ssh -l 4000:localhost:4000 jeff.parsons@$1
+         #forward port 873 for rsyncing
+         ssh -l 873:localhost:873 jeff.parsons@$1
 
 }
 
@@ -8,8 +9,8 @@ function pull() {
 
          currPath=$(pwd)
 
-         #rsync over port 4000
-         rsync -avzhe ssh --progress jeff.parsons@localhost:4000$pwd $pwd
+         #rsync over standard port of 873
+         rsync -avzhe ssh --progress jeff.parsons@localhost$pwd $pwd
 
 
 }
