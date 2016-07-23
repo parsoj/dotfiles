@@ -1,4 +1,4 @@
-source ~/.bashrc
+source ~/.dotfiles/terminal/util/local_osx_bash_functions
 ######################################## antigen stuff ###############################
 source $(brew --prefix)/share/antigen.zsh
 
