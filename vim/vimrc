@@ -5,7 +5,7 @@ filetype off                  " required
 "" set the runtime path to include Vundle and initialize
 "set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin()
-"" alternatively, pass a path where Vundle should install plugins
+""" alternatively, pass a path where Vundle should install plugins
 ""call vundle#begin('~/some/path/here')
 "
 "" let Vundle manage Vundle, required
@@ -26,7 +26,7 @@ filetype off                  " required
 ""Automatically causes vim to reload files which have been written on disk but
 ""not modified in the buffer since the last write from vim
 "Bundle 'djoshea/vim-autoread'
-
+"
 "" The following are examples of different formats supported.
 "" Keep Plugin commands between vundle#begin/end.
 "" plugin on GitHub repo
@@ -42,12 +42,12 @@ filetype off                  " required
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "" Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+"
+"" All of your Plugins must be added before the following line
+"call vundle#end()            " required
+"filetype plugin indent on    " required
+"" To ignore plugin indent changes, instead use:
+""filetype plugin on
 "
 " Brief help
 " :PluginList          - list configured plugins
