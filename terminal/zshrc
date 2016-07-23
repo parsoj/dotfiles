@@ -1,3 +1,4 @@
+source ~/.bashrc
 ######################################## antigen stuff ###############################
 source $(brew --prefix)/share/antigen.zsh
 
