@@ -1,1 +1,1 @@
-./common.sh
+$(dirname "$0")/common.sh
