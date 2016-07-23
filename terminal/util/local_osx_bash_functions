@@ -1,0 +1,6 @@
+function dbx() {
+
+         #forward port 873 for rsyncing
+         ssh -l 873:localhost:873 jeff.parsons@$1
+
+}
