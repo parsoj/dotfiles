@@ -1,6 +1,6 @@
 function dbx() {
 
          #forward port 4000 for rsyncing
-         ssh -l 4000:localhost:4000 jeff.parsons@$1
+         ssh -l 873:localhost:4000 jeff.parsons@$1
 
 }
