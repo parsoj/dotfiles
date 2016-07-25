@@ -3,8 +3,8 @@ function pull() {
          currPath=$(pwd)
          pathArray=(${currPath//// })
 
-         #rsync over standard port of 873
-         rsync -avzh -e "ssh -p 4000" -r --progress jeff.parsons@localhost:$currPath $currPath
+         #rsync over 4000
+         rsync -avzh --compress-level=9 -e "ssh -p 4000" -r --progress jeff.parsons@127.0.0.1:$currPath $currPath
 
 
 }
