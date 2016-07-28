@@ -1,3 +1,7 @@
 
 #emacs buffer files
-.\#*
+*~
+.DS_Store
+*~
+*#
+.#*
