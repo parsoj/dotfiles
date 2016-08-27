@@ -32,8 +32,11 @@
 
 
 ;;smooth scrolling
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(use-package smooth-scroll
+  :config
+  (smooth-scroll-mode 1)
+  (setq smooth-scroll/vscroll-step-size 5)
+  )
 
 ;;prompt disabling/reducing (ripped from mastering emacs)
 (fset 'yes-or-no-p 'y-or-n-p)
