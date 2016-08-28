@@ -12,6 +12,12 @@ antigen apply
 
 ################### MISC  ##############################
 
+#fix the bracketed-paste-magic issue with pasting text into to terminal
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 
 #colored man pages!
 man() {
