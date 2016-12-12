@@ -7,11 +7,12 @@
 	trustExitCode = false
 [user]
 	name = Jeff Parsons
-	email = jeff.parsons@donuts.co
+	email = parsoj@gmail.com
 [color]
 	ui = always
+	diff = always
 [push]
 	default = matching
 [core]
 	editor = emacs
-	excludesfile = /Users/jeff.parsons/.gitignore_global
+	excludesfile = /Users/jeff/.gitignore_global

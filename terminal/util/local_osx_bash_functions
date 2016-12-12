@@ -1,8 +1,0 @@
-function dbx() {
-         ssh jeff.parsons@$dbxIP
-
-}
-
-function rpp(){
-  rsync -r --progress $(pwd) jeff.parsons@104.198.96.246:/home/jeff.parsons/development/
-}
