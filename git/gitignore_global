@@ -44,3 +44,9 @@ flycheck_*.el
 
 # projectiles files
 .projectile
+
+# all emacs org files
+*.org
+
+# ignore tags files
+TAGS

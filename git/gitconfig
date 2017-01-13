@@ -9,8 +9,9 @@
 	name = Jeff Parsons
 	email = parsoj@gmail.com
 [color]
-	ui = always
-	diff = always
+	#ui and diff colors need to be set to "auto" to avoid messing with magit
+	ui = auto
+	diff = auto
 [push]
 	default = matching
 [core]
