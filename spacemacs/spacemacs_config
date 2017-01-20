@@ -268,10 +268,6 @@ you should place your code here."
   ;;scrolling stuff
   (setq mouse-wheel-progressive-speed nil)
 
-  ;;eshell aliases
-  (defalias 'em 'find-file)
-  (setq eshell-path-env "/usr/local/bin:/usr/bin")
-
   ;;use bash as default ansi-term shell
   (setq explicit-shell-file-name "/usr/local/bin/bash")
 
