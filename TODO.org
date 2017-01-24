@@ -1,0 +1,12 @@
+* Spacemacs
+** highlight current point
+*** enabled by default
+*** better color
+** get python debugger working w/ tornado
+** allow relative line numbering to be set via toggle
+** fix magit status buffer so it shows up fullscreen to the left of the current file
+*** same with the commit message buffer
+
+
+
+
