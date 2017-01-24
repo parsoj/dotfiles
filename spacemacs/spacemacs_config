@@ -280,9 +280,6 @@ you should place your code here."
   ;;keybindings to make this sorta pycharm-y
   (global-set-key (kbd "s-b") 'dumb-jump-go)
 
-  ;;use relative line numbering
-  (linum-relative-mode)
-
   ;;disable org mode timestamping for now
   (setq org-log-done nil)
 
