@@ -1,12 +1,24 @@
 * Spacemacs
 ** highlight current point
-*** enabled by default
-*** better color
-** get python debugger working w/ tornado
-** allow relative line numbering to be set via toggle
+*** DONE enabled by default
+*** TODO-LATER better color
+** TODO get python debugger working w/ tornado
+** DONE allow relative line numbering to be set via toggle
 ** fix magit status buffer so it shows up fullscreen to the left of the current file
 *** same with the commit message buffer
+*** use the (magit-display-buffer-function)
+** fix shell buffer creation to happen in current buffer
+** REST client stuff
+** org mode document settings
 
 
+* Document Settings
+#+TODO: TODO(t) | TODO-LATER(l) | DONE(d) 
+# Local Variables:
+# eval: (setq org-todo-keyword-faces `(
+# ("TODO" . "#ce537a")
+# ("TODO-LATER" . "#b1591d")
+# ("DONE" . "#cbc1d5")))
+# End:
 
 
