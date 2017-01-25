@@ -286,6 +286,9 @@ you should place your code here."
   ;;set the powerline separator to the "arrow style" so that the separator color doesn't look faded
   (setq powerline-default-separator 'utf-8)
 
+  ;;highlight all occurances of the symbol at point
+  (spacemacs/toggle-automatic-symbol-highlight-on)
+
 
 )
 
