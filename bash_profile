@@ -1,5 +1,5 @@
 #homebrew stuff
-export PATH=/user/local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 #golang stuff
 export GOPATH=/Users/Jeff/code/go
