@@ -1,15 +1,16 @@
 * Spacemacs
-** highlight current point
+** TODO get python debugger working w/ tornado
+** TODO-LATER highlight current point
 *** DONE enabled by default
 *** TODO-LATER better color
-** TODO get python debugger working w/ tornado
-** DONE allow relative line numbering to be set via toggle
 ** fix magit status buffer so it shows up fullscreen to the left of the current file
 *** same with the commit message buffer
 *** use the (magit-display-buffer-function)
 ** fix shell buffer creation to happen in current buffer
 ** REST client stuff
 ** org mode document settings
+*** find a cleaner way
+** DONE allow relative line numbering to be set via toggle
 
 
 * Document Settings
