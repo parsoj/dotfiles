@@ -47,3 +47,6 @@ flycheck_*.el
 
 # ignore tags files
 TAGS
+GPATH
+GRTAGS
+GTAGS
