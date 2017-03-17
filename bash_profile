@@ -15,6 +15,13 @@ function pf
 function pfk
 {
 
-  pf $1 | awk '{print $2}' | xargs kill
+  pf $1 | awk '{print $2}' | xargs kill -15
+
+}
+
+function nuke-subs
+{
+
+  rm -rf $@; git co $@; git submodule init; git submodule update
 
 }
