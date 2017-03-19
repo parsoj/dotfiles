@@ -8,7 +8,7 @@ brew install cask
 
 # support tools
 brew install --no-sandbox global --with-pygments --with-ctags
-
+brew install ag
 
 # core spacemacs install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -23,11 +23,11 @@ brew install python
 
 ################################################################################
 # cask -- fixing mac-ness
-brew cask install bartender
-brew cask install alfred2
+brew cask install bartender #TODO save profile/config
+brew cask install alfred2 #TODO save profile/config
 brew cask install totalspaces #requires SIP to be disabled
 brew cask install seil
-brew cask insgtall karabiner
+brew cask insgtall karabiner #TODO save profile/config
 
 ################################################################################
 # cask -- utilities
