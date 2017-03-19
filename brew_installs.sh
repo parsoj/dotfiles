@@ -3,52 +3,51 @@
 
 brew install cask
 
-# spacemacs install
+################################################################################
+# spacemacs
+
+# support tools
+brew install --no-sandbox global --with-pygments --with-ctags
+
+
+# core spacemacs install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
 brew linkapps
-#/spacemacs install
 
-########################################################################################
-
+################################################################################
 # cli apps to install
-export cli_apps_to_install="
+brew install git
+brew install python
 
-git
-python
+################################################################################
+# cask -- fixing mac-ness
+brew cask install bartender
+brew cask install alfred2
+brew cask install totalspaces #requires SIP to be disabled
+brew cask install seil
+brew cask insgtall karabiner
 
-"
-for app in $cask_apps_to_install;
-do
-    brew install $app;
-done
-#/cli apps to install
-
-########################################################################################
-
-# cask apps to install
-export cask_apps_to_install="
-
-1password
-evernote
-google-chrome
-hammerspoon
-rescuetime
-seil
-slack
-
-"
-for app in $cask_apps_to_install;
-do
-    brew cask install $app;
-done
-#/cask apps to install
-
-########################################################################################
+################################################################################
+# cask -- utilities
+brew cask install 1password
+brew cask install evernote
+brew cask install hammerspoon
+brew cask install rescuetime
 
 
+################################################################################
+# cask -- core apps
+brew cask install google-chrome
+brew cask install slack
 
+
+################################################################################
+# manual tasks
+
+# disable SIP to make totalspaces and other apps happy
+# disable keyboard and trackpad shortcuts
 
 
 
