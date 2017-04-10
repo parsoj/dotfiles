@@ -23,15 +23,12 @@ brew install python
 
 ################################################################################
 # cask -- fixing mac-ness
-brew cask install bartender #TODO save profile/config
 brew cask install alfred2 #TODO save profile/config
-brew cask install totalspaces #requires SIP to be disabled
 brew cask install seil
-brew cask insgtall karabiner #TODO save profile/config
 
 ################################################################################
 # cask -- utilities
-brew cask install 1password
+brew cask install dashane
 brew cask install evernote
 brew cask install hammerspoon
 brew cask install rescuetime
