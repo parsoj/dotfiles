@@ -1,0 +1,40 @@
+#+Title: secure install steps
+* Download fresh image
+* Secure disk wipe
+* First Boot:
+** don't do while networked (disconnect - don't sign into apple)
+** clear NVRAM
+** set comp name and username to something loosely identifying
+* Enable Filevault
+* set up firewall
+** application firewall
+** kernel-level packet filtering
+* TODO disable apple system services that phone home
+** list in github doc
+** spotlight suggestions
+** captive portal
+* connect to netowork
+* run linker script
+* run brew script
+
+
+* additional setup needed:
+** TODO host file setup
+** INVESTIGATE DNS security
+*** DNSCrypt
+*** DNSmasq
+*** DNSSEC
+** TODO clean up browser cert setup
+** INVESTIGATE Privoxy
+** INVESTIGATE VPN
+** INVESTIGATE github:google/santa
+
+* doc settings
+#+TODO: INVESTIGATE(i) | TODO(t) | DONE(d) 
+
+
+
+
+
+
+

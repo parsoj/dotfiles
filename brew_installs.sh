@@ -17,9 +17,15 @@ brew install emacs-plus
 brew linkapps
 
 ################################################################################
-# cli apps to install
+# brew - tools
 brew install git
 brew install python
+brew install gnupg2
+
+#default curl on OSX is insecure - smush it
+brew install curl --with-openssl
+brew link --force curl
+
 
 ################################################################################
 # cask -- fixing mac-ness
@@ -43,8 +49,8 @@ brew cask install slack
 ################################################################################
 # manual tasks
 
-# disable SIP to make totalspaces and other apps happy
-# disable keyboard and trackpad shortcuts
+# update built-in trackpad gestures
+# disable normal system keyboard shortcuts to allow hammerspoon to take over
 
 
 

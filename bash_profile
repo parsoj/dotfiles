@@ -1,5 +1,7 @@
 #homebrew stuff
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
 
 #golang stuff
 export GOPATH=/Users/Jeff/code/go
