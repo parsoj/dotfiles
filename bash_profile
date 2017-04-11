@@ -27,3 +27,5 @@ function nuke-subs
   rm -rf $@; git co $@; git submodule init; git submodule update
 
 }
+
+source ~/.bashrc
