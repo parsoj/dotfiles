@@ -24,7 +24,7 @@ brew install python
 brew install gnupg2
 
 # generate a new ssh key
-ssh-keygen -t rsa -b 4096 -C $EMAIL #FIXME automate with "yes" or something
+ssh-keygen -t rsa -b 4096 -N '' -C $EMAIL 
 
 # default curl on OSX is insecure - smush it
 brew install curl --with-openssl
@@ -33,7 +33,7 @@ brew link --force curl
 
 ################################################################################
 # cask -- fixing mac-ness
-brew cask install Alfred2 #FIXME not real cask
+brew cask install Alfred 
 brew cask install seil
 
 ################################################################################
