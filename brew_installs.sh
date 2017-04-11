@@ -9,11 +9,12 @@ brew install cask
 # support tools
 brew install --no-sandbox global --with-pygments --with-ctags
 brew install ag
+brew install bash
 
 # core spacemacs install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-brew tap d12frosted/emacs-plus
-brew install emacs-plus
+brew tap railwaycat/emacsmacport
+brew install emacs-mac
 brew linkapps
 
 ################################################################################
