@@ -5,14 +5,7 @@
 ** don't do while networked (disconnect - don't sign into apple)
 ** clear NVRAM
 ** set comp name and username to something loosely identifying
-* Enable Filevault
-* set up firewall
-** application firewall
-** kernel-level packet filtering
-* TODO disable apple system services that phone home
-** list in github doc
-** spotlight suggestions
-** captive portal
+* run pre-netowork script
 * connect to netowork
 * run linker script
 * run brew script
@@ -28,7 +21,9 @@
 ** INVESTIGATE Privoxy
 ** INVESTIGATE VPN
 ** INVESTIGATE github:google/santa
-
+** TODO add to startup disk:
+*** Little Snitch
+*** pre-network script
 * doc settings
 #+TODO: INVESTIGATE(i) | TODO(t) | DONE(d) 
 
