@@ -30,12 +30,12 @@ brew link --force curl
 
 ################################################################################
 # cask -- fixing mac-ness
-brew cask install alfred2 #TODO save profile/config
+brew cask install Alfred2 #FIXME 
 brew cask install seil
 
 ################################################################################
 # cask -- utilities
-brew cask install dashane
+brew cask install Dashlane
 brew cask install evernote
 brew cask install hammerspoon
 brew cask install rescuetime
