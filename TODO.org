@@ -1,5 +1,5 @@
 * Spacemacs
-** TODO fix paths in sym-linker
+** TODO fix "UseKeyChain" ssh config issue
 ** TODO python REPL w/ tornado
 ** TODO better buffer splitting
 ** TODO fix shell buffer creation to happen in current buffer
