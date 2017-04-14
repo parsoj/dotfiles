@@ -42,6 +42,7 @@ brew cask install Dashlane
 brew cask install evernote
 brew cask install hammerspoon
 brew cask install rescuetime
+brew cask install dropbox
 
 
 ################################################################################
