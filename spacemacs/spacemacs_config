@@ -297,7 +297,217 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck auto-dictionary csv-mode lua-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data sql-indent virtualenvwrapper w3 marmalade yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode go-eldoc company-go go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic uuidgen org-projectile org-download link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump f column-enforce-mode multi-eshell paradox hydra company-statistics adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe toc-org spaceline powerline smooth-scrolling smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc s markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word company-quickhelp pos-tip company clean-aindent-mode buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme))))
+    (edit-server-htmlize helm-gtags ggtags gmail-message-mode ham-mode html-to-markdown edit-server go-dlv pdf-tools tablist org magit-gh-pulls go-guru github-search github-clone github-browse-file gist gh marshal logito pcache ht git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck auto-dictionary csv-mode lua-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data sql-indent virtualenvwrapper w3 marmalade yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode go-eldoc company-go go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic uuidgen org-projectile org-download link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump f column-enforce-mode multi-eshell paradox hydra company-statistics adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe toc-org spaceline powerline smooth-scrolling smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc s markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word company-quickhelp pos-tip company clean-aindent-mode buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
+ '(safe-local-variable-values
+   (quote
+    ((eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("TODO-LATER" . "#b1591d")
+             ("DONE" . "#cbc1d5"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#86dc2f")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#86dc2f")
+             ("IN-PR" . "#d75fd7")
+             ("DEFER" . "#ce537a")
+             ("DEPLOY" . "#b1951d")
+             ("CLOSED" . "dark-grey"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#86dc2f")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#86dc2f")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "#ce537a")
+             ("DEPLOY" . "#b1951d")
+             ("CLOSED" . "dark-grey"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#86dc2f")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#86dc2f")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "#ce537a")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#86dc2f")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "dark-grey")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#444155")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#d70000")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "dark-grey")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#b1951d")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#d70000")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "dark-grey")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#bb71c3")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#d70000")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "dark-grey")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "grey")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#d70000")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "#bb71c3")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "grey")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#d70000")
+             ("IN-PR" . "blue-bg")
+             ("DEFER" . "dark-green")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "grey")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "#d70000")
+             ("IN-PR" . "blue-bg")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#d70000")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#3c2a2c")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#b1951d")
+             ("NEEDS-TESTS" . "#2d9574")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg")
+             ("DEPLOY" . "#b1951d"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#f2241f")
+             ("NEEDS-TESTS" . "#b1951d")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . red)
+             ("NEEDS-TESTS" . "yellow")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "red")
+             ("NEEDS-TESTS" . "yellow")
+             ("REVIEW" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "red")
+             ("NEEDS-TESTS" . "yellow")
+             ("GO-OVER" . "orange")
+             ("INVESTIGATE" . "grey")
+             ("IN-PR" . "blue-bg"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("NO" . "#2aa1ae")
+             ("YES" . "GoldenRod")
+             ("IN-REVIEW" . "dark-grey")
+             ("DONE" . "black"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("YES" . "#2aa1ae")
+             ("NO" . "GoldenRod")
+             ("IN-REVIEW" . "dark-grey")
+             ("DONE" . "black"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("BLOCKED-TASK" . "#2aa1ae")
+             ("BLOCKED-QUESTION" . "GoldenRod")
+             ("IN-REVIEW" . "dark-grey")
+             ("DONE" . "black"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("BLOCKED-TASK" . "#2aa1ae")
+             ("BLOCKED-QUESTION" . "GoldenRod")
+             ("IN-REVIEW" . "dark-grey"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("BLOCKED-TASK" . "#2aa1ae")
+             ("BLOCKED-QUESTION" . "GoldenRod")
+             ("IN-REVIEW" . "White"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("BLOCKED-TASK" . "#2aa1ae")
+             ("BLOCKED-QUESTION" . "GoldenRod")
+             ("IN-REVIEW" . "#2d9574"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("BLOCKED-TASK" . "#2aa1ae")
+             ("BLOCKED-QUESTION" . "#2d9574")
+             ("IN-REVIEW" . "#2d9574"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("DELEGATED" . "#2aa1ae")
+             ("IN-A-FLOW" . "#2d9574")
+             ("TEST-WRITTEN" . "#2d9574")
+             ("WON'T-COVER" . "GoldenRod")
+             ("DEPRECATED" . "grey"))))
+     (eval setq org-todo-keyword-faces
+           (\`
+            (("TODO" . "#ce537a")
+             ("DONE" . "grey")
+             ("NEEDS-REFINING" . "GoldenRod")))))))
+ '(split-height-threshold nil)
+ '(split-width-threshold 0))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

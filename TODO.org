@@ -1,16 +1,10 @@
 * Spacemacs
-** TODO get python debugger working w/ tornado
-** TODO-LATER highlight current point
-*** DONE enabled by default
-*** TODO-LATER better color
-** fix magit status buffer so it shows up fullscreen to the left of the current file
-*** same with the commit message buffer
-*** use the (magit-display-buffer-function)
-** fix shell buffer creation to happen in current buffer
-** REST client stuff
-** org mode document settings
-*** find a cleaner way
-** DONE allow relative line numbering to be set via toggle
+** TODO fix paths in sym-linker
+** TODO python REPL w/ tornado
+** TODO better buffer splitting
+** TODO fix shell buffer creation to happen in current buffer
+** TODO-LATER REST client stuff
+** TODO-LATER cleaner org mode document settings
 
 
 * Document Settings
