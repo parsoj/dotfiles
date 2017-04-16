@@ -35,7 +35,6 @@ brew link --force curl
 ################################################################################
 # cask -- fixing mac-ness
 brew cask install Alfred
-brew cask install seil
 
 ################################################################################
 # cask -- utilities
