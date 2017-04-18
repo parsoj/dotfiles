@@ -2,4 +2,3 @@ Host *
      PasswordAuthentication no
      ChallengeResponseAuthentication no
      HashKnownHosts yes
-     UseKeychain no

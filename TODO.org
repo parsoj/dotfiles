@@ -1,4 +1,5 @@
 * Spacemacs
+** TODO organize configs for language tools and styles
 ** TODO fix "UseKeyChain" ssh config issue
 ** TODO python REPL w/ tornado
 ** TODO better buffer splitting

@@ -13,7 +13,3 @@ rm -rf ~/.bash_profile ; ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
 
 # ssh
 rm ~/.ssh/config ; ln -s ~/.dotfiles/ssh/config ~/.ssh/config
-
-# python styles
-rm -f ~/.config/flake8 ; ln -s ~/.dotfiles/code-styles/python/flake8 ~/.config/flake8
-rm -rf ~/.config/yapf ; ln -s ~/.dotfiles/code-styles/python/yapf ~/.config/yapf
