@@ -289,7 +289,8 @@ you should place your code here."
   (setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer
   (setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
 
-
+  ;;increase "go meta linter" deadline
+  (setq flycheck-gometalinter-deadline "10s")
 
 )
 
