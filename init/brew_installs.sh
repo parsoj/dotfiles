@@ -43,12 +43,12 @@ brew cask install evernote
 brew cask install hammerspoon
 brew cask install rescuetime
 brew cask install dropbox
+brew cask install flux
 
 
 ################################################################################
 # cask -- core apps
 brew cask install google-chrome
-brew cask install slack
 
 
 ################################################################################
