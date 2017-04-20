@@ -266,7 +266,7 @@ you should place your code here."
   (windmove-default-keybindings)
 
   ;;truncate lines by default - this is prettier and more performant
-  (setq truncate-lines t)
+  (add-hook 'text-mode-hook 'spacemacs/toggle-truncate-lines-off)
 
   ;;scrolling stuff
   (setq mouse-wheel-progressive-speed nil)
