@@ -326,6 +326,8 @@ you should place your code here."
 
   ;;truncate lines by default - this is prettier and more performant
   (add-hook 'text-mode-hook 'spacemacs/toggle-truncate-lines-off)
+  (add-hook 'python-mode-hook 'spacemacs/toggle-truncate-lines-off)
+  (add-hook 'go-mode-hook 'spacemacs/toggle-truncate-lines-off)
 
   ;;scrolling stuff
   (setq mouse-wheel-progressive-speed nil)
