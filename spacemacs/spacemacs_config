@@ -31,9 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     osx
      ruby
      gtags
-     chrome
      octave
      pdf-tools
      csv
@@ -50,9 +50,9 @@ values."
      github
      markdown
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-shell 'shell
+            shell-default-position 'bottom)
      ;;spell-checking
      syntax-checking
      ;;version-control
@@ -61,7 +61,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     restclient
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -252,7 +255,7 @@ values."
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling nil
+   dotspacemacs-smooth-scrolling t
    ;; Control line numbers activation.
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
@@ -353,6 +356,8 @@ you should place your code here."
   ;;increase "go meta linter" deadline
   (setq flycheck-gometalinter-deadline "10s")
 
+  ;; python-related ignore list for neo-tree
+  (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
