@@ -23,6 +23,7 @@ brew install git
 brew install python
 brew install gnupg2
 brew install bash
+brew install coreutils
 
 # generate a new ssh key
 ssh-keygen -t rsa -b 4096 -N '' -C $EMAIL
