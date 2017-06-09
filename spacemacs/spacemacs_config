@@ -358,6 +358,9 @@ you should place your code here."
 
   ;; python-related ignore list for neo-tree
   (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
+
+  ;; prevent always scrolling to end of shell buffer on new output
+  (setq comint-scroll-to-bottom-on-output nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
