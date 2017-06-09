@@ -36,20 +36,21 @@ brew link --force curl
 ################################################################################
 # cask -- fixing mac-ness
 brew cask install Alfred
+brew cask install hammerspoon
 
 ################################################################################
-# cask -- utilities
-brew cask install Dashlane
-brew cask install evernote
-brew cask install hammerspoon
-brew cask install rescuetime
-brew cask install dropbox
+# cask -- machine utils
 brew cask install flux
-
+brew cask insall little-snitch
+brew cask install istat-menus
 
 ################################################################################
 # cask -- core apps
 brew cask install google-chrome
+brew cask install Dashlane
+brew cask install evernote
+brew cask install dropbox
+brew cask install rescuetime
 
 
 ################################################################################
