@@ -153,7 +153,7 @@ values."
                                :size 11
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 0.8)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -351,7 +351,7 @@ you should place your code here."
   ;;disable org mode timestamping for now
   (setq org-log-done nil)
 
-  (setq powerline-default-separator 'wave)
+  (setq powerline-default-separator 'utf-8)
 
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
