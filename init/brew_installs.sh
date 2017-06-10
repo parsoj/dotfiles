@@ -51,7 +51,7 @@ brew cask install Dashlane
 brew cask install evernote
 brew cask install dropbox
 brew cask install rescuetime
-
+brew cask install fantastical
 
 ################################################################################
 # manual tasks
