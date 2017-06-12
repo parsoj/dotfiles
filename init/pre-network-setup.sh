@@ -60,6 +60,23 @@ sudo pfctl -e -f pf.rules #FIXME fix this path
 
 
 ################################################################################
+# Safe User Settings
+
+## Set your screen to lock as soon as the screensaver starts:
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+## Expose hidden files and Library folder in Finder:
+defaults write com.apple.finder AppleShowAllFiles -bool true
+chflags nohidden ~/Library
+
+## Show all filename extensions (so that "Evil.jpg.app" cannot masquerade easily).
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Don't default to saving documents to iCloud:
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+################################################################################
 # OSX usage preferences
 #FIXME dock autohiding, smaller size, on right
 #FIXME set caps lock key to "No Action" in keyboard prefs
