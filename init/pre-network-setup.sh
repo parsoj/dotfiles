@@ -8,6 +8,7 @@
 # enable FileVault
 sudo fdesetup enable
 
+#TODO maybe remove stuff below this (sloooooow wake up)
 # force hibernation + destroy FileVault key on standby
 sudo pmset -a destroyfvkeyonstandby 1
 sudo pmset -a hibernatemode 25
