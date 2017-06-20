@@ -353,7 +353,10 @@ you should place your code here."
   ;;disable org mode timestamping for now
   (setq org-log-done nil)
 
+  ;; use utf-8 powerline sep since it doesn't have coloration issues
+  ;; spaceline-compile is needed to force spacemacs to reload the change
   (setq powerline-default-separator 'utf-8)
+  (spaceline-compile)
 
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
