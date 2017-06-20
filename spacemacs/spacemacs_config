@@ -71,6 +71,7 @@ values."
      alert
      emojify
      slack
+     all-the-icons
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -368,6 +369,9 @@ you should place your code here."
 
   ;; prevent always scrolling to end of shell buffer on new output
   (setq comint-scroll-to-bottom-on-output nil)
+
+  ;; neotree icons
+  (setq neo-theme 'icons)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
