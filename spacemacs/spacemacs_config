@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     terraform
      osx
      ruby
      gtags
@@ -369,6 +370,10 @@ you should place your code here."
 
   ;; prevent always scrolling to end of shell buffer on new output
   (setq comint-scroll-to-bottom-on-output nil)
+
+  ;; make json auto-indent 2 spaces
+  (setq-default js2-basic-offset 2
+                js-indent-level 2)
 
   ;; neotree icons
   (setq neo-theme 'icons)

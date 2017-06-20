@@ -1,29 +1,31 @@
 #+Title: secure install steps
-* Download fresh image
-* Secure disk wipe
-* First Boot:
-** don't do while networked (disconnect - don't sign into apple)
-** clear NVRAM
-** set comp name and username to something loosely identifying
-* run pre-netowork script
-* connect to netowork
-* run linker script
-* run brew script
+* Steps
+** Download fresh image
+** Secure disk wipe
+** First Boot:
+*** don't do while networked (disconnect - don't sign into apple)
+*** clear NVRAM
+*** set comp name and username to something loosely identifying
+** run pre-netowork script
+*** TODO host file setup
+** connect to netowork
+** post-network security script
+*** TODO clean up browser cert setup
+*** INVESTIGATE github:google/santa
+** run linker script
+** run brew script
 
 
-* additional setup needed:
-** TODO host file setup
-** INVESTIGATE DNS security
-*** DNSCrypt
-*** DNSmasq
-*** DNSSEC
-** TODO clean up browser cert setup
-** INVESTIGATE Privoxy
-** INVESTIGATE VPN
-** INVESTIGATE github:google/santa
-** TODO add to startup disk:
+* to do items
+** INVESTIGATE add to startup disk:
 *** Little Snitch
 *** pre-network script
+** Set up Santa
+*** refactor "brew install" to a bash func that also whitelists with santa
+**** use "which" or brew info json to extract path
+*** refactor "brew cask install" to a bash fun that also whitelists with santa
+**** 
+** todo and fixme items
 * doc settings
 #+TODO: INVESTIGATE(i) | TODO(t) | DONE(d) 
 

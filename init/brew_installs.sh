@@ -56,9 +56,12 @@ brew cask install fantastical
 ################################################################################
 # manual tasks
 
-# update built-in trackpad gestures
-# disable normal system keyboard shortcuts to allow hammerspoon to take over
+## update built-in trackpad gestures
+### disable two-finger swipe for "back"
 
+## disable normal system keyboard shortcuts to allow hammerspoon to take over
+
+## set alfred to pull from dropbox
 
 
 
