@@ -73,6 +73,7 @@ values."
      emojify
      slack
      all-the-icons
+     go-dlv
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -366,7 +367,11 @@ you should place your code here."
   (setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
 
   ;;increase "go meta linter" deadline
-  (setq flycheck-gometalinter-deadline "10s")
+  (setq flycheck-gometalinter-deadline "3s")
+  ;;disable golint since it is noisier than the mess it protects you from :P
+  (setq flycheck-gometalinter-disable-linters '("golint"))
+  (setq flycheck-gometalinter-fast t)
+
 
   ;; python-related ignore list for neo-tree
   (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
@@ -380,6 +385,12 @@ you should place your code here."
 
   ;; neotree icons
   (setq neo-theme 'icons)
+
+  ;; golang go-dlv.el delve settings
+  (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
+
+  (require 'go-dlv)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
