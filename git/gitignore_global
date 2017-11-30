@@ -45,6 +45,9 @@ flycheck_*.el
 # projectiles files
 .projectile
 
+# DS store files that Steve Jobs likes to throw in there
+.DS_Store
+
 # ignore tags files
 TAGS
 GPATH
