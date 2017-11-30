@@ -37,6 +37,9 @@ brew link --force curl
 # cask -- fixing mac-ness
 brew cask install Alfred
 brew cask install hammerspoon
+brew cask install karabiner
+brew cask install magicprefs
+brew cask install totalspaces
 
 ################################################################################
 # cask -- machine utils
@@ -48,10 +51,10 @@ brew cask install istat-menus
 # cask -- core apps
 brew cask install google-chrome
 brew cask install Dashlane
-brew cask install evernote
 brew cask install dropbox
 brew cask install rescuetime
 brew cask install fantastical
+brew cask install slack
 
 ################################################################################
 # manual tasks
