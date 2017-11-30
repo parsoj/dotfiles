@@ -386,6 +386,10 @@ you should place your code here."
   ;; neotree icons
   (setq neo-theme 'icons)
 
+
+  ;; org mode settings
+  (setq org-hierarchical-todo-statistics nil)
+
   ;; golang go-dlv.el delve settings
   (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
 
