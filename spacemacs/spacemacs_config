@@ -386,6 +386,12 @@ you should place your code here."
   ;; neotree icons
   (setq neo-theme 'icons)
 
+  ;; json formatting
+  (add-hook 'json-mode-hook
+            (lambda ()
+              (make-local-variable 'js-indent-level)
+              (setq js-indent-level 2)))
+
 
   ;; org mode settings
   (setq org-hierarchical-todo-statistics nil)
