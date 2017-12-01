@@ -398,8 +398,12 @@ you should place your code here."
 
   ;; golang go-dlv.el delve settings
   (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
-
   (require 'go-dlv)
+
+
+  ;; make new shells always open in current buffer (so that it behaves like everything else)
+  (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+
 
 )
 
