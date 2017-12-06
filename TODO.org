@@ -1,12 +1,7 @@
 * init
 ** install fonts
 * Spacemacs
-** TODO organize configs for language tools and styles
-** TODO fix "UseKeyChain" ssh config issue
-** TODO python REPL w/ tornado
-** TODO fix shell buffer creation to happen in current buffer
-** TODO-LATER REST client stuff
-** TODO-LATER cleaner org mode document settings
+** fuzzy matching in company mode for shell autocompletion
 
 
 * Document Settings
