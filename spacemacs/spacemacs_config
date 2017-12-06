@@ -156,7 +156,7 @@ values."
                                :size 11
                                :weight normal
                                :width normal
-                               :powerline-scale .8)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -356,7 +356,7 @@ you should place your code here."
 
   ;; use utf-8 powerline sep since it doesn't have coloration issues
   ;; spaceline-compile is needed to force spacemacs to reload the change
-  (setq powerline-default-separator 'arrow)
+  (setq powerline-default-separator 'wave)
   (spaceline-compile)
 
   ;;highlight all occurances of the symbol at point
