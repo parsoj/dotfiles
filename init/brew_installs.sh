@@ -42,9 +42,12 @@ brew cask install istat-menus
 brew cask install google-chrome
 brew cask install Dashlane
 brew cask install dropbox
-brew cask install rescuetime
-brew cask install fantastical
 brew cask install slack
+
+## productivity
+brew cask install rescuetime
+brew cask install omnifocus
+brew cask install fantastical
 
 ################################################################################
 # manual tasks
