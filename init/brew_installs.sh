@@ -27,7 +27,6 @@ brew link --force curl
 # cask -- fixing mac-ness
 brew cask install Alfred
 brew cask install hammerspoon
-brew cask install karabiner
 brew cask install magicprefs
 brew cask install totalspaces
 brew cask install bartender
