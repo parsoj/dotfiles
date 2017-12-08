@@ -50,6 +50,10 @@ brew cask install omnifocus
 brew cask install fantastical
 
 ################################################################################
+# Xcode tools
+xcode-select --install
+
+################################################################################
 # manual tasks
 
 ## update built-in trackpad gestures
