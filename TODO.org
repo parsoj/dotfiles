@@ -2,6 +2,7 @@
 ** install fonts
 * Spacemacs
 ** fuzzy matching in company mode for shell autocompletion
+** commands to optionally open new window during code navigation (as opposed to opening in current window)
 
 
 * Document Settings
