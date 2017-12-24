@@ -7,6 +7,11 @@ brew install bash
 
 # core spacemacs install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-brew tap railwaycat/emacsmacport
-brew install emacs-mac
+brew install emacs-plus
 brew linkapps
+
+# running emacs server on startup
+## add launchd plist to the launch agents dir and enable it
+sudo cp spacemacs_launchd.plist /Library/LaunchAgents/
+sudo launchctl load -w /Library/LaunchAgents/spacemacs_launchd.plist
+
