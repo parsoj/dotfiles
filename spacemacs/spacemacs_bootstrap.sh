@@ -10,8 +10,5 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 brew install emacs-plus
 brew linkapps
 
-# running emacs server on startup
-## add launchd plist to the launch agents dir and enable it
-sudo cp spacemacs_launchd.plist /Library/LaunchAgents/
-sudo launchctl load -w /Library/LaunchAgents/spacemacs_launchd.plist
-
+# copy spacemacs daemon app to /Applications to be run as a login item
+cp -r Spacemacs_Daemon.app /Applications/
