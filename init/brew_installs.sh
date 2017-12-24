@@ -34,7 +34,7 @@ brew cask install bartender
 ################################################################################
 # cask -- machine utils
 brew cask install flux
-brew cask insall little-snitch
+brew cask install little-snitch
 brew cask install istat-menus
 
 ################################################################################
