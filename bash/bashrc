@@ -9,20 +9,6 @@ export PATH=$GOPATH/bin:$PATH
 
 export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 
-function pf
-{
-  ps -efw | grep $1 | grep -v grep
-
-
-}
-
-function pfk
-{
-
-  pf $1 | awk '{print $2}' | xargs kill -15
-
-}
-
 function nuke-subs
 {
 
