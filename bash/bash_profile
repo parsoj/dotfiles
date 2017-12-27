@@ -7,6 +7,8 @@ export HOMEBREW_NO_INSECURE_REDIRECT=1
 export GOPATH=/Users/Jeff/code/go
 export PATH=$GOPATH/bin:$PATH
 
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
+
 function pf
 {
   ps -efw | grep $1 | grep -v grep
