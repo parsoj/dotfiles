@@ -35,6 +35,7 @@ brew cask install bartender
 # cask -- machine utils
 brew cask install flux
 brew cask install little-snitch
+open /usr/local/Caskroom/little-snitch/4.0.4/LittleSnitch-4.0.4.dmg
 brew cask install istat-menus
 
 ################################################################################
