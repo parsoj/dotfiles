@@ -9,6 +9,7 @@ rm ~/.gitignore_global ; ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_glo
 rm -rf ~/.hammerspoon ; ln -s ~/.dotfiles/hammerspoon ~/.hammerspoon
 
 # Bash
+rm -rf ~/.bashrc ; ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
 rm -rf ~/.bash_profile ; ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
 
 # ssh

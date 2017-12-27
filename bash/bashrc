@@ -1,11 +1,51 @@
-# private info will be kept here
-# these are placeholders to indicate which variables need to be populated
-# this will not be simlinked since changes to add secrets to this should not be source-controlled 
+#homebrew stuff
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
 
-export EMAIL=
+#golang stuff
+export GOPATH=/Users/Jeff/code/go
+export PATH=$GOPATH/bin:$PATH
 
-export VAULT_ADDR=
-export VAULT_TOKEN=
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 
-export AWS_KEY_ID=
-export AWS_ACCESS_SECRET=
+function pf
+{
+  ps -efw | grep $1 | grep -v grep
+
+
+}
+
+function pfk
+{
+
+  pf $1 | awk '{print $2}' | xargs kill -15
+
+}
+
+function nuke-subs
+{
+
+  rm -rf $@; git co $@; git submodule init; git submodule update
+
+}
+
+function nfy
+{
+    osascript -e 'display notification "Your shell script is complete." with title "Ding!"'
+}
+
+function ports
+{
+    lsof -n -P | grep LISTEN
+}
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+
+if [ -f ~/.env_secrets ]; then
+    source ~/.env_secrets
+fi
+
