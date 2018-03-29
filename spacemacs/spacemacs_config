@@ -373,6 +373,10 @@ you should place your code here."
 
   ;; python-related ignore list for neo-tree
   (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
+
+  ;; fix an error that pops up when launching python interpreter from w/in emacs
+  (setq python-shell-completion-native-enable nil)
+
   (setq python-shell-interpreter "/usr/local/bin/python3")
   (setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
   (setq flycheck-python-pycompile-executable "python3")
