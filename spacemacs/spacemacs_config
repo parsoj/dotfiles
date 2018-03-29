@@ -408,6 +408,10 @@ you should place your code here."
     (define-key shell-mode-map (kbd "TAB") #'company-manual-begin))
   (add-hook 'shell-mode-hook #'my-shell-mode-hook)
 
+  ;; when switching to an emacs window, the following error is displayed:
+  ;; "Warning (emacs): recentf mode: Non-character input-event"
+  ;; this is apparently due to a lockfile bug - disable lockfiles for now
+  (setq create-lockfiles nil)
 
 )
 
