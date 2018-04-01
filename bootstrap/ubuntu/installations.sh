@@ -37,5 +37,6 @@ apt update
 apt install fluxgui
 
 # gnome tweak tool
+# (can check dconf settings changedwith `dconf watch /` to move to gsettings)
 apt install gnome-tweak-tool
 
