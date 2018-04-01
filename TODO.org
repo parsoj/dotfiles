@@ -1,17 +1,4 @@
 * init
-** BLOCKED run emacs as a daemon
-*** add `emacs --daemon` script to login
-**** using a gnome startup application currently
-**** TODO add config file and bootstrap script for this functionality
-*** create keyboard shortcut and gnome launcher for `emacsclient -c`
-**** using a gnome keyboard shortcut currently, in combination with a gnome shell extension "steal my focus"
-**** TODO add config file and bootstrap script for this functionality
-** TODO bring gnome config into source control
-*** TODO emacs as daemon functionality
-*** TODO keyboad shortcuts
-*** TODO CAPS <-> ESC swap
-** TODO install flux 
-** TODO install rescuetime
 ** TODO set up albert
 *** TODO quick search and launch of chrome
 *** TODO quick shell command
