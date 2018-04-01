@@ -3,16 +3,16 @@
 # OS control utilities
 sudo apt install wmctrl
 
-################################################################################
-# Spacemacs install
-
-./applications/spacemacs/spacemacs_install.sh
-
 ############################################################
 # Coding Utilities
 sudo apt install git
 sudo apt install silversearcher-ag
 sudo apt install markdown
+
+################################################################################
+# Spacemacs install
+
+./applications/spacemacs/spacemacs_install.sh
 
 ################################################################################
 # Applications
