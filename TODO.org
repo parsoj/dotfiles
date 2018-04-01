@@ -1,15 +1,31 @@
 * init
-** install fonts
+** BLOCKED run emacs as a daemon
+*** add `emacs --daemon` script to login
+**** using a gnome startup application currently
+**** TODO add config file and bootstrap script for this functionality
+*** create keyboard shortcut and gnome launcher for `emacsclient -c`
+**** using a gnome keyboard shortcut currently, in combination with a gnome shell extension "steal my focus"
+**** TODO add config file and bootstrap script for this functionality
+** TODO bring gnome config into source control
+*** TODO emacs as daemon functionality
+*** TODO keyboad shortcuts
+*** TODO CAPS <-> ESC swap
+** TODO install flux 
+** TODO install rescuetime
+** TODO set up albert
+*** TODO quick search and launch of chrome
+*** TODO quick shell command
 * Spacemacs
-** fuzzy matching in company mode for shell autocompletion
-** commands to optionally open new window during code navigation (as opposed to opening in current window)
+** TODO-LATER fuzzy matching in company mode for shell autocompletion
+** TODO-LATER commands to optionally open new window during code navigation (as opposed to opening in current window)
 
 
 * Document Settings
-#+TODO: TODO(t) | TODO-LATER(l) | DONE(d) 
+#+TODO: TODO(t) | TODO-LATER(l) | BLOCKED(b) | DONE(d) 
 # Local Variables:
 # eval: (setq org-todo-keyword-faces `(
 # ("TODO" . "#ce537a")
+# ("BLOCKED" . "#b1951d")
 # ("TODO-LATER" . "#b1591d")
 # ("DONE" . "#cbc1d5")))
 # End:
