@@ -33,5 +33,8 @@ sudo apt install albert
 # (can check dconf settings changedwith `dconf watch /` to move to gsettings)
 sudo apt install gnome-tweak-tool
 
-# TODO rescue time script (install and login item)
+# install f.lux
+./applications/flux/flux_install.sh
 
+# install Rescue Time
+./applications/rescuetime/rescuetime_install.sh
