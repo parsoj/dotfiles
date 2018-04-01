@@ -5,29 +5,16 @@ sudo -i
 # OS control utilities
 apt install wmctrl
 
+################################################################################
+# Spacemacs install
+
+./spacemacs/spacemacs_install.sh
+
 ############################################################
 # Coding Utilities
 apt install git
 apt install silversearcher-ag
 apt install markdown
-
-#################################################################
-# Spacemacs install
-
-# base install
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-apt install emacs
-
-# run as deamon on startup
-echo "emacs --daemon" >> /etc/profile.d/emacs_daemon.sh
-chmod +x /etc/profile.d/emacs_daemon.sh
-
-# source code pro font for spacemacs
-mkdir -p ~/.fonts
-cp ~/.dotfiles/spacemacs/fonts/source-code-pro/*.ttf ~/.fonts
-
-# all-the-icons setup for neotree
-cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 
 ################################################################################
 # Applications
