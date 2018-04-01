@@ -21,15 +21,15 @@ cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 cp emacs.desktop ~/.config/autostart/
 
 # set up emacs client launcher (using gsettings to edit gnome dconf)
-/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding
-'<Super>e'
-
-/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name
-'Emacs Client launcher'
-
-/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command
-'emacsclient -c -e "(shell)"'
-
-/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
-['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+#/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding
+#'<Super>e'
+#
+#/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name
+#'Emacs Client launcher'
+#
+#/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command
+#'emacsclient -c -e "(shell)"'
+#
+#/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
+#['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
 

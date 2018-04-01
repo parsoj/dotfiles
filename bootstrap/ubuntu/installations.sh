@@ -8,7 +8,7 @@ apt install wmctrl
 ################################################################################
 # Spacemacs install
 
-./spacemacs/spacemacs_install.sh
+./applications/spacemacs/spacemacs_install.sh
 
 ############################################################
 # Coding Utilities
