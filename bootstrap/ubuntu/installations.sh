@@ -1,9 +1,7 @@
-# run this script with sudo access
-sudo -i
 
 ############################################################
 # OS control utilities
-apt install wmctrl
+sudo apt install wmctrl
 
 ################################################################################
 # Spacemacs install
@@ -12,33 +10,33 @@ apt install wmctrl
 
 ############################################################
 # Coding Utilities
-apt install git
-apt install silversearcher-ag
-apt install markdown
+sudo apt install git
+sudo apt install silversearcher-ag
+sudo apt install markdown
 
 ################################################################################
 # Applications
 
 # Chrome
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-apt update
-apt install google-chrome-stable
+sudo apt update
+sudo apt install google-chrome-stable
 
 # Albert
 wget -nv -O Release.key https://build.opensuse.org/projects/home:manuelschneid3r/public_key
-apt-key add - < Release.key
+sudo apt-key add - < Release.key
 sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
-apt update
-apt install albert
+sudo apt update
+sudo apt install albert
 
 # flux TODO add login item copy script
-add-apt-repository ppa:nathan-renniewaldock/flux
-apt update
-apt install fluxgui
+sudo add-apt-repository ppa:nathan-renniewaldock/flux
+sudo apt update
+sudo apt install fluxgui
 
 # gnome tweak tool
 # (can check dconf settings changedwith `dconf watch /` to move to gsettings)
-apt install gnome-tweak-tool
+sudo apt install gnome-tweak-tool
 
 # TODO rescue time script (install and login item)
 
