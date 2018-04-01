@@ -29,11 +29,6 @@ sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r
 sudo apt update
 sudo apt install albert
 
-# flux TODO add login item copy script
-sudo add-apt-repository ppa:nathan-renniewaldock/flux
-sudo apt update
-sudo apt install fluxgui
-
 # gnome tweak tool
 # (can check dconf settings changedwith `dconf watch /` to move to gsettings)
 sudo apt install gnome-tweak-tool
