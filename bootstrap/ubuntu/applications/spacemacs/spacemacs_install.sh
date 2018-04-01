@@ -1,11 +1,10 @@
-sudo -i
 
-############################################################
+#############################################################
 # Spacemacs installation
 
 # base install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-apt install emacs
+sudo apt install emacs
 
 # source code pro font for spacemacs
 mkdir -p ~/.fonts
