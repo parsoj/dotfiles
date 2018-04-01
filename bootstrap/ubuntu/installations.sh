@@ -31,7 +31,7 @@ sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r
 apt update
 apt install albert
 
-# flux
+# flux TODO add login item copy script
 add-apt-repository ppa:nathan-renniewaldock/flux
 apt update
 apt install fluxgui
@@ -39,4 +39,6 @@ apt install fluxgui
 # gnome tweak tool
 # (can check dconf settings changedwith `dconf watch /` to move to gsettings)
 apt install gnome-tweak-tool
+
+# TODO rescue time script (install and login item)
 
