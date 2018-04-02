@@ -8,19 +8,19 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 # Keyboard shortcuts
 
 # workspace navigation shortcuts
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Alt>k']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Super>k']"
 
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Alt>j']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>j']"
 
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Alt>h']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>h']"
 
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Alt>l']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
 
 # window control shortcuts
 
-gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>u']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Alt>u']"
 
-gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Super>h']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Alt>h']"
 
-gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>l']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Alt>l']"
 
