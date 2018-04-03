@@ -5,7 +5,6 @@ sudo apt install wmctrl
 
 ############################################################
 # Coding Utilities
-sudo apt install git
 sudo apt install silversearcher-ag
 sudo apt install markdown
 
