@@ -8,6 +8,3 @@ rm ~/.gitignore_global ; ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_glo
 # Bash
 #rm -rf ~/.bashrc ; ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
 #rm -rf ~/.bash_profile ; ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
-
-# ssh
-rm ~/.ssh/config ; ln -s ~/.dotfiles/ssh/config ~/.ssh/config
