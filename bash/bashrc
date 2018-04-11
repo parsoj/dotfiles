@@ -40,6 +40,17 @@ fi
 # used by spacemacs python layer
 export WORKON_HOME=~/.pyenv/versions
 
+function venv
+{
+  if [ -d "venv" ]; then
+     echo "found existing venv. activating..."
+     source ./venv/bin/activate
+  else
+    virtualenv -p /usr/bin/python3 venv
+     source ./venv/bin/activate
+  fi
+}
+
 ################################################################################
 
 
