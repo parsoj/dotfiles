@@ -164,6 +164,8 @@ bar {
         mode hide
         position top
         font pango:Source Code Pro 12
+
+        status_command i3status --config ~/.dotfiles/i3/i3status.conf
 }
 
 ################################################################################
