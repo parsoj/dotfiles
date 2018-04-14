@@ -1,5 +1,5 @@
 # install go itself
-brew install go
+sudo apt -y install install go
 
 # tools for spacemacs go layer
 go get -u -v github.com/nsf/gocode
