@@ -8,3 +8,6 @@ rm ~/.gitignore_global ; ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_glo
 # Bash
 rm -rf ~/.bashrc ; ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
 rm -rf ~/.bash_profile ; ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
+
+# i3wm
+rm -rf ~/.config/i3/config ; ln -s ~/.dotfiles/i3/config ~/.config/i3/config
