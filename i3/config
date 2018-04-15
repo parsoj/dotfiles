@@ -56,23 +56,11 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+h focus left
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 bindsym $mod+Shift+h move left
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 #bindsym $mod+h split h
@@ -187,6 +175,15 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+################################################################################
+# screen rotation stuff
+
+bindsym  $mod+Down exec --no-startup-id xrandr --output eDP1 --rotate normal && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 1
+bindsym  $mod+Up exec --no-startup-id xrandr --output eDP1 --rotate inverted && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
+bindsym  $mod+Right exec --no-startup-id xrandr --output eDP1 --rotate left && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
+bindsym  $mod+Left exec --no-startup-id xrandr --output eDP1 --rotate right && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+
 
 ################################################################################
 # Touchpad settings
