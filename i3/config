@@ -212,7 +212,17 @@ exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics 
 
 # emacs daemon
 exec --no-startup-id emacs --daemon
-bindsym $mod+x exec emacsclient -c -e "(shell)"
 
 # network manager applet
 exec --no-startup-id nm-applet
+
+################################################################################
+# launcher shortcuts
+
+# emacs 
+bindsym $mod+z exec emacsclient -c -e "(shell)"
+
+# chrome
+bindsym $mod+c exec google-chrome --profile-diretory="Profile 1"
+bindsym $mod+x exec google-chrome --profile-diretory="Profile 2"
+
