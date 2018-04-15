@@ -215,6 +215,9 @@ exec --no-startup-id nm-applet
 
 # launch yakyak on first workspace TODO this should probably go somewhere else eventually
 exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/yakyak'
+# bluetooth applet
+exec --no-startup-id blueman-applet
+
 
 # launch slack on first workspace
 exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/slack'
