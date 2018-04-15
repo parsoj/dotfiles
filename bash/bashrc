@@ -4,6 +4,8 @@ export PATH=$GOPATH/bin:$PATH
 
 export EDITOR="/usr/bin/emacsclient -c"
 
+################################################################################
+# general utility stuff
 
 function nuke-subs
 {
