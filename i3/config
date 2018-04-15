@@ -226,3 +226,8 @@ bindsym $mod+z exec emacsclient -c -e "(shell)"
 bindsym $mod+c exec google-chrome --profile-diretory="Profile 1"
 bindsym $mod+x exec google-chrome --profile-diretory="Profile 2"
 
+################################################################################
+# background and themes
+
+# set background
+exec --no-startup-id feh --bg-scale /home/jeff/Pictures/awesome_flat-wallpaper-1920x1080.jpg 
