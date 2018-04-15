@@ -213,6 +213,13 @@ exec --no-startup-id emacs --daemon
 # network manager applet
 exec --no-startup-id nm-applet
 
+# launch yakyak on first workspace TODO this should probably go somewhere else eventually
+exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/yakyak'
+
+# launch slack on first workspace
+exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/slack'
+
+
 ################################################################################
 # launcher shortcuts
 
