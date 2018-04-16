@@ -145,6 +145,35 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+################################################################################
+# colors
+
+set $aqua #2d9574
+set $aqua-bg #293235
+set $green #67b11d
+set $green-bg #293235
+set $green-bg-s #29422d
+set $cyan #28def0
+set $red #f2241f
+set $red-bg #3c2a2c
+set $red-bg-s #512e31
+set $blue #4f97d7
+set $blue-bg #293239
+set $magenta #a31db1
+set $yellow #b1951d
+set $yellow-bg #32322c
+set $dark-purple #5d4d7a
+set $light-purple #bc6ec5
+set $bg-light #292b2e
+set $bg-dark #212026
+
+
+
+#colors:                border  backgr. text    indicator
+client.focused          $blue   $blue   #ffffff #2b2b2b
+
+################################################################################
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -154,6 +183,15 @@ bar {
         font pango:Source Code Pro 12
 
         status_command i3status --config ~/.dotfiles/i3/i3status.conf
+
+        colors {
+               #color class       border  back.   text
+               focused_workspace  $light-purple $bg-dark #ffffff
+               active_workspace   #555555 #555555 #ffffff
+               inactive_workspace $bg-light $bg-light #888888
+               urgent_workspace   $yellow $yellow-bg #ffffff
+               background  $bg-light
+        }
 }
 
 ################################################################################
