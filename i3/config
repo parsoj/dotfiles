@@ -222,6 +222,8 @@ exec --no-startup-id blueman-applet
 # launch slack on first workspace
 exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/slack'
 
+# launch redshift (flux clone)
+exec --no-startup-id redshift
 
 ################################################################################
 # launcher shortcuts
