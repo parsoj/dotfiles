@@ -74,6 +74,10 @@ values."
      slack
      all-the-icons
      go-dlv
+     vue-mode
+     lsp-mode
+     lsp-vue
+     company-lsp
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -419,6 +423,17 @@ you should place your code here."
   ;; "Warning (emacs): recentf mode: Non-character input-event"
   ;; this is apparently due to a lockfile bug - disable lockfiles for now
   (setq create-lockfiles nil)
+
+  ;; vue.js stuff
+  (require 'vue-mode)
+  (add-to-list 'vue-mode-hook #'smartparens-mode)
+  (require 'lsp-mode)
+  (require 'lsp-vue)
+  (add-hook 'vue-mode-hook #'lsp-vue-mmm-enable)
+  (with-eval-after-load 'lsp-mode
+    (require 'lsp-flycheck))
+  (require 'company-lsp)
+  (push 'company-lsp company-backends)
 
 )
 
