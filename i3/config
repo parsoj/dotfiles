@@ -63,16 +63,16 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+h move left
 
 # split in horizontal orientation
-#bindsym $mod+h split h
+bindsym $mod+s split v
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split s
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -123,14 +123,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -170,7 +166,7 @@ set $bg-dark #212026
 
 
 #colors:                border  backgr. text    indicator
-client.focused          $blue   $blue   #ffffff #2b2b2b
+client.focused          $light-purple   $light-purple   #ffffff #2b2b2b
 
 ################################################################################
 
@@ -217,11 +213,15 @@ bindsym XF86AudioPrev exec playerctl previous
 ################################################################################
 # screen rotation stuff
 
-bindsym  $mod+Down exec --no-startup-id xrandr --output eDP1 --rotate normal && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 1
-bindsym  $mod+Up exec --no-startup-id xrandr --output eDP1 --rotate inverted && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
-bindsym  $mod+Right exec --no-startup-id xrandr --output eDP1 --rotate left && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
-bindsym  $mod+Left exec --no-startup-id xrandr --output eDP1 --rotate right && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+#bindsym  $mod+Down exec --no-startup-id xrandr --output eDP1 --rotate normal && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 1
+#bindsym  $mod+Up exec --no-startup-id xrandr --output eDP1 --rotate inverted && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
+#bindsym  $mod+Right exec --no-startup-id xrandr --output eDP1 --rotate left && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
+#bindsym  $mod+Left exec --no-startup-id xrandr --output eDP1 --rotate right && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
 
+bindsym  $mod+Down exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh normal "$device"
+bindsym  $mod+Up exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh inverted "$device"
+bindsym  $mod+Right exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh left "$device "
+bindsym  $mod+Left exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh right "$device"
 
 ################################################################################
 # Touchpad settings
@@ -251,14 +251,14 @@ exec --no-startup-id emacs --daemon
 # network manager applet
 exec --no-startup-id nm-applet
 
-# launch yakyak on first workspace TODO this should probably go somewhere else eventually
-exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/yakyak'
 # bluetooth applet
 exec --no-startup-id blueman-applet
 
-
-# launch slack on first workspace
-exec --no-startup-id i3-msg 'workspace 1:comm; exec /snap/bin/slack'
+## launch yakyak on first workspace
+#exec --no-startup-id i3-msg 'workspace 1; exec /snap/bin/yakyak'
+#
+## launch slack on first workspace
+#exec --no-startup-id i3-msg 'workspace 1; exec /snap/bin/slack'
 
 # launch redshift (flux clone)
 exec --no-startup-id redshift
@@ -267,11 +267,10 @@ exec --no-startup-id redshift
 # launcher shortcuts
 
 # emacs 
-bindsym $mod+z exec emacsclient -c -e "(shell)"
+bindsym $mod+x exec emacsclient -c -e "(shell)"
 
 # chrome
-bindsym $mod+c exec google-chrome --profile-diretory="Profile 1"
-bindsym $mod+x exec google-chrome --profile-diretory="Profile 2"
+bindsym $mod+c exec google-chrome 
 
 ################################################################################
 # background and themes
