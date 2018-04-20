@@ -2,7 +2,6 @@
 # rotate screen and touch screen
 
 INPUT_DEVICES=( 'Wacom HID 482F Finger touch' 'Wacom HID 482F Pen stylus' )
-DISPLAYS=( 'eDP1' )
 TRANSFORM_TYPE='Coordinate Transformation Matrix'
 
 DIRECTION=$1
@@ -23,10 +22,6 @@ do
 done
 
 # perform the rotation on the display
-for DISPLAY in "${DISPLAYS[@]}"
-do
-    echo "rotating screen: $DISPLAY"
-    xrandr --output $DISPLAY --rotate $DIRECTION
-done
+xrandr --output eDP1 --rotate $DIRECTION
 
 
