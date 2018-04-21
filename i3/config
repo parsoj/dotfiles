@@ -218,10 +218,10 @@ bindsym XF86AudioPrev exec playerctl previous
 #bindsym  $mod+Right exec --no-startup-id xrandr --output eDP1 --rotate left && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
 #bindsym  $mod+Left exec --no-startup-id xrandr --output eDP1 --rotate right && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
 
-bindsym  $mod+Down exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh normal "$device"
-bindsym  $mod+Up exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh inverted "$device"
-bindsym  $mod+Right exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh left "$device "
-bindsym  $mod+Left exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh right "$device"
+bindsym  $mod+Down exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh normal
+bindsym  $mod+Up exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh inverted
+bindsym  $mod+Right exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh left
+bindsym  $mod+Left exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh right
 
 ################################################################################
 # Touchpad settings
