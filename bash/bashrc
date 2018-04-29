@@ -1,8 +1,16 @@
+export EDITOR="/usr/bin/emacsclient -c"
+
+################################################################################
+# CUDA stuff
+export PATH=/usr/local/cuda-9.1/bin${PATH:+:${PATH}}
+
+export LD_LIBRARY_PATH=/usr/local/cuda-9.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+################################################################################
 #golang stuff
 export GOPATH=/Users/Jeff/code/go
 export PATH=$GOPATH/bin:$PATH
 
-export EDITOR="/usr/bin/emacsclient -c"
 
 ################################################################################
 # general utility stuff
