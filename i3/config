@@ -198,8 +198,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 2 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 2 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -213,11 +213,6 @@ bindsym XF86AudioPrev exec playerctl previous
 ################################################################################
 # screen rotation stuff
 
-#bindsym  $mod+Down exec --no-startup-id xrandr --output eDP1 --rotate normal && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 1
-#bindsym  $mod+Up exec --no-startup-id xrandr --output eDP1 --rotate inverted && xinput set-prop "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
-#bindsym  $mod+Right exec --no-startup-id xrandr --output eDP1 --rotate left && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
-#bindsym  $mod+Left exec --no-startup-id xrandr --output eDP1 --rotate right && xinput set-prop  "Wacom HID 482F Finger touch" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
-
 bindsym  $mod+Down exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh normal
 bindsym  $mod+Up exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh inverted
 bindsym  $mod+Right exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh left
@@ -229,7 +224,7 @@ bindsym  $mod+Left exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh
 # natural scrolling
 exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Two-Finger Scrolling" 1, 1
 exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Scrolling Distance" -27, -27
-exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Palm Dimensions" 8, 200
+exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Palm Dimensions" 4, 50
 
 
 # palm rejection
