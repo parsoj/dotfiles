@@ -222,16 +222,16 @@ bindsym  $mod+Left exec --no-startup-id /home/jeff/.dotfiles/i3/rotate_screen.sh
 # Touchpad settings
 
 # natural scrolling
-exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Two-Finger Scrolling" 1, 1
-exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Scrolling Distance" -27, -27
-exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Palm Dimensions" 4, 50
+#exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Two-Finger Scrolling" 1, 1
+exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
+#exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Palm Dimensions" 4, 50
 
 
 # palm rejection
-exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Palm Detection" 1
+#exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Palm Detection" 1
 
 # general sensitivity settings (copied from ubuntu config)
-exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Tap Action" 0, 0, 0, 0, 0, 0, 0
+#exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Tap Action" 0, 0, 0, 0, 0, 0, 0
 
 #exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Click Action" 1, 3, 2
 #exec --no-startup-id xinput set-prop "DLL077A:01 06CB:76AF Touchpad" "Synaptics Soft Button Areas" 0, 0, 0, 0, 0, 0, 0, 0
