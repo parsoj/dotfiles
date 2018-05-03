@@ -22,6 +22,6 @@ do
 done
 
 # perform the rotation on the display
-xrandr --output eDP1 --rotate $DIRECTION
+xrandr --output eDP-1 --rotate $DIRECTION
 
 
