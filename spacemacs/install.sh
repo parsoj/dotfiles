@@ -4,7 +4,10 @@
 
 # base install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-sudo apt install emacs
+sudo apt -y install emacs
+
+# link in spacemacs config
+rm ~/.spacemacs ; ln -s ~/.dotfiles/spacemacs/spacemacs_config ~/.spacemacs
 
 # source code pro font for spacemacs
 mkdir -p ~/.fonts
