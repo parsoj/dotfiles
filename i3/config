@@ -272,4 +272,4 @@ bindsym $mod+c exec google-chrome
 # background and themes
 
 # set background
-exec --no-startup-id feh --bg-scale /home/jeff/Pictures/awesome_flat-wallpaper-1920x1080.jpg 
+exec --no-startup-id feh --bg-scale /home/jeff/Pictures/bg.jpg
