@@ -2,9 +2,11 @@
 sudo apt -y install python-dev
 sudo apt -y install python-pip
 pip install virualenv
+pip install ipython
 
 sudo apt -y install python3-dev
 sudo apt -y install python3-pip
+pip3 install ipython
 
 
 # styles
