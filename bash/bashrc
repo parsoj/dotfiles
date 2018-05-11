@@ -27,6 +27,14 @@ function ports
     lsof -n -P | grep LISTEN
 }
 
+function reboot-emacs
+{
+  sudo killall -9 emacs
+  emacs --daemon
+  exit
+
+}
+
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
