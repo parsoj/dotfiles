@@ -33,3 +33,4 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 # spacemacs support utilities
 sudo apt -y install silversearcher-ag
 sudo apt -y install markdown
+sudo apt -y install global
