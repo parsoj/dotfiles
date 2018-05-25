@@ -65,6 +65,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     go-playground
      websocket
      request
      oauth2
