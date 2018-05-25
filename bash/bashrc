@@ -8,7 +8,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-9.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY
 
 ################################################################################
 #golang stuff
-export GOPATH=/Users/Jeff/code/go
+export GOPATH=/home/jeff/go
 export PATH=$GOPATH/bin:$PATH
 
 
