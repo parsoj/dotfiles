@@ -266,7 +266,7 @@ exec --no-startup-id redshift
 bindsym $mod+x exec emacsclient -c -e "(shell)"
 
 # chrome
-bindsym $mod+c exec google-chrome 
+bindsym $mod+c exec firefox
 
 exec --no-startup-id dropbox start
 
