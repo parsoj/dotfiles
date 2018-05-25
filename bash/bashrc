@@ -71,6 +71,8 @@ function ssh-ec2 {
          ssh -i ~/.ssh/key-pair.pem ec2-user@$1
 }
 
+alias tf=terraform
+
 
 if [ -f ~/.env_secrets ]; then
     source ~/.env_secrets
