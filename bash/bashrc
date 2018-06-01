@@ -38,6 +38,9 @@ function reboot-emacs
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+# run "undistract-me" to notify when long-running shell commands finish
+source /etc/profile.d/undistract-me.sh
+
 ################################################################################
 # pyenv and python support
 

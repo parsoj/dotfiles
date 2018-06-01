@@ -34,3 +34,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 sudo apt -y install silversearcher-ag
 sudo apt -y install markdown
 sudo apt -y install global
+################################################################################
+ # random utils
+
+# pops up a notification when long-running scripts complete (accompanied with .bashrc setting)
+sudo apt install undistract-me
