@@ -41,6 +41,7 @@ alias pbpaste='xclip -selection clipboard -o'
 # run "undistract-me" to notify when long-running shell commands finish
 source /etc/profile.d/undistract-me.sh
 export LONG_RUNNING_COMMAND_TIMEOUT=6
+export UDM_PLAY_SOUND=1
 
 ################################################################################
 # pyenv and python support
