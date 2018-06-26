@@ -4,7 +4,7 @@
 
 # base install
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-sudo apt -y install emacs
+pacman -S emacs
 
 # link in spacemacs config
 rm ~/.spacemacs ; ln -s ~/.dotfiles/spacemacs/spacemacs_config ~/.spacemacs
@@ -17,25 +17,13 @@ cp ~/.dotfiles/spacemacs/fonts/source-code-pro/*.ttf ~/.fonts
 cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 
 ################################################################################
-# Run Spacemacs as a Daemon
-
-# run emacs daemon (copy autostart file into autostart dir)
-mkdir -p ~/.config/autostart
-cp emacs.desktop ~/.config/autostart/
-
-# set up emacs client launcher (using gsettings to edit gnome dconf)
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "'EmacsClient Launcher'"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "'<Super>e'"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "'emacsclient -c -e \"(shell)\"'"
-
-################################################################################
 
 # spacemacs support utilities
-sudo apt -y install silversearcher-ag
-sudo apt -y install markdown
-sudo apt -y install global
+yaourt -S the_silver_searcher
+yaourt -S markdown
+yaourt -S global
 ################################################################################
  # random utils
 
 # pops up a notification when long-running scripts complete (accompanied with .bashrc setting)
-sudo apt install undistract-me
+yaourt -S undistract-me-git
