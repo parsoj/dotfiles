@@ -13,9 +13,9 @@ window_maximize=false
 # start in full screen mode (true/false)
 window_fullscreen=false
 # the window width in pixels (when not maximized)
-window_width=1918
+window_width=1920
 # the window height in pixels
-window_height=1078
+window_height=1056
 # scrollbar step increment (in pixels)
 scrollbar_speed=30
 # the step increment in the zoom dialog box
@@ -39,7 +39,7 @@ touchscreen_as_hand_tool=true
 # disable touchscreen device when pen is in proximity (true/false) (requires separate pen and touch devices)
 pen_disables_touch=false
 # name of touchscreen device for touchscreen_as_hand_tool
-touchscreen_device_name=Wacom HID 482F Finger touch
+touchscreen_device_name=Wacom HID 482F Finger
 # buttons 2 and 3 switch mappings instead of drawing (useful for some tablets) (true/false)
 buttons_switch_mappings=false
 # automatically load filename.pdf.xoj instead of filename.pdf (true/false)
@@ -77,6 +77,10 @@ autosave_prefs=false
 poppler_force_cairo=false
 # prefer xournal's own PDF code for exporting PDFs (true/false)
 exportpdf_prefer_legacy=false
+# when attempting to open a non-existent file, treat it as a new file (true/false)
+autocreate_new_xoj=false
+# export successive layers on separate pages in PDFs (true/false)
+exportpdf_layers=false
 
 [paper]
 # the default page width, in points (1/72 in)
@@ -128,11 +132,11 @@ highlighter_ruler=false
 # default highlighter is in shape recognizer mode (true/false)
 highlighter_recognizer=false
 # button 2 tool (pen, eraser, highlighter, text, selectregion, selectrect, vertspace, hand, image)
-btn2_tool=eraser
+btn2_tool=pen
 # button 2 brush linked to primary brush (true/false) (overrides all other settings)
 btn2_linked=true
 # button 2 brush color (for pen or highlighter only)
-btn2_color=white
+btn2_color=black
 # button 2 brush thickness (pen, eraser, or highlighter only)
 btn2_thickness=2
 # button 2 ruler mode (true/false) (for pen or highlighter only)
