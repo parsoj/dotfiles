@@ -420,6 +420,8 @@ mode "$mode_gaps_outer" {
 ################################################################################
 # autostart programs
 
+# dropbox
+exec --no-startup-id dropbox start
 
 # emacs daemon
 exec --no-startup-id emacs --daemon
