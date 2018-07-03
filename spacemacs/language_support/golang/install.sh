@@ -1,5 +1,5 @@
 # install go itself
-sudo apt -y install install go
+sudo yaourt -Sy install go
 
 # tools for spacemacs go layer
 go get -u -v golang.org/x/tools/cmd/godoc
