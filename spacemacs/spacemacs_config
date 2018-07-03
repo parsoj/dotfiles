@@ -43,8 +43,7 @@ values."
      html
      sql
      yaml
-     javascript
-     (go :variables go-use-gometalinter t)
+     go
      python
      auto-completion
      emacs-lisp
@@ -351,14 +350,10 @@ you should place your code here."
   ;;scrolling stuff
   (setq mouse-wheel-progressive-speed nil)
 
-  ;;use bash as default ansi-term shell
-  (setq explicit-shell-file-name "/bin/bash")
 
   ;;make projectile cache stuff for faster usage
   (setq projectile-enable-caching t )
 
-  ;;disable org mode timestamping for now
-  (setq org-log-done nil)
 
   ;; use utf-8 powerline sep since it doesn't have coloration issues
   ;; spaceline-compile is needed to force spacemacs to reload the change
@@ -368,29 +363,13 @@ you should place your code here."
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
 
-  ;;tweaks for better magit performance
-  (setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer
-  (setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
-
-  ;;increase "go meta linter" deadline
-  (setq flycheck-gometalinter-deadline "3s")
-  ;;disable golint since it is noisier than the mess it protects you from :P
-  (setq flycheck-gometalinter-disable-linters '("golint"))
-  (setq flycheck-gometalinter-fast t)
-
 
   ;; python-related ignore list for neo-tree
   (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
 
-  ;; fix an error that pops up when launching python interpreter from w/in emacs
-  (setq python-shell-completion-native-enable nil)
-
-  (setq python-shell-interpreter "/usr/bin/python3")
-  (setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
-  (setq flycheck-python-pycompile-executable "python3")
 
   ;; prevent always scrolling to end of shell buffer on new output
-  (setq comint-scroll-to-bottom-on-output nil)
+  (setq comint-scroll-to-bottom-on-output t)
 
   ;; make json auto-indent 2 spaces
   (setq-default js2-basic-offset 2
@@ -406,13 +385,11 @@ you should place your code here."
               (setq js-indent-level 2)))
 
 
-  ;; org mode settings
-  (setq org-hierarchical-todo-statistics nil)
+  ;;********************************************************************************
+  ;; shell settings
 
-  ;; golang go-dlv.el delve settings
-  (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
-  (require 'go-dlv)
-
+  ;;use zsh as default ansi-term shell
+  (setq explicit-shell-file-name "/usr/bin/zsh")
 
   ;; make new shells always open in current buffer (so that it behaves like everything else)
   (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
@@ -423,12 +400,39 @@ you should place your code here."
     (define-key shell-mode-map (kbd "TAB") #'company-manual-begin))
   (add-hook 'shell-mode-hook #'my-shell-mode-hook)
 
-  ;; when switching to an emacs window, the following error is displayed:
-  ;; "Warning (emacs): recentf mode: Non-character input-event"
-  ;; this is apparently due to a lockfile bug - disable lockfiles for now
-  (setq create-lockfiles nil)
+  ;;********************************************************************************
+  ;; Magit settings
+  (setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer (for better performance)
+  (setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
 
-  ;; vue.js stuff
+  ;;********************************************************************************
+  ;; Python Settings
+  ;; fix an error that pops up when launching python interpreter from w/in emacs
+  (setq python-shell-completion-native-enable nil)
+
+  (setq python-shell-interpreter "/usr/bin/python3")
+  (setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
+  (setq flycheck-python-pycompile-executable "python3")
+
+  ;;********************************************************************************
+  ;; Golang settings
+
+  ;;increase "go meta linter" deadline
+  (setq flycheck-gometalinter-deadline "3s")
+  ;;disable golint since it is noisier than the mess it protects you from :P
+  (setq flycheck-gometalinter-disable-linters '("golint"))
+  (setq flycheck-gometalinter-fast t)
+
+  (setq go-tab-width 2)
+
+  ;; golang go-dlv.el delve settings
+  (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
+  (require 'go-dlv)
+  (setq gofmt-command "goimports")
+
+
+  ;;********************************************************************************
+  ;; vue.js settings
   (require 'vue-mode)
   (add-to-list 'vue-mode-hook #'smartparens-mode)
   (require 'lsp-mode)
@@ -438,6 +442,31 @@ you should place your code here."
     (require 'lsp-flycheck))
   (require 'company-lsp)
   (push 'company-lsp company-backends)
+
+
+  ;;********************************************************************************
+  ;; org mode settings
+  (setq org-agenda-files (apply 'append
+			                          (mapcar
+			                           (lambda (directory)
+				                           (directory-files-recursively
+				                            directory org-agenda-file-regexp))
+			                           '("~/Dropbox/org/" ))))
+  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+  (setq org-refile-use-outline-path 'file)
+
+  (setq org-hierarchical-todo-statistics nil)
+
+  ;;disable org mode timestamping for now
+  (setq org-log-done nil)
+
+  ;;********************************************************************************
+  ;; misc settings and workarounds
+
+  ;; when switching to an emacs window, the following error is displayed:
+  ;; "Warning (emacs): recentf mode: Non-character input-event"
+  ;; this is apparently due to a lockfile bug - disable lockfiles for now
+  (setq create-lockfiles nil)
 
 )
 
@@ -449,9 +478,14 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
+ '(org-capture-templates
+   (quote
+    (("s" "standard" entry
+      (file "~/Dropbox/org/inbox/inbox.org")
+      "" :prepend t))))
  '(package-selected-packages
    (quote
-    (xterm-color winum vue-mode edit-indirect ssass-mode vue-html-mode slack websocket shell-pop reveal-in-osx-finder restclient pbcopy osx-trash osx-dictionary org-category-capture org-mime oauth2 multi-term lsp-vue launchctl fuzzy ghub let-alist goto-chg undo-tree eshell-z eshell-prompt-extras esh-help emojify diminish company-lsp lsp-mode circe all-the-icons memoize spaceline-all-the-icons pandoc-mode ox-pandoc nginx-mode jinja2-mode company-ansible ansible-doc ansible terraform-mode hcl-mode flycheck-gometalinter rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby edit-server-htmlize helm-gtags ggtags gmail-message-mode ham-mode html-to-markdown edit-server go-dlv pdf-tools tablist org magit-gh-pulls go-guru github-search github-clone github-browse-file gist gh marshal logito pcache ht git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck auto-dictionary csv-mode lua-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data sql-indent virtualenvwrapper w3 marmalade yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode go-eldoc company-go go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic uuidgen org-projectile org-download link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump f column-enforce-mode multi-eshell paradox hydra company-statistics adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe toc-org spaceline powerline smooth-scrolling smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc s markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word company-quickhelp pos-tip company clean-aindent-mode buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
+    (go-scratch restclient-helm ob-restclient ob-http go-playground gotest company-restclient know-your-http-well xterm-color winum vue-mode edit-indirect ssass-mode vue-html-mode slack websocket shell-pop reveal-in-osx-finder restclient pbcopy osx-trash osx-dictionary org-category-capture org-mime oauth2 multi-term lsp-vue launchctl fuzzy ghub let-alist goto-chg undo-tree eshell-z eshell-prompt-extras esh-help emojify diminish company-lsp lsp-mode circe all-the-icons memoize spaceline-all-the-icons pandoc-mode ox-pandoc nginx-mode jinja2-mode company-ansible ansible-doc ansible terraform-mode hcl-mode flycheck-gometalinter rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby edit-server-htmlize helm-gtags ggtags gmail-message-mode ham-mode html-to-markdown edit-server go-dlv pdf-tools tablist org magit-gh-pulls go-guru github-search github-clone github-browse-file gist gh marshal logito pcache ht git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck auto-dictionary csv-mode lua-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data sql-indent virtualenvwrapper w3 marmalade yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode go-eldoc company-go go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic uuidgen org-projectile org-download link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump f column-enforce-mode multi-eshell paradox hydra company-statistics adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe toc-org spaceline powerline smooth-scrolling smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc s markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word company-quickhelp pos-tip company clean-aindent-mode buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
  '(safe-local-variable-values (quote nil))
  '(split-height-threshold nil)
  '(split-width-threshold 0))
