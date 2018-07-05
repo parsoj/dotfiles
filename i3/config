@@ -33,7 +33,7 @@ bindsym $mod+Return exec terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+space exec --no-startup-id dmenu_recency
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -61,7 +61,7 @@ bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
+# bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
@@ -73,10 +73,10 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 # focus_follows_mouse no
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -97,28 +97,21 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+bindsym $mod+u workspace back_and_forth
+#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+v split h;exec notify-send 'tile horizontally'
+bindsym $mod+s split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Shift+t layout toggle tabbed split
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
@@ -274,7 +267,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id manjaro-hello
+#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -394,7 +387,7 @@ mode "$mode_gaps" {
 }
 mode "$mode_gaps_inner" {
         bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
+        bindsym minus gaps inner current minus 
         bindsym 0     gaps inner current set 0
 
         bindsym Shift+plus  gaps inner all plus 5
@@ -433,7 +426,7 @@ exec --no-startup-id redshift
 # launcher shortcuts
 
 # emacs 
-bindsym $mod+x exec emacsclient -c -e "(shell)"
+bindsym $mod+x exec emacsclient -c -e '(shell)'
 
 # chrome
-bindsym $mod+c exec firefox
+bindsym $mod+c exec google-chrome-stable
