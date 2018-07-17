@@ -419,6 +419,9 @@ exec --no-startup-id dropbox start
 # emacs daemon
 exec --no-startup-id emacs --daemon
 
+# blueman
+exec --no-startup-id blueman-applet
+
 # launch redshift (flux clone)
 exec --no-startup-id redshift
 
