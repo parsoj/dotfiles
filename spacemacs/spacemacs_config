@@ -363,11 +363,6 @@ you should place your code here."
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
 
-
-  ;; python-related ignore list for neo-tree
-  (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
-
-
   ;; prevent always scrolling to end of shell buffer on new output
   (setq comint-scroll-to-bottom-on-output t)
 
@@ -415,6 +410,9 @@ you should place your code here."
   (setq python-shell-interpreter "/usr/bin/python3")
   (setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
   (setq flycheck-python-pycompile-executable "python3")
+
+  ;; python-related ignore list for neo-tree
+  (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
 
   ;;********************************************************************************
   ;; Golang settings
