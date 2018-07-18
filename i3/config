@@ -15,9 +15,9 @@ new_float normal
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
+#bindsym $mod+u border none
+#bindsym $mod+y border pixel 1
+#bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -411,6 +411,13 @@ mode "$mode_gaps_outer" {
 }
 
 ################################################################################
+# special window rules for specific apps
+
+for_window [class="Tusk"] floating enable
+for_window [class="Tusk"] resize set 1060 840
+for_window [class="Tusk"] move absolute position center
+
+################################################################################
 # autostart programs
 
 # dropbox
@@ -425,6 +432,8 @@ exec --no-startup-id blueman-applet
 # launch redshift (flux clone)
 exec --no-startup-id redshift
 
+exec --no-startup-id tusk
+
 ################################################################################
 # launcher shortcuts
 
@@ -433,3 +442,6 @@ bindsym $mod+x exec emacsclient -c -e '(shell)'
 
 # chrome
 bindsym $mod+c exec google-chrome-stable
+# evernote - hiding and new-notes
+bindsym --release $mod+n exec --no-startup-id xdotool key --clearmodifiers Alt+Shift+C
+bindsym --release $mod+e exec --no-startup-id xdotool key --clearmodifiers Alt+Shift+A
