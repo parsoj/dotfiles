@@ -384,6 +384,8 @@ you should place your code here."
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2)))
 
+  ;; window splitting thresholds
+  (setq split-width-threshold 120)
 
   ;;********************************************************************************
   ;; shell settings
