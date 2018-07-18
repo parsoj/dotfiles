@@ -19,11 +19,11 @@ cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 ################################################################################
 
 # spacemacs support utilities
-yaourt -S the_silver_searcher
-yaourt -S markdown
-yaourt -S global
+paccaur -S the_silver_searcher
+paccaur -S markdown
+paccaur -S global
 ################################################################################
  # random utils
 
 # pops up a notification when long-running scripts complete (accompanied with .bashrc setting)
-yaourt -S undistract-me-git
+paccaur -S undistract-me-git

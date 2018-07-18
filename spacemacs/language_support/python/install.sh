@@ -1,11 +1,11 @@
 
-sudo yaourt -Sy python-dev
-sudo yaourt -Sy python-pip
+sudo pacaur -Sy python-dev
+sudo pacaur -Sy python-pip
 pip install virualenv
 pip install ipython
 
-sudo yaourt -Sy python3-dev
-sudo yaourt -Sy python3-pip
+sudo pacaur -Sy python3-dev
+sudo pacaur -Sy python3-pip
 pip3 install ipython
 
 
