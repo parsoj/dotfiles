@@ -441,7 +441,8 @@ exec --no-startup-id tusk
 bindsym $mod+x exec emacsclient -c -e '(shell)'
 
 # chrome
-bindsym $mod+c exec google-chrome-stable
+bindsym $mod+c exec firefox
+
 # evernote - hiding and new-notes
 bindsym --release $mod+n exec --no-startup-id xdotool key --clearmodifiers Alt+Shift+C
 bindsym --release $mod+e exec --no-startup-id xdotool key --clearmodifiers Alt+Shift+A
