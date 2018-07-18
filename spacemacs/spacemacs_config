@@ -452,8 +452,10 @@ you should place your code here."
 				                           (directory-files-recursively
 				                            directory org-agenda-file-regexp))
 			                           '("~/Dropbox/org/" ))))
-  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
-  (setq org-refile-use-outline-path 'file)
+  (setq org-refile-targets '((nil :maxlevel . 12)
+                             (org-agenda-files :maxlevel . 12)))
+  (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+  (setq org-refile-use-outline-path 'full-file-path) ; Show full paths for refiling
 
   (setq org-hierarchical-todo-statistics nil)
 
