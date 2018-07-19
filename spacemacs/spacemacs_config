@@ -464,6 +464,8 @@ you should place your code here."
   ;;disable org mode timestamping for now
   (setq org-log-done nil)
 
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "S d" 'org-cut-subtree)
+
   ;;********************************************************************************
   ;; misc settings and workarounds
 
