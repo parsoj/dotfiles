@@ -466,6 +466,9 @@ you should place your code here."
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "S d" 'org-cut-subtree)
 
+  ;; org todo states
+  (setq org-todo-keywords
+        '((sequence "NEXT(n)"| "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)" "|" "INACTIVE(I)" "MEETING(m)")))
   ;;********************************************************************************
   ;; misc settings and workarounds
 
