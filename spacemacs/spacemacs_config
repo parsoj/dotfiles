@@ -66,6 +66,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     org-gcal
      go-playground
      websocket
      request
@@ -326,6 +327,10 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;; load secrets and credentials from encrypted secrets file
+  (load-library "~/Dropbox/secrets.el.gpg")
+  (provide 'secrets)
   )
 
 (defun dotspacemacs/user-config ()
@@ -453,7 +458,10 @@ you should place your code here."
 			                           (lambda (directory)
 				                           (directory-files-recursively
 				                            directory org-agenda-file-regexp))
-			                           '("~/Dropbox/org/" ))))
+			                           '("~/Dropbox/org/projects/"
+                                   "~/Dropbox/org/calendar/"
+                                   ))))
+
   (setq org-refile-targets '((nil :maxlevel . 12)
                              (org-agenda-files :maxlevel . 12)))
   (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
@@ -469,6 +477,10 @@ you should place your code here."
   ;; org todo states
   (setq org-todo-keywords
         '((sequence "NEXT(n)"| "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)" "|" "INACTIVE(I)" "MEETING(m)")))
+
+  ;; sync org calendar with google calendar
+  (require 'org-gcal)
+  (setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/Dropbox/org/calendar/calendar.org")))
   ;;********************************************************************************
   ;; misc settings and workarounds
 
