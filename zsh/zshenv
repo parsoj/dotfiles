@@ -1,0 +1,16 @@
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+export EDITOR="emacsclient"
+export VISUAL="emacsclient -c"
+
+alias tf=terraform
+export GOPATH=/home/jeff/go
+export PATH=$GOPATH/bin:$PATH
+
+## undistract-me settings (env vars need to be set before sourcing the script)
+## this might need to run very-last in the zshrc file to avoid breaking stuff after it
+export UDM_PLAY_SOUND=1
+export IGNORE_WINDOW_CHECK=1
+source /usr/share/undistract-me/long-running.bash
+notify_when_long_running_commands_finish_install
+
