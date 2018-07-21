@@ -127,9 +127,14 @@ Callers of this function already widen the buffer view."
 
 ;; == Refile ==
 ;; Targets include this file and any file contributing to the agenda - up to 9 levels deep
-;; TODO refile should target full org dir
-(setq org-refile-targets (quote ((nil :maxlevel . 12)
-                                 (org-agenda-files :maxlevel . 12))))
+(setq refile-items (apply 'append
+	                            (mapcar
+	                             (lambda (directory)
+		                             (directory-files-recursively
+		                              directory org-agenda-file-regexp))
+	                             '("~/Dropbox/org/"))))
+(setq org-refile-targets '((nil :maxlevel . 12)
+                           (refile-items :maxlevel . 12)))
 
 ;;  Be sure to use the full path for refile setup
 (setq org-refile-use-outline-path 'full-file-path)
