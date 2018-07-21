@@ -440,47 +440,16 @@ you should place your code here."
 
   ;;********************************************************************************
   ;; vue.js settings
-  (require 'vue-mode)
-  (add-to-list 'vue-mode-hook #'smartparens-mode)
-  (require 'lsp-mode)
-  (require 'lsp-vue)
-  (add-hook 'vue-mode-hook #'lsp-vue-mmm-enable)
-  (with-eval-after-load 'lsp-mode
-    (require 'lsp-flycheck))
-  (require 'company-lsp)
-  (push 'company-lsp company-backends)
+  ;;(require 'vue-mode)
+  ;;(add-to-list 'vue-mode-hook #'smartparens-mode)
+  ;;(require 'lsp-mode)
+  ;;(require 'lsp-vue)
+  ;;(add-hook 'vue-mode-hook #'lsp-vue-mmm-enable)
+  ;;(with-eval-after-load 'lsp-mode
+  ;;  (require 'lsp-flycheck))
+  ;;(require 'company-lsp)
+  ;;(push 'company-lsp company-backends)
 
-
-  ;;********************************************************************************
-  ;; org mode settings
-  (setq org-agenda-files (apply 'append
-			                          (mapcar
-			                           (lambda (directory)
-				                           (directory-files-recursively
-				                            directory org-agenda-file-regexp))
-			                           '("~/Dropbox/org/projects/"
-                                   "~/Dropbox/org/calendar/"
-                                   ))))
-
-  (setq org-refile-targets '((nil :maxlevel . 12)
-                             (org-agenda-files :maxlevel . 12)))
-  (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
-  (setq org-refile-use-outline-path 'full-file-path) ; Show full paths for refiling
-
-  (setq org-hierarchical-todo-statistics nil)
-
-  ;;disable org mode timestamping for now
-  (setq org-log-done nil)
-
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode "S d" 'org-cut-subtree)
-
-  ;; org todo states
-  (setq org-todo-keywords
-        '((sequence "NEXT(n)"| "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)" "|" "INACTIVE(I)" "MEETING(m)")))
-
-  ;; sync org calendar with google calendar
-  (require 'org-gcal)
-  (setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/Dropbox/org/calendar/calendar.org")))
   ;;********************************************************************************
   ;; misc settings and workarounds
 
@@ -488,6 +457,15 @@ you should place your code here."
   ;; "Warning (emacs): recentf mode: Non-character input-event"
   ;; this is apparently due to a lockfile bug - disable lockfiles for now
   (setq create-lockfiles nil)
+
+  ;; always use chrome when browsing a url from emacs
+  (setq browse-url-browser-function 'browse-url-chrome)
+
+  ;;********************************************************************************
+  ;; external configuration modules
+
+  ;; load org mode settings
+  (load-file "~/.dotfiles/spacemacs/org_config.el")
 
 )
 
@@ -499,6 +477,9 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
+ '(org-agenda-files
+   (quote
+    ("/home/jeff/Dropbox/org/projects/errands/root.org" "/home/jeff/Dropbox/org/projects/fitness/diet.org" "/home/jeff/Dropbox/org/projects/fitness/excercise.org" "/home/jeff/Dropbox/org/projects/fitness/mind.org" "/home/jeff/Dropbox/org/projects/fitness/root.org" "/home/jeff/Dropbox/org/projects/get_a_job/root.org" "/home/jeff/Dropbox/org/projects/get_a_job/study_plan_notes.org" "/home/jeff/Dropbox/org/projects/get_a_job/system_design_steps.org" "/home/jeff/Dropbox/org/projects/grow_a_beard/root.org" "/home/jeff/Dropbox/org/projects/gtd/readings.org" "/home/jeff/Dropbox/org/projects/gtd/root.org" "/home/jeff/Dropbox/org/projects/read_later.org" "/home/jeff/Dropbox/org/calendar/calendar.org")))
  '(org-capture-templates
    (quote
     (("s" "standard" entry
@@ -506,10 +487,8 @@ you should place your code here."
       "" :prepend t))))
  '(package-selected-packages
    (quote
-    (go-scratch restclient-helm ob-restclient ob-http go-playground gotest company-restclient know-your-http-well xterm-color winum vue-mode edit-indirect ssass-mode vue-html-mode slack websocket shell-pop reveal-in-osx-finder restclient pbcopy osx-trash osx-dictionary org-category-capture org-mime oauth2 multi-term lsp-vue launchctl fuzzy ghub let-alist goto-chg undo-tree eshell-z eshell-prompt-extras esh-help emojify diminish company-lsp lsp-mode circe all-the-icons memoize spaceline-all-the-icons pandoc-mode ox-pandoc nginx-mode jinja2-mode company-ansible ansible-doc ansible terraform-mode hcl-mode flycheck-gometalinter rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby edit-server-htmlize helm-gtags ggtags gmail-message-mode ham-mode html-to-markdown edit-server go-dlv pdf-tools tablist org magit-gh-pulls go-guru github-search github-clone github-browse-file gist gh marshal logito pcache ht git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck auto-dictionary csv-mode lua-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data sql-indent virtualenvwrapper w3 marmalade yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode go-eldoc company-go go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic uuidgen org-projectile org-download link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump f column-enforce-mode multi-eshell paradox hydra company-statistics adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe toc-org spaceline powerline smooth-scrolling smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc s markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word company-quickhelp pos-tip company clean-aindent-mode buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
- '(safe-local-variable-values (quote nil))
- '(split-height-threshold nil)
- '(split-width-threshold 0))
+    (org-gcal request-deferred deferred org-caldav phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode helm-go-package go-scratch restclient-helm ob-restclient ob-http go-playground gotest company-restclient know-your-http-well xterm-color winum vue-mode edit-indirect ssass-mode vue-html-mode slack websocket shell-pop reveal-in-osx-finder restclient pbcopy osx-trash osx-dictionary org-category-capture org-mime oauth2 multi-term lsp-vue launchctl fuzzy ghub let-alist goto-chg undo-tree eshell-z eshell-prompt-extras esh-help emojify diminish company-lsp lsp-mode circe all-the-icons memoize spaceline-all-the-icons pandoc-mode ox-pandoc nginx-mode jinja2-mode company-ansible ansible-doc ansible terraform-mode hcl-mode flycheck-gometalinter rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby edit-server-htmlize helm-gtags ggtags gmail-message-mode ham-mode html-to-markdown edit-server go-dlv pdf-tools tablist org magit-gh-pulls go-guru github-search github-clone github-browse-file gist gh marshal logito pcache ht git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck auto-dictionary csv-mode lua-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data sql-indent virtualenvwrapper w3 marmalade yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode go-eldoc company-go go-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic uuidgen org-projectile org-download link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump f column-enforce-mode multi-eshell paradox hydra company-statistics adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe toc-org spaceline powerline smooth-scrolling smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc s markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word company-quickhelp pos-tip company clean-aindent-mode buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
+ '(safe-local-variable-values (quote nil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
