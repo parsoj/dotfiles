@@ -70,13 +70,15 @@ Callers of this function already widen the buffer view."
 
 ;; == Tags ==
 (setq org-tag-alist '((:startgroup)
-		      ("@errand" . ?e)
-		      ("@campus" . ?c)
+		      ("@errands" . ?e)
+		      ("@grocery" . ?g)
+		      ("@computer" . ?c)
+		      ("@phone_privacy" . ?p)
 		      ("@home" . ?h)
+		      ("@business_hours" . ?h)
 		      (:endgroup)
 		      ("WAITING" . ?w)
 		      ("PERSONAL" . ?P)
-		      ("RRG" . ?W)
 		      ("NOTE" . ?n)
 		      ))
 
