@@ -1,5 +1,4 @@
 
-
 (setq org-hierarchical-todo-statistics nil)
 
 ;; disable org mode timestamping for now
@@ -8,10 +7,15 @@
 ;; keybinding to quickly delete subtrees
 (spacemacs/set-leader-keys-for-major-mode 'org-mode "S d" 'org-cut-subtree)
 
-;; sync org calendar with google calendar
-(require 'org-gcal)
-(setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/Dropbox/org/calendar/calendar.org")))
+;;********************************************************************************
+;; external integrations and syncs
 
+;; sync org calendar with google calendar (needs creds from secrets.el.gpg)
+(require 'org-gcal)
+(setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/Dropbox/emacsData/orgMode/calendar/calendar.org")))
+
+(setq org-mobile-directory "~/Dropbox/emacsData/orgMode/mobileOrg/push")
+(setq org-mobile-inbox-for-pull "~/Dropbox/emacsData/orgMode/mobileOrg/pull")
 
 ;;******************************************************************************************
 ;; agenda config
@@ -21,17 +25,18 @@
 
 ;;; Code:
 ;; Some general settings
-(setq org-directory "~/Dropbox/org")
+(setq org-directory "~/org")
 
 ;; Display properties
 (setq org-tags-column 80)
 (setq org-agenda-tags-column org-tags-column)
-(setq org-agenda-sticky t)
+(setq org-agenda-sticky nil)
 
 ;; Set default column view headings: Task Effort Clock_Summary
 (setq org-columns-default-format "%50ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM %16TIMESTAMP_IA")
 
-;; == bh/helper-functions ==
+;;******************************************************************************************
+;; bh/helper-functions
 (defun bh/is-project-p ()
   "Any task with a todo keyword subtask."
   (save-restriction
@@ -68,15 +73,19 @@ Callers of this function already widen the buffer view."
           nil
         t))))
 
-;; == Tags ==
+;;******************************************************************************************
+;; Tags
 (setq org-tag-alist '((:startgroup)
 		      ("@errands" . ?e)
 		      ("@grocery" . ?g)
+		      ("@home" . ?h)
+		      ("@parents_house" . ?a)
+		      ("@maiolinos_house" . ?m)
+		      (:endgroup)
 		      ("@computer" . ?c)
 		      ("@phone_privacy" . ?p)
-		      ("@home" . ?h)
 		      ("@business_hours" . ?h)
-		      (:endgroup)
+          ("defer_weekly_review" . ?d)
 		      ("WAITING" . ?w)
 		      ("PERSONAL" . ?P)
 		      ("NOTE" . ?n)
@@ -88,11 +97,14 @@ Callers of this function already widen the buffer view."
 ;; Include the todo keywords
 (setq org-fast-tag-selection-include-todo t)
 
-;; == Custom State Keywords ==
+;;******************************************************************************************
+;; Custom State Keywords
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-	(sequence "WAITING(w@/!)" "INACTIVE(i@/!)" "|" "CANCELLED(c@/!)" "MEETING")))
+	      (sequence "WAITING(w@/!)" "INACTIVE(i@/!)" "|" "CANCELLED(c@/!)" "MEETING")
+        (sequence "GOAL(g)" "|" "ACHIEVED")
+        ))
 ;; Custom colors for the keywords
 (setq org-todo-keyword-faces
       '(("TODO" :foreground "red" :weight bold)
@@ -112,6 +124,60 @@ Callers of this function already widen the buffer view."
 	("NEXT" ("WAITING") ("CANCELLED") ("INACTIVE"))
 	("DONE" ("WAITING") ("CANCELLED") ("INACTIVE"))))
 
+;;******************************************************************************************
+;; capture templates
+(defun org-capture-at-point ()
+  "Insert an org capture template at point."
+  (interactive)
+  (org-capture 0))
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/inbox/inbox.org" "Tasks")
+         ,(concat
+           "* TODO %^{Task Description} %^G\n SCHEDULED: <%(org-read-date)> \n %^{Effort}p \n %^{Goal}p\n"
+         ))))
+
+(defun org-insert-gtd-task ()
+  ;; get description
+  (setq task-description (read-string "Task Description:"))
+  ;; get contexts
+
+  ;; get effort
+  ;; TODO read up on effort estimates and set default t-shirt sizes
+  (setq effort-level (read-number "Effort Level:"))
+
+  ;; get and relevant dates attached to the task
+  (setq relevant-dates (pcase (ido-completing-read "Schedule or Deadline?" '("Schedule" "Deadline" "None"))
+    ('"Schedule" (concat "SCHEDULED: <" (org-read-date) ">"))
+    ('"Deadline" (concat "DEADLINE: <" (org-read-date) ">"))
+    ('"None" "")
+    ))
+
+  ;; goal or none
+  (setq goal-prop (helm-completing-read (org-map-entries '(lambda ()
+                                      (nth 4 (org-heading-components))
+                                      ) "/+TODO" 'agenda)))
+
+  ;; priority
+)
+
+(defun attach-to-goal()
+  (org-entry-put (point)
+                 "GOAL"
+                 (ido-completing-read "Which Goal?"
+                                     (org-map-entries '(lambda ()
+                                                         (nth 4 (org-heading-components))
+                                                         ) "/+GOAL" 'agenda))))
+
+(add-to-list 'org-global-properties
+             '("Effort_ALL". "0:05 0:10 0:15 0:30 1:00 2:00 3:00 4:00 8:00"))
+
+;; org-checklist module provides auto-resetting of nested checkboxes for repeating headers
+(require 'org-checklist)
+(add-to-list 'org-modules 'org-checklist)
+
+;;******************************************************************************************
+;; gs helper functions
 (defun gs/mark-next-done-parent-tasks-todo ()
   "Visit each parent task and change NEXT (or DONE) states to TODO."
   ;; Don't change the value if new state is "DONE"
@@ -134,7 +200,7 @@ Callers of this function already widen the buffer view."
 	                             (lambda (directory)
 		                             (directory-files-recursively
 		                              directory org-agenda-file-regexp))
-	                             '("~/Dropbox/org/"))))
+	                             '("~/org/"))))
 (setq org-refile-targets '((nil :maxlevel . 12)
                            (refile-items :maxlevel . 12)))
 
@@ -158,8 +224,8 @@ Callers of this function already widen the buffer view."
 	                             (lambda (directory)
 		                             (directory-files-recursively
 		                              directory org-agenda-file-regexp))
-	                             '("~/Dropbox/org/projects/"
-                                 "~/Dropbox/org/calendar/"
+	                             '("~/org/projects/"
+                                 "~/org/calendar/"
                                  ))))
 
 ;; Dim blocked tasks (and other settings)
@@ -261,58 +327,53 @@ show this warning instead."
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
-      '(("h" "Habits" agenda "STYLE=\"habit\""
-	 ((org-agenda-overriding-header "Habits")
-	  (org-agenda-sorting-strategy
-	   '(todo-state-down effort-up category-keep))))
-	(" " "Export Schedule" ((agenda "" ((org-agenda-overriding-header "Today's Schedule:")
-					    (org-agenda-span 'day)
-					    (org-agenda-ndays 1)
-					    (org-agenda-start-on-weekday nil)
-					    (org-agenda-start-day "+0d")
-					    (org-agenda-todo-ignore-deadlines nil)))
-				(tags-todo "-INACTIVE-CANCELLED-ARCHIVE/!NEXT"
-					   ((org-agenda-overriding-header "Next Tasks:")
-					    ))
-				(tags "REFILE-ARCHIVE-REFILE=\"nil\""
-				      ((org-agenda-overriding-header "Tasks to Refile:")
-				       (org-tags-match-list-sublevels nil)))
-				(tags-todo "-INACTIVE-HOLD-CANCELLED-REFILE-ARCHIVEr/!"
-					   ((org-agenda-overriding-header "Active Projects:")
-					    (org-agenda-skip-function 'gs/select-projects)))
-				(tags-todo "-INACTIVE-HOLD-CANCELLED-REFILE-ARCHIVE-STYLE=\"habit\"/!-NEXT"
-					   ((org-agenda-overriding-header "Standalone Tasks:")
-					    (org-agenda-skip-function 'gs/select-standalone-tasks)))
-				;; (agenda "" ((org-agenda-overriding-header "Week At A Glance:")
-				;; 	    (org-agenda-ndays 5)
-				;; 	    (org-agenda-start-day "+1d")
-				;; 	    (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
-				;; 	    (org-agenda-prefix-format '((agenda . "  %-12:c%?-12t %s [%b] ")))))
-				(tags-todo "-INACTIVE-HOLD-CANCELLED-REFILE-ARCHIVE/!-NEXT"
-					   ((org-agenda-overriding-header "Remaining Project Tasks:")
-					    (org-agenda-skip-function 'gs/select-project-tasks)))
-				(tags "INACTIVE-ARCHIVE"
-				      ((org-agenda-overriding-header "Inactive Projects and Tasks")
-				       (org-tags-match-list-sublevels nil)))
-				(tags "ENDOFAGENDA"
-				      ((org-agenda-overriding-header "End of Agenda")
-				       (org-tags-match-list-sublevels nil))))
-	 ((org-agenda-start-with-log-mode t)
-	  (org-agenda-log-mode-items '(clock))
-	  (org-agenda-prefix-format '((agenda . "  %-12:c%?-12t %(gs/org-agenda-add-location-string)% s")
-				      (timeline . "  % s")
-				      (todo . "  %-12:c %(gs/org-agenda-prefix-string) ")
-				      (tags . "  %-12:c %(gs/org-agenda-prefix-string) ")
-				      (search . "  %i %-12:c")))
-	  (org-agenda-todo-ignore-deadlines 'near)
-	  (org-agenda-todo-ignore-scheduled t)))
-	("X" "Agenda" ((agenda "") (alltodo))
-	 ((org-agenda-ndays 10)
-	  (org-agenda-start-on-weekday nil)
-	  (org-agenda-start-day "-1d")
-	  (org-agenda-start-with-log-mode t)
-	  (org-agenda-log-mode-items '(closed clock state)))
-	 )))
+      '(
+        ("m" "Morning Routine"
+         ((tags-todo "+morning_routine+SCHEDULED<=\"<today>\""
+					   ((org-agenda-overriding-header "Morning Routine:")
+					    ))))
+        ("n" "Nightly Routine"
+         ((tags-todo "+nightly_routine+SCHEDULED<=\"<today>\"|+@home+EFFORT<=1"
+					           ((org-agenda-overriding-header "Nightly Routine:")
+					            ))))
+	      ("t" "Today's Agenda"
+         ((agenda ""))
+         ;; TODO stuff stuck in WAITING
+         ;; TODO - calendar events today
+         ;; TODO - tasks scheduled for today
+         ;; TODO tasks due today
+         ;; TODO ordered by priority 
+         ((org-agenda-span 1)
+          (org-agenda-tag-filter-preset '("-morning_routine-nightly_routine"))
+          ))
+        ("w" . "Weekly Review agenda views")
+        ("wr" "Last week in review"
+         ((agenda "" (
+                  (org-agenda-overriding-header "The Week in review")
+                  (org-agenda-start-day "-7d")
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-ndays-to-span 8)))
+          (tags "+defer_weekly_review" (
+                  (org-agenda-overriding-header "Items Deferred to Weekly Review")
+                                        ))
+          (stuck) ;; TODO refine definition of stuck projects
+          )
+         )
+        ("wg" "goals review"
+         (tags "+goal")
+         )
+        ("wf" "The Week Ahead"
+         ((agenda "" (
+                     (org-agenda-overriding-header "The Week Ahead")
+                     (org-agenda-start-on-weekday nil)
+                     (org-agenda-start-day "-1d")
+                     (org-agenda-ndays-to-span 7)
+                     )))
+         ;; TODO add in stats on weekly work ahead
+
+         )
+
+	 ))
 
 ;; == Agenda Navigation ==
 
