@@ -60,11 +60,11 @@
 (setq org-fast-tag-selection-include-todo t)
 
 ;;******************************************************************************************
-;; Custom State Keywords
+;; Custom State Keywords -- @ = note, ! = timestamp
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-	      (sequence "WAITING(w@/!)" "INACTIVE(i@/!)" "|" "CANCELLED(c@/!)" "MEETING")
+	      (sequence "LATER(l)" "BLOCKED(b)" "WAITING(w@/!)" "INACTIVE(i@/!)" "|" "CANCELLED(c@/!)" "MEETING")
         (sequence "GOAL(g)" "|" "ACHIEVED")
         ))
 ;; Custom colors for the keywords
