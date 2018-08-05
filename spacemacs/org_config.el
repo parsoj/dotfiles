@@ -12,7 +12,7 @@
 
 ;; sync org calendar with google calendar (needs creds from secrets.el.gpg)
 (require 'org-gcal)
-(setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/Dropbox/emacsData/orgMode/calendar/calendar.org")))
+(setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/org/calendar/calendar.org")))
 
 (setq org-mobile-directory "~/Dropbox/emacsData/orgMode/mobileOrg/push")
 (setq org-mobile-inbox-for-pull "~/Dropbox/emacsData/orgMode/mobileOrg/pull")
