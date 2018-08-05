@@ -86,6 +86,11 @@
 	("NEXT" ("WAITING") ("CANCELLED") ("INACTIVE"))
 	("DONE" ("WAITING") ("CANCELLED") ("INACTIVE"))))
 
+
+;; using org-edna module to manage dependencies between todos
+(add-to-list 'org-modules 'org-edna)
+(org-edna-load)
+
 ;;******************************************************************************************
 ;; capture templates
 (defun org-capture-at-point ()
