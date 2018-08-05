@@ -179,8 +179,8 @@
 (add-to-list 'org-modules 'org-habit)
 (setq org-habit-show-habits-only-for-today t)
 
-;; == Agenda ==
-
+;; ******************************************************************************************
+;; Agenda
 (setq org-agenda-files (apply 'append
 	                            (mapcar
 	                             (lambda (directory)
@@ -204,108 +204,18 @@
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
-      '(
-        ("m" "Morning Routine"
-         ((tags-todo "+morning_routine+SCHEDULED<=\"<today>\""
-					   ((org-agenda-overriding-header "Morning Routine:")
-					    ))))
-        ("n" "Nightly Routine"
-         ((tags-todo "+nightly_routine+SCHEDULED<=\"<today>\"|+@home+EFFORT<=1"
-					           ((org-agenda-overriding-header "Nightly Routine:")
-					            ))))
-	      ("t" "Today's Agenda"
-         ((agenda ""))
-         ;; TODO stuff stuck in WAITING
-         ;; TODO - calendar events today
-         ;; TODO - tasks scheduled for today
-         ;; TODO tasks due today
-         ;; TODO ordered by priority 
-         ((org-agenda-span 1)
-          (org-agenda-tag-filter-preset '("-morning_routine-nightly_routine"))
-          ))
-        ("w" . "Weekly Review agenda views")
-        ("wr" "Last week in review"
-         ((agenda "" (
-                  (org-agenda-overriding-header "The Week in review")
-                  (org-agenda-start-day "-7d")
-                  (org-agenda-start-on-weekday nil)
-                  (org-agenda-ndays-to-span 8)))
-          (tags "+defer_weekly_review" (
-                  (org-agenda-overriding-header "Items Deferred to Weekly Review")
-                                        ))
-          (stuck) ;; TODO refine definition of stuck projects
-          )
-         )
-        ("wg" "goals review"
-         (tags "+goal")
-         )
-        ("wf" "The Week Ahead"
-         ((agenda "" (
-                     (org-agenda-overriding-header "The Week Ahead")
-                     (org-agenda-start-on-weekday nil)
-                     (org-agenda-start-day "-1d")
-                     (org-agenda-ndays-to-span 7)
-                     )))
-         ;; TODO add in stats on weekly work ahead
+      '(("x" "Experimental Main Agenda"
+         ((tags-todo "SCHEDULED<=\"<now>\""
+                     ((org-agenda-overriding-header "Scheduled Items")))
+          (todo ""
+                ((org-agenda-overriding-header "Tasks")
+                 (org-agenda-max-entries 5)
+                 ))
 
-         )
+          (agenda ""
+                  ((org-agenda-overriding-header "Agenda")
+                   (org-agenda-span 1)
+				           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
+                   ))))))
 
-	 ))
-
-;; == Agenda Navigation ==
-
-;; Search for a "=" and go to the next line
-(defun gs/org-agenda-next-section ()
-  "Go to the next section in an org agenda buffer"
-  (interactive)
-  (if (search-forward "===" nil t 1)
-      (forward-line 1)
-    (goto-char (point-max)))
-  (beginning-of-line))
-
-;; Search for a "=" and go to the previous line
-;;(defun gs/org-agenda-prev-section ()
-;;  "Go to the next section in an org agenda buffer"
-;;  (interactive)
-;;  (forward-line -2)
-;;  (if (search-forward "===" nil t -1)
-;;      (forward-line 1)
-;;    (goto-char (point-min))))
-
-;; == Agenda Post-processing ==
-;; Highlight the "!!" for stuck projects (for emphasis)
-(defun gs/org-agenda-project-highlight-warning ()
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward "!W" nil t)
-      (progn
-	(add-face-text-property
-	 (match-beginning 0) (match-end 0)
-	 '(bold :foreground "orange"))
-	))
-    (goto-char (point-min))
-    (while (re-search-forward "!S" nil t)
-      (progn
-	(add-face-text-property
-	 (match-beginning 0) (match-end 0)
-	 '(bold :foreground "white" :background "red"))
-	))
-    ))
-(add-hook 'org-finalize-agenda-hook 'gs/org-agenda-project-highlight-warning)
-
-;; Remove empty agenda blocks
-(defun gs/remove-agenda-regions ()
-  (save-excursion
-    (goto-char (point-min))
-    (let ((region-large t))
-      (while (and (< (point) (point-max)) region-large)
-	(set-mark (point))
-	(gs/org-agenda-next-section)
-	(if (< (- (region-end) (region-beginning)) 5) (setq region-large nil)
-	  (if (< (count-lines (region-beginning) (region-end)) 4)
-	      (delete-region (region-beginning) (region-end)))
-	  )))))
-
-
-(add-hook 'org-finalize-agenda-hook 'gs/remove-agenda-regions)
 
