@@ -66,6 +66,9 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     origami
+     org-edna
+     org-ehtml
      org-gcal
      go-playground
      websocket
@@ -329,7 +332,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; load secrets and credentials from encrypted secrets file
-  (load-library "~/Dropbox/secrets.el.gpg")
+  (load-library "~/Dropbox/emacsData/secrets.el.gpg")
   (provide 'secrets)
   )
 
