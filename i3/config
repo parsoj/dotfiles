@@ -432,8 +432,6 @@ exec --no-startup-id blueman-applet
 # launch redshift (flux clone)
 exec --no-startup-id redshift
 
-exec --no-startup-id tusk
-
 ################################################################################
 # launcher shortcuts
 
