@@ -66,6 +66,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     org-super-agenda
      origami
      org-edna
      org-ehtml

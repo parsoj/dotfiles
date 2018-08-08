@@ -210,17 +210,32 @@
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       '(("x" "Experimental Main Agenda"
-         ((tags-todo "SCHEDULED<=\"<now>\""
-                     ((org-agenda-overriding-header "Scheduled Items")))
-          (todo ""
-                ((org-agenda-overriding-header "Tasks")
-                 (org-agenda-max-entries 5)
-                 ))
-
+         (
+          (tags-todo "+daily_dues"
+                     ((org-agenda-overriding-header "Pay Your Dues")))
+          (tags-todo "+PRIORITY=\"A\"" ((org-agenda-overriding-header "Key Tasks for Today")))
           (agenda ""
                   ((org-agenda-overriding-header "Agenda")
                    (org-agenda-span 1)
 				           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
-                   ))))))
+                   ))
+          (todo ""
+                ((org-agenda-overriding-header "Tasks")
+                 (org-agenda-max-entries 3)
+                 (org-super-agenda-groups '((:auto-category t)))
+                 ))
+
+          ;; TODO break out tasks for separate projects
+          ))
+         ("h" "Habits" agenda "STYLE=\"habit\""
+	        ((org-agenda-overriding-header "Habits")
+	         (org-agenda-sorting-strategy
+	          '(todo-state-down effort-up category-keep))))
+         ))
 
 
+
+
+;; super-agenda stuff
+;;(setq org-super-agenda-groups '((:auto-category t)))
+;;(setq org-super-agenda-groups nil)
