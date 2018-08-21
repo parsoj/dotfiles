@@ -32,6 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      php
+     (latex :variables latex-build-command "xelatex")
      javascript
      restclient
      terraform
