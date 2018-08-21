@@ -466,6 +466,12 @@ you should place your code here."
   (setq browse-url-browser-function 'browse-url-chrome)
 
   ;;********************************************************************************
+  ;; LaTeX settings
+
+  (setq-default TeX-engine 'xetex)
+  (setq-default TeX-PDF-mode t)
+
+  ;;********************************************************************************
   ;; external configuration modules
 
   ;; load org mode settings
