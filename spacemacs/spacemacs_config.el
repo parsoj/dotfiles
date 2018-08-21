@@ -333,7 +333,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; load secrets and credentials from encrypted secrets file
-  (load-library "~/Dropbox/emacsData/secrets.el.gpg")
+  (load-library "~/Dropbox/EmacsData/secrets.el.gpg")
   (provide 'secrets)
   )
 
