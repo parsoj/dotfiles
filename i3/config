@@ -49,10 +49,20 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
-
-# Screen brightness controls
+# screen brightness controls
+################################################################################################
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+################################################################################
+# touchpad stuff 
+################################################################################
+
+exec --no-startup-id synclient VertScrollDelta=-150
+
+################################################################################################
+## launchers
+################################################################################################
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
