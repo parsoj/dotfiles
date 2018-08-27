@@ -31,7 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     php
      themes-megapack
      (latex :variables latex-build-command "xelatex")
      javascript
@@ -442,7 +441,6 @@ you should place your code here."
   (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
   (require 'go-dlv)
   (setq gofmt-command "goimports")
-
 
   ;;********************************************************************************
   ;; vue.js settings
