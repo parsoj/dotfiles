@@ -122,9 +122,8 @@ bindsym $mod+f fullscreen toggle
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-
 # toggle sticky
-bindsym $mod+Shift+s sticky toggle
+#bindsym $Mod+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
