@@ -191,28 +191,28 @@ export UDM_PLAY_SOUND=1
 ################################################################################
 # pyenv and python support
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-if which pyenv-virtualenv-init > /dev/null; then
-   eval "$(pyenv virtualenv-init -)"
-fi
-
-# used by spacemacs python layer
-export WORKON_HOME=~/.pyenv/versions
-
-function venv
-{
-  if [ -d "venv" ]; then
-     echo "found existing venv. activating..."
-     source ./venv/bin/activate
-  else
-    virtualenv -p /usr/bin/python3 venv
-     source ./venv/bin/activate
-     pip install ipython
-  fi
-}
+#if command -v pyenv 1>/dev/null 2>&1; then
+#  eval "$(pyenv init -)"
+#fi
+#
+#if which pyenv-virtualenv-init > /dev/null; then
+#   eval "$(pyenv virtualenv-init -)"
+#fi
+#
+## used by spacemacs python layer
+#export WORKON_HOME=~/.pyenv/versions
+#
+#function venv
+#{
+#  if [ -d "venv" ]; then
+#     echo "found existing venv. activating..."
+#     source ./venv/bin/activate
+#  else
+#    virtualenv -p /usr/bin/python3 venv
+#     source ./venv/bin/activate
+#     pip install ipython
+#  fi
+#}
 
 ################################################################################
 # AWS helper funcs
