@@ -401,9 +401,6 @@ you should place your code here."
   ;;********************************************************************************
   ;; shell settings
 
-  ;;use zsh as default ansi-term shell
-  (setq explicit-shell-file-name "/usr/bin/zsh")
-
   ;; make new shells always open in current buffer (so that it behaves like everything else)
   (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
