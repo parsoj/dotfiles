@@ -55,10 +55,11 @@ def rotate(state):
     for dev in touchscreens if disable_touchpads else (touchscreens + touchpads):
         try:
             check_call([
-                'xinput', 'set-prop', "\'%s\'" % dev,
-                '\'Coordinate Transformation Matrix\'',
+                'xinput', 'set-prop', dev,
+                'Coordinate Transformation Matrix',
             ] + s['coord'].split())
-        except:
+        except Exception as e:
+            print(e)
             pass
 
     if disable_touchpads:
