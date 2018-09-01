@@ -1,4 +1,5 @@
-export EDITOR="/usr/bin/emacsclient -c"
+export EDITOR="/usr/bin/emacsclient"
+export VISUAL="/usr/bin/emacsclient -c"
 
 ################################################################################
 # CUDA stuff
