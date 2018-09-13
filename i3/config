@@ -420,6 +420,10 @@ for_window [class="Tusk"] floating enable
 for_window [class="Tusk"] resize set 1060 840
 for_window [class="Tusk"] move absolute position center
 
+for_window [class="NixNote2"] floating enable
+for_window [class="NixNote2"] resize set 1060 840
+for_window [class="NixNote2"] move absolute position center
+
 ################################################################################
 # autostart programs
 
