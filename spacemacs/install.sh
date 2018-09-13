@@ -16,6 +16,14 @@ cp ~/.dotfiles/spacemacs/fonts/source-code-pro/*.ttf ~/.fonts
 # all-the-icons setup for neotree
 cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 
+##############################################################
+# base emacs install
+
+# add kevin kelley's emacs ppa
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt update
+sudo apt install emacs26
+
 ################################################################################
 # set up systemd to launch emacs daemon on startup
 
