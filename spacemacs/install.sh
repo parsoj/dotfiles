@@ -17,6 +17,12 @@ cp ~/.dotfiles/spacemacs/fonts/source-code-pro/*.ttf ~/.fonts
 cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 
 ################################################################################
+# set up systemd to launch emacs daemon on startup
+
+mkdir -p ~/.config/systemd/user
+rm ~/.config/systemd/user/emacs.service ; ln -s /home/jeff/.dotfiles/spacemacs/systemd/emacs.service ~/.config/systemd/user/emacs.service
+
+################################################################################
 
 # spacemacs support utilities
 pacaur -S the_silver_searcher
