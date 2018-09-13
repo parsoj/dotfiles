@@ -22,6 +22,9 @@ cp ~/.dotfiles/spacemacs/fonts/all-the-icons/*.ttf ~/.fonts
 mkdir -p ~/.config/systemd/user
 rm ~/.config/systemd/user/emacs.service ; ln -s /home/jeff/.dotfiles/spacemacs/systemd/emacs.service ~/.config/systemd/user/emacs.service
 
+systemctl enable --user emacs
+systemctl start --user emacs
+
 ################################################################################
 
 # spacemacs support utilities
