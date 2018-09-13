@@ -14,8 +14,8 @@
 (require 'org-gcal)
 (setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/org/calendar/calendar.org")))
 
-(setq org-mobile-directory "~/Dropbox/emacsData/orgMode/mobileOrg/push")
-(setq org-mobile-inbox-for-pull "~/Dropbox/emacsData/orgMode/mobileOrg/pull")
+(setq org-mobile-directory "/home/jeff/Dropbox/EmacsData/OrgMode/MobileOrg/push")
+(setq org-mobile-inbox-for-pull "~/Dropbox/EmacsData/OrgMode/MobileOrg/pull")
 
 ;;******************************************************************************************
 ;; agenda config
@@ -64,7 +64,7 @@
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-	      (sequence "LATER(l)" "BLOCKED(b)" "WAITING(w@/!)" "INACTIVE(i@/!)" "|" "CANCELLED(c@/!)" "MEETING")
+	      (sequence "LATER(l)" "BLOCKED(b)" "WAITING(w@/!)" "INACTIVE(i@/!)" "|" "CANCELLED(c/!)" "MEETING")
         (sequence "GOAL(g)" "|" "ACHIEVED")
         ))
 ;; Custom colors for the keywords
@@ -191,7 +191,7 @@
 	                             (lambda (directory)
 		                             (directory-files-recursively
 		                              directory org-agenda-file-regexp))
-	                             '("~/org/projects/"
+	                             '("~/org/active_items/"
                                  "~/org/calendar/"
                                  ))))
 
@@ -209,9 +209,25 @@
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
-      '(("x" "Experimental Main Agenda"
+      '(("m" "Morning Routine"
          (
-          (tags-todo "+daily_dues"
+          (tags-todo "+morning_routine/TODO"
+                     ((org-agenda-overriding-header "Morning Routine")))
+          (agenda ""
+                  ((org-agenda-overriding-header "Agenda")
+                   (org-agenda-span 1)
+				           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
+                   ))
+         ))
+         ("b" "Before Bed"
+          (
+           (tags-todo "+before_bed|daily_dues/TODO"
+                      ((org-agenda-overriding-header "Before Bed")))
+           )
+          )
+        ("d" "work to get done today"
+         (
+          (tags-todo "+daily_dues/TODO"
                      ((org-agenda-overriding-header "Pay Your Dues")))
           (tags-todo "+PRIORITY=\"A\"" ((org-agenda-overriding-header "Key Tasks for Today")))
           (agenda ""
@@ -219,11 +235,6 @@
                    (org-agenda-span 1)
 				           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
                    ))
-          (todo ""
-                ((org-agenda-overriding-header "Tasks")
-                 (org-agenda-max-entries 3)
-                 (org-super-agenda-groups '((:auto-category t)))
-                 ))
 
           ;; TODO break out tasks for separate projects
           ))
