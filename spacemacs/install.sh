@@ -7,6 +7,10 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 # link in spacemacs config
 rm ~/.spacemacs ; ln -s ~/.dotfiles/spacemacs/spacemacs_config.el ~/.spacemacs
 
+
+################################################################################
+# Fonts and Icons
+
 # source code pro font for spacemacs
 mkdir -p ~/.fonts
 cp ~/.dotfiles/spacemacs/fonts/source-code-pro/*.ttf ~/.fonts
