@@ -10,7 +10,7 @@ sudo systemctl enable sddm
 yay -S xfce4 xfce4-goodies
 
 ##########################################################################################
-# install plasma and i3
+# install plasma and i3 env
 
 # plasma
 yay -S plasma kde-applications
@@ -26,6 +26,9 @@ mkdir -p ~/.config/i3
 rm ~/.config/i3/config
 ln -s ~/.dotfiles/desktop_environment/i3_config ~/.config/i3/config
 
+# rofi
+yay -S rofi
+
 ##########################################################################################
 # compton
 
@@ -33,3 +36,11 @@ yay -S compton
 rm ~/.config/compton.conf
 ln -s ~/.dotfiles/desktop_environment/compton.conf ~/.config/compton.conf
 
+##########################################################################################
+# X Windows configs
+
+rm ~/.xinitrc
+ln -s ~/.dotfiles/desktop_environment/xinitrc ~/.xinitrc
+
+rm ~/.Xresources
+ln -s ~/.dotfiles/desktop_environment/Xresources ~/.Xresources
