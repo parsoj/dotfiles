@@ -1,1 +1,1 @@
-pacaur -S undistract-me-git
+yay -S undistract-me-git

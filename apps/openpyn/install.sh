@@ -1,6 +1,6 @@
 
 set -e
 
-pacaur -S openpyn
+yay -S openpyn
 
 sudo openpyn --init
