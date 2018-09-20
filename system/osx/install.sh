@@ -1,3 +1,8 @@
+# base emacs install
+brew tap d12frosted/emacs-plus
+brew install emacs-plus --with-no-titlebar
+brew services start emacs-plus
+
 # chunkwm install
 ln -s ~/.dotfiles/system/osx/chunkwmrc ~/.chunkwmrc
 brew tap crisidev/homebrew-chunkwm
