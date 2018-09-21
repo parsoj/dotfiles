@@ -83,9 +83,6 @@
 #     "finder"      : false
 # ]
 
-# open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
-
 # open qutebrowser
 cmd + shift - return : ~/Scripts/qtb.sh
 
@@ -259,4 +256,4 @@ ctrl + alt - d : chunkc tiling::desktop --layout float
 ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
 
 # run emacsclient
-alt - return : emacsclient -c
+cmd - return : emacsclient -c
