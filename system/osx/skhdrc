@@ -258,4 +258,4 @@ ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
 cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window
 
 # run emacsclient
-cmd - return : emacsclient -c -e '(progn (shell) (spacemacs/toggle-maximize-buffer))'
+cmd - return : emacsclient -c -e '(progn (shell) (spacemacs/toggle-maximize-buffer) (evil-insert 1))' && osascript -e 'activate application "Emacs"'
