@@ -257,4 +257,4 @@ ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
 
 # run emacsclient
 cmd - return : emacsclient -c
-cmd - c : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window
