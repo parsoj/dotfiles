@@ -41,6 +41,7 @@ brew cask install font-input
 
 # communication
 brew cask install slack
+brew cask install pulse-sms
 
 # entertainment
 brew cask install spotify
