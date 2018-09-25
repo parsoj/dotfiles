@@ -31,6 +31,10 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     puppet
+     vagrant
+     php
+     gtags
      themes-megapack
      (latex :variables latex-build-command "xelatex")
      javascript
@@ -67,6 +71,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     re-builder
      interleave
      org-super-agenda
      origami
