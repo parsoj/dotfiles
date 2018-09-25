@@ -188,6 +188,16 @@ source /etc/profile.d/undistract-me.sh
 export LONG_RUNNING_COMMAND_TIMEOUT=6
 export UDM_PLAY_SOUND=1
 
+
+################################################################################
+# Vagrant helper funcs
+
+function vagrant-suspend-all
+{
+vagrant global-status | grep virtualbox | cut -c 1-9 | while read line; do echo $line; vagrant halt $line; done;
+
+}
+
 ################################################################################
 # pyenv and python support
 
