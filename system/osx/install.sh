@@ -37,7 +37,7 @@ brew cask install google-chrome
 
 # Fonts
 # input font (used by spacemacs)
-brew cask install font-input
+brew install homebrew/cask-fonts/font-input
 
 # communication
 brew cask install slack
