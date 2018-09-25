@@ -96,7 +96,7 @@ chunkc set preselect_border_width        5
 
 chunkc set window_float_topmost          0
 chunkc set window_fade_inactive          0
-chunkc set window_fade_alpha             0.85
+chunkc set window_fade_alpha             0.55
 chunkc set window_fade_duration          0.25
 chunkc set window_use_cgs_move           0
 
@@ -132,5 +132,5 @@ chunkc core::load ffm.so
 chunkc tiling::rule --owner Finder --name Copy --state float &
 chunkc tiling::rule --owner \"App Store\" --state float &
 chunkc tiling::rule --owner Emacs --except "^$" --state tile &
-chunkc tiling::rule --owner \"Fantastical\" --state float &
+#chunkc tiling::rule --owner \"Fantastical\" --state float &
 chunkc tiling::rule --owner \"Spotify\" --state float &
