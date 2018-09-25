@@ -22,6 +22,10 @@ brew services start skhd
 # Apps install
 brew cask install google-chrome
 
+# Fonts
+# input font (used by spacemacs)
+brew cask install font-input
+
 # communication
 brew cask install slack
 
