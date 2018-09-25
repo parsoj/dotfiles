@@ -472,7 +472,8 @@ you should place your code here."
   (setq create-lockfiles nil)
 
   ;; always use chrome when browsing a url from emacs
-  (setq browse-url-browser-function 'browse-url-chrome)
+  ;;(setq browse-url-browser-function 'browse-url-chrome)
+  (setq browse-url-browser-function 'browse-url-default-browser)
 
   ;;********************************************************************************
   ;; LaTeX settings
