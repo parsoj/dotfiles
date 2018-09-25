@@ -1,7 +1,19 @@
+
+
+# supporting tools
+brew install the_platinum_searcher
+brew install global --with-pygments --with-ctags
+brew install npm
+npm install -g tern
+brew install imagemagick
+
 # base emacs install
 brew tap d12frosted/emacs-plus
 brew install emacs-plus --with-no-titlebar
 brew services start emacs-plus
+
+################################################################################
+# ChunkWM Stuff
 
 # chunkwm install
 ln -s ~/.dotfiles/system/osx/chunkwmrc ~/.chunkwmrc
@@ -20,6 +32,7 @@ brew services start skhd
 
 ################################################################################
 # Apps install
+brew install cask
 brew cask install google-chrome
 
 # Fonts
