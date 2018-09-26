@@ -56,16 +56,11 @@ brew cask install evernote
 brew cask install rescuetime
 brew cask install fantastical
 
+# Utils
+brew cask install nordvpn
+
 # system fix tools
 brew cask install 1password
 brew cask install bartender
 brew cask install alfred
-brew cask install bitbar
 brew cask install istat-menus
-
-
-
-
-
-
-
