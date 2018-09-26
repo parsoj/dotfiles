@@ -49,6 +49,11 @@ brew cask install spotify
 # dev tools
 brew cask install postman
 brew cask install docker
+brew cask install vagrant
+brew cask install virtualbox
+brew install awscli
+brew install yarn
+brew install php@7.1
 
 # productivity
 brew cask install dropbox
