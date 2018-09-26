@@ -69,3 +69,4 @@ brew cask install 1password
 brew cask install bartender
 brew cask install alfred
 brew cask install istat-menus
+brew install coreutils
