@@ -55,6 +55,9 @@ brew install awscli
 brew install yarn
 brew install php@7.1
 
+# personal dev tools
+brew cask install dash
+
 # productivity
 brew cask install dropbox
 brew cask install evernote
