@@ -57,6 +57,7 @@ brew install php@7.1
 
 # personal dev tools
 brew cask install dash
+brew install ripgrep
 
 # productivity
 brew cask install dropbox
