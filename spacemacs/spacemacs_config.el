@@ -381,6 +381,8 @@ you should place your code here."
   ;;scrolling stuff
   (setq mouse-wheel-progressive-speed nil)
 
+  ;; fix font-loading issue that comes up when emacs is run as a daemon
+  (add-to-list 'default-frame-alist '(font . "InputMono-12"))
 
   ;;make projectile cache stuff for faster usage
   (setq projectile-enable-caching t )
