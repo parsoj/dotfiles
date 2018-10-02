@@ -11,11 +11,11 @@
 ;; external integrations and syncs
 
 ;; sync org calendar with google calendar (needs creds from secrets.el.gpg)
-(require 'org-gcal)
-(setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/org/calendar/calendar.org")))
+;;(require 'org-gcal)
+;;(setq org-gcal-file-alist '(("parsoj@gmail.com" . "~/org/calendar/calendar.org")))
 
-(setq org-mobile-directory "/home/jeff/Dropbox/EmacsData/OrgMode/MobileOrg/push")
-(setq org-mobile-inbox-for-pull "~/Dropbox/EmacsData/OrgMode/MobileOrg/pull")
+;;(setq org-mobile-directory "/home/jeff/Dropbox/EmacsData/OrgMode/MobileOrg/push")
+;;(setq org-mobile-inbox-for-pull "~/Dropbox/EmacsData/OrgMode/MobileOrg/pull")
 
 ;;******************************************************************************************
 ;; agenda config
