@@ -186,14 +186,17 @@
 
 ;; ******************************************************************************************
 ;; Agenda
-(setq org-agenda-files (apply 'append
+
+(defun reset-agenda-files ()
+    (setq org-agenda-files (apply 'append
 	                            (mapcar
 	                             (lambda (directory)
 		                             (directory-files-recursively
 		                              directory org-agenda-file-regexp))
 	                             '("~/org/active_items/"
-                                 "~/org/calendar/"
-                                 ))))
+                                 )))))
+
+(reset-agenda-files)
 
 ;; Dim blocked tasks (and other settings)
 (setq org-enforce-todo-dependencies t)
