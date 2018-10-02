@@ -31,29 +31,30 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     helm
+     ;; auto-completion
+     ;; better-defaults
+     emacs-lisp
+     osx
      puppet
      vagrant
      php
      gtags
      themes-megapack
-     (latex :variables latex-build-command "xelatex")
+     ;;(latex :variables latex-build-command "xelatex")
      javascript
-     restclient
      terraform
      osx
      ruby
-     gtags
-     octave
-     pdf-tools
+     ;;octave
+     ;;pdf-tools
      csv
-     lua
      html
      sql
      yaml
      go
      python
      auto-completion
-     emacs-lisp
      git
      github
      markdown
@@ -71,24 +72,31 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     geben
+     dash-at-point
      re-builder
      interleave
-     org-super-agenda
      origami
+
+     ;; org-mode plugins
+     org-super-agenda
      org-edna
      org-ehtml
      org-gcal
-     go-playground
+     magit-todos
+     helm-org-rifle
+
+     ;;go-playground
      websocket
      request
      oauth2
-     circe
+     ;;circe
      alert
      emojify
-     slack
-     all-the-icons
-     go-dlv
-     vue-mode
+     ;;slack
+     ;;all-the-icons
+     ;;go-dlv
+     ;;vue-mode
      lsp-mode
      lsp-vue
      company-lsp
@@ -447,9 +455,9 @@ you should place your code here."
   (setq go-tab-width 2)
 
   ;; golang go-dlv.el delve settings
-  (add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
-  (require 'go-dlv)
-  (setq gofmt-command "goimports")
+  ;;(add-to-list 'load-path "/usr/local/Cellar/delve/0.12.1")
+  ;;(require 'go-dlv)
+  ;;(setq gofmt-command "goimports")
 
   ;;********************************************************************************
   ;; vue.js settings
