@@ -354,10 +354,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; load secrets and credentials from encrypted secrets file
-  ;;(setq epg-gpg-program "gpg2")
-  ;;;;(setf epa-pinentry-mode 'loopback)
-  ;;(load-library "~/Dropbox/EmacsData/secrets.el.gpg")
-  ;;(provide 'secrets)
+  (require 'epa-file)
+  (custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg"))
+  (epa-file-enable)
+  ;;(setf epa-pinentry-mode 'loopback)
+  (load-library "~/Dropbox/EmacsData/secrets.el.gpg")
+  (provide 'secrets)
   )
 
 (defun dotspacemacs/user-config ()
