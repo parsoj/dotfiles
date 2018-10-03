@@ -60,6 +60,7 @@ values."
      github
      markdown
      org
+     journal
      (shell :variables
             shell-default-shell 'shell
             shell-default-position 'bottom)
