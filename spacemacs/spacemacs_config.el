@@ -101,6 +101,9 @@ values."
      ;;vue-mode
      ;;lsp-mode
      ;;lsp-vue
+
+     exec-path-from-shell
+
      company-lsp
      )
    ;; A list of packages that cannot be updated.
@@ -501,6 +504,12 @@ you should place your code here."
 
   ;; load org mode settings
   (load-file "~/.dotfiles/spacemacs/org_config.el")
+
+
+  ;;********************************************************************************
+  ;; more org mode configuration
+  ;;(add-to-load-path "/Users/jeffp/personal/org-ql")
+
 
   ;;********************************************************************************
   ;; Java layer setup
