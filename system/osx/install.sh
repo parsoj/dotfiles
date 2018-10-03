@@ -12,6 +12,12 @@ brew tap d12frosted/emacs-plus
 brew install emacs-plus --with-no-titlebar
 brew services start emacs-plus
 
+# gpg setup for emacs
+brew install gnupg2 # base gpg install
+brew install pinentry-mac # pinentry allows for a pasword popup when encrypting and decrypting .gpg files in osx
+echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+killall gpg-agent
+
 ################################################################################
 # ChunkWM Stuff
 
