@@ -54,6 +54,7 @@ values."
      yaml
      go
      python
+     java
      auto-completion
      git
      github
@@ -496,6 +497,21 @@ you should place your code here."
 
   ;; load org mode settings
   (load-file "~/.dotfiles/spacemacs/org_config.el")
+
+  ;;********************************************************************************
+  ;; Java layer setup
+
+  (setq eclim-eclipse-dirs '("/Applications/Eclipse.app/Contents/Eclipse")
+        eclimd-executable "/Applications/Eclipse.app/Contents/Eclipse/eclimd"
+        eclimd-default-workspace "~/remitly/ClientService"
+        eclimd-wait-for-process nil)
+  (java :variables java-backend 'eclim)
+
+
+
+  ;; make emacs use the same PATH variables as the shell
+  (exec-path-from-shell-initialize)
+
 
 )
 
