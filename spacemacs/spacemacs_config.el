@@ -53,8 +53,8 @@ values."
      sql
      yaml
      go
-     python
      java
+     ;;python
      auto-completion
      git
      github
@@ -98,8 +98,8 @@ values."
      ;;all-the-icons
      ;;go-dlv
      ;;vue-mode
-     lsp-mode
-     lsp-vue
+     ;;lsp-mode
+     ;;lsp-vue
      company-lsp
      )
    ;; A list of packages that cannot be updated.
