@@ -248,8 +248,18 @@
          ))
 
 
-
-
 ;; super-agenda stuff
 ;;(setq org-super-agenda-groups '((:auto-category t)))
 ;;(setq org-super-agenda-groups nil)
+
+;; alfred-org-capture (for plugging alfred into org-capture) 
+(defun make-orgcapture-frame ()
+  "Create a new frame and run 'org-capture'."
+  (interactive)
+  (make-frame '((name . "remember") (width . 80) (height . 16)
+                (top . 400) (left . 300)
+                ))
+  (select-frame-by-name "remember")
+  (org-capture nil "t")
+  (delete-other-windows)
+  )
