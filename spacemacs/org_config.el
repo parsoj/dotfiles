@@ -98,11 +98,11 @@
   (interactive)
   (org-capture 0))
 
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/inbox/inbox.org" "Tasks")
-         ,(concat
-           "* TODO %^{Task Description} %^G\n SCHEDULED: <%(org-read-date)> \n %^{Effort}p \n %^{Goal}p\n"
-         ))))
+;;(setq org-capture-templates
+;;      '(("t" "Todo" entry (file+headline "~/org/inbox/inbox.org" "Tasks")
+;;         ,(concat
+;;           "* TODO %^{Task Description} %^G\n SCHEDULED: <%(org-read-date)> \n %^{Effort}p \n %^{Goal}p\n"
+;;         ))))
 
 (defun org-insert-gtd-task ()
   ;; get description
@@ -253,6 +253,8 @@
 ;;(setq org-super-agenda-groups nil)
 
 ;; alfred-org-capture (for plugging alfred into org-capture) 
+(setq org-default-notes-file "~/org/inbox/inbox.org")
+
 (defun make-orgcapture-frame ()
   "Create a new frame and run 'org-capture'."
   (interactive)
@@ -263,3 +265,5 @@
   (org-capture nil "t")
   (delete-other-windows)
   )
+(add-hook 'org-capture-after-finalize-hook 'delete-frame)
+;; TODO make the capture frame close itself afterward
