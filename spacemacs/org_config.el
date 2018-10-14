@@ -262,8 +262,18 @@
                 (top . 400) (left . 300)
                 ))
   (select-frame-by-name "remember")
-  (org-capture nil "t")
+  (org-capture nil "n")
   (delete-other-windows)
   )
-(add-hook 'org-capture-after-finalize-hook 'delete-frame)
-;; TODO make the capture frame close itself afterward
+;;(add-hook 'org-capture-after-finalize-hook 'delete-frame)
+
+(setq org-capture-templates
+      `(
+        ("n" "Quick Note" entry (file "~/org/inbox/inbox.org")
+         "* TODO %?\n  %i\n  %a")
+        ("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+         "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+        ("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+         "* %? [[%:link][%:description]] \nCaptured On: %U")
+        )
+)
