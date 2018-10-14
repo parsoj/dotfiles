@@ -265,6 +265,18 @@
   (org-capture nil "n")
   (delete-other-windows)
   )
+
+(defun org-capture-popupify-frame ()
+
+  (interactive)
+
+  (set-frame-position (selected-frame) 400 300)
+  (set-frame-width (selected-frame) 80)
+  (set-frame-height (selected-frame) 16)
+  (org-capture nil "n")
+  (delete-other-windows)
+
+  )
 ;;(add-hook 'org-capture-after-finalize-hook 'delete-frame)
 
 (setq org-capture-templates
