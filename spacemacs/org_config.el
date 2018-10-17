@@ -169,7 +169,7 @@
 		                              directory org-agenda-file-regexp))
 	                             '("~/org/"))))
 (setq org-refile-targets '((nil :maxlevel . 12)
-                           (refile-items :maxlevel . 12)))
+                           (refile-items :maxlevel . 8)))
 
 ;;  Be sure to use the full path for refile setup
 (setq org-refile-use-outline-path 'full-file-path)
@@ -261,7 +261,7 @@
   (delete-other-windows)
 
   )
-;;(add-hook 'org-capture-after-finalize-hook 'delete-frame)
+(add-hook 'org-capture-after-finalize-hook 'delete-frame)
 
 (setq org-capture-templates
       `(
