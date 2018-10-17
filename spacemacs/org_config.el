@@ -200,57 +200,41 @@
 
 ;; Dim blocked tasks (and other settings)
 (setq org-enforce-todo-dependencies t)
-(setq org-agenda-inhibit-startup nil)
-(setq org-agenda-dim-blocked-tasks nil)
-
-;; Compact the block agenda view (disabled)
-(setq org-agenda-compact-blocks nil)
-
-;; ignore stuff that is scheduled in the future
-(setq org-agenda-todo-ignore-scheduled 'future)
-(setq org-agenda-tags-todo-honor-ignore-options t)
 
 ;; Custom agenda command definitions
-(setq org-agenda-custom-commands
-      '(("m" "Morning Routine"
-         (
-          (tags-todo "+morning_routine/TODO"
-                     ((org-agenda-overriding-header "Morning Routine")))
-          (agenda ""
-                  ((org-agenda-overriding-header "Agenda")
-                   (org-agenda-span 1)
-				           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
-                   ))
-         ))
-         ("b" "Before Bed"
-          (
-           (tags-todo "+before_bed|daily_dues/TODO"
-                      ((org-agenda-overriding-header "Before Bed")))
-           )
-          )
-        ("d" "work to get done today"
-         (
-          (tags-todo "+daily_dues/TODO"
-                     ((org-agenda-overriding-header "Pay Your Dues")))
-          (tags-todo "+PRIORITY=\"A\"" ((org-agenda-overriding-header "Key Tasks for Today")))
-          (agenda ""
-                  ((org-agenda-overriding-header "Agenda")
-                   (org-agenda-span 1)
-				           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
-                   ))
+;; TODO fix the eager loading here
+(load-file "/Users/jeffp/.emacs.d/org-ql/org-ql.el")
+(load-file "/Users/jeffp/.emacs.d/org-ql/org-ql-agenda.el")
 
-          ;; TODO break out tasks for separate projects
+(org-super-agenda-mode)
+
+(defun morning-routine ()
+  (interactive)
+
+  (setq org-super-agenda-groups
+        '((:name "Before Gym"
+                 :tag "before_gym")
+          (:name "Prep for Day"
+                 :tag "daily_prep")
           ))
-         ("h" "Habits" agenda "STYLE=\"habit\""
-	        ((org-agenda-overriding-header "Habits")
-	         (org-agenda-sorting-strategy
-	          '(todo-state-down effort-up category-keep))))
-         ))
+  (org-ql-agenda (org-agenda-files)
+    (and (todo "TODO")
+         (tags "morning_routine")
+         (scheduled <= today)))
+
+  ;;FIXME this is almost certainly wrong
+   (setq org-super-agenda-groups nil))
 
 
-;; super-agenda stuff
-;;(setq org-super-agenda-groups '((:auto-category t)))
-;;(setq org-super-agenda-groups nil)
+(defun evening-routine ()
+  (interactive)
+  (org-ql-agenda
+    (org-agenda-files)
+    (and (todo "TODO")
+         (tags "before_bed")
+         (scheduled <= today))))
+;;******************************************************************************************
+;; Org-Capture stuff
 
 ;; alfred-org-capture (for plugging alfred into org-capture) 
 (setq org-default-notes-file "~/org/inbox/inbox.org")
