@@ -62,7 +62,7 @@ values."
      org
      journal
      (shell :variables
-            shell-default-shell 'shell
+            shell-default-shell 'eshell
             shell-default-position 'bottom)
      ;;spell-checking
      syntax-checking
