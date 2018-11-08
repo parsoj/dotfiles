@@ -423,7 +423,7 @@ you should place your code here."
 
   ;; window splitting thresholds
   (setq split-width-threshold 120)
-  (setq split-height-threshold nil)
+  (setq split-height-threshold 100)
 
   ;;********************************************************************************
   ;; shell settings
