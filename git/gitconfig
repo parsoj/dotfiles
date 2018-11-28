@@ -13,7 +13,6 @@
 	default = matching
 [core]
 	editor = emacsclient
-	excludesfile = /Users/jeffp/.gitignore_global
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [github]
