@@ -43,6 +43,9 @@ flycheck_*.el
 
 # DS store files that Steve Jobs likes to throw in there
 .DS_Store
+**/.DS_Store
+._.DS_Store
+**/._.DS_Store
 
 # ignore tags files
 TAGS
