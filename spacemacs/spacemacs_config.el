@@ -595,9 +595,11 @@ before packages are loaded."
 
   ;;********************************************************************************
   ;; Magit settings
-  (setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer (for better performance)
-  (setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
-  (require 'magit-todos);; enable magit TODOs
+  ;;(setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer (for better performance)
+  ;;(setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
+  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls) ;; show pull requests in magit status buffer
+  (setq magit-todos-keyword-suffix ".*") ;; don't require any specific suffix for todo-type keywords to show up in magit buffer
+
 
   ;;********************************************************************************
   ;; Python Settings
