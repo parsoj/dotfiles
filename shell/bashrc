@@ -1,38 +1,32 @@
+# Emacs Support 
 export EDITOR="/usr/bin/emacsclient"
 export VISUAL="/usr/bin/emacsclient -c"
 
-################################################################################
-# general utility stuff
-
-function nuke-subs
-{
-
-  rm -rf $@; git co $@; git submodule init; git submodule update
+function quick-orgmode-note {
+    /usr/local/bin/chunkc set window_float_next 1
+    /usr/local/bin/emacsclient -n -e '(make-orgcapture-frame)'
 
 }
+
+################################################################################
+# general utility stuff
 
 function ports
 {
     lsof -n -P | grep LISTEN
 }
 
-function reboot-emacs
-{
-  sudo killall -9 emacs
-  emacs --daemon
-  exit
-
-}
-
 
 ################################################################################
-# Vagrant helper funcs
+# Hashi helper funcs
 
 function vagrant-suspend-all
 {
 vagrant global-status | grep virtualbox | cut -c 1-9 | while read line; do echo $line; vagrant halt $line; done;
 
 }
+
+alias tf=terraform
 
 ################################################################################
 # AWS helper funcs
@@ -41,7 +35,6 @@ function ssh-ec2 {
          ssh -i ~/.ssh/key-pair.pem ec2-user@$1
 }
 
-alias tf=terraform
 
 
 if [ -f ~/.env_secrets ]; then
@@ -49,14 +42,9 @@ if [ -f ~/.env_secrets ]; then
 fi
 
 ##########################################################################################
+# Language Support
 
-function vagrant-halt-all {
-    vagrant global-status | grep virtualbox | cut -c 1-9 | while read line; do echo $line; vagrant halt $line; done;
-}
+# ruby/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
-
-function quick-orgmode-note {
-    /usr/local/bin/chunkc set window_float_next 1
-    /usr/local/bin/emacsclient -n -e '(make-orgcapture-frame)'
-
-}
