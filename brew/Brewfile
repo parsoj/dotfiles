@@ -1,0 +1,41 @@
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "mas-cli/tap"
+brew "mas"
+
+# cli dev tools
+brew "coreutils" # replace OSX utils with GNU stuff
+brew "git"
+brew "ripgrep"
+brew "trash"
+brew "markdown"
+brew "the_platinum_searcher"
+
+# spacemacs support
+brew "gnupg2"
+
+# Util Apps
+mas "1Password", id: 1333542190
+mas "NordVPN IKE - Unlimited VPN", id: 1116599239 # FUCK THIS TODO remove
+cask "dropbox"
+
+## productivity apps
+cask "rescuetime"
+
+mas "Fantastical 2", id: 975937182
+cask "omnifocus"
+mas "Slack", id: 803453959
+
+## OSX-augmentation apps
+cask "bartender"
+cask "alfred"
+cask "istat-menus"
+tap "crisidev/homebrew-chunkwm"
+brew "chunkwm"
+
+## common apps/tools used in development
+cask "docker"
+cask "virtualbox"
+cask "vagrant"
+brew "awscli"
