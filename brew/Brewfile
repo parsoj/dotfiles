@@ -39,3 +39,8 @@ cask "docker"
 cask "virtualbox"
 cask "vagrant"
 brew "awscli"
+
+## language specific items
+# Ruby
+brew "rbenv"
+
