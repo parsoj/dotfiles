@@ -40,6 +40,9 @@ cask "virtualbox"
 cask "vagrant"
 brew "awscli"
 
+tap "d12frosted/emacs-plus"
+brew "emacs-plus", args: ["with-no-titlebar"]
+
 ## language specific items
 # Ruby
 brew "rbenv"
