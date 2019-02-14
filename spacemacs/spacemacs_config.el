@@ -563,6 +563,13 @@ before packages are loaded."
   ;;make projectile cache stuff for faster usage
   (setq projectile-enable-caching t )
 
+  ;; Treemacs issue fix
+  (with-eval-after-load "helm"
+    (defun helm-persistent-action-display-window (&optional split-onewindow)
+      "Return the window that will be used for persistent action.
+If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
+      (with-helm-window
+        (setq helm-persistent-action-display-window (get-mru-window)))))
 
   ;; use utf-8 powerline sep since it doesn't have coloration issues
   ;; spaceline-compile is needed to force spacemacs to reload the change
