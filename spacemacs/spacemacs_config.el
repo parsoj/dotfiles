@@ -48,7 +48,6 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      themes-megapack
-     ;;neotree
 
      ;; tools
      git
@@ -543,7 +542,6 @@ before packages are loaded."
   ;; run company-mode everywhere
   (global-company-mode)
 
-  (setq neo-theme 'icons)
 
   ;;make the frame transparent by default
   (spacemacs/enable-transparency)
@@ -626,9 +624,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (setq python-shell-interpreter "/usr/local/bin/python3")
   (setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
   (setq flycheck-python-pycompile-executable "python3")
-
-  ;; python-related ignore list for neo-tree
-  (setq neo-hidden-regexp-list '("__.*__" ".*\.pyc"))
 
   ;;********************************************************************************
   ;; Golang settings
