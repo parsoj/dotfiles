@@ -594,14 +594,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (setq split-height-threshold nil)
 
   ;;********************************************************************************
-  ;; Magit settings
-  ;;(setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer (for better performance)
-  ;;(setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
-  ;;(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls) ;; show pull requests in magit status buffer
-  (setq magit-todos-keyword-suffix ".*") ;; don't require any specific suffix for todo-type keywords to show up in magit buffer
-
-
-  ;;********************************************************************************
   ;; Python Settings
   ;; fix an error that pops up when launching python interpreter from w/in emacs
   (setq python-shell-completion-native-enable nil)
