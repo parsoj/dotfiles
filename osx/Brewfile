@@ -1,3 +1,5 @@
+# -*- mode:ruby -*-
+
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
@@ -17,22 +19,20 @@ brew "gnupg2"
 
 # Util Apps
 mas "1Password", id: 1333542190
-mas "NordVPN IKE - Unlimited VPN", id: 1116599239 # FUCK THIS TODO remove
 cask "dropbox"
 
 ## productivity apps
 cask "rescuetime"
 
 mas "Fantastical 2", id: 975937182
-cask "omnifocus"
 mas "Slack", id: 803453959
 
 ## OSX-augmentation apps
 cask "bartender"
-cask "alfred"
 cask "istat-menus"
-tap "crisidev/homebrew-chunkwm"
+tap "koekeishiya/formulae"
 brew "chunkwm"
+brew "skhd"
 
 ## common apps/tools used in development
 cask "docker"
@@ -40,10 +40,4 @@ cask "virtualbox"
 cask "vagrant"
 brew "awscli"
 
-tap "d12frosted/emacs-plus"
-brew "emacs-plus", args: ["with-no-titlebar"]
-
-## language specific items
-# Ruby
-brew "rbenv"
 
