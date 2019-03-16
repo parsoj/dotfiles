@@ -544,9 +544,6 @@ before packages are loaded."
   ;; run company-mode everywhere
   (global-company-mode)
 
-  (setq treemacs-show-hidden-files nil)
-  (treemacs-resize-icons 16)
-
   ;;make the frame transparent by default
   (spacemacs/enable-transparency)
 
@@ -565,27 +562,39 @@ before packages are loaded."
   ;;make projectile cache stuff for faster usage
   (setq projectile-enable-caching t )
 
-  ;; Treemacs issue fix
-  (with-eval-after-load "helm"
-    (defun helm-persistent-action-display-window (&optional split-onewindow)
-      "Return the window that will be used for persistent action.
-If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
-      (with-helm-window
-        (setq helm-persistent-action-display-window (get-mru-window)))))
-
-  ;; running emacs as a daemon casues problems when trying to launch helm in a new frame
-  ;; disable that for now
-  (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
-
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
 
   ;; prevent always scrolling to end of shell buffer on new output
   (setq comint-scroll-to-bottom-on-output t)
 
-  ;; make json auto-indent 2 spaces
-  (setq-default js2-basic-offset 2
-                js-indent-level 2)
+  ;; window splitting thresholds
+  (setq split-width-threshold 120)
+  (setq split-height-threshold nil)
+
+  ;;********************************************************************************
+  ;; Helm Settings
+
+  ;; running emacs as a daemon casues problems when trying to launch helm in a new frame
+  ;; disable that for now
+  (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
+
+  ;;********************************************************************************
+  ;; Treemacs settings
+
+  (setq treemacs-show-hidden-files nil)
+  (treemacs-resize-icons 16)
+
+  ;; Treemacs+Helm issue fix
+  (with-eval-after-load "helm"
+    (defun helm-persistent-action-display-window (&optional split-onewindow)
+      "Return the window that will be used for persistent action.
+       If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
+      (with-helm-window
+        (setq helm-persistent-action-display-window (get-mru-window)))))
+
+  ;;********************************************************************************
+  ;; JSON Settings
 
   ;; json formatting
   (add-hook 'json-mode-hook
@@ -593,9 +602,9 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2)))
 
-  ;; window splitting thresholds
-  (setq split-width-threshold 120)
-  (setq split-height-threshold nil)
+  ;; make json auto-indent 2 spaces
+  (setq-default js2-basic-offset 2
+                js-indent-level 2)
 
   ;;********************************************************************************
   ;; Python Settings
