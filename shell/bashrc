@@ -1,12 +1,7 @@
 # Emacs Support 
-export EDITOR="/usr/bin/emacsclient"
-export VISUAL="/usr/bin/emacsclient -c"
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+export VISUAL="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 
-function quick-orgmode-note {
-    /usr/local/bin/chunkc set window_float_next 1
-    /usr/local/bin/emacsclient -n -e '(make-orgcapture-frame)'
-
-}
 
 ################################################################################
 # general utility stuff
@@ -20,7 +15,7 @@ function ports
 ################################################################################
 # Hashi helper funcs
 
-function vagrant-suspend-all
+function vagrant_suspend_all
 {
 vagrant global-status | grep virtualbox | cut -c 1-9 | while read line; do echo $line; vagrant halt $line; done;
 
@@ -31,20 +26,16 @@ alias tf=terraform
 ################################################################################
 # AWS helper funcs
 
-function ssh-ec2 {
+function ssh_ec2 {
          ssh -i ~/.ssh/key-pair.pem ec2-user@$1
 }
-
-
-
-if [ -f ~/.env_secrets ]; then
-    source ~/.env_secrets
-fi
 
 ##########################################################################################
 # Language Support
 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 # ruby/rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
 
+export PATH="$PATH:/usr/local/lib/ruby/gems/2.6.0/gems/fpm-1.11.0/bin/"
