@@ -594,18 +594,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (setq split-height-threshold nil)
 
   ;;********************************************************************************
-  ;; shell settings
-
-  ;; make new shells always open in current buffer (so that it behaves like everything else)
-  ;;(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
-
-  ;; use company mode instead of helm for shell mode auto completions
-  (defun my-shell-mode-hook ()
-    (company-mode)
-    (define-key shell-mode-map (kbd "TAB") #'company-manual-begin))
-  (add-hook 'shell-mode-hook #'my-shell-mode-hook)
-
-  ;;********************************************************************************
   ;; Magit settings
   ;;(setq magit-refresh-status-buffer nil) ;; only refresh magit status buffer when it is the active buffer (for better performance)
   ;;(setq vc-handled-backends nil) ;; disable the other emacs "VC" interface to avoid duplicate work
