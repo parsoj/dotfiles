@@ -569,6 +569,9 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
       (with-helm-window
         (setq helm-persistent-action-display-window (get-mru-window)))))
 
+  ;; running emacs as a daemon casues problems when trying to launch helm in a new frame
+  ;; disable that for now
+  (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
 
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
