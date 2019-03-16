@@ -569,12 +569,6 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
       (with-helm-window
         (setq helm-persistent-action-display-window (get-mru-window)))))
 
-  ;; use utf-8 powerline sep since it doesn't have coloration issues
-  ;; spaceline-compile is needed to force spacemacs to reload the change
-  (setq dotspacemacs-mode-line-theme 'spacemacs)
-  (setq powerline-default-separator 'utf-8)
-  (setq powerline-height 12)
-  (spaceline-compile)
 
   ;;highlight all occurances of the symbol at point
   (spacemacs/toggle-automatic-symbol-highlight-on)
