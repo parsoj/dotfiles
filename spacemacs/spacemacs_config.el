@@ -542,6 +542,8 @@ before packages are loaded."
   ;; run company-mode everywhere
   (global-company-mode)
 
+  (setq treemacs-show-hidden-files nil)
+  (treemacs-resize-icons 16)
 
   ;;make the frame transparent by default
   (spacemacs/enable-transparency)
