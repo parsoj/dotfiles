@@ -572,6 +572,13 @@ before packages are loaded."
   (setq split-width-threshold 120)
   (setq split-height-threshold nil)
 
+
+  ;;********************************************************************************
+  ;; Magit and VC settings
+
+  ;; always follow symlinks to open git-controlled files directly (rather than prompting)
+  (setq vc-follow-symlinks t)
+
   ;;********************************************************************************
   ;; Helm Settings
 
