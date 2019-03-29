@@ -1,0 +1,1 @@
+alias docker-runlast docker run ${docker images --format "{{.ID}}" | head -1}

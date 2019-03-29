@@ -574,6 +574,10 @@ before packages are loaded."
 
 
   ;;********************************************************************************
+  ;; Eshell settings
+  (setq eshell-aliases-file "~/.dotfiles/spacemacs/eshell_aliases")
+
+  ;;********************************************************************************
   ;; Magit and VC settings
 
   ;; always follow symlinks to open git-controlled files directly (rather than prompting)
