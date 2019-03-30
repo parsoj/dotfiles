@@ -539,6 +539,8 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (defalias 'ecr-login "${aws ecer get-login --no-include-email --region us-west-2}")
+
   ;;load marmelade repository
   (add-to-list 'package-archives
                '("marmalade" . "http://marmalade-repo.org/packages/") t)
