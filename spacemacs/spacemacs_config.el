@@ -52,6 +52,7 @@ This function should only modify configuration layer settings."
      themes-megapack
 
      ;; tools
+     multiple-cursors
      git
      org
      semantic
