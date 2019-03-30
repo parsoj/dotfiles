@@ -1,1 +1,3 @@
-alias docker-runlast docker run ${docker images --format "{{.ID}}" | head -1}
+alias nil  $*
+alias FOO  $*
+alias docker-lastbuilt  docker images --format "{{.ID}}" | head -1
