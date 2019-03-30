@@ -104,6 +104,8 @@ This function should only modify configuration layer settings."
      interleave
      origami
 
+     forge
+
      ;; org-mode plugins
      org-super-agenda
 
@@ -195,7 +197,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
    ;; latest version of packages from MELPA. (default nil)
-   dotspacemacs-use-spacelpa t
+   dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
    ;; (default nil)
@@ -579,6 +581,10 @@ before packages are loaded."
 
   ;;********************************************************************************
   ;; Magit and VC settings
+
+  ;; load the forge package for github interaction
+  (use-package forge
+    :after magit)
 
   ;; always follow symlinks to open git-controlled files directly (rather than prompting)
   (setq vc-follow-symlinks t)
