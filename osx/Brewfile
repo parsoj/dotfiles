@@ -33,6 +33,7 @@ cask "istat-menus"
 tap "koekeishiya/formulae"
 brew "chunkwm"
 brew "skhd"
+cask "bitbar"
 
 ## common apps/tools used in development
 cask "docker"
