@@ -1,6 +1,6 @@
 # Emacs Support 
-export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
-export VISUAL="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
+export EDITOR="/usr/local/bin/emacsclient"
+export VISUAL="$EDITOR -c"
 
 
 ################################################################################
