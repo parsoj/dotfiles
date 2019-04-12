@@ -104,7 +104,7 @@ chunkc set preselect_border_width        1
 # NOTE: the following are config variables for the chunkwm-border plugin.
 #
 
-chunkc set focused_border_color          0xf0009999
+chunkc set focused_border_color          0x2d425200
 chunkc set focused_border_width          2
 chunkc set focused_border_radius         4
 chunkc set focused_border_outline        1
