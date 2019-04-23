@@ -1,10 +1,39 @@
 # -*- mode:ruby -*-
-
+###############################################################################
+# setup hombrew core
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "mas-cli/tap"
 brew "mas"
+
+###############################################################################
+# Apps
+
+# Util Apps
+mas "1Password", id: 1333542190
+cask "dropbox"
+
+# Chat apps
+cask "discord"
+mas "Slack", id: 803453959
+
+# productivity apps
+cask "rescuetime"
+mas "Fantastical 2", id: 975937182
+
+###############################################################################
+# OSX UI fixes
+cask "bartender"
+cask "istat-menus"
+tap "koekeishiya/formulae"
+brew "chunkwm"
+brew "skhd"
+cask "bitbar"
+cask "alfred"
+
+###############################################################################
+# Development tools
 
 # cli dev tools
 brew "coreutils" # replace OSX utils with GNU stuff
@@ -13,32 +42,14 @@ brew "ripgrep"
 brew "trash"
 brew "markdown"
 brew "the_platinum_searcher"
-
-# spacemacs support
+brew "aspell"
 brew "gnupg2"
+brew "wget"
 
-# Util Apps
-mas "1Password", id: 1333542190
-cask "dropbox"
-
-## productivity apps
-cask "rescuetime"
-
-mas "Fantastical 2", id: 975937182
-mas "Slack", id: 803453959
-
-## OSX-augmentation apps
-cask "bartender"
-cask "istat-menus"
-tap "koekeishiya/formulae"
-brew "chunkwm"
-brew "skhd"
-cask "bitbar"
-
-## common apps/tools used in development
+# external devtools
 cask "docker"
 cask "virtualbox"
 cask "vagrant"
 brew "awscli"
 
-
+# Doom Emacs
