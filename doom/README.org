@@ -1,0 +1,23 @@
+#+TITLE: Doom Emacs Setup Tasks
+
+* shortcuts to fix
+** org shortcuts
+** quick jump to config and init.el for config fixes
+
+* Needed features
+** project quick note (org capture)
+** global quick note (org capture)
+** jump to window with number key
+
+* modules to build
+** doc lookup
+* modules/packages to look up and incorporate
+** ace window
+** wakatime
+** deft
+** plantUML
+** snippets/yasnippet/
+** eletric
+** rotate text
+* research
+** helm vs ivy
