@@ -12,4 +12,5 @@ rm ~/.chunkwmrc ; ln -s  ~/.config/osx/chunkwmrc ~/.chunkwmrc
 
 ###############################################################################
 # Apply Brewfile
-brew bundle
+brew update
+brew bundle --verbose
