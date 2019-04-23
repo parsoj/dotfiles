@@ -30,6 +30,8 @@
 
       (:prefix ("t" . "toggle")
         :desc "Treemacs"                     "t"   #'+treemacs/toggle
+        :desc "Line Numbers"   "n"  #'doom/toggle-line-numbers
+        :desc "Line Truncation/Wrap" "l"  #'toggle-truncate-lines
         )
 
       (:prefix ("w" . "window")
@@ -60,6 +62,7 @@
       (:prefix ("b" . "buffer")
         :desc "Compile"                     "c"   #'compile
         :desc "Delete" "d" #'evil-delete-buffer
+        :desc "Revert" "r" #'revert-buffer
         :desc "Search"  "s" #'swiper
         :desc "Switch Buffer" "b" #'switch-to-buffer
         :desc "Previous Buffer" "p" #'previous-buffer
@@ -67,7 +70,7 @@
 
         )
 
-      (:prefix ("d" . "describe")
+      (:prefix ("h" . "help")
         :desc "Describe Function" "f" #'describe-function
         :desc "Describe Key" "k" #'describe-key
         :desc "Describe Variable" "v" #'describe-variable
