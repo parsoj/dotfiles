@@ -1,2 +1,2 @@
-rm ~/.gitconfig ; ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-rm ~/.gitignore_global ; ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
+rm ~/.gitconfig ; ln -s ~/.config/git/gitconfig ~/.gitconfig
+rm ~/.gitignore_global ; ln -s ~/.config/git/gitignore_global ~/.gitignore_global
