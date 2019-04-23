@@ -1,8 +1,0 @@
-[style]
-based_on_style = pep8
-blank_line_before_nested_class_or_def = true
-column_limit = 100
-indent_width = 4
-continuation_indent_width = 4
-split_before_first_argument = true
-

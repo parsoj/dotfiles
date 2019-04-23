@@ -30,6 +30,12 @@ function ssh_ec2 {
          ssh -i ~/.ssh/key-pair.pem ec2-user@$1
 }
 
+
+################################################################################
+# Docker helper funcs
+
+alias docker-lastbuilt  docker images --format "{{.ID}}" | head -1
+
 ##########################################################################################
 # Language Support
 
