@@ -1,1 +1,8 @@
-#+TITLE: My config files (dotfiles) repo
+#+TITLE: .config
+My personal laptop configurations.
+
+* OSX
+
+* Emacs
+
+Currently living out of [[https://github.com/hlissner/doom-emacs][Doom Emacs]]
