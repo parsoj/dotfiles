@@ -6,23 +6,15 @@
 ;;*************************************************************************
 ;; Personal Modules
 
- :core-features
-
- :external-devtools
- puppet
- vagrant
-
- :lang
 
  :theme
- doom-one
 
  ;;*************************************************************************
  ;;*************************************************************************
  ;;*************************************************************************
  ;;Doom-provided modules
 
- :feature
+ :editor
  (evil +everywhere); come to the dark side, we have cookies
  workspaces        ; tab emulation, persistence & separate workspaces
  snippets
@@ -41,6 +33,7 @@
   )
 
  :ui
+ doom-one
  doom-dashboard    ; a nifty splash screen for Emacs
  fill-column       ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
@@ -69,6 +62,8 @@
  eshell
 
  :tools
+ puppet
+ vagrant
  docker
  terraform
  flycheck          ; tasing you for every semicolon you forget
