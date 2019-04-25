@@ -55,15 +55,19 @@
 
       (:prefix ("p" . "project")
         :desc "Switch Project" "p" #'projectile-switch-project
-        :desc "Search" "s" #'counsel-projectile-ag
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
+        )
+
+      (:prefix ("s" "search")
+        :desc "Search Project" "p" #'counsel-projectile-rg
+        :desc "Search Buffer"  "b" #'swiper
+        :desc "Search Directory"  "d" #'counsel-rg
         )
 
       (:prefix ("b" . "buffer")
         :desc "Compile"                     "c"   #'compile
         :desc "Delete" "d" #'evil-delete-buffer
         :desc "Revert" "r" #'revert-buffer
-        :desc "Search"  "s" #'swiper
         :desc "Switch Buffer" "b" #'switch-to-buffer
         :desc "Previous Buffer" "p" #'previous-buffer
         :desc "Next Buffer" "n" #'next-buffer
@@ -77,6 +81,12 @@
         :desc "Describe Char" "c" #'describe-char
         :desc "Describe Mode" "m" #'describe-mode
         :desc "Describe Doom Module" "M" #'doom/describe-module
+        )
+
+      (:prefix ("g" "goto")
+        :desc "definition" "d" #'+lookup/definition
+        :desc "references" "r" #'+lookup/references
+        :desc "documentation" "h" #'+lookup/documentation
         )
 
       (:prefix ("d" . "doom")
@@ -98,3 +108,19 @@
         )
 
       )
+
+(after! ivy
+  (setq
+   ivy-re-builders-alist '(
+                           (counsel-M-x . ivy--regex-ignore-order)
+                           (counsel-ag . ivy--regex-ignore-order)
+                           (counsel-rg . ivy--regex-ignore-order)
+                           (counsel-grep . ivy--regex-ignore-order)
+                           (swiper . ivy--regex-ignore-order)
+                           (swiper-isearch . ivy--regex-ignore-order)
+                           (t . ivy--regex-fuzzy)
+                          )
+   ivy-initial-inputs-alist nil
+   ivy-use-virtual-buffers t
+   )
+  )
