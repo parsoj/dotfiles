@@ -4,6 +4,7 @@
 ;;
 
 (setq projectile-project-search-path '("~/code/remitly/" "~/code/personal/"))
+(setq restclient-log-request nil)
 
 (map!                    
 
