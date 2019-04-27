@@ -131,8 +131,3 @@
    )
   )
 
-
-;;(map! :localleader
-;;      :map eshell-mode-map
-;;      "h" #'+eshell/search-history
-;;      )

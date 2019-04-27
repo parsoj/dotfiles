@@ -133,7 +133,11 @@ redefines its keys every time `eshell-mode' is enabled."
           [remap doom/backward-to-bol-or-indent] #'eshell-bol
           [remap doom/backward-kill-to-bol-and-indent] #'eshell-kill-input
           [remap evil-window-split]   #'+eshell/split-below
-          [remap evil-window-vsplit]  #'+eshell/split-right))
+          [remap evil-window-vsplit]  #'+eshell/split-right
+          :localleader
+          :desc "Search Eshell History" "h" #'+eshell/search-history
+          )
+    )
   (add-hook 'eshell-first-time-mode-hook #'+eshell|init-keymap))
 
 
