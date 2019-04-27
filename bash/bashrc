@@ -39,6 +39,10 @@ function docker-lastbuilt  {
          docker images --format "{{.ID}}" | head -1
 }
 
+function docker-lastrun {
+	docker ps -a --format "{{.Names}}" | head -1
+}
+
 ################################################################################
 # sqlite
 
