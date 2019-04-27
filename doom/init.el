@@ -1,5 +1,22 @@
 ;;; init.el -*- lexical-binding: t; -*-
 ;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
+;;
+
+(setq doom-localleader-key ",")
+
+(setq evil-collection-key-blacklist
+      (list "C-j" "C-k" "gd" "gf" "K" "[" "]" "gz"
+            doom-leader-key doom-localleader-key
+            doom-leader-alt-key doom-localleader-alt-key))
+
+(def-package-hook! evil-snipe
+  :pre-init
+  (setq evil-snipe-override-evil-repeat-keys nil)
+  )
+
+(after! evil
+  (define-key! evil-motion-state-map "," nil)
+  )
 
 (doom!
 
