@@ -124,9 +124,15 @@
                            (counsel-grep . ivy--regex-ignore-order)
                            (swiper . ivy--regex-ignore-order)
                            (swiper-isearch . ivy--regex-ignore-order)
-                           (t . ivy--regex-fuzzy)
+                           (t . ivy--regex-ignore-order)
                           )
    ivy-initial-inputs-alist nil
    ivy-use-virtual-buffers t
    )
   )
+
+
+;;(map! :localleader
+;;      :map eshell-mode-map
+;;      "h" #'+eshell/search-history
+;;      )
