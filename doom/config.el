@@ -109,8 +109,9 @@
         :desc "Make all matching cursors" "a" #'evil-mc-make-all-cursors
         )
 
-      (:prefix ("g" . "Git")
+      (:prefix ("g" . "git")
         :desc "Status" "s" #'magit-status
+        :desc "blame" "b" #'magit-blame-addition
         )
 
       )
