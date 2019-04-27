@@ -64,6 +64,7 @@
  unicode           ; extended unicode support for various languages
  vc-gutter         ; vcs diff in the fringe
  window-select     ; visually switch windows
+ indent-guides
 
  :editor
  fold              ; (nigh) universal code folding
