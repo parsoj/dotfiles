@@ -59,7 +59,7 @@
   )
  electric          ; smarter, keyword-based electric-indent
  imenu             ; an imenu sidebar and searchable code index
- eshell
+ jeffp-eshell
 
  :tools
  puppet
