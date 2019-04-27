@@ -97,9 +97,9 @@
         :desc "Quit Doom" "q" #'evil-quit-all
 
         (:prefix ("c" . "config")
-          :desc "config.el" "c" #'(lambda () (interactive) (find-file "~/.config/doom/config.el"))
-          :desc "init.el" "i" #'(lambda () (interactive) (find-file "~/.config/doom/init.el"))
-          :desc "bashrc" "b" #'(lambda () (interactive) (find-file "~/.bashrc"))
+          :desc "config.el" "c" (lambda! (find-file "~/.config/doom/config.el"))
+          :desc "init.el" "i" (lambda! (find-file "~/.config/doom/init.el"))
+          :desc "bashrc" "b" (lambda! (find-file "~/.bashrc"))
           )
         )
 
@@ -112,6 +112,7 @@
       (:prefix ("g" . "git")
         :desc "Status" "s" #'magit-status
         :desc "blame" "b" #'magit-blame-addition
+        :desc "quick commit" "c" (lambda! (progn (magit-stage) (magit-commit-create)))
         )
 
       )
