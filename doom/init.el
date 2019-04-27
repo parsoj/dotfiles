@@ -15,25 +15,6 @@
 
 (doom!
 
-;;*************************************************************************
-;; Personal Modules
-
-
- :theme
-
- ;;*************************************************************************
- ;;*************************************************************************
- ;;*************************************************************************
- ;;Doom-provided modules
-
- :editor
- (evil +everywhere); come to the dark side, we have cookies
- workspaces        ; tab emulation, persistence & separate workspaces
- snippets
- (lookup
-  +docsets
-  )
-
  :completion
  (company
   +auto
@@ -62,6 +43,9 @@
  indent-guides
 
  :editor
+ (evil +everywhere); come to the dark side, we have cookies
+ workspaces        ; tab emulation, persistence & separate workspaces
+ snippets
  fold              ; (nigh) universal code folding
  multiple-cursors  ; editing in many places at once
 
@@ -90,6 +74,9 @@
  macos             ; MacOS-specific commands
  magit             ; a git porcelain for Emacs
  make              ; run make tasks from Emacs
+ (lookup
+  +docsets
+  )
 
  :lang
  emacs-lisp        ; drown in parentheses
@@ -110,4 +97,6 @@
  rest              ; Emacs as a REST client
  ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
 
+ :app
+ :config
 )
