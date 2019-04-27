@@ -94,8 +94,13 @@
         :desc "Reload config" "r" #'doom/reload
         :desc "Restart Doom" "R" #'doom/restart
         :desc "Refresh packages" "p" #'doom//refresh
-        :desc "Open Doom config.el" "c" #'doom/open-private-config
         :desc "Quit Doom" "q" #'evil-quit-all
+
+        (:prefix ("c" . "config")
+          :desc "config.el" "c" #'(lambda () (interactive) (find-file "~/.config/doom/config.el"))
+          :desc "init.el" "i" #'(lambda () (interactive) (find-file "~/.config/doom/init.el"))
+          :desc "bashrc" "b" #'(lambda () (interactive) (find-file "~/.bashrc"))
+          )
         )
 
       (:prefix ("c" . "cursor")
