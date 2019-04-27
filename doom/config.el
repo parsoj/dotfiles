@@ -84,7 +84,7 @@
         :desc "Describe Doom Module" "M" #'doom/describe-module
         )
 
-      (:prefix ("g" "goto")
+      (:prefix ("l" "lookup")
         :desc "definition" "d" #'+lookup/definition
         :desc "references" "r" #'+lookup/references
         :desc "documentation" "h" #'+lookup/documentation
