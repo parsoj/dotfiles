@@ -59,7 +59,7 @@
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
         )
 
-      (:prefix ("s" "search")
+      (:prefix ("s" . "search")
         :desc "Search Project" "p" #'counsel-projectile-rg
         :desc "Search Buffer"  "b" #'swiper
         :desc "Search Directory"  "d" #'counsel-rg
@@ -84,7 +84,7 @@
         :desc "Describe Doom Module" "M" #'doom/describe-module
         )
 
-      (:prefix ("l" "lookup")
+      (:prefix ("l" . "lookup")
         :desc "definition" "d" #'+lookup/definition
         :desc "references" "r" #'+lookup/references
         :desc "documentation" "h" #'+lookup/documentation
