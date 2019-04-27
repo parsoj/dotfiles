@@ -21,6 +21,11 @@
    :map company-search-map
    [escape] #'company-search-abort
    )
+
+ (:after magit
+   :map magit-mode-map
+   [escape] #'+magit/quit
+   )
  )
 
 (map! :leader
@@ -117,6 +122,7 @@
         )
 
       )
+
 
 (after! ivy
   (setq
