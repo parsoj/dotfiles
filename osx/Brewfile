@@ -48,6 +48,7 @@ brew "aspell"
 brew "gnupg2"
 brew "wget"
 brew "fd"
+brew "gnu-tar"
 
 # external devtools
 cask "docker"
