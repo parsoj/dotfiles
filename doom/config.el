@@ -147,3 +147,49 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
+
+
+;;(setq +lookup-open-url-fn 'eww)
+
+(set-popup-rules!
+  '(
+    ("^\\*bin/doom\\*$"
+     :vslot 9999 :size 0.75 :quit 'current :select t :ttl 0)
+    ("^\\*Completions"
+     :slot -1 :vslot -2 :ttl 0)
+    ("^\\*Compil\\(?:ation\\|e-Log\\)"
+     :vslot -2 :size 0.3 :ttl nil :quit t)
+    ("^\\*\\(?:scratch\\|Messages\\)"
+     :autosave t :ttl nil)
+    ("^\\*Man "
+     :size 0.45 :vslot -3 :ttl 0 :quit t :select t)
+    ("^\\*doom \\(?:term\\|eshell\\)"
+     :size 0.25 :vslot -4 :select t :quit nil :ttl 0)
+    ("^\\*doom:"
+     :vslot -5 :size 0.35 :size bottom :autosave t :select t :modeline t :quit nil)
+    ("^\\*\\(?:\\(?:Pp E\\|doom e\\)val\\)"
+     :size +popup-shrink-to-fit :ttl 0 :select ignore)
+    ("^\\*Customize"
+     :slot 2 :side right :select t :quit t)
+    ("^ \\*undo-tree\\*"
+     :slot 2 :side left :size 20 :select t :quit t)
+    ;; `help-mode', `helpful-mode'
+    ("^\\*[Hh]elp"
+     :slot 2 :side right :vslot -2 :size 0.35 :select t)
+    ;; `eww' (and used by dash docsets)
+    ("^\\*eww\\*"
+     :vslot -11 :side right :size 0.45 :select t)
+    ;; `Info-mode'
+    ("^\\*info\\*$"
+     :slot 2 :vslot 2 :size 0.45 :select t)
+    ("^\\*Backtrace"
+     :vslot 99 :size 0.4 :quit nil)
+    ("^\\*CPU-Profiler-Report "
+     :side bottom :vslot 100 :slot 1 :height 0.4 :width 0.5 :quit nil)
+    ("^\\*Memory-Profiler-Report "
+     :side bottom :vslot 100 :slot 2 :height 0.4 :width 0.5 :quit nil)
+    )
+  )
+
+
+(set-docsets! 'terraform-mode "Terraform")
