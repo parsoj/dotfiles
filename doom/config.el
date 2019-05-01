@@ -93,7 +93,7 @@
       (:prefix ("l" . "lookup")
         :desc "definition" "d" #'+lookup/definition
         :desc "references" "r" #'+lookup/references
-        :desc "documentation" "h" #'+lookup/documentation
+        :desc "documentation" "h" #'+lookup/in-docsets
         )
 
       (:prefix ("d" . "doom")
