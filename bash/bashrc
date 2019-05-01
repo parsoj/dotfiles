@@ -34,6 +34,9 @@ function ssh_ec2 {
 
 ################################################################################
 # Docker helper funcs
+function docker-login {
+         $(aws ecr get-login --no-include-email --region us-west-2)
+}
 
 function docker-lastbuilt  {
          docker images --format "{{.ID}}" | head -1
