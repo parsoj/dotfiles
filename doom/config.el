@@ -126,15 +126,7 @@
 
 (after! ivy
   (setq
-   ivy-re-builders-alist '(
-                           (counsel-M-x . ivy--regex-ignore-order)
-                           (counsel-ag . ivy--regex-ignore-order)
-                           (counsel-rg . ivy--regex-ignore-order)
-                           (counsel-grep . ivy--regex-ignore-order)
-                           (swiper . ivy--regex-ignore-order)
-                           (swiper-isearch . ivy--regex-ignore-order)
-                           (t . ivy--regex-ignore-order)
-                          )
+   ivy-re-builders-alist '((t . ivy--regex-ignore-order))
    ivy-initial-inputs-alist nil
    ivy-use-virtual-buffers t
    )

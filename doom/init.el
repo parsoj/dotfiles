@@ -56,6 +56,7 @@
   )
  electric          ; smarter, keyword-based electric-indent
  imenu             ; an imenu sidebar and searchable code index
+ term
  jeffp-eshell
 
  :tools
