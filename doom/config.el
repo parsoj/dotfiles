@@ -112,6 +112,9 @@
 
       (:prefix ("c" . "cursor")
         :desc "Make cursor and move down line" "j" #'evil-mc-make-cursor-move-next-line
+        :desc "Make cursor and move up line" "k" #'evil-mc-make-cursor-move-prev-line
+        :desc "Make cursor and move next match" "n" #'evil-mc-make-and-goto-next-match
+        :desc "Make cursor and move prev match" "p" #'evil-mc-make-and-goto-prev-match
         :desc "Undo all cursors" "q" #'evil-mc-undo-all-cursors
         :desc "Make all matching cursors" "a" #'evil-mc-make-all-cursors
         )
