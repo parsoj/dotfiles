@@ -57,6 +57,7 @@
         :desc "Compile" "c"   #'compile
         :desc "Save" "s" #'save-buffer
         :desc "find" "f" #'find-file
+        :desc "Sudo Edit this file" "E" #'doom/sudo-this-file
         :desc "rename" "R" #'rename-current-buffer-and-file
         )
 
