@@ -184,6 +184,8 @@
     ("^\\*eww\\*"
      :vslot -11 :side right :size 0.45 :select t)
     ;; `Info-mode'
+    ("^\\*HTTP Response\\*"
+     :ignore t)
     ("^\\*info\\*$"
      :slot 2 :vslot 2 :size 0.45 :select t)
     ("^\\*Backtrace"
