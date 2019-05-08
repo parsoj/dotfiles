@@ -107,6 +107,8 @@
           :desc "config.el" "c" (lambda! (find-file "~/.config/doom/config.el"))
           :desc "init.el" "i" (lambda! (find-file "~/.config/doom/init.el"))
           :desc "bashrc" "b" (lambda! (find-file "~/.bashrc"))
+          :desc "skhdrc" "s" (lambda! (find-file "~/.skhdrc"))
+          :desc "chunckwmrc" "w" (lambda! (find-file "~/.chunkwmrc"))
           )
         )
 
