@@ -119,6 +119,11 @@
         :desc "Make all matching cursors" "a" #'evil-mc-make-all-cursors
         )
 
+      (:prefix ("j" . "jump")
+        :desc "Jump to character" "c" #'avy-goto-char
+        :desc "Jump to line" "l" #'avy-goto-line
+        )
+
       (:prefix ("g" . "git")
         :desc "Status" "s" #'magit-status
         :desc "blame" "b" #'magit-blame-addition
