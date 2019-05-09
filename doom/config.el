@@ -209,3 +209,4 @@
 
 
 (set-docsets! 'terraform-mode "Terraform")
+(setq confirm-kill-emacs nil)
