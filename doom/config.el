@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here
 ;;
+;;
+(add-hook 'doom-init-ui-hook #'eshell)
 
 (setq projectile-project-search-path '("~/code/remitly/" "~/code/personal/"))
 (setq restclient-log-request nil)

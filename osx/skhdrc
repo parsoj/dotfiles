@@ -225,7 +225,7 @@ ctrl + alt - d : chunkc tiling::desktop --layout float
 
 ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
 
-ctrl + alt + cmd - e : open /Applications/Emacs.app --new --args  -e 'eshell'
+ctrl + alt + cmd - e : open /Applications/Emacs.app --new
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs
 ctrl + alt + cmd - r : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default

@@ -27,7 +27,7 @@
 
  :ui
  doom-one
- doom-dashboard    ; a nifty splash screen for Emacs
+ ;;doom-dashboard    ; a nifty splash screen for Emacs
  fill-column       ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  modeline          ; snazzy, Atom-inspired modeline, plus API
