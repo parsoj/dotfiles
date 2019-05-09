@@ -99,5 +99,6 @@
  ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
 
  :app
+ slack
  :config
 )
