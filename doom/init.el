@@ -23,6 +23,7 @@
  (ivy
   +fuzzy
   +childframe
+  +icons
   )
 
  :ui
