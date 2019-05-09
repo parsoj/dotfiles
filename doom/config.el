@@ -91,6 +91,7 @@
         :desc "Describe Char" "c" #'describe-char
         :desc "Describe Mode" "m" #'describe-mode
         :desc "Describe Doom Module" "M" #'doom/describe-module
+        :desc "Describe Emacs Package" "p" #'doom/describe-package
         )
 
       (:prefix ("l" . "lookup")
