@@ -10,3 +10,6 @@
   (package! winum)
   (package! expand-region)
   )
+
+;; need to freeze this guy so we have the osx fix
+(package! dash-docs :recipe (dash-docs :fetcher github :repo "parsoj/dash-docs" :branch "fix-osx") :freeze t)
