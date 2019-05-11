@@ -115,6 +115,11 @@
           )
         )
 
+      (:prefix ("m". "message")
+        :desc "Slack IM" "i" #'slack-im-select
+        :desc "Slack Channel" "c" #'slack-channel-select
+        )
+
       (:prefix ("c" . "cursor")
         :desc "Make cursor and move down line" "j" #'evil-mc-make-cursor-move-next-line
         :desc "Make cursor and move up line" "k" #'evil-mc-make-cursor-move-prev-line
@@ -204,6 +209,8 @@
      :side bottom :vslot 100 :slot 1 :height 0.4 :width 0.5 :quit nil)
     ("^\\*Memory-Profiler-Report "
      :side bottom :vslot 100 :slot 2 :height 0.4 :width 0.5 :quit nil)
+    ("^\\*[Ss]lack"
+     :slot 2 :side right :vslot -2 :size 0.35 :select t :quit delete-window )
     )
   )
 
