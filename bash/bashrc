@@ -47,6 +47,13 @@ function docker-lastrun {
 }
 
 ################################################################################
+# chunkwm
+
+function chunk-windows {
+    chunkc tiling::query --desktop windows
+}
+
+################################################################################
 # sqlite
 
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
