@@ -38,8 +38,9 @@
 
       (:prefix ("t" . "toggle")
         :desc "Treemacs"                     "t"   #'+treemacs/toggle
-        :desc "Line Numbers"   "n"  #'doom/toggle-line-numbers
-        :desc "Line Truncation/Wrap" "l"  #'toggle-truncate-lines
+        :desc "Line Numbers"   "n"  #'display-line-numbers-mode
+        :desc "Relative Line Numbers"   "r"  (lambda! (nlinum-mode -1))
+        :desc "Line Truncation/Wrap" "l"  #'visual-line-mode
         )
 
       (:prefix ("w" . "window")
