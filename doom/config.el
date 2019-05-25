@@ -3,8 +3,6 @@
 ;; Place your private configuration here
 ;;
 ;;
-(add-hook 'doom-init-ui-hook #'eshell)
-
 (setq confirm-kill-processes nil)
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
