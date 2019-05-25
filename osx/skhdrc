@@ -32,5 +32,6 @@ ctrl + alt - d : open /Applications/Discord.app
 ctrl + alt - o : open /Applications/Spotify.app
 
 ctrl + alt - e : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n -e "(progn (cd \"~/\") (+eshell/open-fullscreen nil) (evil-insert))"
+ctrl + alt + cmd - e : emacs --daemon
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs
