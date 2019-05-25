@@ -5,6 +5,12 @@
 ;;
 (add-hook 'doom-init-ui-hook #'eshell)
 
+(setq confirm-kill-processes nil)
+
+;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
+(global-set-key [remap delete-frame] #'delete-frame)
+
+
 (setq projectile-project-search-path '("~/code/remitly/" "~/code/personal/"))
 (setq restclient-log-request nil)
 
