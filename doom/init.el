@@ -28,8 +28,8 @@
 
  :ui
  doom-one
- ;;doom-dashboard    ; a nifty splash screen for Emacs
- fill-column       ; a `fill-column' indicator
+ doom-dashboard    ; a nifty splash screen for Emacs
+ ;;fill-column       ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  modeline          ; snazzy, Atom-inspired modeline, plus API
  nav-flash         ; blink the current line after jumping
