@@ -234,3 +234,4 @@ alt + cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome -
 alt + cmd - m : open /Applications/Messages.app
 alt + cmd - s : open /Applications/Slack.app
 alt + cmd - d : open /Applications/Discord.app
+alt + cmd - o : open /Applications/Spotify.app
