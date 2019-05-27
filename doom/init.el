@@ -43,8 +43,11 @@
   )       ; replace bits of code with pretty symbols
  unicode           ; extended unicode support for various languages
  vc-gutter         ; vcs diff in the fringe
- window-select     ; visually switch windows
+ (window-select
+  +numbers
+  )     ; visually switch windows
  indent-guides
+ ophints
 
  :editor
  (evil +everywhere); come to the dark side, we have cookies
@@ -52,6 +55,9 @@
  snippets
  fold              ; (nigh) universal code folding
  multiple-cursors  ; editing in many places at once
+ file-templates
+ ;; lispy
+ rotate-text
 
  :emacs
  (dired            ; making dired pretty [functional]
@@ -82,11 +88,15 @@
  (lookup
   +docsets
   )
+ prodigy
 
  :lang
  emacs-lisp        ; drown in parentheses
  go                ; the hipster dialect
  kotlin            ; a better, slicker Java(Script)
+ (java
+  +lsp
+  )
  markdown          ; writing docs for people to ignore
  (org              ; organize your plain life in plain text
   +attach          ; custom attachment system
@@ -104,5 +114,8 @@
 
  :app
  slack
- :config
-)
+ regex
+ (write
+  +langtool
+  )
+ :config)
