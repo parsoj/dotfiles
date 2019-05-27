@@ -1,4 +1,0 @@
-#!/bin/bash
-
-osascript -e 'tell application "Emacs" to activate'
-/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n -e "(progn (cd \"~/\") (+eshell/open-fullscreen nil))"
