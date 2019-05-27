@@ -42,6 +42,6 @@ ctrl + alt - s : open /Applications/Slack.app
 ctrl + alt - d : open /Applications/Discord.app
 ctrl + alt - o : open /Applications/Spotify.app
 
-ctrl + alt - e : ~/.config/osx/scripts/doomclient
+ctrl + alt - e : ~/.config/osx/scripts/launch_emacsclient
 #ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 #ctrl + alt + cmd - k : pkill Emacs
