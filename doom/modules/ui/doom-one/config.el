@@ -1,5 +1,7 @@
 ;;; ui/doom/config.el -*- lexical-binding: t; -*-
 
+(setq doom-font (font-spec :family "Fira Code" :size 12))
+
 (defvar +doom-solaire-themes
   '((doom-city-lights . t)
     (doom-dracula . t)
