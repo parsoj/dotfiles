@@ -4,6 +4,7 @@
 ;;
 ;;
 (setq confirm-kill-processes nil)
+(add-hook 'doom-init-ui-hook (lambda! (+eshell/open-fullscreen nil)))
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
 (global-set-key [remap delete-frame] #'delete-frame)
