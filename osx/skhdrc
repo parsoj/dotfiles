@@ -1,3 +1,5 @@
+################################################################################
+# Window control
 
 # focus window
 alt - h : chunkc tiling::window --focus west
@@ -24,6 +26,15 @@ shift + cmd - k : chunkc tiling::window --warp north
 shift + cmd - l : chunkc tiling::window --warp east
 
 
+################################################################################
+# Desktp control
+
+ctrl + alt + cmd - n : chunkc tiling::desktop --create
+ctrl + alt + cmd - w : chunkc tiling::desktop --annihilate
+
+
+################################################################################
+# application launching
 ctrl + alt - r : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default
 ctrl + alt - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Profile\ 1
 ctrl + alt - m : open /Applications/Messages.app
@@ -31,7 +42,6 @@ ctrl + alt - s : open /Applications/Slack.app
 ctrl + alt - d : open /Applications/Discord.app
 ctrl + alt - o : open /Applications/Spotify.app
 
-ctrl + alt - e : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n -e "(progn (cd \"~/\") (+eshell/open-fullscreen nil) (evil-insert))"
-ctrl + alt + cmd - e : emacs --daemon
-ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
-ctrl + alt + cmd - k : pkill Emacs
+ctrl + alt - e : ~/.config/osx/scripts/doomclient
+#ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
+#ctrl + alt + cmd - k : pkill Emacs
