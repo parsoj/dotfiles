@@ -49,6 +49,9 @@ brew "gnupg2"
 brew "wget"
 brew "fd"
 brew "gnu-tar"
+brew "languagetool"
+brew "sqlite"
+cask "mactex"
 
 # external devtools
 cask "docker"
