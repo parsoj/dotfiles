@@ -4,11 +4,19 @@
 current_desktop_id=$(chunkc tiling::query --desktop id)
 
 # clean up all windows on desktop
-for window_id in $(chunkc tiling::query --windows-for-desktop $current_desktop_id | awk -F ',' '{print $1}')
+window_query=$(chunkc tiling::query --windows-for-desktop $current_desktop_id | sed 's/ //g')
+IFS=','
+while read -r window_id window_title window_subtitle
 do
-    chunkc tiling::window --focus $window_id
-    chunkc tiling::window --close
-done
+    if [ $window_title == "Emacs" ]
+    then
+      osascript $HOME/.config/osx/scripts/close_emacs_window.scpt
+    else
+      chunkc tiling::window --focus $window_id
+      chunkc tiling::window --close
+    fi
+done <<< "$window_query"
+
 
 # destroy current desktop
 chunkc tiling::desktop --annihilate
