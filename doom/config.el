@@ -24,6 +24,8 @@
 
 (setq restclient-log-request nil)
 
+(setq lsp-auto-guess-root nil)
+
 (map! :g "s-w" #'delete-frame)
 
 (map!
