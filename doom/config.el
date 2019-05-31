@@ -14,10 +14,7 @@
  doom-modeline-buffer-file-name-style 'buffer-name
  )
 
-;(add-to-list 'default-frame-alist '(undecorated . t))
-
 (setq display-line-numbers-type nil)
-
 
 (after! elisp-mode
   (set-pretty-symbols! 'emacs-lisp-mode :alist '(("lambda!" . #X039b)) :lambda! "lambda!")
@@ -60,8 +57,7 @@
       (:prefix ("t" . "toggle")
         :desc "Treemacs" "t"   #'+treemacs/toggle
         :desc "Fullscreen" "f"   #'toggle-frame-fullscreen
-        :desc "Line Numbers"   "n"  #'display-line-numbers-mode
-        :desc "Relative Line Numbers"   "r"  (lambda! (nlinum-mode -1))
+        :desc "Line Numbers"   "n"  #'doom/toggle-line-numbers
         :desc "Line Truncation/Wrap" "l"  #'visual-line-mode
         )
 
