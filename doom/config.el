@@ -4,14 +4,22 @@
 ;;
 ;;
 (setq confirm-kill-processes nil)
-(add-hook 'doom-init-ui-hook (lambda! (+eshell/open-fullscreen nil)))
+;(add-hook 'doom-init-ui-hook (lambda! (+eshell/open-fullscreen nil)))
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
 (global-set-key [remap delete-frame] #'delete-frame)
 
+(setq
+ doom-modeline-buffer-file-name-style 'buffer-name
+ )
 
-(setq projectile-project-search-path '("~/code/remitly/" "~/code/personal/"))
+;(add-to-list 'default-frame-alist '(undecorated . t))
+
+(setq display-line-numbers-type nil)
+
 (setq restclient-log-request nil)
+
+(map! :g "s-w" #'delete-frame)
 
 (map!
 
@@ -49,7 +57,8 @@
         )
 
       (:prefix ("w" . "window")
-        :desc "Delete"                     "d"   #'delete-window
+        :desc "Delete" "d"   #'delete-window
+        :desc "Swap" "x"   #'ace-swap-window
         :desc "Undo" "u" #'winner-undo
         :desc "Redo" "r" #'winner-redo
         :desc "Maximize"  "m" #'doom/window-maximize-buffer
@@ -72,11 +81,14 @@
       (:prefix ("p" . "project")
         :desc "Switch Project" "p" #'projectile-switch-project
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
+        :desc "open project notes" "n" #'+pop-to-project-todo-file
         )
 
       (:prefix ("s" . "search")
         :desc "Search Project" "p" #'counsel-projectile-rg
+        :desc "Search Project" "P" #'counsel-projectile-
         :desc "Search Buffer"  "b" #'swiper
+        :desc "Search Buffer for thing at point" "B" #'swiper-thing-at-point
         :desc "Search Directory"  "d" #'counsel-rg
         )
 
@@ -91,6 +103,7 @@
         )
 
       (:prefix ("h" . "help")
+        :desc "Apropos" "a" #'counsel-apropos
         :desc "Describe Function" "f" #'describe-function
         :desc "Describe Key" "k" #'describe-key
         :desc "Describe Variable" "v" #'describe-variable
@@ -148,7 +161,6 @@
 
       )
 
-
 (after! ivy
   (setq
    ivy-re-builders-alist '((t . ivy--regex-ignore-order))
@@ -200,13 +212,15 @@
      :slot 2 :side left :size 20 :select t :quit t)
     ;; `help-mode', `helpful-mode'
     ("^\\*[Hh]elp"
-     :slot 2 :side right :vslot -2 :size 0.35 :select t)
+     :slot 1 :side right :width .35 :height .5 :select t)
+    ("^\\*NOTES\\*"
+     :slot 0 :side right :width .25 :select t)
     ;; `eww' (and used by dash docsets)
     ("^\\*eww\\*"
      :vslot -11 :side right :size 0.45 :select t)
     ;; `Info-mode'
     ("^\\*HTTP Response\\*"
-     :ignore t)
+     :actions '(display-buffer-below-selected) )
     ("^\\*info\\*$"
      :slot 2 :vslot 2 :size 0.45 :select t)
     ("^\\*Backtrace"
