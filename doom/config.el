@@ -88,6 +88,7 @@
         :desc "Switch Project" "p" #'projectile-switch-project
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
         :desc "open project notes" "n" #'+pop-to-project-todo-file
+        :desc "capture project note" "c" #'counsel-projectile-org-capture
         )
 
       (:prefix ("s" . "search")
