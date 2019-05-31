@@ -1,0 +1,7 @@
+#+TITLE: Project Management
+
+* Tasks
+** TODO Set Project root
+** TODO shortcut for project notes popup
+- keybind
+- popup rules
