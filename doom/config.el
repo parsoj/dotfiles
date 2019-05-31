@@ -55,7 +55,8 @@
       :desc "Eshell in window"   "\"" #'+eshell/open
 
       (:prefix ("t" . "toggle")
-        :desc "Treemacs"                     "t"   #'+treemacs/toggle
+        :desc "Treemacs" "t"   #'+treemacs/toggle
+        :desc "Fullscreen" "f"   #'toggle-frame-fullscreen
         :desc "Line Numbers"   "n"  #'display-line-numbers-mode
         :desc "Relative Line Numbers"   "r"  (lambda! (nlinum-mode -1))
         :desc "Line Truncation/Wrap" "l"  #'visual-line-mode
