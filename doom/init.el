@@ -48,16 +48,16 @@
   +fira
   )                             ; replace bits of code with pretty symbols
  unicode                        ; extended unicode support for various languages
- vc-gutter                      ; vcs diff in the fringe
+ vc-gutter
  (window-select
   +numbers
   )                                     ; visually switch windows
  indent-guides
  ophints
+ workspaces                   ; tab emulation, persistence & separate workspaces
 
  :editor
- (evil +everywhere)           ; come to the dark side, we have cookies
- workspaces                   ; tab emulation, persistence & separate workspaces
+ (evil +everywhere)                     ; come to the dark side, we have cookies
  snippets
  fold                                   ; (nigh) universal code folding
  multiple-cursors                       ; editing in many places at once
@@ -71,17 +71,21 @@
   +ranger                             ; bringing the goodness of ranger to dired
   +icons                              ; colorful icons for dired-mode
   )
- electric                           ; smarter, keyword-based electric-indent
- imenu                              ; an imenu sidebar and searchable code index
- term
+ electric                               ; smarter, keyword-based electric-indent
+ vc
  jeffp-eshell
+
+ :term
+ term
 
  :tools
  puppet
  vagrant
  docker
  terraform
- flycheck                            ; tasing you for every semicolon you forget
+ (flycheck
+  +childframe
+  )                                  ; tasing you for every semicolon you forget
  flyspell                            ; tasing you for misspelling mispelling
  gist                                ; interacting with github gists
  lsp

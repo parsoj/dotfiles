@@ -4,7 +4,6 @@
 ;;
 ;;
 (setq confirm-kill-processes nil)
-;(add-hook 'doom-init-ui-hook (lambda! (+eshell/open-fullscreen nil)))
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
 (global-set-key [remap delete-frame] #'delete-frame)
@@ -102,7 +101,7 @@
         :desc "Compile"                     "c"   #'compile
         :desc "Delete" "d" #'evil-delete-buffer
         :desc "Revert" "r" #'revert-buffer
-        :desc "Switch Buffer" "b" #'switch-to-buffer
+        :desc "Switch Buffer" "b" #'+ivy/switch-buffer
         :desc "Previous Buffer" "p" #'previous-buffer
         :desc "Next Buffer" "n" #'next-buffer
 
