@@ -8,6 +8,7 @@
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
 (global-set-key [remap delete-frame] #'delete-frame)
+(setq confirm-kill-emacs nil)
 
 (setq
  doom-modeline-buffer-file-name-style 'buffer-name
@@ -245,4 +246,3 @@
 
 
 (set-docsets! 'terraform-mode "Terraform")
-(setq confirm-kill-emacs nil)
