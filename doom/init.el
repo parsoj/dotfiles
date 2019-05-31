@@ -14,6 +14,9 @@
   (define-key! evil-motion-state-map "," nil)
   )
 
+(setq +vc-gutter-default-style nil)
+
+
 (doom!
 
  :completion
