@@ -14,6 +14,8 @@
   (define-key! evil-motion-state-map "," nil)
   )
 
+(setq +ivy-buffer-preview t)
+
 (setq +vc-gutter-default-style nil)
 
 
