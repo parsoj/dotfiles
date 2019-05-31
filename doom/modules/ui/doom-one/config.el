@@ -34,6 +34,29 @@
 
 )
 
+
+(after! flycheck
+
+   flycheck-indication-mode 'left-fringe
+
+   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow [224]
+     nil nil '(center repeated))
+  )
+
+(after! git-gutter-fringe
+
+  (setq git-gutter-fr:side 'right-fringe)
+
+  (define-fringe-bitmap 'git-gutter-fr:added [224]
+    nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224]
+    nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [224]
+    nil nil '(center repeated))
+
+  )
+
+
 ;;
 ;; Packages
 
