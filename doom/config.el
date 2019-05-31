@@ -94,7 +94,7 @@
         :desc "Search Project" "P" #'counsel-projectile-
         :desc "Search Buffer"  "b" #'swiper
         :desc "Search Buffer for thing at point" "B" #'swiper-thing-at-point
-        :desc "Search Directory"  "d" #'counsel-rg
+        :desc "Search Directory"  "d" (lambda! (counsel-rg nil default-directory))
         )
 
       (:prefix ("b" . "buffer")
