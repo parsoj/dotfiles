@@ -1,7 +1,6 @@
 #+TITLE: Project Management
 
-* Tasks
-** TODO Set Project root
-** TODO shortcut for project notes popup
-- keybind
-- popup rules
+* TODOs
+** TODO re-work project run command function
+** TODO set run command function to have its own popup with separate popup rules
+** TODO add rough project template with barebones notes and .dir-locals

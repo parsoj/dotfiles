@@ -21,3 +21,7 @@
   (push (org-projectile-project-todo-entry) org-capture-templates)
 
   )
+
+(set-popup-rule!
+  ()
+  )
