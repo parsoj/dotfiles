@@ -26,16 +26,10 @@
   ;; TODO special popup rules for this popup
   ;; TODO cleanup section separate from run section
   (interactive)
-  (progn
-    (pop-to-buffer (get-buffer-create
-                    "*Project Run*"))
-    (+eshell/open
-     (projectile-project-root)
-     (string-join
-      command_list
-      " && "
-      )
-     )
-
-    )
+  (with-current-buffer (pop-to-buffer (get-buffer-create "*Project Run*"))
+    (run-hooks 'eshell-mode-hook)
+    (if (eq major-mode 'eshell-mode)
+        (run-hooks 'eshell-mode-hook)
+      (eshell-mode))
+    (+eshell-run-command (string-join command_list " && ")))
   )
