@@ -1,8 +1,18 @@
 #+TITLE: .config
 My personal laptop configurations.
 
-* OSX
 
-* Emacs
+** Bash
+- there is not much in my bash config, since I mostly live out of Emacs. the
+  fancy biz is over there :)
+** Git
+- just global git configurations
+** OSX
+- tools and configurations for managing desktop automation and package
+  management.
+- I tend to prefer code-only configuration tools, since they are simpler and everything can be
+  checked into source control and easily be ported to other machines
 
-Currently living out of [[https://github.com/hlissner/doom-emacs][Doom Emacs]]
+** Emacs
+Currently living out of [[https://github.com/hlissner/doom-emacs][Doom Emacs]] - will look into setting up a full Emacs
+"Literate Configuration" one day....
