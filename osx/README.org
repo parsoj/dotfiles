@@ -1,17 +1,17 @@
 #+TITLE: OSX config files
 
-* Bootstrapping
+** Bootstrapping
 - I try to keep track of my important Brew installs through my Brewfile, so that
   I can bootstrap a new system quickly if I need to.
-* Window Mangement
+** Window Mangement
 - I use [[https://github.com/koekeishiya/chunkwm][chunkwm]] for window management/tiling.
-* Hotkeys
+** Hotkeys
 - all my keyboard shortcuts are managed my [[https://github.com/koekeishiya/skhd][skhd]] - a hotkey daemon for mac
 - most of my hotkeys are bound either to calls to chunkwm's chunkc for window management,
   or to bash or apple scripts (located in the /scripts directory) that automate
   common desktop actions
-* Menu Bar
+** Menu Bar
 - I use Bartenter to organize and hide menu bar items
-** in the menu bar
+*** in the menu bar
 - iStat-Menus for pretty system health graphs
 - [[https://github.com/matryer/bitbar][bitbar]] & some bash scripts for any random information that I want to display in the menu-bar
