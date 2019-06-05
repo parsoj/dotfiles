@@ -1,4 +1,12 @@
 #+TITLE: OSX config files
+configurations for an OSX system.
+
+- I tend to prefer code-only configuration tools like chunkwm or skhd over UI-heavy ones like Alfred or Keyboard-maestro,
+  since I find the former much simpler and easier to manage if its just a single
+  config file checked in to source control.
+- for similar reasons, I tend to prefer simple bash scripts or apple scripts for
+  automation over frameworks like Hammerspoon or the like, since there are fewer moving parts involved, they are more
+  flexible, and they are easier to manage through source control.
 
 ** Bootstrapping
 - I try to keep track of my important Brew installs through my Brewfile, so that
@@ -6,7 +14,7 @@
 ** Window Mangement
 - I use [[https://github.com/koekeishiya/chunkwm][chunkwm]] for window management/tiling.
 ** Hotkeys
-- all my keyboard shortcuts are managed my [[https://github.com/koekeishiya/skhd][skhd]] - a hotkey daemon for mac
+- all my keyboard shortcuts are managed by [[https://github.com/koekeishiya/skhd][skhd]] - a hotkey daemon for mac
 - most of my hotkeys are bound either to calls to chunkwm's chunkc for window management,
   or to bash or apple scripts (located in the /scripts directory) that automate
   common desktop actions
