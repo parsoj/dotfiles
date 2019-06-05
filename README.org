@@ -9,7 +9,7 @@ My personal laptop configurations.
 - just global git configurations
 ** OSX
 - tools and configurations for managing desktop automation and package
-  management.
+  management. (It has its own [[file:osx/README.org][README]])
 - I tend to prefer code-only configuration tools, since they are simpler and everything can be
   checked into source control and easily be ported to other machines
 
