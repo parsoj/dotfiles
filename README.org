@@ -1,4 +1,4 @@
-#+TITLE: .config
+#+TITLE: dotfiles
 My personal laptop configurations.
 
 
