@@ -20,6 +20,16 @@
 
 
 (doom!
+ :parsoj
+ projects
+ eshell
+ java
+ puppet
+ slack
+ sql
+ theme
+ vagrant
+ xml
 
  :completion
  (company
@@ -33,7 +43,6 @@
   )
 
  :ui
- doom-one
  doom-dashboard                         ; a nifty splash screen for Emacs
 
  ;;fill-column       ; a `fill-column' indicator
@@ -66,21 +75,17 @@
  rotate-text
 
  :emacs
- projects
  (dired                               ; making dired pretty [functional]
   +ranger                             ; bringing the goodness of ranger to dired
   +icons                              ; colorful icons for dired-mode
   )
  electric                               ; smarter, keyword-based electric-indent
  vc
- jeffp-eshell
 
  :term
  term
 
  :tools
- puppet
- vagrant
  docker
  terraform
  (flycheck
@@ -98,12 +103,11 @@
  prodigy
 
  :lang
+ swift
  emacs-lisp                             ; drown in parentheses
  go                                     ; the hipster dialect
  kotlin                                 ; a better, slicker Java(Script)
- jeffp-java
  markdown                               ; writing docs for people to ignore
- xml
  (org                                   ; organize your plain life in plain text
   +attach                               ; custom attachment system
   +babel                                ; running code in org
@@ -119,7 +123,6 @@
  ruby                 ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
 
  :app
- slack
  regex
  (write
   +langtool

@@ -15,13 +15,9 @@
   :config
   (org-projectile-per-project) ;; tell org-projectile that we are following the "file-per-project strategy"
   (setq
-   org-projectile-per-project-filepath "NOTES.org"
+   org-projectile-per-project-filepath "PROJECT_NOTES.org"
    org-projectile-capture-template "* %?\n"
    )
   (push (org-projectile-project-todo-entry) org-capture-templates)
 
-  )
-
-(set-popup-rule!
-  ()
   )

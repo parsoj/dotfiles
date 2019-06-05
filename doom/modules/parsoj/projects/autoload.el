@@ -22,14 +22,15 @@
   )
 
 ;;;###autoload
-(defun +run-commands-in-project-eshell-popup (command_list)
+(defun +run-commands-in-project-root-eshell-popup (command_list)
   ;; TODO special popup rules for this popup
   ;; TODO cleanup section separate from run section
   (interactive)
-  (with-current-buffer (pop-to-buffer (get-buffer-create "*Project Run*"))
-    (run-hooks 'eshell-mode-hook)
-    (if (eq major-mode 'eshell-mode)
-        (run-hooks 'eshell-mode-hook)
-      (eshell-mode))
-    (+eshell-run-command (string-join command_list " && ")))
+  (let* ((default-directory (projectile-project-root)))
+    (with-current-buffer (pop-to-buffer (get-buffer-create "*Project Run*"))
+      (run-hooks 'eshell-mode-hook)
+      (if (eq major-mode 'eshell-mode)
+          (run-hooks 'eshell-mode-hook)
+        (eshell-mode))
+      (+eshell-run-command (string-join command_list " && "))))
   )
