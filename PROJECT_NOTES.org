@@ -1,0 +1,16 @@
+#+TITLE: Dotfiles
+
+* Lisp-Editing tools
+** packages to install
+*** inline docs
+*** lispy indicator in modeline (also in cursor color if possible)
+** key items to learn
+*** tree-nav
+**** parent & child
+**** sibling
+*** sexp deletion
+*** matching paren nav
+*** eval
+** features to find
+*** jump to def
+*** main elisp REPL to use (and standard workflow around that)
