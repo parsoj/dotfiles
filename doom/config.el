@@ -15,10 +15,6 @@
 
 (setq display-line-numbers-type nil)
 
-(after! elisp-mode
-  (set-pretty-symbols! 'emacs-lisp-mode :alist '(("lambda!" . #X039b)) :lambda! "lambda!")
-)
-
 (setq restclient-log-request nil)
 
 (setq lsp-auto-guess-root nil)
