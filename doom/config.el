@@ -219,6 +219,8 @@
     ("^\\*NOTES\\*"
      :slot 0 :side right :width .25 :select t)
     ;; `eww' (and used by dash docsets)
+    ("^\\*Project Run\\*"
+     :slot 0 :side right :width .45 :select t)
     ("^\\*eww\\*"
      :vslot -11 :side right :size 0.45 :select t)
     ;; `Info-mode'
