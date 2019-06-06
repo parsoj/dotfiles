@@ -1,6 +1,35 @@
 #+TITLE: Dotfiles
+#+SUBTITLE: project notes
 
-* Lisp-Editing tools
+* organizational
+** separate modules for configuring overrides/settings to other modules
+* Emacs hotkey rework
+** develop list of "universal commands" that should/could be supported with the same hotkey for every major mode
+*** navigation
+**** go-to-def preview popup (with option to jump this/other window to result)
+**** find references preview popup (with option to jump this/other window to result)
+*** help popups
+**** doc/help popup (with option pop to its own window)
+**** toggle auto-doc popup
+*** autocomplete and snippets
+**** similar autocomplete rules
+**** autocomplete toggle
+**** (same rules to) trigger yasnippet expansion
+*** REPL stuff
+**** (re)start repl (check for project repl settings first, otherwise use a default repl)
+**** eval line
+**** toggle to show eval result in popup (in addition to sending to repl)
+**** eval block/paragraph
+**** same semantics to eval-and-focus vs just eval
+* osx modal hotkey config
+** take inspiration from lisp editing modes (also a tree)
+** use cases:
+** (possible) modes
+*** window-tree editing mode
+*** window-leaf editing mode
+*** desktop editing mode
+*** normal/command mode
+* Lisp editing
 ** packages to install
 *** inline docs
 *** lispy indicator in modeline (also in cursor color if possible)
