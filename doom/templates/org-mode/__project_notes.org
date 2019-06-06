@@ -9,8 +9,16 @@ $0
 * Tasks [/]
 
 * COMMENT Local variables
-# local variables:
-# eval: (setq org-todo-keyword-faces `(("TODO" . ,(doom-color 'red)) ("INBOX"
-# . ,(doom-color 'teal)) ("LATER" . ,(doom-color 'yellow) ) ("DONE" . ,(doom-color 'green))))
-# eval:  (setq org-todo-keywords '((sequence "TODO(t)" "INBOX(i)" "LATER(l)" "|" "DONE(d!)" )))
-# end:
+#+NAME: local variables
+#+BEGIN_SRC elisp
+(setq org-todo-keyword-faces `(
+                               ("TODO" . ,(doom-color 'red))
+                               ("INBOX" . ,(doom-color 'teal))
+                               ("LATER" . ,(doom-color 'yellow))
+                               ("DONE" . ,(doom-color 'green))
+                               ("PLANNED" . ,(doom-color 'yellow))))
+
+(setq org-todo-keywords '(
+                          (sequence "TODO(t)" "INBOX(i)" "LATER(l)" "|" "DONE(d!)" )
+                          (sequence "PLANNED(p)" "STUBBED(s)" "WRITTEN(w)" "RUNNING(r)")))
+#+END_SRC
