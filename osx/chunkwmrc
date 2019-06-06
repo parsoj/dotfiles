@@ -135,7 +135,7 @@ chunkc tiling::rule --owner \"App Store\" --state float
 chunkc tiling:rule --owner "Fantastical" --state float
 chunkc tiling:rule --owner "1Password 7" --state sticky --level 10 --grid-layout 40:40:5:4:30:32
 chunkc tiling:rule --owner "NordVPN" --state sticky --level 10 --grid-layout 20:20:4:2:12:14
-chunkc tiling:rule --owner "Spotify" --state sticky --level 10 --grid-layout 10:10:2:1:6:8
+chunkc tiling:rule --owner "Spotify" --state sticky --level 10 --grid-layout 10:10:1:1:8:8
 chunkc tiling:rule --owner "Messages" --state sticky --level 10 --grid-layout 20:20:5:4:10:12
 chunkc tiling:rule --owner "Discord" --state sticky --level 10 --grid-layout 40:40:5:4:30:32
 chunkc tiling:rule --owner "Slack" --state sticky --level 10 --grid-layout 10:10:2:1:6:8
