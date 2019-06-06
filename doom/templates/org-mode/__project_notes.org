@@ -7,3 +7,10 @@ $0
 * Design
 * Inbox
 * Tasks [/]
+
+* COMMENT Local variables
+# local variables:
+# eval: (setq org-todo-keyword-faces `(("TODO" . ,(doom-color 'red)) ("INBOX"
+# . ,(doom-color 'teal)) ("LATER" . ,(doom-color 'yellow) ) ("DONE" . ,(doom-color 'green))))
+# eval:  (setq org-todo-keywords '((sequence "TODO(t)" "INBOX(i)" "LATER(l)" "|" "DONE(d!)" )))
+# end:
