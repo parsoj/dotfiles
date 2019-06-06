@@ -4,7 +4,7 @@
 (defun +pop-to-project-todo-file ()
   (interactive)
   (+pop-to-indirect-buffer "*NOTES*"
-                           (lambda () (find-file-noselect (concat (projectile-project-root) "/NOTES.org" ))))
+                           (lambda () (find-file-noselect (concat (projectile-project-root) "/PROJECT_NOTES.org" ))))
   )
 
 ;;;###autoload
