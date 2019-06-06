@@ -17,31 +17,7 @@
 
 (setq restclient-log-request nil)
 
-(setq lsp-auto-guess-root nil)
-
 (map! :g "s-w" #'delete-frame)
-
-(map!
-
- (:after ivy
-   :map ivy-minibuffer-map
-   [escape] #'keyboard-escape-quit
-   )
- (:after counsel
-   :map ivy-minibuffer-map
-   [escape] #'keyboard-escape-quit
-   )
-
- (:after company
-   :map company-search-map
-   [escape] #'company-search-abort
-   )
-
- (:after magit
-   :map magit-mode-map
-   [escape] #'+magit/quit
-   )
- )
 
 (map! :leader
       :desc "Counsel M-x"   "SPC" #'counsel-M-x
@@ -164,13 +140,6 @@
 
       )
 
-(after! ivy
-  (setq
-   ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-   ivy-initial-inputs-alist nil
-   ivy-use-virtual-buffers t
-   )
-  )
 
 ;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
 (defun rename-current-buffer-and-file (new-name)
