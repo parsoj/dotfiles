@@ -83,8 +83,8 @@
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
         :desc "open project notes" "n" #'+pop-to-project-todo-file
         :desc "capture project note" "c" #'counsel-projectile-org-capture
-        :desc "run project" "r" #'projectile-run-project
-        :desc "jump to project settings" "s" (lambda! (find-file (concat ((projectile-project-root) ".dir-locals.el"))))
+        :desc "run project" "r" (lambda! (funcall project-runner))
+        :desc "jump to project settings" "s" (lambda! (find-file (concat (projectile-project-root) ".dir-locals.el")))
         )
 
       (:prefix ("s" . "search")
