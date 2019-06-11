@@ -22,3 +22,5 @@
   (setq org-capture-templates '(("i" "Inbox"  entry  (file+headline (lambda () (concat (projectile-project-root) "PROJECT_NOTES.org")) "Inbox") "* INBOX %?\n")))
 
   )
+
+(set-popup-rule! "^\\*PROJECT_NOTES\\*" :slot 0 :side 'right :width .35 :select t)
