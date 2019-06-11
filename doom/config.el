@@ -3,6 +3,7 @@
 ;; Place your private configuration here
 ;;
 ;;
+;;
 (setq confirm-kill-processes nil)
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
@@ -82,6 +83,7 @@
         )
 
       (:prefix ("h" . "help")
+        :desc "Describe thing in popup" "h" #'describe-thing-in-popup
         :desc "Apropos" "a" #'counsel-apropos
         :desc "Describe Function" "f" #'describe-function
         :desc "Describe Key" "k" #'describe-key
@@ -99,9 +101,8 @@
         )
 
       (:prefix ("d" . "doom")
-        :desc "Reload config" "r" #'doom/reload
+        :desc "Refresh and Reload " "r" (lambda! (progn (doom//refresh) (doom/reload)))
         :desc "Restart Doom" "R" #'doom/restart
-        :desc "Refresh packages" "p" #'doom//refresh
         :desc "Quit Doom" "q" #'evil-quit-all
 
         (:prefix ("c" . "config")
