@@ -28,14 +28,13 @@
 
 
 (def-package! company-tng
-  :when (featurep! +tng)
   :defer 2
   :after-call post-self-insert-hook
   :config
   (add-to-list 'company-frontends 'company-tng-frontend)
   (define-key! company-active-map
-    "RET"       nil
-    [return]    nil
+    "RET"       #'company-complete-selection
+    [return]    #'company-complete-selection
     "TAB"       #'company-select-next
     [tab]       #'company-select-next
     [backtab]   #'company-select-previous))
@@ -53,7 +52,6 @@
 
 
 (def-package! company-box
-  :when (and EMACS26+ (featurep! +childframe))
   :hook (company-mode . company-box-mode)
   :config
   (setq company-box-show-single-candidate t
@@ -122,7 +120,6 @@
 
 
 (map!
-
  (:after company
    :map company-search-map
    [escape] #'company-search-abort

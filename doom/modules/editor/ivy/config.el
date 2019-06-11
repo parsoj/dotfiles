@@ -1,6 +1,6 @@
 ;;; completion/ivy/config.el -*- lexical-binding: t; -*-
 
-(defvar +ivy-buffer-preview nil
+(defvar +ivy-buffer-preview t
   "If non-nil, preview buffers while switching, à la `counsel-switch-buffer'.
 
 When nil, don't preview anything.
@@ -109,12 +109,11 @@ immediately runs it on the current candidate (ending the ivy session)."
 (def-package! ivy-rich
   :after ivy
   :config
-  (when (featurep! +icons)
-    (cl-pushnew '(+ivy-rich-buffer-icon)
-                (cadr (plist-get ivy-rich-display-transformers-list
-                                 'ivy-switch-buffer))))
+  (cl-pushnew '(+ivy-rich-buffer-icon)
+              (cadr (plist-get ivy-rich-display-transformers-list
+                               'ivy-switch-buffer)))
 
-  ;; Include variable value in `counsel-describe-variable'
+                               ;; Include variable value in `counsel-describe-variable'
   (setq ivy-rich-display-transformers-list
         (plist-put ivy-rich-display-transformers-list
                    'counsel-describe-variable
@@ -145,7 +144,6 @@ immediately runs it on the current candidate (ending the ivy session)."
 
 
 (def-package! all-the-icons-ivy
-  :when (featurep! +icons)
   :after ivy
   :config
   ;; `all-the-icons-ivy' is incompatible with ivy-rich's switch-buffer
@@ -257,7 +255,6 @@ immediately runs it on the current candidate (ending the ivy session)."
 
 
 (def-package! ivy-posframe
-  :when (and EMACS26+ (featurep! +childframe))
   :hook (ivy-mode . ivy-posframe-mode)
   :config
   (setq ivy-fixed-height-minibuffer nil
@@ -278,29 +275,26 @@ immediately runs it on the current candidate (ending the ivy session)."
     (setf (alist-get fn ivy-posframe-display-functions-alist) #'ivy-display-function-fallback)))
 
 
-(def-package! flx
-  :when (and (featurep! +fuzzy)
-             (not (featurep! +prescient)))
-  :defer t  ; is loaded by ivy
-  :init
-  (setq ivy-re-builders-alist
-        '((counsel-ag . ivy--regex-plus)
-          (counsel-rg . ivy--regex-plus)
-          (counsel-grep . ivy--regex-plus)
-          (swiper . ivy--regex-plus)
-          (swiper-isearch . ivy--regex-plus)
-          (t . ivy--regex-ignore-order))
-        ivy-initial-inputs-alist nil
-        ivy-flx-limit 10000))
+;; (def-package! flx
+;;   :when (and (featurep! +fuzzy)
+;;              (not (featurep! +prescient)))
+;;   :defer t  ; is loaded by ivy
+;;   :init
+;;   (setq ivy-re-builders-alist
+;;         '((counsel-ag . ivy--regex-plus)
+;;           (counsel-rg . ivy--regex-plus)
+;;           (counsel-grep . ivy--regex-plus)
+;;           (swiper . ivy--regex-plus)
+;;           (swiper-isearch . ivy--regex-plus)
+;;           (t . ivy--regex-ignore-order))
+;;         ivy-initial-inputs-alist nil
+;;         ivy-flx-limit 10000))
 
 
 (def-package! ivy-prescient
   :hook (ivy-mode . ivy-prescient-mode)
-  :when (featurep! +prescient)
   :init
-  (setq prescient-filter-method (if (featurep! +fuzzy)
-                                    '(literal regexp initialism fuzzy)
-                                  '(literal regexp initialism))
+  (setq prescient-filter-method '(literal regexp initialism fuzzy)
         ivy-prescient-enable-filtering nil ;; we do this ourselves
         ivy-initial-inputs-alist nil
         ivy-re-builders-alist

@@ -17,22 +17,17 @@
 
 (doom!
 
- ;;; My Stuff
- :central
+;;; My Stuff
+ :core
+ treemacs
+ magit
  theme
  eshell
 
  :editor
- (ivy
-  +childframe
-  +fuzzy
-  +icons
-  +prescient
-  )
- (company
-  +childframe
-  +tng
-  )
+ ivy
+ company
+ snippets
  file-templates
  lsp
  projects
@@ -45,14 +40,13 @@
  swift
  xml
 
- ;;; Doom's stuff
+;;; Doom's stuff
  :ui
  doom-dashboard
 
  hl-todo
  modeline
  nav-flash
- treemacs
  (popup
   +all
   +defaults)
@@ -69,7 +63,8 @@
  workspaces
 
  :editor
- (evil +everywhere)
+ (evil
+  +everywhere)
  snippets
  fold
  multiple-cursors
@@ -88,6 +83,7 @@
  term
 
  :tools
+ lsp
  docker
  terraform
  (flycheck
@@ -96,7 +92,6 @@
  flyspell
  gist
  macos
- magit
  make
  (lookup
   +docsets

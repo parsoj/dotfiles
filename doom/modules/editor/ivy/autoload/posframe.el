@@ -1,5 +1,4 @@
 ;;; completion/ivy/autoload/posframe.el -*- lexical-binding: t; -*-
-;;;###if (featurep! +childframe)
 
 ;;;###autoload
 (defun +ivy-display-at-frame-center-near-bottom (str)

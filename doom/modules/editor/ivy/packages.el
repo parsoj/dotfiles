@@ -10,13 +10,9 @@
 (package! ivy-rich)
 (package! wgrep)
 
-(if (featurep! +prescient)
-    (package! ivy-prescient)
-  (when (featurep! +fuzzy)
-    (package! flx)))
+(package! ivy-prescient)
+;; (package! flx)
 
-(when (and EMACS26+ (featurep! +childframe))
-  (package! ivy-posframe))
+(package! ivy-posframe)
 
-(when (featurep! +icons)
-  (package! all-the-icons-ivy))
+(package! all-the-icons-ivy)
