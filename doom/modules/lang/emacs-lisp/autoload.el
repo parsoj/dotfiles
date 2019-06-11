@@ -160,9 +160,8 @@ verbosity when editing a file in `doom-private-dir' or `doom-emacs-dir'."
                         (help-mode)
                         (help-xref-interned thing)
                         (buffer-string))))
-    (popup-tip description
-               :point (point)
-               :around t
-               :height 30
-               :scroll-bar t
-               :margin t)))
+    (pos-tip-show description
+                  `(,(doom-color 'fg) . ,(doom-color 'bg))
+                  nil
+                  nil
+                  10)))

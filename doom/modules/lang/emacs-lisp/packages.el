@@ -7,7 +7,7 @@
 (package! elisp-def)
 (package! elisp-demos)
 (package! company-quickhelp)
-(package! popup)
+(package! pos-tip)
 
 (when (featurep! :tools flycheck)
   (package! flycheck-cask))
