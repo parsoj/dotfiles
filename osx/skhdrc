@@ -2,10 +2,10 @@
 # Window control
 
 # focus window
-alt - h : chunkc tiling::window --focus west
-alt - j : chunkc tiling::window --focus south
-alt - k : chunkc tiling::window --focus north
-alt - l : chunkc tiling::window --focus east
+#alt - h : chunkc tiling::window --focus west
+#alt - j : chunkc tiling::window --focus south
+#alt - k : chunkc tiling::window --focus north
+#alt - l : chunkc tiling::window --focus east
 
 cmd - j : chunkc tiling::window --focus prev
 cmd - k : chunkc tiling::window --focus next
@@ -43,5 +43,5 @@ ctrl + alt - d : open /Applications/Discord.app
 ctrl + alt - o : open /Applications/Spotify.app
 
 ctrl + alt - e : ~/.config/osx/scripts/launch_emacsclient
-#ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
-#ctrl + alt + cmd - k : pkill Emacs
+ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
+ctrl + alt + cmd - k : pkill Emacs

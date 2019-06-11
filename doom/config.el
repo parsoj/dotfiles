@@ -1,14 +1,14 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here
-;;
-;;
-;;
+
+(map! :g "s-w" #'delete-frame)
 (setq confirm-kill-processes nil)
 
 ;;over-write doom's own overwriting of delete-frame, since doom/delete-frame prompts before close
 (global-set-key [remap delete-frame] #'delete-frame)
 (setq confirm-kill-emacs nil)
+
+
 
 (setq
  doom-modeline-buffer-file-name-style 'buffer-name
@@ -18,7 +18,6 @@
 
 (setq restclient-log-request nil)
 
-(map! :g "s-w" #'delete-frame)
 
 (map! :leader
       :desc "Counsel M-x"   "SPC" #'counsel-M-x

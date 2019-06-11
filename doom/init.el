@@ -17,35 +17,37 @@
 
 (doom!
 
- :parsoj
- emacs-lisp
- projects
+ ;;; My Stuff
+ :central
+ theme
  eshell
+
+ :editor
+ (ivy
+  +childframe
+  +fuzzy
+  +icons
+  +prescient
+  )
+ (company
+  +childframe
+  +tng
+  )
+ file-templates
+ lsp
+ projects
+
+ :lang
+ emacs-lisp
+ go
  java
  puppet
- slack
- sql
- theme
- vagrant
+ swift
  xml
 
- :completion
- parsoj-company
- (company
-  +auto
-  +childframe
-  )
-
- parsoj-ivy
- (ivy
-  +fuzzy
-  +childframe
-  +icons
-  )
-
+ ;;; Doom's stuff
  :ui
  doom-dashboard
-
 
  hl-todo
  modeline
@@ -71,8 +73,6 @@
  snippets
  fold
  multiple-cursors
- parsoj-file-templates
- file-templates
  lispy
  rotate-text
 
@@ -95,10 +95,7 @@
   )
  flyspell
  gist
- parsoj-lsp
- lsp
  macos
- parsoj-magit
  magit
  make
  (lookup
@@ -107,8 +104,6 @@
  prodigy
 
  :lang
- swift
- go
  kotlin
  markdown
  (org
