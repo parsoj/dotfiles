@@ -67,8 +67,14 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
+################################################################################
+# swift
+
+export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/"
+
+
 ##########################################################################################
 # golang
 
-export GOPATH="/Users/jeffp/code/remitly/go"
+export GOPATH="/Users/jeffp/code/remitly/mothra2/go"
 export PATH="$GOPATH/bin:$PATH"
