@@ -69,4 +69,3 @@ This marks a foldable marker for `outline-minor-mode' in elisp buffers.")
   (advice-add #'elisp-def :after #'doom*recenter)
   )
 
-(def-package! pos-tip)

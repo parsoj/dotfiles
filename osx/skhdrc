@@ -45,3 +45,4 @@ ctrl + alt - o : open /Applications/Spotify.app
 ctrl + alt - e : ~/.config/osx/scripts/launch_emacsclient
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs
+ctrl + alt + cmd - r : osascript ~/.config/doom/refresh_reload_restart.scpt

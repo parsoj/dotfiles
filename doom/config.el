@@ -103,6 +103,7 @@
         :desc "Refresh and Reload " "r" (lambda! (progn (doom//refresh) (doom/reload)))
         :desc "Restart Doom" "R" #'doom/restart
         :desc "Quit Doom" "q" #'evil-quit-all
+        :desc "Open Scratch" "s" #'doom/open-scratch-buffer
 
         (:prefix ("c" . "config")
           :desc "config.el" "c" (lambda! (find-file "~/.config/doom/config.el"))
@@ -168,8 +169,6 @@
      :slot -1 :vslot -2 :ttl 0)
     ("^\\*Compil\\(?:ation\\|e-Log\\)"
      :vslot -2 :size 0.3 :ttl nil :quit t)
-    ("^\\*\\(?:scratch\\|Messages\\)"
-     :autosave t :ttl nil)
     ("^\\*Man "
      :size 0.45 :vslot -3 :ttl 0 :quit t :select t)
     ("^\\*doom \\(?:term\\|eshell\\)"
@@ -185,9 +184,8 @@
     ;; `help-mode', `helpful-mode'
     ("^\\*[Hh]elp"
      :slot 1 :side right :width .35 :height .5 :select t)
-    ("^\\*NOTES\\*"
-     :slot 0 :side right :width .25 :select t)
-    ;; `eww' (and used by dash docsets)
+    ("^\\*doom:scratch\\*"
+     :slot 1 :side right :width .35 :ttl nil)
     ("^\\*Project Run\\*"
      :slot 0 :side right :width .45 :select t)
     ("^\\*eww\\*"

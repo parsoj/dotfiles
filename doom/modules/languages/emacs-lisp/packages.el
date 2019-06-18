@@ -6,8 +6,6 @@
 (package! highlight-quoted)
 (package! elisp-def)
 (package! elisp-demos)
-(package! company-quickhelp)
-(package! pos-tip)
 
 (when (featurep! :tools flycheck)
   (package! flycheck-cask))

@@ -1,5 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+(setq pos-tip-foreground-color "#bbc2cf")
+(setq pos-tip-background-color "#282c34")
 
 (setq doom-localleader-key ",")
 
@@ -25,20 +27,27 @@
  eshell
 
  :editor
+ tooltip
  ivy
  company
- snippets
- file-templates
  lsp
  projects
+ ;;debugger
 
- :lang
+ :languages
  emacs-lisp
  go
  java
  puppet
  swift
  xml
+
+ :apps
+ discord
+
+ :wrappers
+ file-templates
+ snippets
 
 ;;; Doom's stuff
  :ui
@@ -63,13 +72,14 @@
  workspaces
 
  :editor
+ file-templates
  (evil
   +everywhere)
- snippets
  fold
  multiple-cursors
  lispy
  rotate-text
+ snippets
 
  :emacs
  (dired
@@ -83,7 +93,6 @@
  term
 
  :tools
- lsp
  docker
  terraform
  (flycheck
@@ -109,8 +118,6 @@
   +present
   +protocol)
  perl
- (php
-  +lsp)
  plantuml
  rest
  ruby

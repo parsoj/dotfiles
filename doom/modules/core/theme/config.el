@@ -26,7 +26,7 @@
    treemacs-icon-closed-png (propertize  (all-the-icons-material "folder"         :v-adjust -0.15)  'face `(:family ,(all-the-icons-material-family) :height 1.75))
    treemacs-icon-open-png   (propertize  (all-the-icons-material "folder_open"    :v-adjust -0.15)  'face `(:family ,(all-the-icons-material-family) :height 1.75))
    treemacs-icon-root-png   (propertize  (all-the-icons-material "folder_special" :v-adjust -0.15)  'face `(:family ,(all-the-icons-material-family) :height 1.75))
-   )                                                                           
+   )
 
 
             ;; fix the terraform icon
@@ -66,6 +66,8 @@
   :init
   (unless doom-theme
     (setq doom-theme 'doom-one))
+
+  (face-remap-add-relative 'tooltip :background (doom-color 'bg))
   :config
   ;; improve integration w/ org-mode
   (add-hook 'doom-load-theme-hook #'doom-themes-org-config)
@@ -73,6 +75,8 @@
   ;;(add-hook 'doom-load-theme-hook #'doom-themes-treemacs-config)
   ;;(setq doom-treemacs-enable-variable-pitch t)
   ;;
+
+
 
   (add-hook 'treemacs-mode-hook
             (lambda ()
@@ -127,9 +131,7 @@
   (defun +doom|disable-fringes-in-minibuffer (&rest _)
     (set-window-fringes (minibuffer-window) 0 0 nil))
   (add-hook 'solaire-mode-hook #'+doom|disable-fringes-in-minibuffer)
-
-  (defun doom*no-fringes-in-which-key-buffer (&rest _)
-    (+doom|disable-fringes-in-minibuffer)
+(defun doom*no-fringes-in-which-key-buffer (&rest _) (+doom|disable-fringes-in-minibuffer)
     (set-window-fringes (get-buffer-window which-key--buffer) 0 0 nil))
   (advice-add 'which-key--show-buffer-side-window :after #'doom*no-fringes-in-which-key-buffer)
 

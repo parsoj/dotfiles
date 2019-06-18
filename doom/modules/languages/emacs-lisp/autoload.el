@@ -156,12 +156,12 @@ verbosity when editing a file in `doom-private-dir' or `doom-emacs-dir'."
   (interactive)
   (let* ((thing (symbol-at-point))
          (help-xref-following t)
-         (description (with-temp-buffer
-                        (help-mode)
-                        (help-xref-interned thing)
-                        (buffer-string))))
-    (pos-tip-show description
-                  `(,(doom-color 'fg) . ,(doom-color 'bg))
-                  nil
-                  nil
-                  10)))
+         (buf (get-buffer-create "foo")))
+    (progn
+      (show-poppy buf)
+      (with-current-buffer buf
+          (eval
+           `(progn (help-mode)
+                   (describe-symbol (intern ,(symbol-name thing)))) t ))
+      )
+    ))

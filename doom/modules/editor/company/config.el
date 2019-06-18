@@ -5,7 +5,8 @@
   :after-call (evil-insert-state-entry-hook evil-emacs-state-entry-hook)
   :init
   (setq company-minimum-prefix-length 2
-        company-tooltip-limit 14
+        company-idle-delay .3
+        company-tooltip-limit 20
         company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil
         company-dabbrev-code-other-buffers t
@@ -18,12 +19,9 @@
         '(company-pseudo-tooltip-frontend
           company-echo-metadata-frontend))
   ;; Lazy load until user starts entering text
-  (unless (featurep! :editor evil)
-    (add-transient-hook! 'post-self-insert-hook (require 'company)))
   :config
   (add-hook 'company-mode-hook #'+company|init-backends)
-  (when (featurep! :editor evil)
-    (add-hook 'company-mode-hook #'evil-normalize-keymaps))
+  (add-hook 'company-mode-hook #'evil-normalize-keymaps)
   (global-company-mode +1))
 
 
@@ -49,7 +47,6 @@
   ;; NOTE prescient config duplicated with `ivy'
   (setq prescient-save-file (concat doom-cache-dir "prescient-save.el"))
   (prescient-persist-mode +1))
-
 
 (def-package! company-box
   :hook (company-mode . company-box-mode)

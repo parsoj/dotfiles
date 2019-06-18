@@ -14,31 +14,29 @@
   ;; Redefines default formatter to *not* use goimports if reformatting a
   ;; region; as it doesn't play well with partial code.
   (set-formatter! 'gofmt
-    '(("%s" (if (or +format-region-p
-                    (not (executable-find "goimports")))
-                "gofmt"
-              "goimports"))))
+                  '(("%s" (if (or +format-region-p
+                                  (not (executable-find "goimports")))
+                              "gofmt"
+                            "goimports"))))
 
-  (if (featurep! +lsp)
-      (add-hook 'go-mode-hook #'lsp!)
-    (add-hook 'go-mode-hook #'go-eldoc-setup))
+  (add-hook 'go-mode-hook #'go-eldoc-setup)
 
   (map! :map go-mode-map
         :localleader
         "e" #'+go/play-buffer-or-region
-        "i" #'go-goto-imports      ; Go to imports
+        "i" #'go-goto-imports           ; Go to imports
         (:prefix ("h" . "help")
-          "." #'godoc-at-point     ; Lookup in godoc
-          "d" #'go-guru-describe   ; Describe this
-          "v" #'go-guru-freevars   ; List free variables
-          "i" #'go-guru-implements ; Implements relations for package types
-          "p" #'go-guru-peers      ; List peers for channel
-          "P" #'go-guru-pointsto   ; What does this point to
-          "r" #'go-guru-referrers  ; List references to object
-          "e" #'go-guru-whicherrs  ; Which errors
-          "w" #'go-guru-what       ; What query
-          "c" #'go-guru-callers    ; Show callers of this function
-          "C" #'go-guru-callees)   ; Show callees of this function
+          "." #'godoc-at-point          ; Lookup in godoc
+          "d" #'go-guru-describe        ; Describe this
+          "v" #'go-guru-freevars        ; List free variables
+          "i" #'go-guru-implements      ; Implements relations for package types
+          "p" #'go-guru-peers           ; List peers for channel
+          "P" #'go-guru-pointsto        ; What does this point to
+          "r" #'go-guru-referrers       ; List references to object
+          "e" #'go-guru-whicherrs       ; Which errors
+          "w" #'go-guru-what            ; What query
+          "c" #'go-guru-callers         ; Show callers of this function
+          "C" #'go-guru-callees)        ; Show callees of this function
         (:prefix ("ri" . "imports")
           "a" #'go-import-add
           "r" #'go-remove-unused-imports)
