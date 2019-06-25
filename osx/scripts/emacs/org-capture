@@ -1,0 +1,3 @@
+#!/bin/bash
+
+emacsclient -e "(+org-capture/open-frame \"boop\" \"i\")"
