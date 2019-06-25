@@ -11,7 +11,7 @@ while read -r window_id window_title window_subtitle
 do
     if [ $window_title == "Emacs" ]
     then
-      osascript $HOME/.config/osx/scripts/close_emacs_window.scpt
+      osascript $HOME/.config/osx/scripts/Emacs/close_emacs_window
     else
       chunkc tiling::window --focus $window_id
       chunkc tiling::window --close
