@@ -129,14 +129,20 @@ chunkc core::load ffm.so
 #
 # NOTE: sample rules for the tiling plugin
 #
+#
+
+# grid-layout docs --> rows:cols:left:top:width:height
 
 chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner \"App Store\" --state float
 chunkc tiling:rule --owner "Fantastical" --state float
-chunkc tiling:rule --owner "1Password 7" --state sticky --level 10 --grid-layout 40:40:5:4:30:32
-chunkc tiling:rule --owner "NordVPN" --state sticky --level 10 --grid-layout 20:20:4:2:12:14
-chunkc tiling:rule --owner "Spotify" --state sticky --level 10 --grid-layout 10:10:1:1:8:8
-chunkc tiling:rule --owner "Messages" --state sticky --level 10 --grid-layout 20:20:5:4:10:12
-chunkc tiling:rule --owner "Discord" --state sticky --level 10 --grid-layout 40:40:5:4:30:32
-chunkc tiling:rule --owner "Slack" --state sticky --level 10 --grid-layout 10:10:2:1:6:8
-chunkc tiling:rule --owner Emacs --except "^$" --state tile
+chunkc tiling:rule --owner "1Password 7" --state sticky --level 5 --grid-layout 40:40:4:4:30:32
+chunkc tiling:rule --owner "NordVPN" --state sticky --level 5 --grid-layout 20:20:4:2:12:14
+chunkc tiling:rule --owner "Spotify" --state sticky --level 5 --grid-layout 20:20:3:2:14:16
+chunkc tiling:rule --owner "Messages" --state sticky --level 5 --grid-layout 20:20:4:4:10:12
+chunkc tiling:rule --owner "Discord" --state sticky --level 5 --grid-layout 40:40:4:4:30:32
+chunkc tiling:rule --owner "Slack" --state sticky --level 5 --grid-layout 10:10:2:1:6:8
+
+#chunkc tiling:rule --owner Emacs --except "^$" --state tile
+chunkc tiling:rule --owner Emacs --name "^Daemon Frame$" --state sticky --level 1 --grid-layout 20:20:4:4:10:12
+chunkc tiling:rule --owner Emacs --name "^org-capture$" --state sticky --level 6 --grid-layout 20:20:8:8:4:4
