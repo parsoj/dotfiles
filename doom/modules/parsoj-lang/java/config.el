@@ -11,6 +11,7 @@
   :init
   (add-hook 'java-mode-hook #'lsp!)
   (add-hook 'java-mode-hook 'flycheck-mode)
+  (set-company-backend! 'java-mode 'company-lsp)
 
 
   :config

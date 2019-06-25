@@ -9,8 +9,6 @@
    projectile-project-root-files '(".projectile" "NOTES.org")
    counsel-projectile-switch-project-action (lambda (project_root) (find-file (concat project_root "PROJECT_NOTES.org")))
    )
-  :config
-  (set-popup-rule! "^\\*PROJECT_NOTES\\*" :slot 0 :side 'right :width .35 :select t)
   )
 
 (def-package! org-projectile
