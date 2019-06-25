@@ -1,4 +1,0 @@
-#!/bin/bash
-
-emacsclient -c -n -e "(progn (cd \"~/\") (+eshell/open-fullscreen nil))"
-osascript -e 'tell application "Emacs" to activate'

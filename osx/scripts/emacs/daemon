@@ -1,0 +1,13 @@
+#!/usr/bin/osascript
+display notification "Restarting Server..." with title "Emacs"
+tell application "Terminal"
+	try
+		do shell script "pkill Emacs"
+	end try
+	do shell script "open /Applications/Emacs.app"
+end tell
+tell application "System Events"
+	repeat until window "Daemon Frame" of process "Emacs" exists
+	end repeat
+	display notification "Server Ready!" with title "Emacs"
+end tell
