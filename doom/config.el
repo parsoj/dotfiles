@@ -8,8 +8,6 @@
 (global-set-key [remap delete-frame] #'delete-frame)
 (setq confirm-kill-emacs nil)
 
-
-
 (setq
  doom-modeline-buffer-file-name-style 'buffer-name
  )
@@ -17,16 +15,24 @@
 (setq display-line-numbers-type nil)
 
 (setq restclient-log-request nil)
+(after! lsp
+  (setq lsp-auto-guess-root nil)
+  )
 
 
 (map! :leader
       :desc "Counsel M-x"   "SPC" #'counsel-M-x
       :desc "Eval Expression" ":" #'eval-expression
-      :desc "Eshell popup"   "'" #'+eshell/open-popup
-      :desc "Eshell in window"   "\"" #'+eshell/open
+      :desc "Eshell in window"   "\"" #'+eshell/here
+      :nv "'" #'+eshell/toggle
+
+      :nv "gh"  #'+lookup/documentation
+      :nv "gd" #'+lookup/definition
+      :nv "gD" #'+lookup/references
+      :nv "gf" #'+lookup/file
 
       (:prefix ("t" . "toggle")
-        :desc "Treemacs" "t"   #'+treemacs/toggle
+        :desc "Treemacs" "t"   #'neotree-toggle
         :desc "Fullscreen" "f"   #'toggle-frame-fullscreen
         :desc "Line Numbers"   "n"  #'doom/toggle-line-numbers
         :desc "Line Truncation/Wrap" "l"  #'visual-line-mode
@@ -106,8 +112,8 @@
         :desc "Open Scratch" "s" #'doom/open-scratch-buffer
 
         (:prefix ("c" . "config")
-          :desc "config.el" "c" (lambda! (find-file "~/.config/doom/config.el"))
-          :desc "init.el" "i" (lambda! (find-file "~/.config/doom/init.el"))
+          :desc "config.el" "c" (lambda! (find-file "~/.doom.d/config.el"))
+          :desc "init.el" "i" (lambda! (find-file "~/.doom.d/init.el"))
           :desc "bashrc" "b" (lambda! (find-file "~/.bashrc"))
           :desc "skhdrc" "s" (lambda! (find-file "~/.skhdrc"))
           :desc "chunckwmrc" "w" (lambda! (find-file "~/.chunkwmrc"))
@@ -131,15 +137,14 @@
       (:prefix ("j" . "jump")
         :desc "Jump to character" "c" #'avy-goto-char
         :desc "Jump to line" "l" #'avy-goto-line
+        :desc "Jump to Inbox" "i" (lambda! (find-file "~/org/inbox/inbox.org"))
         )
 
       (:prefix ("g" . "git")
         :desc "Status" "s" #'magit-status
         :desc "blame" "b" #'magit-blame-addition
         :desc "quick commit" "c" (lambda! (progn (magit-stage) (magit-commit-create)))
-        )
-
-      )
+        ))
 
 
 ;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
@@ -165,45 +170,65 @@
   '(
     ("^\\*bin/doom\\*$"
      :vslot 9999 :size 0.75 :quit 'current :select t :ttl 0)
+
     ("^\\*Completions"
      :slot -1 :vslot -2 :ttl 0)
+
     ("^\\*Compil\\(?:ation\\|e-Log\\)"
      :vslot -2 :size 0.3 :ttl nil :quit t)
+
     ("^\\*Man "
      :size 0.45 :vslot -3 :ttl 0 :quit t :select t)
+
     ("^\\*doom \\(?:term\\|eshell\\)"
      :size 0.25 :vslot -4 :select t :quit nil :ttl 0)
+
     ("^\\*doom:"
      :vslot -5 :size 0.35 :size bottom :autosave t :select t :modeline t :quit nil)
+
     ("^\\*\\(?:\\(?:Pp E\\|doom e\\)val\\)"
      :size +popup-shrink-to-fit :ttl 0 :select ignore)
+
     ("^\\*Customize"
      :slot 2 :side right :select t :quit t)
+
     ("^ \\*undo-tree\\*"
      :slot 2 :side left :size 20 :select t :quit t)
-    ;; `help-mode', `helpful-mode'
+
     ("^\\*[Hh]elp"
      :slot 1 :side right :width .35 :height .5 :select t)
+
     ("^\\*doom:scratch\\*"
      :slot 1 :side right :width .35 :ttl nil)
+
     ("^\\*Project Run\\*"
      :slot 0 :side right :width .45 :select t)
+
     ("^\\*eww\\*"
      :vslot -11 :side right :size 0.45 :select t)
-    ;; `Info-mode'
+
     ("^\\*HTTP Response\\*"
      :actions '(display-buffer-below-selected) )
+
     ("^\\*info\\*$"
      :slot 2 :vslot 2 :size 0.45 :select t)
+
     ("^\\*Backtrace"
      :vslot 99 :size 0.4 :quit nil)
+
     ("^\\*CPU-Profiler-Report "
      :side bottom :vslot 100 :slot 1 :height 0.4 :width 0.5 :quit nil)
+
     ("^\\*Memory-Profiler-Report "
      :side bottom :vslot 100 :slot 2 :height 0.4 :width 0.5 :quit nil)
+
     ("^\\*[Ss]lack"
      :slot 2 :side right :vslot -2 :size 0.35 :select t :quit delete-window )
+
+    ("^\\*PROJECT_NOTES\\*"
+     :slot 0 :side right :width .35 :select t)
     )
+
   )
 
 

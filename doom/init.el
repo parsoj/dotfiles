@@ -1,9 +1,25 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;; (setq pixel-scroll-mode t)
+(setq mac-mouse-wheel-smooth-scroll t)
 (setq pos-tip-foreground-color "#bbc2cf")
 (setq pos-tip-background-color "#282c34")
+(setq doom-modeline-height 15)
 
+(setq doom-leader-key "SPC")
 (setq doom-localleader-key ",")
+
+
+(defun convert-frame-to-daemon ()
+  (progn
+    (modify-frame-parameters (selected-frame) (list (cons 'name "Daemon Frame")))
+    (server-start)
+    (iconify-frame)
+    )
+
+  )
+
+(add-hook 'after-init-hook #'convert-frame-to-daemon)
 
 (def-package-hook! evil-snipe
   :pre-init
@@ -14,43 +30,89 @@
   (define-key! evil-motion-state-map "," nil)
   )
 
+(defadvice handle-delete-frame (around my-handle-delete-frame-advice activate)
+  "Hide Emacs instead of closing the last frame"
+  (let ((frame   (posn-window (event-start event)))
+        (numfrs  (length (frame-list))))
+    (if (> numfrs 1)
+      ad-do-it
+      (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false"))))
 
 (setq +vc-gutter-default-style nil)
 
+(def-package-hook! ivy-prescient
+  :post-init
+  (setq prescient-filter-method '(literal regexp initialism fuzzy)
+        ivy-prescient-enable-filtering nil ;; we do this ourselves
+        ivy-initial-inputs-alist nil
+        ivy-re-builders-alist
+        '((counsel-ag . +ivy-prescient-non-fuzzy)
+          (counsel-rg . +ivy-prescient-non-fuzzy)
+          (counsel-grep . +ivy-prescient-non-fuzzy)
+          (swiper . +ivy-prescient-non-fuzzy)
+          (swiper-isearch . +ivy-prescient-non-fuzzy)
+          (t . ivy--regex-ignore-order)))
+  )
+
+(def-package-hook! company-tng
+  :post-config
+  (define-key! company-active-map
+    "RET"       #'company-complete-selection
+    [return]    #'company-complete-selection
+    "TAB"       #'company-select-next
+    [tab]       #'company-select-next
+    [backtab]   #'company-select-previous)
+  )
+
+(def-package-hook! company
+  :post-init
+  (setq company-tooltip-limit 20        ; bigger popup window
+        company-idle-delay .3
+        company-echo-delay 0))
+
+(after! lsp
+	(setq lsp-auto-guess-root nil)
+)
+
 (doom!
-
 ;;; My Stuff
- :core
- treemacs
- magit
- theme
- eshell
 
- :editor
- tooltip
- ivy
- company
- lsp
- projects
- ;;debugger
-
- :languages
+ :parsoj-lang
  emacs-lisp
- go
  java
  puppet
  swift
  xml
+ applescript
 
- :apps
+ :parsoj-app
  discord
 
- :wrappers
- file-templates
- snippets
+ :parsoj-tools
+ projects
+ tooltip
+ eshell
+
+ :parsoj-ui
+ theme
+ ;; treemacs
 
 ;;; Doom's stuff
+;;;
+
+ :completion (ivy
+              +fuzzy
+              +childframe
+              +prescient
+              +icons
+              )
+ (company
+  +childframe
+  +tng
+  )
+
  :ui
+ neotree
  doom-dashboard
 
  hl-todo
@@ -72,6 +134,9 @@
  workspaces
 
  :editor
+ (format
+  +onsave
+  )
  file-templates
  (evil
   +everywhere)
@@ -91,8 +156,12 @@
 
  :term
  term
+ eshell
 
  :tools
+ magit
+ debugger
+ eval
  docker
  terraform
  (flycheck
@@ -106,8 +175,12 @@
   +docsets
   )
  prodigy
+ lsp
 
  :lang
+ (go
+  +lsp
+  )
  kotlin
  markdown
  (org
@@ -115,6 +188,7 @@
   +babel
   +capture
   +export
+  +habit
   +present
   +protocol)
  perl
@@ -127,4 +201,10 @@
  (write
   +langtool
   )
- :config)
+ :config
+
+
+ :parsoj-org
+ org
+
+ )
