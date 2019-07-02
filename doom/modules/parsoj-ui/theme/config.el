@@ -76,18 +76,16 @@
   ;;(setq doom-treemacs-enable-variable-pitch t)
   ;;
 
-
-
-  (add-hook 'treemacs-mode-hook
-            (lambda ()
-              (dolist (item all-the-icons-icon-alist)
-                (let* ((extension (car item))
-                       (icon (apply (cdr item))))
-                  (ht-set! treemacs-icons-hash
-                           (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
-                           (concat icon " "))))
-              )
-            )
+  ;; (add-hook 'treemacs-mode-hook
+  ;;           (lambda ()
+  ;;             (dolist (item all-the-icons-icon-alist)
+  ;;               (let* ((extension (car item))
+  ;;                      (icon (apply (cdr item))))
+  ;;                 (ht-set! treemacs-icons-hash
+  ;;                          (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
+  ;;                          (concat icon " "))))
+  ;;             )
+  ;;           )
   )
 
 

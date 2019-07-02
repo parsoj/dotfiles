@@ -7,8 +7,6 @@
 #alt - k : chunkc tiling::window --focus north
 #alt - l : chunkc tiling::window --focus east
 
-cmd - j : chunkc tiling::window --focus prev
-cmd - k : chunkc tiling::window --focus next
 
 # equalize size of windows
 shift + alt - 0 : chunkc tiling::desktop --equalize
@@ -29,20 +27,27 @@ shift + cmd - l : chunkc tiling::window --warp east
 ################################################################################
 # Desktp control
 
-ctrl + alt + cmd - n : ~/.config/osx/scripts/create_workspace.sh
-ctrl + alt + cmd - w : ~/.config/osx/scripts/destroy_workspace.sh
+ctrl + alt + cmd - n : ~/dotfiles/osx/scripts/create_workspace.sh
+ctrl + alt + cmd - w : ~/dotfiles/osx/scripts/destroy_workspace.sh
 
 
 ################################################################################
 # application launching
+
+cmd - e : ~/dotfiles/osx/scripts/emacs/client
+shift + cmd - e : ~/dotfiles/osx/scripts/emacs/daemon
+
+cmd - i : ~/dotfiles/osx/scripts/emacs/org-capture
+
+cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Profile\ 1
+
 ctrl + alt - r : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default
-ctrl + alt - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Profile\ 1
+
 ctrl + alt - m : open /Applications/Messages.app
 ctrl + alt - s : open /Applications/Slack.app
 ctrl + alt - d : open /Applications/Discord.app
 ctrl + alt - o : open /Applications/Spotify.app
 
-ctrl + alt - e : ~/.config/osx/scripts/launch_emacsclient
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs
-ctrl + alt + cmd - r : osascript ~/.config/doom/refresh_reload_restart.scpt
+ctrl + alt + cmd - r : osascript ~/dotfiles/doom/refresh_reload_restart.scpt

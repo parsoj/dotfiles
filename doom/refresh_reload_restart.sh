@@ -16,4 +16,4 @@ git pull
 
 cd ~/
 
-~/.config/osx/scripts/launch_emacsclient
+$DOTFILES_DIR/osx/scripts/launch_emacsclient

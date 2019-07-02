@@ -95,7 +95,6 @@
 
  :parsoj-ui
  theme
- ;; treemacs
 
 ;;; Doom's stuff
 ;;;
@@ -112,7 +111,7 @@
   )
 
  :ui
- neotree
+ treemacs
  doom-dashboard
 
  hl-todo
@@ -207,4 +206,47 @@
  :parsoj-org
  org
 
+ )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd mothra" "make mothra.jar" "java -jar mothra.jar gen-component -i api.json Handler"))
+                       "; ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd mothra" "make mothra.jar;" "java -jar mothra.jar gen-component -i api.json Handler"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd mothra" "make mothra.jar" "java -jar mothra.jar gen-component -i api.json Handler"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd mothra" "make mothra.jar"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("docker run -dit --name mothra mothra" "cd /docker:mothra:/mothra" "/opt/maven/bin/mvn package" "native-image -jar target/mothra.jar" "./target/mothra help"))
+                       " && ")))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )

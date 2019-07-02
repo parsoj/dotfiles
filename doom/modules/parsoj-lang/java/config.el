@@ -29,3 +29,14 @@
        (:prefix "g"
          "d" #'lsp-ui-peek-find-definitions
          "r" #'lsp-ui-peek-find-references))
+
+(def-package! dap-mode
+  :after lsp-mode
+  :config
+  (dap-mode t)
+  (dap-ui-mode t)
+  )
+
+(def-package! dap-java
+  :after (dap-mode lsp-java)
+  )

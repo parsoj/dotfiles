@@ -32,7 +32,7 @@
       :nv "gf" #'+lookup/file
 
       (:prefix ("t" . "toggle")
-        :desc "Treemacs" "t"   #'neotree-toggle
+        :desc "Treemacs" "t"   #'+treemacs/toggle
         :desc "Fullscreen" "f"   #'toggle-frame-fullscreen
         :desc "Line Numbers"   "n"  #'doom/toggle-line-numbers
         :desc "Line Truncation/Wrap" "l"  #'visual-line-mode

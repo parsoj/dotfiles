@@ -2,6 +2,7 @@
 export PATH="/Applications/Emacs.app/Contents/MacOS/:$PATH"
 export EDITOR="$HOME/.config/osx/scripts/launch_emacsclient"
 export VISUAL="$EDITOR -c"
+export DOTFILES_DIR="~/dotfiles"
 
 ################################################################################
 # OSX scripts
@@ -76,5 +77,5 @@ export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xcto
 ##########################################################################################
 # golang
 
-export GOPATH="/Users/jeffp/code/remitly/mothra2/go"
+export GOPATH="/Users/jeffp/remitly/mothra2/go"
 export PATH="$GOPATH/bin:$PATH"

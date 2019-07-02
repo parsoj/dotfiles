@@ -143,6 +143,6 @@ chunkc tiling:rule --owner "Messages" --state sticky --level 5 --grid-layout 20:
 chunkc tiling:rule --owner "Discord" --state sticky --level 5 --grid-layout 40:40:4:4:30:32
 chunkc tiling:rule --owner "Slack" --state sticky --level 5 --grid-layout 10:10:2:1:6:8
 
-#chunkc tiling:rule --owner Emacs --except "^$" --state tile
-chunkc tiling:rule --owner Emacs --name "^Daemon Frame$" --state sticky --level 1 --grid-layout 20:20:4:4:10:12
 chunkc tiling:rule --owner Emacs --name "^org-capture$" --state sticky --level 6 --grid-layout 20:20:8:8:4:4
+chunkc tiling:rule --owner Emacs --name "^Daemon Frame$" --state sticky --level 1 --grid-layout 20:20:4:4:10:12
+chunkc tiling:rule --owner Emacs --name "Doom Emacs$" --state tile

@@ -4,3 +4,4 @@
 
 
 (package! lsp-java)
+(package! dap-mode)

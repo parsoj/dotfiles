@@ -1,7 +1,7 @@
 #!/usr/bin/osascript
 try
 	tell application "Terminal"
- 		do shell script "/usr/local/bin/emacsclient -n -c -e \"(+eshell/home)\" "
+ 		do shell script "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e \"(+eshell/home)\" "
 	end tell
 on error
 	display notification "is the server running?" with title "Emacs" subtitle "Client Start failed."
