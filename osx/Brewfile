@@ -52,6 +52,8 @@ brew "gnu-tar"
 brew "languagetool"
 brew "sqlite"
 cask "mactex"
+brew "gnutls"
+brew "libressl"
 
 # external devtools
 cask "docker"
