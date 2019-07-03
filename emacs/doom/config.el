@@ -227,7 +227,17 @@
 
     ("^\\*PROJECT_NOTES\\*"
      :slot 0 :side right :width .35 :select t)
+
+    ("^\\*doom:eshell-popup"
+     :slot 2 :side right :width .35 :select t
+     )
+
+    ("^\\*compilation\\*"
+     :slot 1 :side right :width .35 :select t
+     )
+
     )
+
 
   )
 
