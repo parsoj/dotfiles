@@ -13,6 +13,14 @@
         )
       )
 
+(setq +org-capture-frame-parameters
+ '((name . "org-capture")
+  (width . 70)
+  (height . 25)
+  (transient . t)
+  (undecorated . t)
+  ))
+
 (setq +org-capture-todo-file "inbox/inbox.org"
       +org-capture-notes-file "inbox/inbox.org"
       )
