@@ -36,6 +36,7 @@ ctrl + alt + cmd - w : ~/dotfiles/osx/scripts/destroy_workspace.sh
 
 cmd - e : ~/dotfiles/osx/scripts/emacs/client
 shift + cmd - e : ~/dotfiles/osx/scripts/emacs/daemon
+shift + cmd - s : /Applications/Emacs.app/Contents/MacOS/emacs --with-profile straight
 
 cmd - i : ~/dotfiles/osx/scripts/emacs/org-capture
 

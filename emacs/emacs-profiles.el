@@ -1,8 +1,6 @@
-;;; .emacs-profiles.el -*- lexical-binding: t; -*-
+(("default" . (	(user-emacs-directory . "~/.doom-emacs")
+		(env . (("DOOMDIR" . "~/dotfiles/emacs/doom")))
+		(doom-private-dir . "~/dotfiles/emacs/doom")
+))
 
-;;; Code:
-
-(
- ("default" . ((user-emacs-directory . "~/.emacs.d")))
- ("doom" . ((user-emacs-directory . "~/.emacs.d")))
  ("straight" . ((user-emacs-directory . "~/dotfiles/emacs/straight"))))
