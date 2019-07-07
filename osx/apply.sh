@@ -10,7 +10,7 @@ defaults write com.apple.dock workspaces-auto-swoosh -bool NO
 # Symlink configs into place
 
 rm ~/.skhdrc ; ln -s  ~/dotfiles/osx/skhdrc ~/.skhdrc
-rm ~/.chunkwmrc ; ln -s  ~/dotfiles/osx/chunkwmrc ~/.chunkwmrc
+rm ~/.yabairc ; ln -s  ~/dotfiles/osx/yabairc ~/.yabairc
 
 ###############################################################################
 # Apply Brewfile

@@ -29,7 +29,7 @@ mas "Fantastical 2", id: 975937182
 cask "bartender"
 cask "istat-menus"
 tap "koekeishiya/formulae"
-brew "chunkwm"
+brew "yabai"
 brew "skhd"
 cask "bitbar"
 cask "alfred"
