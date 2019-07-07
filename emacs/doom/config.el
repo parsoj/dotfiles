@@ -116,7 +116,7 @@
           :desc "init.el" "i" (lambda! (find-file "~/.doom.d/init.el"))
           :desc "bashrc" "b" (lambda! (find-file "~/.bashrc"))
           :desc "skhdrc" "s" (lambda! (find-file "~/.skhdrc"))
-          :desc "chunckwmrc" "w" (lambda! (find-file "~/.chunkwmrc"))
+          :desc "chunckwmrc" "w" (lambda! (find-file "~/.yabairc"))
           )
         )
 

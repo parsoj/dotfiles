@@ -1,7 +1,7 @@
 #+TITLE: OSX config files
 configurations for an OSX system.
 
-- I tend to prefer code-only configuration tools like chunkwm or skhd over UI-heavy ones like Alfred or Keyboard-maestro,
+- I tend to prefer code-only configuration tools like yabai or skhd over UI-heavy ones like Alfred or Keyboard-maestro,
   since I find the former much simpler and easier to manage if its just a single
   config file checked in to source control.
 - for similar reasons, I tend to prefer simple bash scripts or apple scripts for
@@ -12,10 +12,10 @@ configurations for an OSX system.
 - I try to keep track of my important Brew installs through my Brewfile, so that
   I can bootstrap a new system quickly if I need to.
 ** Window Mangement
-- I use [[https://github.com/koekeishiya/chunkwm][chunkwm]] for window management/tiling.
+- I use [[https://github.com/koekeishiya/yabai][yabai]] for window management/tiling.
 ** Hotkeys
 - all my keyboard shortcuts are managed by [[https://github.com/koekeishiya/skhd][skhd]] - a hotkey daemon for mac
-- most of my hotkeys are bound either to calls to chunkwm's chunkc for window management,
+- most of my hotkeys are bound either to calls to yabai's chunkc for window management,
   or to bash or apple scripts (located in the /scripts directory) that automate
   common desktop actions
 ** Menu Bar
