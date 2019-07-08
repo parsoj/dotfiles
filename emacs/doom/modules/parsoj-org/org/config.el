@@ -75,54 +75,83 @@
   )
 (add-hook 'org-after-todo-state-change-hook 'update-actionability-after-state-change)
 
-(defun build-actionability-agenda-filter-string ()
+(defun build-actionability-filter-string ()
   "+ACTIONABLE=\"t\""
   )
 
 ;;******************************************************************************************
 ;; Dependencies
-(def-package! org-depend)
 
-;; TODO define hook function for completing a task that blocks other tasks
+;; TODO import & require org-edna
 
-;; TODO add above hook function to right place
+;; TODO add func to use ivy to fetch another task from org-agenda-files
 
-;; TODO set org-depend settings to block completion of tasks that have blockers
+;; TODO add func to add an id to a task if there isn't already an id attached
 
-;; TODO define query func to filter out blocked tasks
+;; TODO add func to create basic dep between two tasks
+
+;; TODO add entrypoint func to make current task dependant on another
+
+;; TODO add entrypoint func to make current task a blocker for another
+
+(defun build-blocked-filter-string ()
+  "+BLOCKER=nil"
+  )
 
 ;;******************************************************************************************
 ;; Resources and Contexts
-(setq org-tools-enum '("#laptop" "#tablet" "#home" "#work" "#parents"))
+(setq org-resources-enum '("#laptop" "#tablet" "#home" "#work" "#parents"))
+
 
 (setq org-contexts-enum '(("@home" . ("#home" "#laptop"))
                           ("@parents" . ("#parents"))
                           ))
 
-(defun build-resource-constraints-agenda-filter-string (available-resources-list)
+(setq org-current-context-resources '())
+
+(defun set-current-resources-from-saved-context ()
+  ;; TODO implement
+  )
+
+(defun build-context-filter-string ()
+  ;; TODO implement - should just be calling the resource constraints filter from current context
+  )
+
+(defun build-resource-constraints-filter-string (available-resources-list)
   ;; TODO implement
   )
 
 ;;******************************************************************************************
 ;; Captial
 
-;; TODO Focus Levels Enum
-;; TODO Time levels Enum
-;; TODO Money levels Enum
+(setq focus-levels-enum '(1 2 3 4))
+
+;; In minutes for now
+(setq time-levels-enum '(5 15 30 60 120 180))
+
 
 (setq available-capital-alist '(
-                                ("Time" . 2)
+                                ("Time" . 30)
                                 ("Focus". 3)
-                                ("Money". 1)
                                 ))
 
 (defun build-capital-constraints-agenda-query (available-capital-alist)
   ;; NOTE don't filter out items that require a resource not specificed in the alist
+  ;; TODO implement
 
   )
 
 ;;******************************************************************************************
+;; "Up Next" Agenda block
+
+(defun build-up-next-agenda-query ()
+  ;; TODO implement
+  ""
+  )
+
+;;******************************************************************************************
 ;; Agenda Config
+
 
 
 (setq org-agenda-files
@@ -130,8 +159,15 @@
        '("projects" "life_ops" "spare_time" "someday_maybe")))
 
 (setq org-agenda-custom-commands
-      '(("a" "Now" tags-todo 'SCHEDULED<=<now>+TODO="TODO"-BLOCKED' nil org-agenda-files)))
-;; TODO add main "next up" block
-;; TODO add "appointments today" block
-;; TODO add "critical/due-soon" block
-;; TODO add view for stuck projects
+      `(("a" "Now"
+         ((tags-todo ,(build-up-next-agenda-query) nil org-agenda-files))
+         (agenda "" ((org-agenda-span 1)
+                     (org-deadline-warning-days 7)))
+         (agenda "" ((org-agenda-span 7)
+                     (org-deadline-warning-days 21)
+                     (org-agenda-repeating-timestamp-show-all t)))
+         )))
+
+;; TODO add view for stuck and stalled projects
+;; stuck projects -> no actionable items under the project
+;; stalled projects ->actionable items that haven't gotten attention for x days
