@@ -9,7 +9,7 @@
 
         ("p" "protocol quick-capture" entry
          (file +org-capture-todo-file)
-         "* %?\n%i\n%a" :prepend t :kill-buffer t :immediate-finish t)
+         "* %a" :prepend t :kill-buffer t :immediate-finish t)
         )
       )
 
@@ -27,7 +27,8 @@
 
 (setq org-root "~/org/")
 
-(setq org-refile-use-outline-path 'file)
+(setq org-refile-use-outline-path 'file
+      org-outline-path-complete-in-steps nil)
 
 (defvar sr-org-refile-targets nil
   "List of refile targets for Org-remember.
@@ -37,57 +38,100 @@
 (defvar sr-org-refile-file-excludes "^[#\\.].*$")
 
 
+(setq org-root "~/org/")
 
-(defun sr-find-org-refile-targets
-    (&optional recurse dirs file-excludes dir-excludes)
-  "Fill the variable `sr-org-refile-targets'.
-Optional parameters:
-  recurse        If `t', scan the directory recusively.
-  dirs           A list of directories to scan for *.org files.
-  file-excludes  Regular expression. If a filename matches this regular
-expression,
-                 do not add it to `sr-org-refile-targets'.
-  dir-excludes   Regular expression. If a directory name matches this
-regular expression,
-                 do not add it to `sr-org-refile-targets'."
-  (let ((targets (or dirs (list org-directory)))
-        (fex (or file-excludes  "^[#\\.].*$"))
-        (dex (or dir-excludes  "^[#\\.].*$"))
-        path)
-    (dolist (dir targets)
-      (if (file-directory-p dir)
-          (let ((all (directory-files dir nil "^[^#\\.].*$")))
-            (dolist (f all)
-              (setq path (concat (file-name-as-directory dir) f))
-              (cond
-               ((file-directory-p path)
-                (if (and recurse (not (string-match dex f)))
-                    (sr-find-org-refile-targets t (list path) fex
-                                                dex)))
-               ((and (string-match "^[^#\\.].*\\.org$" f) (not
-                                                           (string-match fex f)))
-                (setq sr-org-refile-targets (append (list path)
-                                                    sr-org-refile-targets))))))
-        (message "Not a directory: %s" path))
-      )))
+(setq org-file-search-regexp "\\`[^.].*\\.org\\'")
+
+(defun org-files-from-dirs (dirs)
+  (directory-list-find-files-recursively
+   (mapcar (lambda (x) (concat org-root x)) dirs)
+   org-file-search-regexp))
 
 
-
-(defun sr-add-to-org-refile-targets ( recurse dirs )
-  "Add a directory to org-refile targets recursively."
-  (interactive "P\nDdirectory: ")
-  (sr-find-org-refile-targets
-   (if recurse t nil)
-   (list dirs)
-   sr-org-refile-file-excludes
-   sr-org-refile-dir-excludes)
-  (message "org-refile-targets: \n%s" sr-org-refile-targets))
-
-
-(progn
-  (setq org-refile-targets nil)
-  (setq sr-add-to-org-refile-targets nil)
-  (mapc (lambda (d) (sr-add-to-org-refile-targets t (concat org-root d)))
-        '("projects" "life_ops" "reference" "spare_time" "someday_maybe"))
-  (setq org-refile-targets '((sr-org-refile-targets :maxlevel . 4)))
+(defun directory-list-find-files-recursively (dir-list match)
+  (seq-reduce 'append  (mapcar (lambda (dir) (directory-files-recursively dir match)) dir-list) nil)
   )
+
+(setq org-refile-targets `(
+                           (,(org-files-from-dirs
+                              '("projects" "life_ops" "reference" "spare_time" "someday_maybe")) .
+                             (:maxlevel . 2))))
+
+
+;;******************************************************************************************
+;; Workflows
+;;
+
+(setq org-todo-keywords
+      '((sequence "TRIAGE" "TODO" "WAITING" "|" "CANCELLED" "DONE" )))
+
+(setq actionable-states '("TRIAGE" "TODO" "WAITING"))
+
+(defun update-actionability-after-state-change ()
+  (if (member org-state actionable-states)
+      (org-entry-put (point) "ACTIONABLE" t)
+      (org-entry-put (point) "ACTIONABLE" nil)
+    )
+  )
+(add-hook 'org-after-todo-state-change-hook 'update-actionability-after-state-change)
+
+(defun build-actionability-agenda-filter-string ()
+  "+ACTIONABLE=\"t\""
+  )
+
+;;******************************************************************************************
+;; Dependencies
+(def-package! org-depend)
+
+;; TODO define hook function for completing a task that blocks other tasks
+
+;; TODO add above hook function to right place
+
+;; TODO set org-depend settings to block completion of tasks that have blockers
+
+;; TODO define query func to filter out blocked tasks
+
+;;******************************************************************************************
+;; Resources and Contexts
+(setq org-tools-enum '("#laptop" "#tablet" "#home" "#work" "#parents"))
+
+(setq org-contexts-enum '(("@home" . ("#home" "#laptop"))
+                          ("@parents" . ("#parents"))
+                          ))
+
+(defun build-resource-constraints-agenda-filter-string (available-resources-list)
+  ;; TODO implement
+  )
+
+;;******************************************************************************************
+;; Captial
+
+;; TODO Focus Levels Enum
+;; TODO Time levels Enum
+;; TODO Money levels Enum
+
+(setq available-capital-alist '(
+                                ("Time" . 2)
+                                ("Focus". 3)
+                                ("Money". 1)
+                                ))
+
+(defun build-capital-constraints-agenda-query (available-capital-alist)
+  ;; NOTE don't filter out items that require a resource not specificed in the alist
+
+  )
+
+;;******************************************************************************************
+;; Agenda Config
+
+
+(setq org-agenda-files
+      (org-files-from-dirs
+       '("projects" "life_ops" "spare_time" "someday_maybe")))
+
+(setq org-agenda-custom-commands
+      '(("a" "Now" tags-todo 'SCHEDULED<=<now>+TODO="TODO"-BLOCKED' nil org-agenda-files)))
+;; TODO add main "next up" block
+;; TODO add "appointments today" block
+;; TODO add "critical/due-soon" block
+;; TODO add view for stuck projects
