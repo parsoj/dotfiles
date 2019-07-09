@@ -4,11 +4,6 @@
 ;;
 ;;
 
-(defun my-scroll-hook(_)
-  "Increase gc-threshold before scroll and set it back after."
-  (setq gc-cons-threshold most-positive-fixnum)
-  (run-with-idle-timer 3 nil (lambda () (progn  (setq doom-gc-cons-threshold 3000000000) (garbage-collect)))))
-
 (setq pos-tip-foreground-color "#bbc2cf")
 (setq pos-tip-background-color "#282c34")
 (setq doom-modeline-height 15)
@@ -102,6 +97,9 @@
 
  :parsoj-ui
  theme
+
+ :parsoj-tweaks
+ gcmh
 
 ;;; Doom's stuff
 ;;;
