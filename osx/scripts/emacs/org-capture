@@ -1,3 +1,4 @@
 #!/bin/bash
 
-/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -e "(+org-capture/open-frame nil \"i\")"
+/usr/local/opt/emacs-mac/bin/emacsclient -e "(+org-capture/open-frame nil \"i\")"
+

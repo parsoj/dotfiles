@@ -1,8 +1,12 @@
+
+
+################################################################################
 # Emacs Support 
 export PATH="/Applications/Emacs.app/Contents/MacOS/:$PATH"
 export EDITOR="$HOME/.config/osx/scripts/launch_emacsclient"
 export VISUAL="$EDITOR -c"
 export DOTFILES_DIR="~/dotfiles"
+export DOOMDIR="~/dotfiles/emacs/doom"
 
 ################################################################################
 # OSX scripts

@@ -1,5 +1,5 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
-
+;;;
 
 (map! :g "s-w" #'delete-frame)
 (setq confirm-kill-processes nil)
@@ -116,7 +116,7 @@
           :desc "init.el" "i" (lambda! (find-file "~/.doom.d/init.el"))
           :desc "bashrc" "b" (lambda! (find-file "~/.bashrc"))
           :desc "skhdrc" "s" (lambda! (find-file "~/.skhdrc"))
-          :desc "chunckwmrc" "w" (lambda! (find-file "~/.yabairc"))
+          :desc "yabairc" "w" (lambda! (find-file "~/.yabairc"))
           )
         )
 
@@ -210,8 +210,8 @@
     ("^\\*HTTP Response\\*"
      :actions '(display-buffer-below-selected) )
 
-    ("^\\*info\\*$"
-     :slot 2 :vslot 2 :size 0.45 :select t)
+    ;;("^\\*info\\*$PROJECT_NOTESPROJECT_NOTES"
+    ;; PROJECT_NOTES:slot 2 :vslot 2 :size 0.45 :select t)
 
     ("^\\*Backtrace"
      :vslot 99 :size 0.4 :quit nil)
@@ -225,7 +225,10 @@
     ("^\\*[Ss]lack"
      :slot 2 :side right :vslot -2 :size 0.35 :select t :quit delete-window )
 
-    ("^\\*PROJECT_NOTES\\*"
+    ;;("^\\*PROJECT_NOTES\\*"
+    ;; :slot 0 :side right :width .35 :select t)
+
+    ("^\\*Org Agenda\\*"
      :slot 0 :side right :width .35 :select t)
 
     ("^\\*doom:eshell-popup"
@@ -236,10 +239,7 @@
      :slot 1 :side right :width .35 :select t
      )
 
-    )
-
-
-  )
+    ))
 
 
 (set-docsets! 'terraform-mode "Terraform")

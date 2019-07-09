@@ -63,7 +63,7 @@
 ;;
 
 (setq org-todo-keywords
-      '((sequence "TRIAGE" "TODO" "WAITING" "|" "CANCELLED" "DONE" )))
+      '((sequence "TRIAGE(i)" "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)" )))
 
 (setq actionable-states '("TRIAGE" "TODO" "WAITING"))
 
@@ -146,7 +146,7 @@
 
 (defun build-up-next-agenda-query ()
   ;; TODO implement
-  ""
+  "+TODO=\"TODO\"-SCHEDULED>=<now>"
   )
 
 ;;******************************************************************************************
@@ -159,15 +159,22 @@
        '("projects" "life_ops" "spare_time" "someday_maybe")))
 
 (setq org-agenda-custom-commands
-      `(("a" "Now"
-         ((tags-todo ,(build-up-next-agenda-query) nil org-agenda-files))
-         (agenda "" ((org-agenda-span 1)
-                     (org-deadline-warning-days 7)))
-         (agenda "" ((org-agenda-span 7)
-                     (org-deadline-warning-days 21)
-                     (org-agenda-repeating-timestamp-show-all t)))
+      `(("x" "Now"
+         ((tags-todo ,(build-up-next-agenda-query) nil org-agenda-files)
+          (agenda "" ((org-agenda-span 1)
+                      (org-deadline-warning-days 7)))
+          (agenda "" ((org-agenda-span 7)
+                      (org-deadline-warning-days 21)
+                      (org-agenda-repeating-timestamp-show-all t))))
          )))
 
 ;; TODO add view for stuck and stalled projects
 ;; stuck projects -> no actionable items under the project
 ;; stalled projects ->actionable items that haven't gotten attention for x days
+
+
+
+;; * TODO Implement quick tagging from agenda view
+;; * TODO Implement shortcut for opening agenda view
+
+;; *TODO save this in a layout/perspective

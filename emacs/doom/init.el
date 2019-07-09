@@ -1,7 +1,14 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 ;; (setq pixel-scroll-mode t)
-(setq mac-mouse-wheel-smooth-scroll t)
+;;
+;;
+
+(defun my-scroll-hook(_)
+  "Increase gc-threshold before scroll and set it back after."
+  (setq gc-cons-threshold most-positive-fixnum)
+  (run-with-idle-timer 3 nil (lambda () (progn  (setq doom-gc-cons-threshold 3000000000) (garbage-collect)))))
+
 (setq pos-tip-foreground-color "#bbc2cf")
 (setq pos-tip-background-color "#282c34")
 (setq doom-modeline-height 15)
@@ -89,7 +96,7 @@
  ;; discord
 
  :parsoj-tools
- projects
+ ;;projects
  tooltip
  eshell
 
@@ -215,6 +222,36 @@
  '(safe-local-variable-values
    (quote
     ((project-runner lambda nil
+                     (+eshell/toggle
+                      (string-join
+                       (quote
+                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       " && ")))
+     (project-runner lambda nil
+                     (+eshell/here
+                      (string-join
+                       (quote
+                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       " && ")))
+     (project-runner lambda nil
                      (+eshell/here
                       (string-join
                        (quote
