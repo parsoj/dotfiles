@@ -57,6 +57,16 @@
                               '("projects" "life_ops" "reference" "spare_time" "someday_maybe")) .
                              (:maxlevel . 2))))
 
+;;********************************************************************************
+;; Calendar
+;; TODO google cal integration
+
+
+;;********************************************************************************
+;; Context Picker
+
+;; TODO implement a context quick-picker to set current resources and capital
+
 
 ;;******************************************************************************************
 ;; Workflows
@@ -100,27 +110,28 @@
 
 ;;******************************************************************************************
 ;; Resources and Contexts
-(setq org-resources-enum '("#laptop" "#tablet" "#home" "#work" "#parents"))
+(setq org-resources-enum '("#laptop" "#tablet" "#home" "#work" "#parents" "#spare_time"))
 
 
-(setq org-contexts-enum '(("@home" . ("#home" "#laptop"))
+(setq org-contexts-enum '(("@home" . ("#home" "#laptop" "#spare_time"))
                           ("@parents" . ("#parents"))
+                          ("@work" . ("#laptop" "#work"))
                           ))
 
-(setq org-current-context-resources '())
 
-(defun set-current-resources-from-saved-context ()
-  ;; TODO implement
+(defvar org-current-context-resources '())
+
+(defun set-current-resources-from-saved-context (context)
+  (setq org-current-context-resources (assoc-default context org-contexts-enum))
   )
 
-(defun build-context-filter-string ()
-  ;; TODO implement - should just be calling the resource constraints filter from current context
+(defun build-resource-constraints-filter-string ()
+  (string-join-pre (seq-filter (lambda (e) (not (member e org-current-context-resources))) org-resources-enum) "-")
   )
 
-(defun build-resource-constraints-filter-string (available-resources-list)
-  ;; TODO implement
+(defun string-join-pre (l sep)
+  (concat sep (string-join l sep))
   )
-
 ;;******************************************************************************************
 ;; Captial
 
@@ -146,7 +157,7 @@
 
 (defun build-up-next-agenda-query ()
   ;; TODO implement
-  "+TODO=\"TODO\"-SCHEDULED>=<now>"
+  (concat (build-resource-constraints-filter-string) "+TODO=\"TODO\"-SCHEDULED>=<now>" )
   )
 
 ;;******************************************************************************************

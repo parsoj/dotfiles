@@ -31,6 +31,10 @@
       :nv "gD" #'+lookup/references
       :nv "gf" #'+lookup/file
 
+      (:prefix ("o" . "org")
+        :desc "agenda" "a"   (lambda! (org-agenda nil "x"))
+        )
+
       (:prefix ("t" . "toggle")
         :desc "Treemacs" "t"   #'+treemacs/toggle
         :desc "Fullscreen" "f"   #'toggle-frame-fullscreen
