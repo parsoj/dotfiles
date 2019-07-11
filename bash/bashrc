@@ -1,8 +1,13 @@
 
+################################################################################
+# Homebrew
+
+export PATH="/usr/local/opt/bin:$PATH"
+
 
 ################################################################################
 # Emacs Support 
-export PATH="/Applications/Emacs.app/Contents/MacOS/:$PATH"
+export PATH="/Applications/Emacs.app/Contents/MacOS:$PATH"
 export EDITOR="$HOME/.config/osx/scripts/launch_emacsclient"
 export VISUAL="$EDITOR -c"
 export DOTFILES_DIR="~/dotfiles"
@@ -11,7 +16,7 @@ export DOOMDIR="~/dotfiles/emacs/doom"
 ################################################################################
 # OSX scripts
 
-export PATH="$PATH:$HOME/.config/osx/scripts/"
+export PATH="$HOME/.config/osx/scripts/:$PATH"
 
 ################################################################################
 # general utility stuff
@@ -64,6 +69,11 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 # ruby
 
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+##########################################################################################
+# ruby
+
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 ################################################################################
 # swift

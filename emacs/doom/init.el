@@ -91,7 +91,7 @@
  ;; discord
 
  :parsoj-tools
- ;;projects
+ projects
  tooltip
  eshell
 
@@ -99,7 +99,7 @@
  theme
 
  :parsoj-tweaks
- gcmh
+ perf
 
 ;;; Doom's stuff
 ;;;
@@ -180,6 +180,7 @@
   )
  prodigy
  lsp
+ wakatime
 
  :lang
  (go
@@ -217,164 +218,146 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(mouse-wheel-progressive-speed nil)
  '(safe-local-variable-values
-   (quote
-    ((project-runner lambda nil
+   '((project-runner lambda nil
+                     (+eshell/toggle nil
+                                     (string-join
+                                      '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
+                                      " && ")))
+     (project-runner lambda nil
                      (+eshell/toggle
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "make mothra.jar" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm mothra/mothra_mac;" "rm -rf 1out;" "cd mothra" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm mothra/mothra_mac;" "rm -rf 1out;" "cd mothra" "make mothra_mac" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra_mac ." "cp ../api.yaml ." "./mothra_mac gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-project -i api.yaml"))
+                       '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                       '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make clean-jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                       '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here nil
                                    (string-join
-                                    (quote
-                                     ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                                    '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                                     " && ")))
      (project-runner lambda nil
                      (+eshell/toggle nil
                                      (string-join
-                                      (quote
-                                       ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                                      '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out;" "cd mothra" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                                       " && ")))
      (project-runner lambda nil
                      (+eshell/toggle nil
                                      (string-join
-                                      (quote
-                                       ("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out" "cd mothra" "make mothra.jar" "cd ../1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                                      '("cd ~/remitly/mothra2/" "rm mothra/mothra.jar;" "rm -rf 1out" "cd mothra" "make mothra.jar" "cd ../1out" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                                       " && ")))
      (project-runner lambda nil
                      (+eshell/toggle nil
                                      (string-join
-                                      (quote
-                                       ("cd ~/remitly/mothra2/mothra" "rm mothra.jar" "make mothra.jar" "cd ../1out" "rm -rf *" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                                      '("cd ~/remitly/mothra2/mothra" "rm mothra.jar" "make mothra.jar" "cd ../1out" "rm -rf *" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                                       " && ")))
      (project-runner lambda nil
                      (+eshell/toggle nil
                                      (string-join
-                                      (quote
-                                       ("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../1out" "rm -rf *;" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                                      '("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../1out" "rm -rf *;" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                                       " && ")))
      (project-runner lambda nil
                      (+eshell/toggle nil
                                      (string-join
-                                      (quote
-                                       ("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                                      '("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                                       " && ")))
      (project-runner lambda nil
                      (+eshell:run
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler"))
+                       '("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "cp ../mothra/mothra.jar ." "cp ../mothra/api.yaml ." "java -jar mothra.jar gen-component -i api.yaml go-handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "java -jar ../mothra/mothra.jar gen-component -i ../mothra/api.yaml go-handler"))
+                       '("cd ~/remitly/mothra2/mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "java -jar ../mothra/mothra.jar gen-component -i ../mothra/api.yaml go-handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "java -jar ../mothra/mothra.jar gen-component -i ../mothra/api.yaml go-handler"))
+                       '("cd mothra" "make mothra.jar" "cd ../service" "rm -rf *;" "java -jar ../mothra/mothra.jar gen-component -i ../mothra/api.yaml go-handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd mothra" "make mothra.jar" "cd ../service" "rm -rf *" "java -jar ../mothra/mothra.jar gen-component -i ../mothra/api.yaml go-handler"))
+                       '("cd mothra" "make mothra.jar" "cd ../service" "rm -rf *" "java -jar ../mothra/mothra.jar gen-component -i ../mothra/api.yaml go-handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd mothra" "make mothra.jar" "java -jar mothra.jar gen-component -i api.json Handler"))
+                       '("cd mothra" "make mothra.jar" "java -jar mothra.jar gen-component -i api.json Handler")
                        "; ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd mothra" "make mothra.jar;" "java -jar mothra.jar gen-component -i api.json Handler"))
+                       '("cd mothra" "make mothra.jar;" "java -jar mothra.jar gen-component -i api.json Handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd mothra" "make mothra.jar" "java -jar mothra.jar gen-component -i api.json Handler"))
+                       '("cd mothra" "make mothra.jar" "java -jar mothra.jar gen-component -i api.json Handler")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("cd mothra" "make mothra.jar"))
+                       '("cd mothra" "make mothra.jar")
                        " && ")))
      (project-runner lambda nil
                      (+eshell/here
                       (string-join
-                       (quote
-                        ("docker run -dit --name mothra mothra" "cd /docker:mothra:/mothra" "/opt/maven/bin/mvn package" "native-image -jar target/mothra.jar" "./target/mothra help"))
-                       " && ")))))))
+                       '("docker run -dit --name mothra mothra" "cd /docker:mothra:/mothra" "/opt/maven/bin/mvn package" "native-image -jar target/mothra.jar" "./target/mothra help")
+                       " && ")))))
+ '(wakatime-api-key "d82da639-10f2-4d6b-aa2f-dad3e1e6e35a")
+ '(wakatime-cli-path "wakatime")
+ '(wakatime-python-bin nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

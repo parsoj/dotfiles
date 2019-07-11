@@ -8,9 +8,11 @@
 (global-set-key [remap delete-frame] #'delete-frame)
 (setq confirm-kill-emacs nil)
 
+(global-wakatime-mode)
 (setq
  doom-modeline-buffer-file-name-style 'buffer-name
  )
+(load! "~/Dropbox/secrets.el")
 
 (setq display-line-numbers-type nil)
 
@@ -229,8 +231,8 @@
     ("^\\*[Ss]lack"
      :slot 2 :side right :vslot -2 :size 0.35 :select t :quit delete-window )
 
-    ;;("^\\*PROJECT_NOTES\\*"
-    ;; :slot 0 :side right :width .35 :select t)
+    ("^\\*PROJECT_NOTES\\*"
+     :slot 0 :side right :width .35 :select t)
 
     ("^\\*Org Agenda\\*"
      :slot 0 :side right :width .35 :select t)

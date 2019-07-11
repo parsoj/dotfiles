@@ -54,6 +54,7 @@ brew "sqlite"
 cask "mactex"
 brew "gnutls"
 brew "libressl"
+brew "python" # several emacs packages require python packages to support them
 
 # external devtools
 cask "docker"

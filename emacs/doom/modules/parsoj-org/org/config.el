@@ -25,8 +25,6 @@
       +org-capture-notes-file "inbox/inbox.org"
       )
 
-(setq org-root "~/org/")
-
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 
@@ -38,13 +36,13 @@
 (defvar sr-org-refile-file-excludes "^[#\\.].*$")
 
 
-(setq org-root "~/org/")
+(setq org-directory "~/org/")
 
 (setq org-file-search-regexp "\\`[^.].*\\.org\\'")
 
 (defun org-files-from-dirs (dirs)
   (directory-list-find-files-recursively
-   (mapcar (lambda (x) (concat org-root x)) dirs)
+   (mapcar (lambda (x) (concat org-directory x)) dirs)
    org-file-search-regexp))
 
 
@@ -52,10 +50,14 @@
   (seq-reduce 'append  (mapcar (lambda (dir) (directory-files-recursively dir match)) dir-list) nil)
   )
 
-(setq org-refile-targets `(
-                           (,(org-files-from-dirs
-                              '("projects" "life_ops" "reference" "spare_time" "someday_maybe")) .
-                             (:maxlevel . 2))))
+(defun refresh-org-refile-targets ()
+  (interactive)
+  (setq org-refile-targets `(
+                             (,(org-files-from-dirs
+                                '("remitly" "projects" "life_ops" "reference" "spare_time" "someday_maybe")) .
+                                (:level . 0)))))
+
+(refresh-org-refile-targets)
 
 ;;********************************************************************************
 ;; Calendar
@@ -72,9 +74,17 @@
 ;; Workflows
 ;;
 
-(setq org-todo-keywords
-      '((sequence "TRIAGE(i)" "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)" )))
+(setq org-todo-keyword-faces `(
+                               ("TODO" . ,(doom-color 'yellow))
+                               ("NEXT" . ,(doom-color 'red))
+                               ("INBOX" . ,(doom-color 'teal))
+                               ("LATER" . ,(doom-color 'yellow))
+                               ("DONE" . ,(doom-color 'green)))
 
+      org-todo-keywords '(
+                          (sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "IN-PROGRESS(p)" "LATER(l)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )))
+
+;; TODO rethink the actionable states thing
 (setq actionable-states '("TRIAGE" "TODO" "WAITING"))
 
 (defun update-actionability-after-state-change ()
@@ -157,7 +167,7 @@
 
 (defun build-up-next-agenda-query ()
   ;; TODO implement
-  (concat (build-resource-constraints-filter-string) "+TODO=\"TODO\"-SCHEDULED>=<now>" )
+  (concat (build-resource-constraints-filter-string) "+TODO=\"TODO\"-SCHEDULED>=\"<now>\"" )
   )
 
 ;;******************************************************************************************
@@ -165,9 +175,12 @@
 
 
 
-(setq org-agenda-files
-      (org-files-from-dirs
-       '("projects" "life_ops" "spare_time" "someday_maybe")))
+(defun refresh-org-agenda-files ()
+  (interactive)
+  (setq org-agenda-files
+        (org-files-from-dirs
+         '("remitly" "projects" "life_ops" "spare_time" "someday_maybe"))))
+(refresh-org-agenda-files)
 
 (setq org-agenda-custom-commands
       `(("x" "Now"
