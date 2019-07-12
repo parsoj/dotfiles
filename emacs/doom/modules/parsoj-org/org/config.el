@@ -59,9 +59,6 @@
 
 (refresh-org-refile-targets)
 
-;;********************************************************************************
-;; Calendar
-;; TODO google cal integration
 
 
 ;;********************************************************************************
@@ -101,12 +98,27 @@
 
 ;;******************************************************************************************
 ;; Dependencies
+;;
 
-;; TODO import & require org-edna
+(defvar org-dependency-targets '((org-agenda-files :maxlevel . 4)))
 
-;; TODO add func to use ivy to fetch another task from org-agenda-files
+(def-package! org-edna)
 
-;; TODO add func to add an id to a task if there isn't already an id attached
+(defun ivy-find-todo (search-targets)
+  ;; hacking the "org refile" searching functionality to find a todo
+  (let ((org-refile-targets search-targets))
+    (org-refile-get-location)
+    ))
+
+(defun ensure-and-return-task-id (pom)
+  (let ((task_id (org-entry-get pom "ID")))
+
+    (unless task_id
+      (org-entry-put pom "ID" (uuidgen-5 "org_task_ids" (concat (org-entry-get pom "FILE") (org-entry-get pom "ITEM"))))
+      )
+    (org-entry-get pom "ID")
+    )
+  )
 
 ;; TODO add func to create basic dep between two tasks
 
@@ -202,3 +214,17 @@
 ;; * TODO Implement shortcut for opening agenda view
 
 ;; *TODO save this in a layout/perspective
+
+
+;;********************************************************************************
+;; Calendar
+;; TODO google cal integration
+
+;; NOTE - we expect "org-caldav-oauth2-client-id" and "org-caldav-oauth2-client-secret" to be set in a secrets file
+
+(setq org-caldav-url 'google)
+(setq org-caldav-calendar-id "parsoj@gmail.com")
+(setq plstore-cache-passphrase-for-symmetric-encryption t)
+(setq org-caldav-inbox (concat org-directory "calendar/org-caldav-inbox.org"))
+(setq org-caldav-files org-agenda-files)
+(setq org-icalendar-timezone "US/Seattle")
