@@ -120,9 +120,16 @@
     )
   )
 
-;; TODO add func to create basic dep between two tasks
+(defun create-dependency (pom_a pom_b)
+  (let ((id_a (ensure-and-return-task-id pom_a))
+        (id_b (ensure-and-return-task-id pom_b)))
+
+    (org-entry-put pom_a "BLOCKER" (format "ids:(%d)" id_b)) ;;TODO - don't overwrite existing Ids
+    )
+  )
 
 ;; TODO add entrypoint func to make current task dependant on another
+;; to create a marker from an address (buffer and position) - call (make-marker) to create a nil marker, then call (set-marker) to move it to the correct position
 
 ;; TODO add entrypoint func to make current task a blocker for another
 
@@ -179,7 +186,10 @@
 
 (defun build-up-next-agenda-query ()
   ;; TODO implement
-  (concat (build-resource-constraints-filter-string) "+TODO=\"TODO\"-SCHEDULED>=\"<now>\"" )
+  (concat
+   (build-resource-constraints-filter-string)
+   (build-blocked-filter-string)
+   "+TODO=\"TODO\"-SCHEDULED>=\"<now>\"" )
   )
 
 ;;******************************************************************************************
