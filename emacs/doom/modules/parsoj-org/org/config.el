@@ -1,6 +1,5 @@
 ;;; parsoj-org/init.el -*- lexical-binding: t; -*-
 
-
 (setq org-capture-templates
       '(
         ("i" "Inbox entry" entry
@@ -59,7 +58,7 @@
 
 (refresh-org-refile-targets)
 
-
+(add-hook 'org-after-refile-insert-hook 'org-save-all-org-buffers)
 
 ;;********************************************************************************
 ;; Context Picker
@@ -74,26 +73,31 @@
 (setq org-todo-keyword-faces `(
                                ("TODO" . ,(doom-color 'yellow))
                                ("NEXT" . ,(doom-color 'red))
-                               ("INBOX" . ,(doom-color 'teal))
-                               ("LATER" . ,(doom-color 'yellow))
-                               ("DONE" . ,(doom-color 'green)))
+                               ("INBOX" . ,(doom-color 'yellow))
+                               ("LATER" . ,(doom-color 'teal))
+                               ("DONE" . ,(doom-color 'grey))
+                               ("CANCELLED" . ,(doom-color 'grey))
+                               ("GOAL" . ,(doom-color 'green))
+                               )
 
       org-todo-keywords '(
-                          (sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "IN-PROGRESS(p)" "LATER(l)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )))
+                          (sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "IN-PROGRESS(p)" "LATER(l)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
+                          (sequence "GOAL(g)" "|" "GOAL-REACHED(r)")
+                          ))
 
 ;; TODO rethink the actionable states thing
 (setq actionable-states '("TRIAGE" "TODO" "WAITING"))
 
 (defun update-actionability-after-state-change ()
   (if (member org-state actionable-states)
-      (org-entry-put (point) "ACTIONABLE" t)
-      (org-entry-put (point) "ACTIONABLE" nil)
+      (org-entry-put (point) "ACTIONABLE" "yes")
+      (org-entry-put (point) "ACTIONABLE" "no")
     )
   )
 (add-hook 'org-after-todo-state-change-hook 'update-actionability-after-state-change)
 
 (defun build-actionability-filter-string ()
-  "+ACTIONABLE=\"t\""
+  "+ACTIONABLE=\"yes\""
   )
 
 ;;******************************************************************************************
@@ -101,8 +105,8 @@
 ;;
 
 (defvar org-dependency-targets '((org-agenda-files :maxlevel . 4)))
-
-(def-package! org-edna)
+(defvar blocked-task-state "BLOCKED")
+(defvar default-unblocked-state "TODO")
 
 (defun ivy-find-todo (search-targets)
   ;; hacking the "org refile" searching functionality to find a todo
@@ -120,21 +124,72 @@
     )
   )
 
+(defun org-entry-get-quote (pom property)
+  (org-split-string (org-entry-get pom property) "[ ()]")
+  )
+
+(defun org-entry-put-quote (pom property quoted)
+  (org-entry-put pom property (format "%s" quoted))
+  )
+
+(defun modify-property (pom property func)
+  (org-entry-put-quote pom property (funcall func (org-entry-get-quote pom property)))
+  )
+
+(defun update-state-from-blocker-data (pom)
+  ;; get blocker prop
+  ;; get current state
+  ;; if no blockers and state is "blocked":
+  ;; * if "BEFORE-BLOCKED-STATE" prop exists:
+  ;; ** remove "BEFORE-BLOCKED-STATE" prop
+  ;; ** set state to the before blocked state
+  ;; * else (no prev state):
+  ;; ** set to default blocked state
+  ;; else if blockers and state is not blocked:
+  ;; * save current state to "BEFORE-BLOCKED-STATE" prop
+  ;; * set state to blocked task state
+  ;;
+
+  ;; NOTE: can use (cond) instead of if-else
+  )
+
+
+
 (defun create-dependency (pom_a pom_b)
   (let ((id_a (ensure-and-return-task-id pom_a))
         (id_b (ensure-and-return-task-id pom_b)))
 
-    (org-entry-put pom_a "BLOCKER" (format "ids:(%d)" id_b)) ;;TODO - don't overwrite existing Ids
+    ;; TODO add b to a's blocker list (union)
+    ;; TODO update a's state from blocker data (above func)
+    ;; TODO add a to b's blocking list (union)
     )
   )
 
-;; TODO add entrypoint func to make current task dependant on another
-;; to create a marker from an address (buffer and position) - call (make-marker) to create a nil marker, then call (set-marker) to move it to the correct position
+(defun on-complete-update-downstream-deps (pom)
+  ;; look up own id prop (let)
+  ;; look up "blocking" prop list (let)
 
-;; TODO add entrypoint func to make current task a blocker for another
+  ;; map over each blocked id:
+  ;; * TODO find downstream task based on id
+  ;;   - NEXT TODO research how the edna id finder works
+  ;; * remove own id from BLOCKER prop list (difference)
+  ;; * update state from blocker data (above func)
+
+  )
+
+(defun add-blocker (pom)
+  ;; TODO ivy find other task
+  ;; TODO create dependency this->other
+
+  )
+
+(defun block-other-task (pom)
+  ;; TODO ivy find other task
+  ;; TODO create dependency other->this
+  )
 
 (defun build-blocked-filter-string ()
-  "+BLOCKER=nil"
+  "+BLOCKER={^$}"
   )
 
 ;;******************************************************************************************
