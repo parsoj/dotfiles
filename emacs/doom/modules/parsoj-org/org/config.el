@@ -125,11 +125,11 @@
   )
 
 (defun org-entry-get-quote (pom property)
-  (org-split-string (org-entry-get pom property) "[ ()]")
+  (eval (car (read-from-string (org-entry-get pom property))))
   )
 
 (defun org-entry-put-quote (pom property quoted)
-  (org-entry-put pom property (format "%s" quoted))
+  (org-entry-put pom property (format "'%S" quoted))
   )
 
 (defun modify-property (pom property func)
