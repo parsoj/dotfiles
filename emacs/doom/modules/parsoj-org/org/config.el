@@ -61,6 +61,12 @@
 (add-hook 'org-after-refile-insert-hook 'org-save-all-org-buffers)
 
 ;;********************************************************************************
+;; Global IDs for org entries
+
+(setq org-id-track-globally t)
+(setq org-id-locations-file (convert-standard-filename (concat org-directory ".org-id-locations")))
+
+;;********************************************************************************
 ;; Context Picker
 
 ;; TODO implement a context quick-picker to set current resources and capital
@@ -81,23 +87,15 @@
                                )
 
       org-todo-keywords '(
-                          (sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "IN-PROGRESS(p)" "LATER(l)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
+                          (sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "IN-PROGRESS(p)" "LATER(l)" "WAITING(w)" "BLOCKED(b)" "|" "CANCELLED(c)" "DONE(d!)" )
                           (sequence "GOAL(g)" "|" "GOAL-REACHED(r)")
                           ))
 
 ;; TODO rethink the actionable states thing
 (setq actionable-states '("TRIAGE" "TODO" "WAITING"))
 
-(defun update-actionability-after-state-change ()
-  (if (member org-state actionable-states)
-      (org-entry-put (point) "ACTIONABLE" "yes")
-      (org-entry-put (point) "ACTIONABLE" "no")
-    )
-  )
-(add-hook 'org-after-todo-state-change-hook 'update-actionability-after-state-change)
-
 (defun build-actionability-filter-string ()
-  "+ACTIONABLE=\"yes\""
+  (format "+TODO={%s}" (string-join actionable-states "|"))
   )
 
 ;;******************************************************************************************
@@ -105,8 +103,6 @@
 ;;
 
 (defvar org-dependency-targets '((org-agenda-files :maxlevel . 4)))
-(defvar blocked-task-state "BLOCKED")
-(defvar default-unblocked-state "TODO")
 
 (defun ivy-find-todo (search-targets)
   ;; hacking the "org refile" searching functionality to find a todo
@@ -114,54 +110,37 @@
     (org-refile-get-location)
     ))
 
-(defun ensure-and-return-task-id (pom)
-  (let ((task_id (org-entry-get pom "ID")))
+(defun update-blocked-state (pom)
+  (let* ((in-blocked-state (equal (org-entry-get pom "TODO") "BLOCKED") )
+        (has-blockers (org-entry-get-multivalued-property pom "BLOCKER") )
+        (prev-state (org-entry-get pom "STATE-BEFORE-BLOCKED") )
+        (has-prev-state (if prev-state t nil) )
+        )
 
-    (unless task_id
-      (org-entry-put pom "ID" (uuidgen-5 "org_task_ids" (concat (org-entry-get pom "FILE") (org-entry-get pom "ITEM"))))
+    (cond
+     ((and in-blocked-state (not has-blockers))
+      (progn
+        (org-entry-put pom "TODO" (if has-prev-state prev-state "TODO") )
+        (org-entry-delete pom "STATE-BEFORE-BLOCKED"))
       )
-    (org-entry-get pom "ID")
+     ((and (not in-blocked-state) has-blockers)
+      (org-entry-put pom "STATE-BEFORE-BLOCKED" (org-entry-get pom "TODO"))
+      (org-entry-put pom "TODO" "BLOCKED")
+      )
+     )
+
     )
   )
 
-(defun org-entry-get-quote (pom property)
-  (eval (car (read-from-string (org-entry-get pom property))))
-  )
-
-(defun org-entry-put-quote (pom property quoted)
-  (org-entry-put pom property (format "'%S" quoted))
-  )
-
-(defun modify-property (pom property func)
-  (org-entry-put-quote pom property (funcall func (org-entry-get-quote pom property)))
-  )
-
-(defun update-state-from-blocker-data (pom)
-  ;; get blocker prop
-  ;; get current state
-  ;; if no blockers and state is "blocked":
-  ;; * if "BEFORE-BLOCKED-STATE" prop exists:
-  ;; ** remove "BEFORE-BLOCKED-STATE" prop
-  ;; ** set state to the before blocked state
-  ;; * else (no prev state):
-  ;; ** set to default blocked state
-  ;; else if blockers and state is not blocked:
-  ;; * save current state to "BEFORE-BLOCKED-STATE" prop
-  ;; * set state to blocked task state
-  ;;
-
-  ;; NOTE: can use (cond) instead of if-else
-  )
-
-
-
 (defun create-dependency (pom_a pom_b)
-  (let ((id_a (ensure-and-return-task-id pom_a))
-        (id_b (ensure-and-return-task-id pom_b)))
+  (let ((id_a (org-id-get pom_a t))
+        (id_b (org-id-get pom_b t)))
 
-    ;; TODO add b to a's blocker list (union)
-    ;; TODO update a's state from blocker data (above func)
-    ;; TODO add a to b's blocking list (union)
+    (progn
+      (modify-property pom_a "BLOCKERS" (lambda (id_list) (-union id_list '(id_b))))
+      (update-state-from-blocker-data pom_a)
+      (modify-property pom_b "BLOCKING" (lambda (id_list) (-union id_list '(id_a))))
+      )
     )
   )
 
