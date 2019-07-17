@@ -94,6 +94,7 @@
  projects
  tooltip
  eshell
+ numbers
 
  :parsoj-ui
  theme
