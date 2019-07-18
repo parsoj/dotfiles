@@ -92,10 +92,26 @@
                           ))
 
 ;; TODO rethink the actionable states thing
-(setq actionable-states '("TRIAGE" "TODO" "WAITING"))
+(setq actionable-states '("INBOX" "TODO" "NEXT"))
+
+(defun get-non-actionable-states ()
+  (-difference
+   (-map
+    (lambda (x) (progn
+             (string-match "^\\([A-Z\-]*\\)(..?)?$" x)
+             (match-string 1 x)
+             ))
+
+    (-filter (lambda (x) (not (or (equal x "|") (equal x 'sequence))))
+             (-flatten org-todo-keywords))
+    )
+   actionable-states)
+  )
+
 
 (defun build-actionability-filter-string ()
-  (format "+TODO={%s}" (string-join actionable-states "|"))
+  (mapconcat  (lambda (x) (format "-TODO=\"%s\"" x)) (get-non-actionable-states) "")
+
   )
 
 ;;******************************************************************************************
@@ -103,7 +119,6 @@
 ;;
 
 (defvar org-dependency-targets '((org-agenda-files :maxlevel . 4)))
-
 (defun ivy-find-todo (search-targets)
   ;; hacking the "org refile" searching functionality to find a todo
   (let ((org-refile-targets search-targets))
@@ -184,7 +199,7 @@
 
 (defvar org-current-context-resources '())
 
-(defun set-current-resources-from-saved-context (context)
+(defun org-set-context (context)
   (setq org-current-context-resources (assoc-default context org-contexts-enum))
   )
 
@@ -222,8 +237,8 @@
   ;; TODO implement
   (concat
    (build-resource-constraints-filter-string)
-   (build-blocked-filter-string)
-   "+TODO=\"TODO\"-SCHEDULED>=\"<now>\"" )
+   (build-actionability-filter-string)
+   "-SCHEDULED>=\"<now>\"")
   )
 
 ;;******************************************************************************************
@@ -231,33 +246,60 @@
 
 
 
-(defun refresh-org-agenda-files ()
-  (interactive)
-  (setq org-agenda-files
-        (org-files-from-dirs
-         '("remitly" "projects" "life_ops" "spare_time" "someday_maybe"))))
-(refresh-org-agenda-files)
+(setq org-project-files
+      (org-files-from-dirs
+       '("remitly" "projects")))
+
+(setq org-lifeops-files
+      (org-files-from-dirs
+       '("life_ops" "spare_time")))
+
+(setq org-inbox-files
+      (org-files-from-dirs
+       '("inbox")))
+
+
+(def-package! org-super-agenda
+  :config
+  (org-super-agenda-mode)
+
+  )
 
 (setq org-agenda-custom-commands
       `(("x" "Now"
-         ((tags-todo ,(build-up-next-agenda-query) nil org-agenda-files)
-          (agenda "" ((org-agenda-span 1)
-                      (org-deadline-warning-days 7)))
-          (agenda "" ((org-agenda-span 7)
-                      (org-deadline-warning-days 21)
-                      (org-agenda-repeating-timestamp-show-all t))))
+         (
+          ;; FIXME agenda should just have scheduled events
+          (agenda "" ((org-agenda-span 'day)
+                      (org-agenda-start-day "today")))
+          (tags-todo
+           "+TODO=\"INBOX\""
+           ((org-agenda-overriding-header "Inbox Items")
+            (org-agenda-files org-inbox-files))
+           )
+          ;; TODO due today section
+          ;; TODO add "due soon" section
+          ;; TODO life ops section (with total time remaining)
+
+          (tags-todo
+           ,(build-up-next-agenda-query)
+           (;; (org-agenda-overriding-header "Available Project Work")
+            (org-agenda-files org-project-files)
+            (org-super-agenda-groups '(
+                                       (:name "Available Project Work"
+                                              :auto-category nil))))
+           )
+
+          ;; TODO add view for stuck and stalled projects
+          ;; stuck projects -> no actionable items under the project
+          ;; stalled projects ->actionable items that haven't gotten attention for x days
+
+          ;; (agenda "" ((org-agenda-span 7)
+          ;;             (org-deadline-warning-days 21)
+          ;;             (org-agenda-repeating-timestamp-show-all t)))
+          )
          )))
 
-;; TODO add view for stuck and stalled projects
-;; stuck projects -> no actionable items under the project
-;; stalled projects ->actionable items that haven't gotten attention for x days
 
-
-
-;; * TODO Implement quick tagging from agenda view
-;; * TODO Implement shortcut for opening agenda view
-
-;; *TODO save this in a layout/perspective
 
 
 ;;********************************************************************************
