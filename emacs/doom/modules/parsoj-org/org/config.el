@@ -4,7 +4,7 @@
       '(
         ("i" "Inbox entry" entry
          (file +org-capture-todo-file)
-         "* %?\n%i\n%a" :prepend t :kill-buffer t)
+         "* INBOX %?\n%i\n%a" :prepend t :kill-buffer t)
 
         ("p" "protocol quick-capture" entry
          (file +org-capture-todo-file)
@@ -245,6 +245,9 @@
 ;; Agenda Config
 
 
+(setq org-agenda-files
+      (org-files-from-dirs
+       '("remitly" "projects" "life_ops" "spare_time" "inbox")))
 
 (setq org-project-files
       (org-files-from-dirs
@@ -279,15 +282,20 @@
           ;; TODO due today section
           ;; TODO add "due soon" section
           ;; TODO life ops section (with total time remaining)
+          (tags-todo
+           "+STYLE=\"habit\"-SCHEDULED>=\"<now>\""
+           ((org-agenda-overriding-header "Habits for today")
+            (org-super-agenda-groups '()))
+           )
 
           (tags-todo
            ,(build-up-next-agenda-query)
-           (;; (org-agenda-overriding-header "Available Project Work")
+           ((org-agenda-overriding-header "Available Project Work")
             (org-agenda-files org-project-files)
             (org-super-agenda-groups '(
-                                       (:name "Available Project Work"
-                                              :auto-category nil))))
+                                       (:auto-category nil))))
            )
+
 
           ;; TODO add view for stuck and stalled projects
           ;; stuck projects -> no actionable items under the project
@@ -308,9 +316,5 @@
 
 ;; NOTE - we expect "org-caldav-oauth2-client-id" and "org-caldav-oauth2-client-secret" to be set in a secrets file
 
-(setq org-caldav-url 'google)
-(setq org-caldav-calendar-id "parsoj@gmail.com")
-(setq plstore-cache-passphrase-for-symmetric-encryption t)
-(setq org-caldav-inbox (concat org-directory "calendar/org-caldav-inbox.org"))
-(setq org-caldav-files org-agenda-files)
-(setq org-icalendar-timezone "US/Seattle")
+(def-package! org-gcal)
+(setq org-gcal-file-alist '(("jeff@messydesk.solutions" . "/Users/jeffp/org/calendar/messydesk-calendar.org")))
