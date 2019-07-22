@@ -286,8 +286,8 @@
             (org-super-agenda-groups
              '(
                (:name "Due Today" :time-grid t
-                      :or (:deadline today
-                                     :deadline past)
+                      :deadline today
+                      :deadline past)
                (:name "Due Soon" :time-grid t
                       :and (:deadline future
                                       :not (:habit t))
