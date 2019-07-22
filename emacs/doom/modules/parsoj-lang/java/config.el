@@ -20,7 +20,8 @@
         lsp-ui-doc-position 'at-point
         lsp-ui-peek-list-width 65
         lsp-ui-sideline-show-code-actions nil
-        lsp-java-jdt-download-url "http://download.eclipse.org/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz")
+        ;; lsp-java-jdt-download-url "http://download.eclipse.org/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz"
+        )
   )
 
 
@@ -38,5 +39,5 @@
   )
 
 (def-package! dap-java
-  :after (dap-mode lsp-java)
+  :after (lsp-java)
   )

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pkill Emacs
 cd ~/
 rm -rf .emacs.d
 git clone -b develop https://github.com/hlissner/doom-emacs ~/.emacs.d

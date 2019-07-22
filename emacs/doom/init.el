@@ -10,6 +10,7 @@
 
 (setq doom-leader-key "SPC")
 (setq doom-localleader-key ",")
+(push "~/dotfiles/emacs/site-lisp/" load-path)
 
 
 (defun convert-frame-to-daemon ()
@@ -80,7 +81,7 @@
 ;;; My Stuff
 
  :parsoj-lang
- emacs-lisp
+ ;; emacs-lisp
  java
  puppet
  swift
@@ -201,6 +202,8 @@
  plantuml
  rest
  ruby
+ emacs-lisp
+
 
  :app
  regex
@@ -221,7 +224,33 @@
  ;; If there is more than one, they won't work right.
  '(mouse-wheel-progressive-speed nil)
  '(safe-local-variable-values
-   '((project-runner lambda nil
+   '((lsp-java-java-path "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin/java")
+     (project-runner lambda nil
+                     (+eshell/toggle nil
+                                     (string-join
+                                      '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd tst/output" "rm -rf *" "cp ../../target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i ../specs/employment.yaml -o employment" "java -jar mothra.jar gen-project -i ../specs/petstore-expanded.yaml -o petstore-expanded")
+                                      " && ")))
+     (project-runner lambda nil
+                     (+eshell/toggle nil
+                                     (string-join
+                                      '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd tst/output" "cp ../../target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i ../specs/employment.yaml -o employment" "java -jar mothra.jar gen-project -i ../specs/petstore-expanded.yaml -o petstore-expanded")
+                                      " && ")))
+     (project-runner lambda nil
+                     (+eshell/toggle nil
+                                     (string-join
+                                      '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd tst" "mkdir output" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i ../specs/employment.yaml -o employment" "java -jar mothra.jar gen-project -i ../specs/petstore-expanded.yaml -o petstore-expanded")
+                                      " && ")))
+     (project-runner lambda nil
+                     (+eshell/toggle nil
+                                     (string-join
+                                      '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd tst" "mkdir output" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i ../api.yaml" "java -jar mothra.jar gen-project -i petstore-expanded.yaml")
+                                      " && ")))
+     (project-runner lambda nil
+                     (+eshell/toggle nil
+                                     (string-join
+                                      '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p employment" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
+                                      " && ")))
+     (project-runner lambda nil
                      (+eshell/toggle nil
                                      (string-join
                                       '("cd ~/remitly/mothra2/" "rm -rf ./1out" "cd mothra" "rm target/mothra.jar" "make mothra.jar" "cd ../" "mkdir -p 1out" "cd 1out" "cp ../mothra/target/mothra.jar ." "cp ../api.yaml ." "java -jar mothra.jar gen-project -i api.yaml")
@@ -356,12 +385,11 @@
                       (string-join
                        '("docker run -dit --name mothra mothra" "cd /docker:mothra:/mothra" "/opt/maven/bin/mvn package" "native-image -jar target/mothra.jar" "./target/mothra help")
                        " && ")))))
- '(wakatime-api-key "d82da639-10f2-4d6b-aa2f-dad3e1e6e35a")
- '(wakatime-cli-path "wakatime")
+ '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(wakatime-python-bin nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Fira Code" :foundry "nil" :slant normal :weight normal :height 120 :width normal)))))

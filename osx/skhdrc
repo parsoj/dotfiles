@@ -23,6 +23,10 @@ shift + cmd - j : chunkc tiling::window --warp south
 shift + cmd - k : chunkc tiling::window --warp north
 shift + cmd - l : chunkc tiling::window --warp east
 
+alt + cmd - 1: yabai -m window --display 1
+alt + cmd - 2: yabai -m window --display 2
+alt + cmd - 3: yabai -m window --display 3
+alt + cmd - 4: yabai -m window --display 4
 
 ################################################################################
 # Desktp control
@@ -40,7 +44,7 @@ shift + cmd - s : /Applications/Emacs.app/Contents/MacOS/emacs --with-profile st
 
 cmd - i : ~/dotfiles/osx/scripts/emacs/org-capture
 
-cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Profile\ 1
+cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default
 
 ctrl + alt - r : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default
 
@@ -51,4 +55,4 @@ ctrl + alt - o : open /Applications/Spotify.app
 
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs
-ctrl + alt + cmd - r : osascript ~/dotfiles/doom/refresh_reload_restart.scpt
+ctrl + alt + cmd - r : osascript ~/dotfiles/emacs/doom/reinstall-doom.scpt

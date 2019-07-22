@@ -6,7 +6,7 @@
   (setq
    projectile-project-search-path '("~/remitly/" "~/projects/")
    projectile-project-root-files-functions '(projectile-root-top-down)
-   projectile-project-root-files '(".projectile" "NOTES.org")
+   ;; projectile-project-root-files '(".projectile" "PROJECT_NOTES.org")
    counsel-projectile-switch-project-action (lambda (project_root) (find-file (concat project_root "PROJECT_NOTES.org")))
    )
   )

@@ -39,7 +39,8 @@
 
       (:prefix ("t" . "toggle")
         :desc "Treemacs" "t"   #'+treemacs/toggle
-        :desc "Fullscreen" "f"   #'toggle-frame-fullscreen
+        :desc "Fullscreen" "f"   (lambda! (progn (toggle-frame-fullscreen) ))
+        :desc "Padding" "padding"   (lambda! (progn (shell-command "yabai -m space --toggle padding && yabai -m space --toggle gap")))
         :desc "Line Numbers"   "n"  #'doom/toggle-line-numbers
         :desc "Line Truncation/Wrap" "l"  #'visual-line-mode
         )
@@ -71,8 +72,8 @@
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
         :desc "open project notes" "n" #'+pop-to-project-todo-file
         :desc "capture project note" "c" #'counsel-projectile-org-capture
-        :desc "run project" "r" (lambda! (funcall project-runner))
-        :desc "jump to project settings" "s" (lambda! (find-file (concat (projectile-project-root) ".dir-locals.el")))
+        :desc "run project" "r" (lambda! (funcall project-run-func))
+        :desc "jump to project settings" "s" (lambda! (find-file (concat (projectile-project-root) "project-settings.el")))
         )
 
       (:prefix ("s" . "search")
@@ -202,10 +203,13 @@
      :slot 2 :side left :size 20 :select t :quit t)
 
     ("^\\*[Hh]elp"
-     :slot 1 :side right :width .35 :height .5 :select t)
+     :vslot 2 :slot 1 :side right :width .35 :height .5 :select t)
+
+    ("^\\*[Ii]nfo"
+     :vslot 2 :slot 2 :side right :width .35 :height .5 :select t)
 
     ("^\\*doom:scratch\\*"
-     :slot 1 :side right :width .35 :ttl nil)
+     :slot 1 :side right :width .45 :ttl nil)
 
     ("^\\*Project Run\\*"
      :slot 0 :side right :width .45 :select t)
@@ -215,9 +219,6 @@
 
     ("^\\*HTTP Response\\*"
      :actions '(display-buffer-below-selected) )
-
-    ;;("^\\*info\\*$PROJECT_NOTESPROJECT_NOTES"
-    ;; PROJECT_NOTES:slot 2 :vslot 2 :size 0.45 :select t)
 
     ("^\\*Backtrace"
      :vslot 99 :size 0.4 :quit nil)
@@ -234,11 +235,11 @@
     ("^\\*PROJECT_NOTES\\*"
      :slot 0 :side right :width .35 :select t)
 
-    ("^\\*Org Agenda\\*"
-     :slot 0 :side right :width .35 :select t)
+    ("^\\*Org Agenda"
+     :slot 1 :side right :width .35 :select t)
 
     ("^\\*doom:eshell-popup"
-     :slot 2 :side right :width .35 :select t
+     :slot 2 :side bottom :width .35 :select t
      )
 
     ("^\\*compilation\\*"

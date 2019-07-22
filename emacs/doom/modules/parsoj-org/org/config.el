@@ -8,7 +8,7 @@
 
         ("p" "protocol quick-capture" entry
          (file +org-capture-todo-file)
-         "* %a" :prepend t :kill-buffer t :immediate-finish t)
+         "* INBOX %a" :prepend t :kill-buffer t :immediate-finish t)
         )
       )
 
@@ -54,7 +54,7 @@
   (setq org-refile-targets `(
                              (,(org-files-from-dirs
                                 '("remitly" "projects" "life_ops" "reference" "spare_time" "someday_maybe")) .
-                                (:level . 0)))))
+                                (:maxlevel . 3)))))
 
 (refresh-org-refile-targets)
 
@@ -261,6 +261,9 @@
       (org-files-from-dirs
        '("inbox")))
 
+(setq org-calendar-files
+      (org-files-from-dirs
+       '("calendar")))
 
 (def-package! org-super-agenda
   :config
@@ -271,21 +274,30 @@
 (setq org-agenda-custom-commands
       `(("x" "Now"
          (
-          ;; FIXME agenda should just have scheduled events
           (agenda "" ((org-agenda-span 'day)
-                      (org-agenda-start-day "today")))
+                      (org-agenda-start-day "today")
+                      (org-agenda-overriding-header "Schedule for Today")
+                      (org-agenda-files org-calendar-files)))
+
+          (tags-todo
+           "+DEADLINE<=\"<+5d>\""
+           ((org-agenda-overriding-header "Due Soon")
+            (org-agenda-files org-agenda-files)
+            (org-super-agenda-groups
+             '(
+               (:name "Due Today" :time-grid t
+                      :or (:deadline today
+                                     :deadline past)
+               (:name "Due Soon" :time-grid t
+                      :and (:deadline future
+                                      :not (:habit t))
+                      :discard (:anything t)
+                      )))))
+
           (tags-todo
            "+TODO=\"INBOX\""
            ((org-agenda-overriding-header "Inbox Items")
             (org-agenda-files org-inbox-files))
-           )
-          ;; TODO due today section
-          ;; TODO add "due soon" section
-          ;; TODO life ops section (with total time remaining)
-          (tags-todo
-           "+STYLE=\"habit\"-SCHEDULED>=\"<now>\""
-           ((org-agenda-overriding-header "Habits for today")
-            (org-super-agenda-groups '()))
            )
 
           (tags-todo
@@ -296,24 +308,19 @@
                                        (:auto-category nil))))
            )
 
+          ;; (tags-todo
+          ;;  "+STYLE=\"habit\"-SCHEDULED>=\"<now>\""
+          ;;  ((org-agenda-overriding-header "Habits for today")
+          ;;   (org-super-agenda-groups '()))
+          ;;  )
 
-          ;; TODO add view for stuck and stalled projects
-          ;; stuck projects -> no actionable items under the project
-          ;; stalled projects ->actionable items that haven't gotten attention for x days
-
-          ;; (agenda "" ((org-agenda-span 7)
-          ;;             (org-deadline-warning-days 21)
-          ;;             (org-agenda-repeating-timestamp-show-all t)))
-          )
-         )))
+          ))))
 
 
 
 
 ;;********************************************************************************
 ;; Calendar
-;; TODO google cal integration
-
 ;; NOTE - we expect "org-caldav-oauth2-client-id" and "org-caldav-oauth2-client-secret" to be set in a secrets file
 
 (def-package! org-gcal)
