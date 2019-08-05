@@ -1,0 +1,31 @@
+ls
+pwd
+ls
+cd ..
+ls
+mv themes appearance
+cd appearance/
+ls
+rm clean_ui.e
+ls
+rm *~
+ls
+ls
+rm colors*
+ls
+rm #*
+ls
+rm #	
+rm #colors.el#
+ls
+ls
+rm --force \#colors.el\# 
+ls
+rm .\#colors.el 
+ls
+cd ..
+cd ..
+ls
+mkdir editor_tools
+cd editor_tools/
+ls

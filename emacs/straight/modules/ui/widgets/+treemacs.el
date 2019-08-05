@@ -1,5 +1,6 @@
 ;;; +treemacs.el -*- lexical-binding: t; -*-
 
+(use-package treemacs)
 
 
 (provide '+treemacs)

@@ -1,7 +1,7 @@
 #!/usr/bin/osascript
 display notification "Restarting Server..." with title "Emacs"
 tell application "Terminal"
-	do shell script "open -nF /Applications/Emacs.app"
+	do shell script "open -nF /Applications/Emacs-NS.app"
 end tell
 #tell application "System Events"
 #	repeat until window "Daemon Frame" of process "Emacs" exists

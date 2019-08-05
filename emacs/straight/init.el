@@ -1,5 +1,4 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
-
 ;;--------------------------------------------------------------------------------
 ;; straight.el Boostrap block
 (defvar bootstrap-version)
@@ -16,24 +15,37 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+(setq straight-use-package-by-default t) 
 
 (defmacro with-eval-after-packages (features &rest body)
   (if (null features)
-      (progn body)
+    `(progn ,@body)
     `(eval-after-load (quote ,(car features))
        (quote (with-eval-after-packages ,(cdr features) ,@body)))))
 
 
-(defvar config-root "~/dotfiles/emacs/straight/")
-(defvar modules-root (concat config-root "modules/"))
-
+(setq config-root "~/dotfiles/emacs/straight/")
+(setq modules-root (concat config-root "modules/") )
 
 (defun get-modules-list ()
   (directory-files-recursively "~/dotfiles/emacs/straight/modules" "\\.el$"))
 
+(defun get-modules-directories ()
+  (-filter (lambda (x) (not (string-match "\\.el$" x)))
+          (directory-files-recursively "~/dotfiles/emacs/straight/modules" ".*" t)
+          )
+  )
 
-(mapc (lambda (f) (load-file f)) (get-modules-list))
+(defun get-doom-modules-list ()
+  (append
+   (directory-files-recursively "~/doom-emacs/modules" "\\.el$")
+   (directory-files-recursively "~/.emacs.d/modules" "\\.el$")
+   )
+)
 
+(defun load-all-config-files () 
+  (interactive)
+  (mapc (lambda (f) (load-file f)) (get-modules-list))
+)
 
-;; TODO command to jump to this init file
-;; TODO command to use ivy to quick search and pull up a module
+(load-all-config-files)

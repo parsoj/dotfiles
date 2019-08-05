@@ -1,10 +1,8 @@
 ;;; +input.el -*- lexical-binding: t; -*-
 
-(use-package general
-  :straight t)
+(use-package general)
 
 (use-package evil
-  :straight t
   :config
   (evil-mode 1)
   )
