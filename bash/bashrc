@@ -4,7 +4,6 @@
 
 export PATH="/usr/local/opt/bin:$PATH"
 
-
 ################################################################################
 # Emacs Support 
 export PATH="/Applications/Emacs.app/Contents/MacOS:$PATH"
@@ -80,9 +79,10 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/"
 
+################################################################################
+# go
 
-##########################################################################################
-# golang
+export GOROOT="$(brew --prefix golang)/libexec"
+export GOPATH="${HOME}/.go"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-export GOPATH="/Users/jeffp/remitly/mothra2/go"
-export PATH="$GOPATH/bin:$PATH"

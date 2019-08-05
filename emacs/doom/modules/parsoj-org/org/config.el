@@ -302,6 +302,18 @@
 
           (tags-todo
            ,(build-up-next-agenda-query)
+           ((org-agenda-overriding-header "Life Ops stuff")
+            (org-agenda-files org-lifeops-files)
+            (org-super-agenda-groups
+             '((:and (:not (:habit t)
+                           :priority>= "B"
+                           )
+                     :discard (:anything t))))
+            )
+           )
+
+          (tags-todo
+           ,(build-up-next-agenda-query)
            ((org-agenda-overriding-header "Available Project Work")
             (org-agenda-files org-project-files)
             (org-super-agenda-groups '(
@@ -324,4 +336,7 @@
 ;; NOTE - we expect "org-caldav-oauth2-client-id" and "org-caldav-oauth2-client-secret" to be set in a secrets file
 
 (def-package! org-gcal)
-(setq org-gcal-file-alist '(("jeff@messydesk.solutions" . "/Users/jeffp/org/calendar/messydesk-calendar.org")))
+(setq org-gcal-file-alist '(
+                            ;; ("jeff@messydesk.solutions" . "/Users/jeffp/org/calendar/messydesk-calendar.org")
+                            ("jeffp@remitly.com" . "/Users/jeffp/org/calendar/remitly-calendar.org")
+                            ))

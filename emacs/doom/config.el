@@ -72,7 +72,8 @@
         :desc "Find file in project" "f" #'+ivy/projectile-find-file
         :desc "open project notes" "n" #'+pop-to-project-todo-file
         :desc "capture project note" "c" #'counsel-projectile-org-capture
-        :desc "run project" "r" (lambda! (funcall project-run-func))
+        :desc "quick test project" "t" (lambda! (funcall project-test-func))
+        :desc "long test project" "T" (lambda! (funcall project-full-test-func))
         :desc "jump to project settings" "s" (lambda! (find-file (concat (projectile-project-root) "project-settings.el")))
         )
 
@@ -250,3 +251,27 @@
 
 
 (set-docsets! 'terraform-mode "Terraform")
+
+(defun edit-word-at-point (edit-func)
+  (save-excursion
+    (let ((start (and (forward-word) (point)))
+          (end (and (backward-word) (point))))
+      (insert (funcall edit-func (delete-and-extract-region start end)))
+      ))
+
+  )
+
+(defun snake-case-word-at-point ()
+  (interactive)
+  (edit-word-at-point (lambda (w) (s-snake-case w)))
+  )
+
+(defun lower-camel-case-word-at-point ()
+  (interactive)
+  (edit-word-at-point (lambda (w) (s-lower-camel-case w)))
+  )
+
+(defun upper-camel-case-word-at-point ()
+  (interactive)
+  (edit-word-at-point (lambda (w) (s-upper-camel-case w)))
+  )

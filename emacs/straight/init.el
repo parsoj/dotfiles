@@ -14,3 +14,26 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
+
+(defmacro with-eval-after-packages (features &rest body)
+  (if (null features)
+      (progn body)
+    `(eval-after-load (quote ,(car features))
+       (quote (with-eval-after-packages ,(cdr features) ,@body)))))
+
+
+(defvar config-root "~/dotfiles/emacs/straight/")
+(defvar modules-root (concat config-root "modules/"))
+
+
+(defun get-modules-list ()
+  (directory-files-recursively "~/dotfiles/emacs/straight/modules" "\\.el$"))
+
+
+(mapc (lambda (f) (load-file f)) (get-modules-list))
+
+
+;; TODO command to jump to this init file
+;; TODO command to use ivy to quick search and pull up a module
