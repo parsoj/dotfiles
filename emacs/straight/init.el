@@ -38,8 +38,8 @@
 
 (defun get-doom-modules-list ()
   (append
-   (directory-files-recursively "~/doom-emacs/modules" "\\.el$")
-   (directory-files-recursively "~/.emacs.d/modules" "\\.el$")
+   (directory-files-recursively "~/dotfiles/emacs/doom/modules" "\\.el$")
+   (directory-files-recursively "~/doom-emacs/modules" "[^#]\\.el$")
    )
 )
 
@@ -48,4 +48,11 @@
   (mapc (lambda (f) (load-file f)) (get-modules-list))
 )
 
+;; disable the system bell
+(setq ring-bell-function 'ignore)
+
+
+(use-package posframe)
+
 (load-all-config-files)
+(server-start)

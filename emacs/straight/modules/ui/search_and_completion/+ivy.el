@@ -1,21 +1,39 @@
 ;;; +ivy.el --- description -*- lexical-binding: t; -*-
 
 (use-package ivy
+  :init
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-initial-inputs-alist nil)
+
   :config
   (ivy-mode 1)
 
   )
 
+(use-package all-the-icons-ivy
+  :after (ivy all-the-icons)
+  :config
+  (all-the-icons-ivy-setup) 
+  )
+
+(use-package ivy-rich
+  :after (counsel swiper ivy)
+  :config
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+
+  (ivy-rich-mode 1)
+)
+
 (use-package counsel
   :after (ivy)
-  )
+)
 
 (use-package swiper
   :after (ivy)
   )
 
 (use-package ivy-posframe
-  :after (ivy)
+  :after (ivy posframe)
   :hook (ivy-mode . ivy-posframe-mode)
   :config
   (setq ivy-fixed-height-minibuffer nil

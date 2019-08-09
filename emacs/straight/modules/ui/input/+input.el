@@ -7,5 +7,7 @@
   (evil-mode 1)
   )
 
+(use-package evil-magit)
+
 (provide '+input)
 ;;; +general.el ends here

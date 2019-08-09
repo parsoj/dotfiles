@@ -13,9 +13,25 @@
 ;(doom-themes-visual-bell-config)
 
 ;; or for treemacs users
-(doom-themes-treemacs-config)
+(doom-themes-treemacs-config) 
 
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
 )
+
+;; TODO check out nord theme: https://github.com/arcticicestudio/nord-emacs
+
+;;(use-package wilmersdorf-theme
+;;  :straight (wilmersdorf-theme :host github :repo "ianpan870102/wilmersdorf-emacs-theme")
+;;  )
+
+(use-package solaire-mode
+  :hook
+  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+  (minibuffer-setup . solaire-mode-in-minibuffer)
+  :config
+  (solaire-global-mode +1)
+  (solaire-mode-swap-bg) 
+
+  )

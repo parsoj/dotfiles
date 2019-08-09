@@ -14,5 +14,16 @@
   :after (hydra)
   )
 
+(use-package hydra-posframe
+  :straight (hydra-posframe :host github :repo "Ladicle/hydra-posframe")
+  :after (hydra posframe)
+  :load-path "<path-to-the-hydra-posframe>"
+  :hook (after-init . hydra-posframe-enable)
+
+  :init
+  (setq hydra-posframe-border-width 2)
+
+  )
+
 (provide '+hydra)
 ;;; +hydra.el ends here

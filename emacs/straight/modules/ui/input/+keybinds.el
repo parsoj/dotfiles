@@ -41,7 +41,7 @@
  '(general +hydra +ivy)
  (progn
    (pretty-hydra-define hydra-config-actions
-                        (:color teal :quit-key "ESC" :title "Configuration Actions")
+                        (:color blue :quit-key "ESC" :title "Configuration Actions")
                         ("Jump to:"
                          (
 			  ("M" create-new-module "new module")
@@ -52,26 +52,39 @@
                           )
                          )
                         )
+
+   (general-auto-unbind-keys)
+
    (general-define-key
     [escape] 'keyboard-escape-quit
     )
 
    (general-define-key
-    :states '(normal)
+    :states '(normal motion)
+    "/" 'swiper
+    )
+
+   (general-define-key
+    "M-w" 'delete-frame)
+
+   (general-define-key
+    :states '(normal visual motion)
     :prefix "SPC"
     :non-normal-prefix "M-SPC"
     "c" 'hydra-config-actions/body
-    "SPC" '(lambda () (interactive) (counsel-M-x ""))
+    "SPC" 'counsel-M-x
     "ff" 'find-file
     "fs" 'save-buffer
-    "hf" 'describe-function
+    "hf" 'counsel-describe-function
+    "hv" 'counsel-describe-variable 
     "tl" 'visual-line-mode
+    "tt" 'treemacs
 
     "wd"   'delete-window
     "wx"   'ace-swap-window
     "wu" 'winner-undo
     "wr" 'winner-redo
-    "wm" 'doom/window-maximize-buffer
+    "wm" 'maximize-window
     "ws" 'split-window-vertically
     "wv" 'split-window-horizontally
     "wh" 'evil-window-left
@@ -81,12 +94,16 @@
 
     "bd" 'evil-delete-buffer
     "br" 'revert-buffer
-    "bb" '+ivy/switch-buffer
+    "bb" 'ivy-switch-buffer
     "bp" 'previous-buffer
     "bn" 'next-buffer
 
+    "pt" '(lambda () (interactive) (funcall project-test-func))
+    "pp" 'counsel-projectile-switch-project
+    "pf" 'counsel-projectile-find-file
 
     )
+
  )
 )
 

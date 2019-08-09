@@ -37,9 +37,8 @@ ctrl + alt + cmd - w : ~/dotfiles/osx/scripts/destroy_workspace.sh
 ################################################################################
 # application launching
 
-cmd - e : ~/dotfiles/osx/scripts/emacs/client
-shift + cmd - e : ~/dotfiles/osx/scripts/emacs/daemon
-shift + cmd - s : /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile straight --debug-init
+cmd + shift - e : /Applications/Emacs.app/Contents/MacOS/Emacs
+cmd - e : /usr/local/bin/emacsclient -n -c -e "(progn (eshell))"
 
 cmd - i : ~/dotfiles/osx/scripts/emacs/org-capture
 
@@ -54,4 +53,3 @@ ctrl + alt - o : open /Applications/Spotify.app
 
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs
-ctrl + alt + cmd - r : osascript ~/dotfiles/emacs/doom/reinstall-doom.scpt
