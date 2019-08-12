@@ -1,4 +1,12 @@
 .DS_Store
 
 emacs/straight/straight/
+emacs/straight/eshell/
+emacs/straight/elpa/
+emacs/straight/transient/
+emacs/straight/auto-save-list/
+emacs/straight/.cache/
+emacs/straight/recentf
 *.elc
+*~
+
