@@ -6,7 +6,7 @@
 (use-package major-mode-hydra
   :after (hydra pretty-hydra)
   :bind
-  ("," . major-mode-hydra)
+  ;("," . major-mode-hydra)
 
   )
 

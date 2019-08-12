@@ -13,7 +13,7 @@
 ;(doom-themes-visual-bell-config)
 
 ;; or for treemacs users
-(doom-themes-treemacs-config) 
+;(doom-themes-treemacs-config) 
 
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)

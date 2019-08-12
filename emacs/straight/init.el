@@ -53,6 +53,10 @@
 
 
 (use-package posframe)
+(use-package gcmh
+  :config
+  (gcmh-mode 1)
+ )
 
 (load-all-config-files)
 (server-start)

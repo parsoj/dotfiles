@@ -1,3 +1,6 @@
 
-(use-package go-mode)
+(use-package go-mode
+  :hook (go-mode . lsp))
+
 (use-package go-guru)
+

@@ -83,6 +83,7 @@
     "wd"   'delete-window
     "wx"   'ace-swap-window
     "wu" 'winner-undo
+    "w=" 'balance-windows
     "wr" 'winner-redo
     "wm" 'maximize-window
     "ws" 'split-window-vertically
@@ -101,6 +102,7 @@
     "pt" '(lambda () (interactive) (funcall project-test-func))
     "pp" 'counsel-projectile-switch-project
     "pf" 'counsel-projectile-find-file
+    "sp" 'counsel-projectile-ag
 
     )
 
