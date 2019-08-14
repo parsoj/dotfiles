@@ -34,7 +34,10 @@
     "SPC" 'counsel-M-x
     "ff" 'find-file
     "fs" 'save-buffer
+
     "hf" 'describe-function
+    "hv" 'describe-variable
+
     "tl" 'visual-line-mode
 
     "wd"   'delete-window
@@ -51,7 +54,7 @@
 
     "bd" 'evil-delete-buffer
     "br" 'revert-buffer
-    "bb" '+ivy/switch-buffer
+    "bb" 'counsel-switch-buffer
     "bp" 'previous-buffer
     "bn" 'next-buffer
 
