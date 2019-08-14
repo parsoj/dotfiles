@@ -7,72 +7,13 @@ export PATH="/usr/local/opt/bin:$PATH"
 ################################################################################
 # Emacs Support 
 export PATH="/Applications/Emacs-NS.app/Contents/MacOS:$PATH"
-export EDITOR="$HOME/.config/osx/scripts/launch_emacsclient"
+export EDITOR="$HOME/dotfiles/osx/scripts/emacs/client"
 export VISUAL="$EDITOR -c"
-export DOTFILES_DIR="~/dotfiles"
-export DOOMDIR="~/dotfiles/emacs/doom"
 
 ################################################################################
 # OSX scripts
 
 export PATH="$HOME/.config/osx/scripts/:$PATH"
-
-################################################################################
-# general utility stuff
-
-function ports
-{
-    lsof -n -P | grep LISTEN
-}
-
-
-################################################################################
-# Hashi helper funcs
-
-function vagrant_suspend_all
-{
-vagrant global-status | grep virtualbox | cut -c 1-9 | while read line; do echo $line; vagrant halt $line; done;
-
-}
-
-alias tf=terraform
-
-################################################################################
-# AWS helper funcs
-
-function ssh_ec2 {
-         ssh -i ~/.ssh/key-pair.pem ec2-user@$1
-}
-
-
-################################################################################
-# Docker helper funcs
-function docker-login {
-         $(aws ecr get-login --no-include-email --region us-west-2)
-}
-
-function docker-lastbuilt  {
-         docker images --format "{{.ID}}" | head -1
-}
-
-function docker-lastrun {
-	docker ps -a --format "{{.Names}}" | head -1
-}
-
-################################################################################
-# sqlite
-
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-##########################################################################################
-# ruby
-
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-##########################################################################################
-# ruby
-
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 ################################################################################
 # swift
@@ -83,6 +24,6 @@ export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xcto
 # go
 
 export GOROOT="$(brew --prefix golang)/libexec"
-export GOPATH="${HOME}/.go"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export GOPATH="$HOME/.go"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 

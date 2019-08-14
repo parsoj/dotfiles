@@ -5,9 +5,10 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-initial-inputs-alist nil)
 
-  :config
-  (ivy-mode 1)
+  (setq completion-ignored-extensions '("~" ".swp" "#")) 
 
+:config
+(ivy-mode 1)
   )
 
 (use-package all-the-icons-ivy
@@ -34,7 +35,6 @@
 
 (use-package ivy-posframe
   :after (ivy posframe)
-  :hook (ivy-mode . ivy-posframe-mode)
   :config
   (setq ivy-fixed-height-minibuffer nil
         ivy-posframe-border-width 2
@@ -50,7 +50,10 @@
   ;; posframe doesn't work well with async sources
   (dolist (fn '(swiper counsel-ag counsel-grep counsel-git-grep))
     (setf (alist-get fn ivy-posframe-display-functions-alist) #'ivy-display-function-fallback))
+
+  (ivy-posframe-mode 1)
   )
+
 
 
 

@@ -36,27 +36,10 @@
           )
   )
 
-(defun get-doom-modules-list ()
-  (append
-   (directory-files-recursively "~/dotfiles/emacs/doom/modules" "\\.el$")
-   (directory-files-recursively "~/doom-emacs/modules" "[^#]\\.el$")
-   )
-)
-
 (defun load-all-config-files () 
   (interactive)
   (mapc (lambda (f) (load-file f)) (get-modules-list))
 )
-
-;; disable the system bell
-(setq ring-bell-function 'ignore)
-
-
-(use-package posframe)
-(use-package gcmh
-  :config
-  (gcmh-mode 1)
- )
 
 (load-all-config-files)
 (server-start)

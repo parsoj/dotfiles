@@ -6,8 +6,10 @@
 ;; Keywords: tools,
 
 (use-package lsp-mode
-  :commands lsp
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred)
   )
+
 (use-package lsp-ui
   :commands lsp-ui-mode)
 

@@ -1,1 +1,2 @@
-(use-package counsel-projectile)
+(use-package counsel-projectile
+  :after projectile)
