@@ -11,10 +11,18 @@
   )
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-sideline-enable nil)
+
+  )
 
 (use-package company-lsp
-  :commands company-lsp)
+  :after company
+  :commands company-lsp
+  :config
+  (push 'company-lsp company-backends)
+  )
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)

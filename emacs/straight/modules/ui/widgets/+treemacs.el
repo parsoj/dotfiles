@@ -17,7 +17,7 @@
   )
 
 (use-package treemacs-evil
-  :after treemacs
+  :after treemacs +evil
   )
 
 (use-package treemacs-projectile

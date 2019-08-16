@@ -20,14 +20,23 @@
                          (
 			  ("M" create-new-module "new module")
                           ("m" jump-to-module "module")
+                          ("d" jump-to-doom-module "doom-module")
                           ("i" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el")
                           )
                          )
                         )
 
 
+  (general-define-key
+   "M-w" 'delete-frame
+   )
+  (general-define-key
+   :states '(normal movement)
+   "/" 'swiper
+)
+
    (general-define-key
-    :states '(normal)
+    :states '(normal visual emacs)
     :prefix "SPC"
     :non-normal-prefix "M-SPC"
     "c" 'hydra-config-actions/body
@@ -35,10 +44,12 @@
     "ff" 'find-file
     "fs" 'save-buffer
 
-    "hf" 'describe-function
-    "hv" 'describe-variable
+    "hf" 'counsel-describe-function
+    "hv" 'counsel-describe-variable
 
-    "tl" 'visual-line-mode
+    "tl" 'toggle-truncate-lines
+    "tn" 'display-line-numbers-mode
+    "tt" 'treemacs
 
     "wd"   'delete-window
     "wx"   'ace-swap-window
@@ -58,8 +69,13 @@
     "bp" 'previous-buffer
     "bn" 'next-buffer
 
+    "pf" 'counsel-projectile-find-file
+    "pp" 'counsel-projectile-switch-project
+    "pt" '(lambda () (interactive) (funcall project-test-func))
+    "ps" 'counsel-projectile-ag
+
     )
-  
+
 )
 
 

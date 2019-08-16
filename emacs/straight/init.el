@@ -17,6 +17,8 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t) 
 
+(setq create-lockfiles nil)
+
 (defmacro with-eval-after-packages (features &rest body)
   (if (null features)
     `(progn ,@body)

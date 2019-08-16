@@ -1,10 +1,12 @@
 
 (use-package go-mode
   :after +env
-  :hook (go-mode . lsp)
+  :hook ((go-mode . lsp)
+	 (go-mode . flycheck-mode)
+	 (go-mode . company-mode))
 
   :config
-  (setenv "GOPATH" (concat (getenv "HOME") ".go/"))
+  (setenv "GOPATH" (concat (getenv "HOME") ".go/") ) 
   (add-to-exec-path (concat (getenv "GOPATH") "bin"))
   )
 
