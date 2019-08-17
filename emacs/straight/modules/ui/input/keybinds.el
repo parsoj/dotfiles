@@ -36,7 +36,7 @@
 )
 
    (general-define-key
-    :states '(normal visual emacs)
+    :states '(normal visual emacs movement treemacs)
     :prefix "SPC"
     :non-normal-prefix "M-SPC"
     "c" 'hydra-config-actions/body

@@ -1,6 +1,6 @@
 
 
-(setenv "HOME" "/Users/jeffp/")
+(setenv "HOME" "/Users/jeff/")
 (setenv "DOTFILES" (concat
 		    (getenv "HOME")
 		    "dotfiles/"))

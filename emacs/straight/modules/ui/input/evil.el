@@ -15,4 +15,7 @@
   (evil-collection-init)
   )
 
+
+(use-package evil-matchit)
+
 (provide '+evil)

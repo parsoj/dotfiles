@@ -28,5 +28,8 @@
   :after treemacs magit
   )
 
+
+
+
 (provide '+treemacs)
 ;;; +treemacs.el ends here

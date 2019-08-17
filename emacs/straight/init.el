@@ -30,11 +30,11 @@
 (setq modules-root (concat config-root "modules/") )
 
 (defun get-modules-list ()
-  (directory-files-recursively "~/dotfiles/emacs/straight/modules" "\\.el$"))
+  (directory-files-recursively modules-root "\\.el$"))
 
 (defun get-modules-directories ()
   (-filter (lambda (x) (not (string-match "\\.el$" x)))
-          (directory-files-recursively "~/dotfiles/emacs/straight/modules" ".*" t)
+          (directory-files-recursively modules-root ".*" t)
           )
   )
 

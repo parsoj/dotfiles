@@ -7,8 +7,8 @@ tap "homebrew/services"
 tap "mas-cli/tap"
 brew "mas"
 
-tap "parsoj/formulae"
-
+tap "parsoj/formulae" 
+	
 ###############################################################################
 # Apps
 
@@ -51,16 +51,13 @@ brew "fd"
 brew "gnu-tar"
 brew "languagetool"
 brew "sqlite"
-cask "mactex"
+#cask "mactex"
 brew "gnutls"
 brew "libressl"
 brew "python" # several emacs packages require python packages to support them
+brew "jq"
 
 # external devtools
 cask "docker"
-cask "virtualbox"
-cask "vagrant"
 brew "awscli"
 
-# Doom Emacs
-brew "doom-emacs"
