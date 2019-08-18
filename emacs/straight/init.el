@@ -18,6 +18,7 @@
 (setq straight-use-package-by-default t) 
 
 (setq create-lockfiles nil)
+(setq vc-follow-symlinks t)
 
 (defmacro with-eval-after-packages (features &rest body)
   (if (null features)
