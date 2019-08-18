@@ -1,4 +1,4 @@
 #!/bin/bash
 
-/usr/local/bin/emacsclient -e "(+org-capture/open-frame nil \"i\")"
+/usr/local/bin/emacsclient -e "(org-capture-pop-frame nil \"i\")"
 
