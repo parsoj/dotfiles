@@ -55,7 +55,7 @@
     "wx"   'ace-swap-window
     "wu" 'winner-undo
     "wr" 'winner-redo
-    "wm" 'doom/window-maximize-buffer
+    "wm" 'maximize-window
     "ws" 'split-window-vertically
     "wv" 'split-window-horizontally
     "wh" 'evil-window-left
@@ -74,6 +74,8 @@
     "pt" '(lambda () (interactive) (funcall project-test-func))
     "ps" 'counsel-projectile-ag
 
+
+    "ag" 'magit-status
     )
 
 )
