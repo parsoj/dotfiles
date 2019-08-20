@@ -24,7 +24,7 @@ yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff505050
 yabai -m config insert_window_border_color   0xffd75f5f
 yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.90
+yabai -m config normal_window_opacity        1.0
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
 yabai -m config mouse_modifier               fn
@@ -47,6 +47,7 @@ yabai -m config window_gap                   00
 #yabai -m rule --add --label "Fantastical" --state float
 yabai -m rule --add app="1Password 7" manage=off sticky=t grid=40:40:4:4:30:32
 yabai -m rule --add app="NordVPN" manage=off sticky=t grid=20:20:4:2:12:14
+yabai -m rule --add app="System Preferences" manage=off grid=40:40:15:12:6:8
 yabai -m rule --add app="iTunes" manage=off grid=20:20:3:2:14:16
 yabai -m rule --add app="Spotify" manage=off sticky=t grid=20:20:3:1:14:18
 yabai -m rule --add app="Messages" manage=off sticky=t grid=20:20:4:4:10:12
