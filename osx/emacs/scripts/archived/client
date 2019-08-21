@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e \"(eshell)\"

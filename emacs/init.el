@@ -27,7 +27,7 @@
        (quote (with-eval-after-packages ,(cdr features) ,@body)))))
 
 
-(setq config-root "~/dotfiles/emacs/straight/")
+(setq config-root "~/configuration/emacs/")
 (setq modules-root (concat config-root "modules/") )
 
 (defun get-modules-list ()

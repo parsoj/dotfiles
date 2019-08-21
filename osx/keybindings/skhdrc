@@ -38,9 +38,10 @@ ctrl + alt + cmd - w : ~/dotfiles/osx/scripts/destroy_workspace.sh
 # application launching
 
 cmd + shift - e : /Applications/Emacs.app/Contents/MacOS/Emacs
-cmd - e : /usr/local/bin/emacsclient -n -c -e "(progn (eshell))"
+cmd - e : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e "(eshell)"
 
-cmd - i : ~/dotfiles/osx/scripts/emacs/org-capture
+cmd - i : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e "(org-capture-pop-frame nil \"i\")"
+
 
 cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default
 

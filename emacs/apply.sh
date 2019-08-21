@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
+#/usr/bin/bash
 
-
-rm -rf ~/.emacs.d ; ln -s ~/dotfiles/emacs/straight ~/.emacs.d
+rm -rf ~/.emacs.el ; ln -s $(pwd)/init.el ~/.emacs.el
