@@ -1,7 +1,7 @@
 
 (use-package projectile
   :init
-  (load (concat config-root "local-settings/projects.el"))
+  (load (concat config-root "~/.emacs.d/local-settings/projects.el"))
   (setq
    projectile-globally-ignored-files '("~" ".swp") 
    projectile-project-root-files-functions '(projectile-root-top-down)
