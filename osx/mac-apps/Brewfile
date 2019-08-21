@@ -1,0 +1,16 @@
+# -*- mode:ruby -*-
+###############################################################################
+# Apps
+
+# Util Apps
+mas "1Password", id: 1333542190
+cask "dropbox"
+
+# Chat apps
+cask "discord"
+mas "Slack", id: 803453959
+
+# productivity apps
+cask "rescuetime"
+mas "Fantastical 2", id: 975937182
+

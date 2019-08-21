@@ -1,4 +1,4 @@
-# -*- mode:ruby -*-
+-*- mode:ruby -*-
 ###############################################################################
 # setup hombrew core
 tap "homebrew/cask"
@@ -9,55 +9,3 @@ brew "mas"
 
 tap "parsoj/formulae" 
 	
-###############################################################################
-# Apps
-
-# Util Apps
-mas "1Password", id: 1333542190
-cask "dropbox"
-
-# Chat apps
-cask "discord"
-mas "Slack", id: 803453959
-
-# productivity apps
-cask "rescuetime"
-mas "Fantastical 2", id: 975937182
-
-###############################################################################
-# OSX UI fixes
-cask "bartender"
-cask "istat-menus"
-tap "koekeishiya/formulae"
-brew "yabai"
-brew "skhd"
-cask "bitbar"
-cask "alfred"
-
-###############################################################################
-# Development tools
-
-# cli dev tools
-brew "coreutils" # replace OSX utils with GNU stuff
-brew "git"
-brew "ripgrep"
-brew "trash"
-brew "markdown"
-brew "the_platinum_searcher"
-brew "aspell"
-brew "gnupg2"
-brew "wget"
-brew "fd"
-brew "gnu-tar"
-brew "languagetool"
-brew "sqlite"
-#cask "mactex"
-brew "gnutls"
-brew "libressl"
-brew "python" # several emacs packages require python packages to support them
-brew "jq"
-
-# external devtools
-cask "docker"
-brew "awscli"
-

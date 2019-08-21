@@ -1,0 +1,8 @@
+# -*- mode:ruby -*-
+
+###############################################################################
+# OSX UI fixes
+cask "bartender"
+cask "istat-menus"
+cask "bitbar"
+

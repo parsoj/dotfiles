@@ -1,0 +1,27 @@
+###############################################################################
+# Development tools
+
+# cli dev tools
+brew "coreutils" # replace OSX utils with GNU stuff
+brew "git"
+brew "ripgrep"
+brew "trash"
+brew "markdown"
+brew "the_platinum_searcher"
+brew "aspell"
+brew "gnupg2"
+brew "wget"
+brew "fd"
+brew "gnu-tar"
+brew "languagetool"
+brew "sqlite"
+#cask "mactex"
+brew "gnutls"
+brew "libressl"
+brew "python" # several emacs packages require python packages to support them
+brew "jq"
+
+# external devtools
+cask "docker"
+brew "awscli"
+
