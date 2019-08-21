@@ -9,9 +9,11 @@
 
 (use-package ivy-posframe 
   :after ivy 
-  :config (setq ivy-fixed-height-minibuffer nil ivy-posframe-border-width 2 ivy-posframe-parameters
-		`((min-width . 90) 
-		  (min-height . ,ivy-height)))
+  :config (setq ivy-fixed-height-minibuffer nil
+		ivy-posframe-border-width 2
+		ivy-posframe-parameters`((title . "ivy-posframe")
+					 (min-width . 90) 
+					 (min-height . ,ivy-height))) 
 
 					;(set-face-attribute 'ivy-posframe-border :background 'black)
 
