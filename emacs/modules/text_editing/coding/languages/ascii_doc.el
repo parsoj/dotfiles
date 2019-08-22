@@ -1,4 +1,4 @@
 
 (use-package adoc-mode
-  :mode "\\.asciidoc\\"
+  :mode "\\.asciidoc\\'"
   )
