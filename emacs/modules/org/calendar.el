@@ -5,7 +5,7 @@
 
 (use-package org-gcal
 :init
-(setq org-gcal-file-alist '(
+(setq org-gcal-fetch-file-alist '(
                             ;; ("jeff@messydesk.solutions" . "/Users/jeffp/org/calendar/messydesk-calendar.org")
                             ("jeffp@remitly.com" . "/Users/jeffp/org/calendar/remitly-calendar.org")
                             ))
