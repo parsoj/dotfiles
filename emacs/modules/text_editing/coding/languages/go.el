@@ -5,6 +5,13 @@
   (add-to-exec-path (concat (getenv "GOPATH") "bin"))
 )
 
+(with-eval-after-load '+projectile
+
+  (add-to-list 'projectile-project-root-files "go.mod")
+	       
+)
+
+
 (with-eval-after-load '+lsp
 
   (defun go-mode-on-save-actions ()
