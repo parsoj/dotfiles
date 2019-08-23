@@ -1,4 +1,8 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
+
+
+(setq create-lockfiles nil)
+
 ;;--------------------------------------------------------------------------------
 ;; straight.el Boostrap block
 (defvar bootstrap-version)
@@ -17,7 +21,6 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t) 
 
-(setq create-lockfiles nil)
 (setq vc-follow-symlinks t)
 
 (defmacro with-eval-after-packages (features &rest body)

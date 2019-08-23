@@ -6,3 +6,5 @@
 ;  :config
 ;  (flycheck-posframe-configure-pretty-defaults) 
 ;  )
+
+(provide '+flycheck)

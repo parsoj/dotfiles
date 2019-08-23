@@ -13,7 +13,17 @@
 (use-package lsp-ui
   :commands lsp-ui-mode
   :config
-  (setq lsp-ui-sideline-enable nil)
+  (setq
+   lsp-ui-sideline-show-symbol t
+   lsp-ui-sideline-show-hover nil
+   ) 
+
+  (setq
+   lsp-ui-doc-header nil
+   lsp-ui-doc-include-signature t
+   lsp-ui-doc-position 'at-point
+   ) 
+   
 
   )
 
@@ -26,3 +36,6 @@
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
+
+
+(provide '+lsp)
