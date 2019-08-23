@@ -55,7 +55,7 @@ yabai -m rule --add app="Discord" manage=off sticky=t grid=40:40:4:4:30:32
 yabai -m rule --add app="Slack" manage=off sticky=t grid=10:10:2:1:6:8
 yabai -m rule --add app="Emacs" title="^org-capture$" manage=off sticky=t grid=20:20:8:8:4:4
 yabai -m rule --add app="Emacs" title="^ivy-posframe*" manage=off 
-yabai -m rule --add app="Emacs" title="\\*.+\\*" manage=on 
+yabai -m rule --add app="Emacs" title="emacs-client" manage=on 
 #yabai -m rule --add app="Emacs" title="^Daemon Frame$" manage=off grid=20:20:4:4:10:12
 
 echo "yabai configuration loaded.."
