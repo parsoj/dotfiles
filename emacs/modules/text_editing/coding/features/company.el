@@ -1,4 +1,7 @@
 (use-package company
+
+  :init
+  (setq company-idle-delay .1) 
   )
 
 (with-eval-after-load '+keybinds
