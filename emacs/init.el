@@ -1,7 +1,8 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
 
 
-(setq create-lockfiles nil)
+(setq make-backup-files nil
+      create-lockfiles nil)
 
 ;;--------------------------------------------------------------------------------
 ;; straight.el Boostrap block
