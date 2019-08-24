@@ -11,9 +11,9 @@
   :after ivy 
   :config (setq ivy-fixed-height-minibuffer nil
 		ivy-posframe-border-width 2
-		ivy-posframe-parameters`((title . "ivy-posframe")
-					 (min-width . 90) 
-					 (min-height . ,ivy-height))) 
+		ivy-posframe-parameters`(
+					 (title . "ivy-posframe")
+					 )) 
 
 					;(set-face-attribute 'ivy-posframe-border :background 'black)
 
@@ -26,7 +26,7 @@
   (ivy-posframe-mode 1))
 
 (use-package ivy-rich 
-  :after ivy 
+  :after ivy posframe ivy-posframe
   :custom (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   :config (defun ivy-rich-switch-buffer-icon (candidate) 
 	    (with-current-buffer (get-buffer candidate) 
