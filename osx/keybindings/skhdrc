@@ -38,9 +38,9 @@ ctrl + alt + cmd - w : ~/dotfiles/osx/scripts/destroy_workspace.sh
 # application launching
 
 cmd + shift - e : /Applications/Emacs.app/Contents/MacOS/Emacs
-cmd - e : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e "(eshell)" --frame-parameters='(quote (title . "emacs-client"))'
+cmd - e : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e "(progn (x-focus-frame nil) (eshell))" --frame-parameters='(quote (title . "emacs-client"))'
 
-cmd - i : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e "(org-capture-pop-frame nil \"i\")" 
+cmd - i : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -e "(progn (org-capture-pop-frame nil \"i\"))" --frame-parameters='(quote (title . "inbox-capture-popup"))'
 
 
 cmd - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --args --profile-directory=Default
