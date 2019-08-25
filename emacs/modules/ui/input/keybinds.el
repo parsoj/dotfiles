@@ -20,12 +20,16 @@
                         ;(:color teal :quit-key "ESC" :title "boop")
                         (:color teal :title hydra-config-actions--title)
                         (
-			 "Emacs"
+			 "Emacs Config"
                          (("M" create-new-module "new module")
                           ("m" jump-to-module "module")
                           ("d" jump-to-doom-module "doom-module")
                           ("i" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" )
                           ("j" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" ) ;;just adding a duplicate head since hydra-posframe is comming out too small
+			  )
+			 "Package Dependencies"
+			 (("l" (lambda() (interactive) (find-file "~/.emacs.d/straight/versions/default.el") ) "packages lockfile")
+			  ("p" jump-to-package "package code")
 			  )
 
 			  "Yabai"

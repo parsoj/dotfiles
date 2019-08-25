@@ -20,6 +20,18 @@
 
   )
 
+(defun jump-to-package ()
+  (interactive)
+  (let* ((package-repos-dir "~/.emacs.d/straight/repos/")
+	 (chosen-package-dir (completing-read
+                      "Jump to Package: "
+		      (directory-files package-repos-dir)
+                      nil t)))
+    (projectile-switch-project-by-name (concat package-repos-dir chosen-package-dir))
+    )
+
+)
+
 (defun create-new-module ()
   (interactive)
   (let ((module-dir (completing-read
