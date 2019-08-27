@@ -90,7 +90,7 @@
 
    "pf" 'counsel-projectile-find-file
    "pp" 'counsel-projectile-switch-project
-   "pt" '(lambda () (interactive) (funcall project-test-func))
+   "pr" '(lambda () (interactive) (funcall run-project-func))
    "ps" 'counsel-projectile-ag
 
 
