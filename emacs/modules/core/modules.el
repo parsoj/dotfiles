@@ -27,7 +27,7 @@
                       "Jump to Package: "
 		      (directory-files package-repos-dir)
                       nil t)))
-    (projectile-switch-project-by-name (concat package-repos-dir chosen-package-dir))
+    (counsel-find-file (concat package-repos-dir chosen-package-dir))
     )
 
 )
