@@ -31,3 +31,5 @@
 
 
 (setq eshell-prompt-function '+eshell-default-prompt)
+
+(setq eshell-prompt-regexp "^[^λ]+ λ ") 
