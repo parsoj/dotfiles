@@ -96,7 +96,7 @@
 
    "ag" 'magit-status
 
-   "'" '+pop-to-eshell
+   "'" '+eshell-pop-window
 
    "ee" 'eval-last-sexp
    "eb" 'eval-buffer

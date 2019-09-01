@@ -1,9 +1,10 @@
 
 
-(with-eval-after-load '+env
-  (setenv "GOPATH" (concat (getenv "HOME") "/.go/") )  
-  (add-to-exec-path (concat (getenv "GOPATH") "bin"))
-)
+(setenv "GOPATH" (concat (getenv "HOME") "/.go/") )  
+
+(add-to-list 'exec-path  (concat (getenv "GOPATH") "bin/"))
+
+
 
 (with-eval-after-load '+projectile
 
@@ -61,3 +62,6 @@
   :hook (go-mode . gorepl-mode)
   
  )
+
+(use-package go-rename
+  )

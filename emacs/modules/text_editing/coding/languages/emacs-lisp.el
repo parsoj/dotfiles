@@ -19,6 +19,11 @@
   (setq eldoc-documentation-function (lambda () (documentation (symbol-at-point))))
 )
 
+(defun init-eldoc-box ()
+  (progn
+    (eldoc-box-hover-mode)
+    (eldoc-box-hover-at-point-mode  )))
+
 (use-package eldoc-box 
-  :hook (emacs-lisp-mode . eldoc-box-hover-mode)
+  :hook (emacs-lisp-mode . init-eldoc-box)
 )

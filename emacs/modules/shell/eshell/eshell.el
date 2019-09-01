@@ -26,11 +26,11 @@
       (eshell-send-input nil t))))
 
 
-(defun +pop-to-eshell (&optional command)
+(defun +eshell-pop-window (&optional command)
   (interactive)
   (let ((eshell-buffer (get-buffer-create "*eshell-popup*")))
     (pop-to-buffer eshell-buffer)
-    (eshell)
+    (eshell-mode)
     (if command
 	(+eshell-run-command command))))
      

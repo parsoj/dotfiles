@@ -9,6 +9,7 @@
    :keymaps 'company-active-map
    "TAB" 'company-complete-selection
    "<tab>" 'company-complete-selection
+   "RET" 'company-complete-selection
    )
 ) 
 

@@ -24,6 +24,7 @@ If it is an absolute path return `+org-capture-todo-file' verbatim."
 (setq org-inbox-file (concat org-root "inbox/inbox.org"))
 
 
+;;NOTE: we can just use the normal 'org-capture' func with the 'keys' param to pre-select a capture template
 (defun org-capture-pop-frame (&optional initial-input key) 
   (interactive) 
   (let (org-default-notes-file
