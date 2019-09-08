@@ -29,6 +29,7 @@ If it is an absolute path return `+org-capture-todo-file' verbatim."
   (interactive) 
   (with-selected-frame (make-frame +org-capture-frame-parameters)
     (org-capture nil "i")
+    (evil-insert-state)
     (delete-other-windows)
     )) 
     
