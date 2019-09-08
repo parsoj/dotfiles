@@ -27,13 +27,11 @@ If it is an absolute path return `+org-capture-todo-file' verbatim."
 ;;NOTE: we can just use the normal 'org-capture' func with the 'keys' param to pre-select a capture template
 (defun org-capture-pop-frame (&optional initial-input key) 
   (interactive) 
-  (let (org-default-notes-file
-	(org-capture-inital "foo") 
-	(org-capture-entry (org-capture-select-template "i"))) 
-    (with-selected-frame (make-frame +org-capture-frame-parameters) 
-      (cl-letf (((symbol-function #'pop-to-buffer) (symbol-function #'switch-to-buffer))) 
-	(org-capture)))))
-
+  (with-selected-frame (make-frame +org-capture-frame-parameters)
+    (org-capture nil "i")
+    (delete-other-windows)
+    )) 
+    
 (add-hook 'org-capture-after-finalize-hook 'org-capture-cleanup-frame)
 
 (defun org-capture-cleanup-frame ()
