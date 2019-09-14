@@ -15,6 +15,7 @@
   )
 
 (use-package hydra-posframe
+  :disabled
   :straight (hydra-posframe :host github :repo "Ladicle/hydra-posframe")
   :after (hydra posframe)
   :hook (after-init . hydra-posframe-enable)

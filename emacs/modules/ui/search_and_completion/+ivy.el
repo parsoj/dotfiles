@@ -8,6 +8,7 @@
   :config (ivy-mode 1))
 
 (use-package ivy-posframe 
+  :disabled
   :after ivy 
   :config (setq ivy-fixed-height-minibuffer nil
 		ivy-posframe-border-width 2
@@ -26,6 +27,7 @@
   (ivy-posframe-mode 1))
 
 (use-package ivy-rich 
+  :disabled
   :after ivy posframe ivy-posframe
   :custom (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   :config (defun ivy-rich-switch-buffer-icon (candidate) 
