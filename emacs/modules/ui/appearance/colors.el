@@ -1,4 +1,16 @@
 (use-package doom-themes
+
+
+  :init
+  ; setting reccomended from the doom-themes READE to prevent org-mode headline scaling from bleeding into the line numbers
+(let ((height (face-attribute 'default :height)))
+  ;; for all linum/nlinum users
+  (set-face-attribute 'linum nil :height height)
+  ;; only for `linum-relative' users:
+  (set-face-attribute 'linum-relative-current-face nil :height height)
+  ;; only for `nlinum-relative' users:
+  (set-face-attribute 'nlinum-relative-current-face nil :height height))
+  
 :config
 
 ;; Global settings (defaults)
@@ -35,3 +47,6 @@
   (solaire-mode-swap-bg) 
 
   )
+
+
+
