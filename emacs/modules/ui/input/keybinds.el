@@ -43,6 +43,9 @@
 			)
 
 
+  (defvar hydra-org-actions--title (s-concat (all-the-icons-faicon "sliders" :v-adjust .05) " Org-Mode Actions" ))
+
+
   (general-define-key
    "M-w" 'delete-frame
    )
@@ -97,6 +100,8 @@
    "ag" 'magit-status
 
    "'" '+eshell-pop-window
+
+   "o" 'hydra-org-actions/body
 
    "ee" 'eval-last-sexp
    "eb" 'eval-buffer
