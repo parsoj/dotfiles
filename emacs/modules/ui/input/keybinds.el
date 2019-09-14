@@ -74,7 +74,7 @@
    "wx"   'ace-swap-window
    "wu" 'winner-undo
    "wr" 'winner-redo
-   "wm" 'maximize-window
+   "wm" 'delete-other-windows
    "ws" 'split-window-vertically
    "wv" 'split-window-horizontally
    "wh" 'evil-window-left
