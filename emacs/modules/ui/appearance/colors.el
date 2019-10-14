@@ -1,5 +1,6 @@
 (use-package doom-themes
-
+	
+  :after all-the-icons
 
   :init
   ; setting reccomended from the doom-themes READE to prevent org-mode headline scaling from bleeding into the line numbers
