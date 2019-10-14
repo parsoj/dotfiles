@@ -4,7 +4,6 @@
   :hook ((emcas-lisp-mode . elisp-slime-nav-mode) ))
 
 (use-package elisp-format
-  :hook 
   )
 
 (use-package 
