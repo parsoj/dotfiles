@@ -2,6 +2,7 @@
 ################################################################################
 # Homebrew
 
+export HOMEBREW_NO_ANALYTICS=1
 export PATH="/usr/local/opt/bin:$PATH"
 
 ################################################################################
@@ -27,3 +28,10 @@ export GOROOT="$(brew --prefix golang)/libexec"
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
+################################################################################
+# required when compiling emacs
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
+export LIBXML2_CFLAGS=`xml2-config --cflags`
+export LIBXML2_LIBS=`xml2-config --libs`
+
+export PATH=$PATH:/usr/local/Cellar/gnutls/3.6.10/bin/

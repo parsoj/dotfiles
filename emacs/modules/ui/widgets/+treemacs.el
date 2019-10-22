@@ -12,7 +12,7 @@
   (add-hook 'treemacs-mode-hook (lambda ()
                                   (linum-mode -1)
                                   (fringe-mode 0)
-                                  (setq buffer-face-mode-face `(:background "#211C1C"))
+                                  ;;(setq buffer-face-mode-face `(:background "#211C1C"))
                                   (buffer-face-mode 1)))
   )
 
