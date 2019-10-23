@@ -24,6 +24,7 @@
                          (("M" create-new-module "new module")
                           ("m" jump-to-module "module")
                           ("s" jump-to-scratch-file "scratch file")
+                          ("S" create-new-scratch-file "new scratch file")
                           ("i" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" )
                           ;;("j" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" ) ;;just adding a duplicate head since hydra-posframe is comming out too small
 			  )

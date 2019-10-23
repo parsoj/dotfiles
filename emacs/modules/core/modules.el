@@ -58,3 +58,8 @@
     ;; TODO create new file there and open it
     )
 )
+
+(defun create-new-scratch-file ()
+  (interactive)
+    (counsel-file-jump nil scratch-root)
+)
