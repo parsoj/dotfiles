@@ -1,4 +1,16 @@
 
+
+(defun jump-to-scratch-file ()
+  (interactive)
+  (let ((module-path (completing-read
+                      "Jump To Module: "
+                      (get-scratch-list)
+                      nil t)))
+    (find-file module-path)
+    )
+
+  )
+
 (defun jump-to-module ()
   (interactive)
   (let ((module-path (completing-read

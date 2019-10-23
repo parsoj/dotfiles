@@ -23,9 +23,9 @@
 			 "Emacs Config"
                          (("M" create-new-module "new module")
                           ("m" jump-to-module "module")
-                          ("d" jump-to-doom-module "doom-module")
+                          ("s" jump-to-scratch-file "scratch file")
                           ("i" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" )
-                          ("j" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" ) ;;just adding a duplicate head since hydra-posframe is comming out too small
+                          ;;("j" (lambda() (interactive) (find-file (concat config-root "init.el") )) "init.el" ) ;;just adding a duplicate head since hydra-posframe is comming out too small
 			  )
 			 "Package Dependencies"
 			 (("l" (lambda() (interactive) (find-file "~/.emacs.d/straight/versions/default.el") ) "packages lockfile")
@@ -36,9 +36,9 @@
 			 (("y" (lambda() (interactive) (find-file "~/.yabairc")) "yabairc")
 			  ("Y" (lambda() (interactive) (find-file "~/Dropbox/Code/docs/yabai.asciidoc" )) "yabai docs"))
 
-			"SKHD"
-			 (("s" (lambda() (interactive) (find-file "~/.skhdrc")) "skhdrc")
-			  ("S" (lambda() (interactive) (find-file "~/Dropbox/Code/docs/yabai.asciidoc")) "skhd docs"))
+			"OSX Keybinds"
+			 (("k" (lambda() (interactive) (find-file "~/.skhdrc")) "skhdrc")
+			  ("K" (lambda() (interactive) (find-file "~/Dropbox/Code/docs/yabai.asciidoc")) "skhd docs"))
 			 )
 			)
 

@@ -34,6 +34,11 @@
 
 (setq config-root "~/configuration/emacs/")
 (setq modules-root (concat config-root "modules/") )
+(setq scratch-root (concat config-root "scratch/") ) 
+
+
+(defun get-scratch-list ()
+  (directory-files-recursively scratch-root "\\.el$"))
 
 (defun get-modules-list ()
   (directory-files-recursively modules-root "\\.el$"))
