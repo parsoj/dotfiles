@@ -35,3 +35,8 @@ export LIBXML2_CFLAGS=`xml2-config --cflags`
 export LIBXML2_LIBS=`xml2-config --libs`
 
 export PATH=$PATH:/usr/local/Cellar/gnutls/3.6.10/bin/
+
+################################################################################
+# Calibre Config
+
+export CALIBRE_CONFIG_DIRECTORY="~/Dropbox/AppData/Calibre/Config"
