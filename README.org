@@ -14,5 +14,6 @@ My personal laptop configurations.
   checked into source control and easily be ported to other machines
 
 ** Emacs
-- I'm currently living out of [[https://github.com/hlissner/doom-emacs][Doom Emacs]] - will look into setting up a full Emacs
+- A custom emacs config built around [[https://github.com/raxod502/straight.el][straight.el]] 
+I will look into setting up a full Emacs
 "Literate Configuration" one day....
