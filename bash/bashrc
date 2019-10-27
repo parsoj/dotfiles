@@ -29,6 +29,14 @@ export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 ################################################################################
+# ruby
+
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/ruby/lib"
+#export CPPFLAGS="-I/usr/local/opt/ruby/include"
+#export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+
+################################################################################
 # required when compiling emacs
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export LIBXML2_CFLAGS=`xml2-config --cflags`
