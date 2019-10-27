@@ -95,7 +95,7 @@
    "pf" 'counsel-projectile-find-file
    "pp" 'counsel-projectile-switch-project
    "pr" '(lambda () (interactive) (funcall run-project-func))
-   "ps" 'counsel-projectile-ag
+   "ps" 'counsel-projectile-rg
 
 
    "ag" 'magit-status
@@ -114,7 +114,7 @@
    [remap evil-force-normal-state] 'keyboard-quit
   )
 
-)
+) 
 
 
 (provide '+keybinds)
