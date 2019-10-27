@@ -1,5 +1,12 @@
-#!/bin/bash
+#!/usr/local/opt/ruby/bin/ruby
 
-yabai -m space --create
-yabai -m space --focus last
+require 'json'
+
+`yabai -m space --create`
+
+last_space_index = JSON.parse(`yabai -m query --spaces --display`).length
+
+`yabai -m space --focus #{last_space_index}`
+
+
 

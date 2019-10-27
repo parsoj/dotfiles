@@ -1,25 +1,16 @@
-#!/bin/bash
+#!/usr/local/opt/ruby/bin/ruby
+
+require 'json'
 
 # query current focused desktop
-current_desktop_id=$(yabai -m query --spaces id)
+windows_on_desktop = JSON.parse(`yabai -m query --windows --space`) 
 
-# clean up all windows on desktop
-window_query=$(chunkc tiling::query --windows-for-desktop $current_desktop_id | sed 's/ //g')
-IFS=','
-while read -r window_id window_title window_subtitle
-do
-    if [ $window_title == "Emacs" ]
-    then
-      osascript $HOME/.config/osx/scripts/Emacs/close_emacs_window
-    else
-      chunkc tiling::window --focus $window_id
-      chunkc tiling::window --close
-    fi
-done <<< "$window_query"
+for win in windows_on_desktop
+  `yabai -m window #{win["id"]} --close`
+end
+
+`yabai -m space --focus prev`
+
+`yabai -m space recent --destroy`
 
 
-# destroy current desktop
-chunkc tiling::desktop --annihilate
-
-# move to prev desktop
-chunkc tiling:desktop --focus $prev_desktop_id
