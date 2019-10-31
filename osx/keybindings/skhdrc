@@ -37,7 +37,7 @@ cmd + ctrl - w : ~/configuration/osx/window-management/workspaces/destroy_worksp
 ################################################################################
 # application launching
 
-cmd + shift - e : /Applications/Emacs.app/Contents/MacOS/Emacs
+cmd + shift - e : /Applications/Emacs.app/Contents/MacOS/Emacs --name "main-frame"
 cmd - e : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait --create-frame --eval "(eshell-client-frame)" --frame-parameters='(quote (title . "emacs-client"))'
 
 #cmd - i : /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -e "(org-capture-pop-frame)"
