@@ -30,8 +30,8 @@ shift + cmd - l : chunkc tiling::window --warp east
 ################################################################################
 # Desktp control
 
-ctrl + alt + cmd - n : ~/configuration/osx/window-management/workspaces/create_workspace
-ctrl + alt + cmd - w : ~/configuration/osx/window-management/workspaces/destroy_workspace
+cmd + ctrl - n : ~/configuration/osx/window-management/workspaces/create_workspace
+cmd + ctrl - w : ~/configuration/osx/window-management/workspaces/destroy_workspace
 
 
 ################################################################################
