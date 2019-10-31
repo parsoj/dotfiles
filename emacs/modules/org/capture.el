@@ -31,6 +31,7 @@ If it is an absolute path return `+org-capture-todo-file' verbatim."
     (org-capture nil "i")
     (evil-insert-state)
     (delete-other-windows)
+    (x-focus-frame nil)
     )) 
     
 (add-hook 'org-capture-after-finalize-hook 'org-capture-cleanup-frame)
