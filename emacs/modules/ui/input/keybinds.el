@@ -105,6 +105,7 @@
    "o" 'hydra-org-actions/body
 
    "ee" 'eval-last-sexp
+   "ep" 'eval-print-last-sexp
    "eb" 'eval-buffer
    "eb" 'eval-region
    )
