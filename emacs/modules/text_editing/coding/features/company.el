@@ -4,7 +4,7 @@
   (setq company-idle-delay .2) 
   )
 
-(with-eval-after-load '+keybinds
+(with-eval-after-load '+bindings
   (general-define-key
    :keymaps 'company-active-map
    "TAB" 'company-complete-selection

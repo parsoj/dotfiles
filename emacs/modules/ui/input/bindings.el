@@ -67,3 +67,6 @@
    [remap evil-force-normal-state] 'keyboard-quit
   )
   )
+
+
+(provide '+bindings) 
