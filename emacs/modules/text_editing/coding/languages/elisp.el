@@ -1,7 +1,11 @@
 
 
 (use-package elisp-slime-nav 
-  :hook ((emcas-lisp-mode . elisp-slime-nav-mode) ))
+  :hook ((emcas-lisp-mode . elisp-slime-nav-mode) )
+
+  :config
+  (setq +nav-goto-def-func (lambda () (elisp-slime-nav-find-elisp-thing-at-point (symbol-name (symbol-at-point)))))  
+  )
 
 (use-package elisp-format
   )
