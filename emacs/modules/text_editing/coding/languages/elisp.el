@@ -5,6 +5,9 @@
 
   :config
   (setq +nav-goto-def-func (lambda () (elisp-slime-nav-find-elisp-thing-at-point (symbol-name (symbol-at-point)))))  
+  (setq +doc-at-point-func (lambda () (elisp-slime-nav-describe-elisp-thing-at-point (symbol-name (symbol-at-point)))))
+  
+
   )
 
 (use-package elisp-format
