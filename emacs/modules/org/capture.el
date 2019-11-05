@@ -4,7 +4,7 @@
 If it is an absolute path return `+org-capture-todo-file' verbatim."
   (expand-file-name +org-capture-todo-file org-root))
 
-(setq org-capture-templates '(("i" "Inbox entry" entry (file org-inbox-file) "* INBOX %?\n%i\n" 
+(setq org-capture-templates '(("i" "Inbox entry" entry (file org-inbox-file) "* %?\n%i\n" 
 			       :prepend t 
 			       :kill-buffer t)
 			      ("p" "protocol quick-capture" entry (file org-inbox-file) "* INBOX %a" 
