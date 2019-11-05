@@ -8,7 +8,7 @@
 
 (setq org-refile-targets `(
 			   ,(mapcan
-			    (lambda (dir) (directory-files-recursively (concat org-root "/" dir) "\\.org$") )
-			    org-refile-dirs) 
+			     (lambda (dir) (directory-files-recursively (concat org-root "/" dir) "\\.org$"))
+			     org-refile-dirs) 
 			   (:maxlevel . 3)))
 
