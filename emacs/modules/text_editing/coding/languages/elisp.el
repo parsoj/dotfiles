@@ -24,6 +24,7 @@
     (emacs-lisp-mode . rainbow-delimiters-mode) 
     (emacs-lisp-mode . highlight-symbol-mode) 
     (emacs-lisp-mode . flycheck-mode)
+    (emacs-lisp-mode . hasklig-mode)
     (emacs-lisp . lispy-mode)
     (ielm-mode . company-mode))
 
