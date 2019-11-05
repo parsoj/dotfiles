@@ -8,9 +8,11 @@
    )
 
 
-   
+  ;; TODO - this should be split into keymaps - that are referenced by major mode bindings  declared in other areas
+  ;; eg - keymaps for org-mode should be controlled completely by the org config code, and that code should reference
+  ;; more general keymaps like the stuff here
   (general-define-key
-   :states '(normal visual emacs movement treemacs)
+   :states '(normal visual emacs movement treemacs org)
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "c" 'hydra-config-actions/body
@@ -18,16 +20,16 @@
    "ff" 'find-file
    "fs" 'save-buffer
 
-   "hf" 'counsel-describe-function
-   "hv" 'counsel-describe-variable
-   "hk" 'describe-key
+;;   "hf" 'counsel-describe-function
+;;   "hv" 'counsel-describe-variable
+;;   "hk" 'describe-key
 
    "tl" 'toggle-truncate-lines
    "tn" 'display-line-numbers-mode
    "tt" 'treemacs
 
-   "wd"   'delete-window
-   "wx"   'ace-swap-window
+   "wd" 'delete-window
+   "wx" 'ace-swap-window
    "wu" 'winner-undo
    "wr" 'winner-redo
    "wm" 'delete-other-windows
@@ -43,6 +45,7 @@
    "bb" 'counsel-switch-buffer
    "bp" 'previous-buffer
    "bn" 'next-buffer
+   "bs" '(lambda () (interactive) (switch-to-buffer "*scratch*"))
 
    "pf" 'counsel-projectile-find-file
    "pp" 'counsel-projectile-switch-project
