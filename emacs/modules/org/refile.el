@@ -4,11 +4,11 @@
 
 
 (setq org-root "~/org") 
-(setq org-refile-dirs '("projects" "on_hold" "reference"))
+(setq org-refile-dirs '("projects" "on_hold" "reference" "goals_and_aspirations"))
 
 (setq org-refile-targets `(
-			   ,(mapcan
+			   (,(mapcan
 			     (lambda (dir) (directory-files-recursively (concat org-root "/" dir) "\\.org$"))
-			     org-refile-dirs) 
-			   (:maxlevel . 3)))
+			     org-refile-dirs) .
+			   (:maxlevel . 3))))
 
