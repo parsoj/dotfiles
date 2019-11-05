@@ -35,7 +35,7 @@
 
 (defun jump-to-package ()
   (interactive)
-  (let* ((package-repos-dir "~/.emacs.d/straight/repos/")
+  (let* ((package-repos-dir "~/.config/emacs/straight/repos/")
 	 (chosen-package-dir (completing-read
                       "Jump to Package: "
 		      (directory-files package-repos-dir)
