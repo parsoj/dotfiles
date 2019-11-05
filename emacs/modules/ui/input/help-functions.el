@@ -27,6 +27,14 @@
    :non-normal-prefix "M-SPC"
    "h" 'hydra-help-actions/body
    )
+
+
+  (add-to-list 'display-buffer-alist
+	     `("*Help*"
+	       ,(lambda (buffer alist) (display-buffer-in-direction buffer (cons '(direction . right) alist)))
+	       (window-width . 0.33)
+	       ))
+
 )
 
 )
