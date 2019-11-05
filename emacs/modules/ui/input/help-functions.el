@@ -16,6 +16,7 @@
                           ("f" describe-function "function") ;; TODO move to function-at-point at some point
                           ("v" describe-variable "variable")
                           ("m" describe-mode "mode")
+                          ("k" describe-key "key")
 			  )
 			)
 			)
