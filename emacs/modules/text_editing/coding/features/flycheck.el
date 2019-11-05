@@ -4,11 +4,21 @@
 (setq flycheck-idle-change-delay 4) 
   )
 
-;(use-package flycheck-posframe
-;  :after flycheck
-;  :hook (flycheck-mode . flycheck-posframe-mode)
-;  :config
-;  (flycheck-posframe-configure-pretty-defaults) 
-;  )
+(use-package flycheck-posframe
+  :after flycheck
 
+; FIXME the flycheck posframe popup is stealing focus from the main editor frame
+;  :hook (flycheck-mode . flycheck-posframe-mode)
+
+  :config
+  (flycheck-posframe-configure-pretty-defaults)  
+  )
+
+
+
+
+
+
+ 
 (provide '+flycheck)
+
