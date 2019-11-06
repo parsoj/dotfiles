@@ -3,17 +3,40 @@
 (setq org-todo-keyword-faces `(
                                ("PROJECT" . ,(doom-color 'violet))
                                ("TODO" . ,(doom-color 'yellow))
-                               ("NEXT" . ,(doom-color 'red))
-                               ("INBOX" . ,(doom-color 'yellow))
-                               ("LATER" . ,(doom-color 'teal))
                                ("DONE" . ,(doom-color 'grey))
                                ("CANCELLED" . ,(doom-color 'grey))
-                               ("GOAL" . ,(doom-color 'green))
                                )
 
       org-todo-keywords '(
-                          (sequence "TODO(t)" "INBOX(i)" "NEXT(n)" "IN-PROGRESS(p)" "LATER(l)" "WAITING(w)" "BLOCKED(b)" "|" "CANCELLED(c)" "DONE(d!)" )
+                          (sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
                           (sequence "PROJECT(p)" "|" "PROJECT-COMPLETED(P)")
                           ))
 
+
 )
+
+
+
+(setq org-root "~/org")
+(setq org-project-dirs '("projects"))
+
+(defun refresh-org-agenda-files ()
+ (interactive) 
+ (setq org-agenda-files
+       (mapcan (lambda (dir)
+		 (directory-files-recursively
+		  (concat org-root "/" dir)
+		  "\\.org$")) org-project-dirs)))
+ 
+
+
+(refresh-org-agenda-files)
+
+
+(setq org-actionable-keywords '("TODO"))
+
+(custom-set-variables '(org-stuck-projects
+		      '("/+PROJECT" ("TODO") nil "")))
+
+
+ (provide '+org-core)
