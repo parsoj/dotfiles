@@ -54,6 +54,7 @@
 
 
    "ag" 'magit-status
+   "aa" 'org-agenda
 
    "'" '+eshell-pop-window
 
