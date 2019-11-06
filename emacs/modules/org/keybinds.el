@@ -6,18 +6,25 @@
       :enable (motion))
 
     (evil-set-initial-state 'org-mode 'org)
-    (define-key evil-org-state-map (kbd "k") #'evil-previous-line) 
-    (define-key evil-org-state-map (kbd "j") #'evil-next-line) 
-    (define-key evil-org-state-map (kbd "l") #'evil-forward-char) 
-    (define-key evil-org-state-map (kbd "h") #'evil-backward-char)
 
-    (define-key evil-org-state-map (kbd "r") #'org-refile)
-    (define-key evil-org-state-map (kbd "i") #'evil-insert)
+    (general-define-key
+     :states 'org
+     "k" 'outline-backward-same-level
+     "j" 'outline-forward-same-level
+     "l" #'(lambda () (interactive) (progn
+				 (outline-show-children)
+				 (outline-show-entry)
+				 (outline-next-heading)))
+    "h" 'outline-up-heading
+    "r" 'org-refile
+    "i" 'evil-insert
 
-    (define-key evil-org-state-map (kbd "t") #'org-todo)
+    "t" 'org-todo
 
-    (define-key evil-org-state-map (kbd "d") #'evil-delete-line)
-
-
+    "d" 'org-cut-subtree
+    "p" 'org-paste-subtree
+    "u" 'undo
      )
+
     )
+)
