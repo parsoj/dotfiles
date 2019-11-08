@@ -34,7 +34,7 @@
     `(eval-after-load (quote ,(car features))
        (quote (with-eval-after-packages ,(cdr features) ,@body)))))
 
-
+(setq home-dir "/Users/jeffparsons")   
 (setq config-root "~/configuration/emacs/")
 (setq modules-root (concat config-root "modules/") )
 (setq scratch-root (concat config-root "scratch/") ) 
