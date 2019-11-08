@@ -4,6 +4,7 @@
 (setq make-backup-files nil
       create-lockfiles nil)
 (setq scroll-bar-mode -1)
+(menu-bar-showhide-tool-bar-menu-customize-disable) 
 
 ;;--------------------------------------------------------------------------------
 ;; straight.el Boostrap block
