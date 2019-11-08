@@ -45,7 +45,7 @@
    "bb" 'counsel-switch-buffer
    "bp" 'previous-buffer
    "bn" 'next-buffer
-   "bs" '(lambda () (interactive) (switch-to-buffer "*scratch*"))
+   "bs" '(lambda () (interactive) (pop-to-buffer "*scratch*"))
 
    "pf" 'counsel-projectile-find-file
    "pp" 'counsel-projectile-switch-project
