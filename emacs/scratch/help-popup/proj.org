@@ -1,0 +1,12 @@
+#+TITLE: help popup functionality
+
+
+* Next up
+** TODO check out eldoc-box - see if you can get it to locate in window upper-right (like posframe allows)
+
+   
+
+* Notes
+** function signature
+   - use 'elisp-get-fnsym-args-string' to get the function sig string
+   - use the face 'eldoc-highlight-function-argument' to add color to the string
