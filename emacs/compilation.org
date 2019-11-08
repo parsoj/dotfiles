@@ -15,6 +15,11 @@
     open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
     #+END_SRC
 
+** note: might need to adjust CPATH to point to mac sdks (catalina no longer uses usr/local)
+** fix texinfo/makeinfo stuff
+ brew install texinfo
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
+
 ** Install libxml2
    #+BEGIN_SRC bash
    brew install libxml2
