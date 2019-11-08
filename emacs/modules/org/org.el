@@ -8,7 +8,7 @@
                                )
 
       org-todo-keywords '(
-                          (sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
+                          (sequence "TODO(t)" "BLOCKED(b)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
                           (sequence "PROJECT(p)" "|" "PROJECT-COMPLETED(P)")
                           ))
 
@@ -20,17 +20,6 @@
 (setq org-root "~/org")
 (setq org-project-dirs '("projects"))
 
-(defun refresh-org-agenda-files ()
- (interactive) 
- (setq org-agenda-files
-       (mapcan (lambda (dir)
-		 (directory-files-recursively
-		  (concat org-root "/" dir)
-		  "\\.org$")) org-project-dirs)))
- 
-
-
-(refresh-org-agenda-files)
 
 
 (setq org-actionable-keywords '("TODO"))
