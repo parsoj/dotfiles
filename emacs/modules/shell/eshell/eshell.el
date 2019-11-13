@@ -40,3 +40,16 @@
 	       (display-buffer-at-bottom)
 	       (window-height . 20)
 	       ))
+
+
+
+
+(with-eval-after-load 'general
+
+  (general-define-key
+   :states '(normal movement)
+   :prefix ","
+   "h" 'counsel-esh-history
+   )
+
+  )
