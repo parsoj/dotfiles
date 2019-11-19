@@ -1,6 +1,7 @@
 ;;; +ivy.el --- description -*- lexical-binding: t; -*-
 
 (use-package ivy 
+  ;;FIXME remove timing hacks
   :defer 0.1 
   :init (setq ivy-use-virtual-buffers t) 
   (setq ivy-initial-inputs-alist nil) 

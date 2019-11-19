@@ -17,6 +17,7 @@
   )
 
 
+;;FIXME install counsel explicitly with ivy
 (use-package counsel-projectile
   :after projectile
   :config
