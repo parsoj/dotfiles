@@ -30,4 +30,6 @@
     (ielm-mode . company-mode))
 
   )
+
+(setq +doc-at-point-func 'describe-function-in-popup)
   
