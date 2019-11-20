@@ -18,7 +18,7 @@
 
 
 (setq org-root "~/org")
-(setq org-project-dirs '("projects"))
+(setq org-projects-root (concat org-root "/projects"))
 
 
 
@@ -28,4 +28,4 @@
 		      '("/+PROJECT" ("TODO") nil "")))
 
 
- (provide '+org-core)
+(provide '+org-core)

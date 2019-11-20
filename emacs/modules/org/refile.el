@@ -4,7 +4,7 @@
   (setq org-refile-use-outline-path 'file org-outline-path-complete-in-steps nil)
 
 
-  (setq org-refile-dirs '("projects" "on_hold" "reference" "goals_and_aspirations"))
+  (setq org-refile-dirs '("projects" "reference" "goals_and_aspirations"))
 
 
   (defun refresh-org-refile-targets () 
