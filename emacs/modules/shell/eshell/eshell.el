@@ -26,24 +26,46 @@
       (eshell-send-input nil t))))
 
 
-(defun +eshell-pop-window (&optional command)
+(defun +eshell-pop-window (&optional command bufname)
   (interactive)
-  (let ((eshell-buffer (get-buffer-create "*eshell-popup*")))
+  (let ((eshell-buffer (+eshell-get-create-buffer bufname)))
     (pop-to-buffer eshell-buffer)
-    (eshell-mode)
     (if command
-	(+eshell-run-command command))))
+	(+eshell-run-command command))
+    (+eshell-goto-next-prompt-insert)
+    )
+  )
+
      
 
 (add-to-list 'display-buffer-alist
-	     `("*eshell-popup*"
+	     `("*eshell*"
 	       (display-buffer-at-bottom)
 	       (window-height . 20)
 	       ))
 
 
+(defun +eshell-goto-next-prompt-insert ()
+  (progn
+    (evil-collection-eshell-next-prompt)
+    (evil-append 0)
+  )
+  )
+
+(defun +eshell-get-create-buffer (&optional bufname)
+  (let* ((bufname (if bufname bufname "*eshell*"))
+	 (buf (get-buffer-create bufname)))
+    (with-current-buffer buf 
+    (unless (equal major-mode 'eshell-mode)
+      (erase-buffer)
+      (eshell-mode)
+	    )
+
+    buf
+    )))
 
 
+(with-eval-after-load '+evil
 (with-eval-after-load 'general
 
   (general-define-key
@@ -52,4 +74,8 @@
    "h" 'counsel-esh-history
    )
 
+  (evil-collection-eshell-setup)
+  (evil-collection-eshell-next-prompt-on-insert)
+
   )
+)
