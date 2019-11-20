@@ -63,7 +63,7 @@
    "ee" 'eval-last-sexp
    "ep" 'eval-print-last-sexp
    "eb" 'eval-buffer
-   "eb" 'eval-region
+   "er" 'eval-region
    )
 
   ;;we want the ESC key to be able to quit/escape out of *anything*
