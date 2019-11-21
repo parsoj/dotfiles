@@ -36,9 +36,16 @@ ctrl + alt + cmd - w : ~/configuration/osx/window-management/workspaces/destroy_
 
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis
-ctrl + alt + cmd - y : yabai -m space --rotate y-axis
+ctrl + alt + cmd - y : yabai -m space --mirror y-axis
 
-ctrl + alt + cmd - + : yabai -m space --balance
+
+ctrl + alt + cmd - k : yabai -m window --focus north
+ctrl + alt + cmd - j : yabai -m window --focus south
+ctrl + alt + cmd - h : yabai -m window --focus west
+ctrl + alt + cmd - l : yabai -m window --focus east
+ctrl + alt + cmd - m : yabai -m window --focus next
+
+#ctrl + alt + cmd - + : yabai -m space --balance
 ctrl + alt + cmd - g : yabai -m space --toggle gap
 
 ################################################################################
