@@ -29,6 +29,7 @@
    "tt" 'treemacs
 
    "wd" 'delete-window
+   "ww"  'ace-window
    "wx" 'ace-swap-window
    "wu" 'winner-undo
    "wr" 'winner-redo
@@ -52,6 +53,8 @@
    "pr" '(lambda () (interactive) (funcall run-project-func))
    "ps" 'counsel-projectile-rg
 
+   "rt" '(lambda () (interactive) (funcall run-test-func))
+
 
    "ag" 'magit-status
    "aa" 'org-agenda
@@ -64,6 +67,7 @@
    "ep" 'eval-print-last-sexp
    "eb" 'eval-buffer
    "er" 'eval-region
+   "ed" 'eval-defun
    )
 
   ;;we want the ESC key to be able to quit/escape out of *anything*
