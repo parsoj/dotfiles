@@ -58,7 +58,7 @@
 
 
 
-(if (get-buffer help-buffer-name) 
-    (kill-buffer help-buffer-name )  )
-
-(describe-function-doesnt-suck 'posframe-show)
+;;(if (get-buffer help-buffer-name) 
+;;    (kill-buffer help-buffer-name )  )
+;;
+;;(describe-function-doesnt-suck 'posframe-show)

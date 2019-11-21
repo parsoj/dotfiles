@@ -1,7 +1,7 @@
 (use-package company
 
   :init
-  (setq company-idle-delay .2) 
+  (setq company-idle-delay .6)   
   )
 
 (with-eval-after-load '+bindings
