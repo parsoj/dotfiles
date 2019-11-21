@@ -30,11 +30,11 @@
    )
 
 
-  (add-to-list 'display-buffer-alist
-	     `("*Help*"
-	       ,(lambda (buffer alist) (display-buffer-in-direction buffer (cons '(direction . right) alist)))
-	       (window-width . 0.33)
-	       ))
+;;  (add-to-list 'display-buffer-alist
+;;	     `("*Help*"
+;;	       ,(lambda (buffer alist) (display-buffer-in-direction buffer (cons '(direction . right) alist)))
+;;	       (window-width . 0.33)
+;;	       ))
 
 )
 
