@@ -18,12 +18,13 @@
 (general-add-hook 
  'emacs-lisp-mode-hook
  (list
-  #'lispy-mode
   #'company-mode
   #'lisp-butt-mode
   #'rainbow-delimiters-mode
   #'highlight-quoted-mode
   #'hasklig-mode
+  #'evil-cleverparens-mode
+  #'smartparens-mode
   ))
 )
    
