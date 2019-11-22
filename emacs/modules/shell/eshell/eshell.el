@@ -36,6 +36,16 @@
     )
   )
 
+(defun +eshell-switch-to-window (&optional command bufname)
+  (interactive)
+  (let ((eshell-buffer (+eshell-get-create-buffer bufname)))
+    (switch-to-buffer eshell-buffer)
+    (if command
+	(+eshell-run-command command))
+    (+eshell-goto-next-prompt-insert)
+    )
+  )
+
      
 
 (add-to-list 'display-buffer-alist

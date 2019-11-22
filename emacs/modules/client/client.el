@@ -3,8 +3,7 @@
   (let ((default-directory home-dir))
     (progn
       (x-focus-frame nil)
-      (eshell)
-      (evil-append 0) 
+      (+eshell-switch-to-window) 
       )
     )  
   ) 
