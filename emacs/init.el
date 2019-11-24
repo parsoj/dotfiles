@@ -29,6 +29,8 @@
 ;;allow use package to talk to OS package managers, to specify deps on OS bins
 (use-package use-package-ensure-system-package)
 
+(use-package dash)
+
 (defmacro with-eval-after-packages (features &rest body)
   (if (null features)
     `(progn ,@body)
