@@ -10,5 +10,5 @@
 	     `("magit:"
 	       (display-buffer-in-side-window)
 	       (side . right)
-	       (window-width . 0.33)
+	       (window-width . 0.45)
 	       ))
