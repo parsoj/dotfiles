@@ -44,6 +44,7 @@
 		   :string description 
 		   :width 70 
 		   :height 30 
+		   :timeout 8
 		   :internal-border-width 1 
 		   :internal-border-color "grey"
 
