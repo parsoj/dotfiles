@@ -5,7 +5,9 @@
       :cursor 'evil-normal-state-cursor 
       :enable (motion))
 
-    (evil-set-initial-state 'org-mode 'org)
+    ;; NOTE disabling this custom state for org mode for now
+    ;;(evil-set-initial-state 'org-mode 'org)
+    (evil-set-initial-state 'org-mode 'normal)  
 
     (general-define-key
      :states 'org
