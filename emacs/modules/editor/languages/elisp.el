@@ -23,12 +23,12 @@
   #'rainbow-delimiters-mode
   #'highlight-quoted-mode
   #'hasklig-mode
+  #'aggressive-indent-mode
   #'evil-cleverparens-mode
-  #'smartparens-mode
+  #'smartparens-strict-mode
   ))
 )
    
-
 (setq +doc-at-point-func 'describe-function-in-popup)
 
 (provide '+elisp)
