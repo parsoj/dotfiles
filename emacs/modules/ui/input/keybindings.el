@@ -12,7 +12,7 @@
   ;; eg - keymaps for org-mode should be controlled completely by the org config code, and that code should reference
   ;; more general keymaps like the stuff here
   (general-define-key
-   :states '(normal visual emacs movement treemacs org)
+   :states '(normal visual emacs movement treemacs)
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    "c" 'hydra-config-actions/body
@@ -20,9 +20,9 @@
    "ff" 'find-file
    "fs" 'save-buffer
 
-;;   "hf" 'counsel-describe-function
-;;   "hv" 'counsel-describe-variable
-;;   "hk" 'describe-key
+   ;;   "hf" 'counsel-describe-function
+   ;;   "hv" 'counsel-describe-variable
+   ;;   "hk" 'describe-key
 
    "tl" 'toggle-truncate-lines
    "tn" 'display-line-numbers-mode
@@ -73,7 +73,7 @@
   ;;we want the ESC key to be able to quit/escape out of *anything*
   (general-define-key
    [remap evil-force-normal-state] 'keyboard-quit
-  )
+   )
   )
 
 
