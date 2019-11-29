@@ -7,7 +7,7 @@
   (setq org-refile-dirs '("projects" "reference" "goals_and_aspirations"))
 
 
-  (defun refresh-org-refile-targets () 
+  (defun +refresh-org-refile-targets () 
     (interactive) 
     (setq org-refile-targets `((,(mapcan (lambda (dir) 
 					   (directory-files-recursively
@@ -17,4 +17,4 @@
 				(:maxlevel . 3)))))
 
   (refresh-org-refile-targets)
-)
+  )
