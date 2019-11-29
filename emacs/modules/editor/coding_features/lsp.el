@@ -7,7 +7,6 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred)
   )
 
 (use-package lsp-ui
@@ -25,7 +24,7 @@
    lsp-ui-doc-alignment 'window
    lsp-ui-doc-use-childframe t
    ) 
-   
+  
 
   )
 
