@@ -9,6 +9,6 @@
 (add-to-list 'display-buffer-alist
 	     `("magit:"
 	       (display-buffer-in-side-window)
-	       (side . right)
+	       (side . bottom)
 	       (window-width . 0.45)
 	       ))

@@ -38,7 +38,6 @@ ctrl + alt + cmd - s: pmset sleepnow
 ctrl + alt + cmd - n : ~/configuration/osx/window-management/workspaces/create_workspace
 ctrl + alt + cmd - w : ~/configuration/osx/window-management/workspaces/destroy_workspace
 
-
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis
 ctrl + alt + cmd - y : yabai -m space --mirror y-axis
@@ -52,6 +51,11 @@ ctrl + alt + cmd - m : yabai -m window --focus next
 
 #ctrl + alt + cmd - + : yabai -m space --balance
 ctrl + alt + cmd - g : yabai -m space --toggle gap
+
+ctrl + alt + shift - h : yabai -m window --insert west
+ctrl + alt + shift - j : yabai -m window --insert south
+ctrl + alt + shift - k : yabai -m window --insert north
+ctrl + alt + shift - l : yabai -m window --insert east
 
 ################################################################################
 # Emacs 
@@ -69,10 +73,7 @@ ctrl + alt - i : /usr/local/opt/emacs-mac/bin/emacsclient -n -e "(org-capture-po
 ctrl + alt - b : /Applications/Firefox.app/Contents/MacOS/firefox --new-window
 
 ctrl + alt - r : open /Applications/Reeder.app
-ctrl + alt - m : open /Applications/Messages.app
-ctrl + alt - s : open /Applications/Slack.app
-ctrl + alt - d : open /Applications/Discord.app
-ctrl + alt - t : open /Applications/TIDAL.app
+ctrl + alt - m : open /Applications/Music.app
 
 ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
 ctrl + alt + cmd - k : pkill Emacs

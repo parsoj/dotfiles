@@ -25,7 +25,11 @@
 (setq org-actionable-keywords '("TODO"))
 
 (custom-set-variables '(org-stuck-projects
-		      '("/+PROJECT" ("TODO") nil "")))
+			'("/+PROJECT" ("TODO") nil "")))
 
+(defun +org-set-price ()
+  (interactive)
+  (org-set-property "PRICE" (read-string "Price: "))
+  )
 
 (provide '+org-core)

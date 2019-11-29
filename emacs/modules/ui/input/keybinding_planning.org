@@ -1,0 +1,6 @@
+#+TITLE: Needs/Plans for more efficient Keybindings
+
+
+* Window Nav/Manipulation State/Hydra
+  
+* Multiple Cursors State/Hydra

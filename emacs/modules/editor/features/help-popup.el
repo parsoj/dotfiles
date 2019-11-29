@@ -49,13 +49,12 @@
 		   :internal-border-color "grey"
 
 		   :poshandler (lambda (info)
-				 (prin1 info)
 				 (let* ((window-left (+ -10 (plist-get info :parent-window-left)))
-					(window-top (+ 10 (plist-get info :parent-window-top)))
+					(window-bottom (+ 10 (plist-get info :parent-window-bottom)))
 					(window-width (plist-get info :parent-window-width)) 
 					(posframe-width (plist-get info :posframe-width))) 
 				   (cons (+ window-left window-width (- 0 posframe-width))
-					 window-top))))))
+					 window-bottom))))))
 
 
 

@@ -1,0 +1,21 @@
+#+TITLE: Org Buildout tasks
+
+
+* TODO Pull in project stuff here
+
+
+* Cost Properties
+** TODO func to set price on a heading
+** TODO func to roll-up prices of sub-headings   
+
+   
+* Dependencies
+** TODO func to block this task on another
+** TODO func to block another task on this 
+
+   
+
+* Agenda
+  
+* Browser Quick-Capture
+   

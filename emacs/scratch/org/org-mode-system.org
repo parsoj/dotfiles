@@ -1,0 +1,63 @@
+#+TITLE: Notes on Org Mode System
+
+* Properties to attach to tasks
+  - Cost (monetary)
+  - EffORT
+  - BLOCKERS
+  - TRIGGERS
+
+    
+
+* Use Cases
+  
+** deps
+*** block this task on another task (completing read for the other task)
+*** block another task on this task (completing read)
+   
+    
+** agenda
+*** next up
+**** Filter out
+***** blocked tasks
+***** tasks which you are unable to work on based on context
+***** 
+**** other concerns
+     - priority/due-date
+       - we want to not spend too much time on lower priority items
+**** want to make sure higher-priority items are moving forward consistently
+**** want to not spend too much time on lower priority items ( but don't hide them completely - they are still actionable)
+
+   
+*** Thoughts
+    - should we limit lower-pri projects to only showing a certain number a day? 
+    - should all projects have display limits? 
+    - should there be an overall display limit?
+      
+    - should we "weight" or "value" different tasks or projects, and show only the highest-priority stuff? 
+      
+**** what should go into deciding the ranking of something?
+     - there is a big wait period comming up 
+       - get the "waiting" started sooner, so can focus on other things while that is moving on its own
+***** eisenhower matrix
+     - urgency (due date)
+     - importance (alignment with your values)
+*****  value vs cost matrix
+      - similar to eisenhower matrix -
+	
+***** ICE Scoring
+      
+***** RICE Scoring
+      
+***** weighted scoring
+      assign value and/or cost scores to criteria
+      each criteria has a weight that is used to add up to a total score
+      - basically a Perceptron or single-layer network
+
+
+** Estimation Items
+*** get total cost to complete project/task
+    - (add up cost for all subtasks)
+
+*** get total effort cost for project/task
+
+*** get estimated time to completion (assuming tasks are completed as soon as available
