@@ -15,6 +15,16 @@
   )
 
 
+(with-eval-after-load 'general
+  (general-add-hook 
+   'python-mode-hook
+   (list
+    #'lsp-deferred
+    #'lsp-ui
+    #'flycheck-mode
+    ))
+  )
+
 (use-package py-isort)
 
 
