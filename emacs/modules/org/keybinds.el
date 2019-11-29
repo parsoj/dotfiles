@@ -10,23 +10,27 @@
     (evil-set-initial-state 'org-mode 'normal)  
 
     (general-define-key
-     :states 'org
+     :keymaps 'org-mode-map
+     :states 'normal
+     :prefix ","
+
+     
      "k" 'outline-backward-same-level
      "j" 'outline-forward-same-level
      "l" #'(lambda () (interactive) (progn
 				 (outline-show-children)
 				 (outline-show-entry)
 				 (outline-next-heading)))
-    "h" 'outline-up-heading
-    "r" 'org-refile
-    "i" 'evil-insert
+     "h" 'outline-up-heading
+     "r" 'org-refile
+     "i" 'evil-insert
 
-    "t" 'org-todo
+     "t" 'org-todo
 
-    "d" 'org-cut-subtree
-    "p" 'org-paste-subtree
-    "u" 'undo
+     "d" 'org-cut-subtree
+     "p" 'org-paste-subtree
+     "u" 'undo
      )
 
     )
-)
+  )
