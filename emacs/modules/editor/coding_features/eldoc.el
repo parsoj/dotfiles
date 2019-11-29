@@ -10,6 +10,7 @@
     "The posframe buffer name use by eldoc-posframe.")
 
   (defun +eldoc-posframe-cleanup ()
+    (interactive)
     (posframe-hide +eldoc-posframe-buffer) 
 
     )
@@ -21,6 +22,14 @@
 	   (posframe-width  (plist-get info :posframe-width)))
       (cons (+ window-left window-width (- 0 posframe-width))
 	    window-top))) 
+
+  (defun +posframe-poshandler-bottom-right-offset (info &optional font-height)
+    (let* ((window-left (+ -20 (plist-get info :parent-window-left)))
+	   (window-bottom (+ 20 (plist-get info :parent-window-bottom)))
+	   (window-width (plist-get info :parent-window-width)) 
+	   (posframe-width  (plist-get info :posframe-width)))
+      (cons (+ window-left window-width (- 0 posframe-width))
+	    window-bottom))) 
 
   (defun +eldoc-posframe-message-function (format-string &rest args)
     "Display FORMAT-STRING and ARGS, using posframe.el library."
@@ -35,12 +44,10 @@
        :width 60
 
        :poshandler 
-       #'+posframe-poshandler-top-right-offset
+       #'+posframe-poshandler-bottom-right-offset
 
 
        )))
-  ;; TODO separate the poshandler into a dedicated defun - make it max /3 window and positioned correctly
-  ;; TODO eldoc debounce, or use deferred
   ;; TODO eldoc show current value for variables
   ;; ** look up existing eldoc function
 
