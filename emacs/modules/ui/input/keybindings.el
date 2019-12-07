@@ -68,6 +68,8 @@
    "eb" 'eval-buffer
    "er" 'eval-region
    "ed" 'eval-defun
+
+   "sd" 'counsel-rg
    )
 
   ;;we want the ESC key to be able to quit/escape out of *anything*
