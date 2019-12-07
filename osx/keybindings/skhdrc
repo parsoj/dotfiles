@@ -70,7 +70,7 @@ ctrl + alt - i : /usr/local/opt/emacs-head/bin/emacsclient -n -e "(org-capture-p
 # application launching
 
 
-ctrl + alt - b : /Applications/Firefox.app/Contents/MacOS/firefox --new-window
+ctrl + alt - b : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window
 
 ctrl + alt - r : open /Applications/Reeder.app
 ctrl + alt - m : open /Applications/Music.app
