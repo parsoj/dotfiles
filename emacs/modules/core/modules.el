@@ -35,15 +35,14 @@
 
 (defun jump-to-package ()
   (interactive)
-  (let* ((package-repos-dir "~/.emacs.d/straight/repos/")
-	 (chosen-package-dir (completing-read
-                      "Jump to Package: "
-		      (directory-files package-repos-dir)
-                      nil t)))
-    (counsel-find-file (concat package-repos-dir chosen-package-dir))
+  (let* ((package-repos-dir "~/.config/emacs/straight/repos/")
+	 (file-path (completing-read
+		     "Jump to Package: "
+		     (directory-files-recursively package-repos-dir "\\.el$" t)
+		     nil t)))
+    (find-file file-path)
     )
-
-)
+  )
 
 (defun create-new-module ()
   (interactive)
