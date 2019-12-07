@@ -1,6 +1,6 @@
 (use-package ruby-mode
-  :ensure-system-package
-  (("/usr/local/opt/ruby/bin/ruby" . "brew install ruby"))
+ ;; :ensure-system-package
+ ;; (("/usr/local/opt/ruby/bin/ruby" . "brew install ruby"))
 
   :config
   (add-to-exec-path "/usr/local/opt/ruby/bin") 
@@ -14,11 +14,11 @@
 
 (use-package robe
   :after (company ruby-mode inf-ruby)
-  :ensure-system-package
-  (
-   (pry . "gem install pry")
-   (pry-doc . "gem install pry-doc")
-   (method_source . "gem install method_source"))
+ ;; :ensure-system-package
+ ;; (
+ ;;  (pry . "gem install pry")
+ ;;  (pry-doc . "gem install pry-doc")
+ ;;  (method_source . "gem install method_source"))
 
 
   :hook (ruby-mode . robe-mode)
