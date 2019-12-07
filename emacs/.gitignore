@@ -1,2 +1,8 @@
-straight/*
 transient/*
+straight/build/*
+straight/repos/*
+straight/build-cache.el
+
+
+recentf
+projectile-bookmarks.eld
