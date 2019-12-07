@@ -1,5 +1,6 @@
 (use-package eldoc
-  :straight (eldoc :type built-in)
+  ;;:straight (eldoc :type built-in)
+  :straight nil
   :init
   ;;(setq eldoc-documentation-function (lambda () (documentation (symbol-at-point))))
   ;;(global-eldoc-mode -1)
