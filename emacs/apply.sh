@@ -1,4 +1,3 @@
 #/usr/bin/bash
 
-mkdir -p ~/.config/emacs
-rm -rf ~/.config/emacs/init.el ; ln -s $(pwd)/init.el ~/.config/emacs/init.el
+rm -rf ~/.config/emacs ; ln -s $(pwd) ~/.config/emacs
