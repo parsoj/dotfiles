@@ -1,35 +1,42 @@
+(use-package org
+  
 
-(with-eval-after-load 'doom-themes
-(setq org-todo-keyword-faces `(
-                               ("PROJECT" . ,(doom-color 'violet))
-                               ("TODO" . ,(doom-color 'yellow))
-                               ("DONE" . ,(doom-color 'grey))
-                               ("CANCELLED" . ,(doom-color 'grey))
-                               )
+  :config
+  ;; running (org-reload) forces emacs to load the newest version of org,
+  ;; rather than just sticking with the built-in version
+  (org-reload)
 
-      org-todo-keywords '(
-                          (sequence "TODO(t)" "BLOCKED(b)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
-                          (sequence "PROJECT(p)" "|" "PROJECT-COMPLETED(P)")
-                          ))
+  (with-eval-after-load 'doom-themes
+    (setq org-todo-keyword-faces `(
+				   ("PROJECT" . ,(doom-color 'violet))
+				   ("TODO" . ,(doom-color 'yellow))
+				   ("DONE" . ,(doom-color 'grey))
+				   ("CANCELLED" . ,(doom-color 'grey))
+				   )
 
-
-)
-
-
-
-(setq org-root "~/org")
-(setq org-projects-root (concat org-root "/projects"))
-
+	  org-todo-keywords '(
+                              (sequence "TODO(t)" "BLOCKED(b)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
+                              (sequence "PROJECT(p)" "|" "PROJECT-COMPLETED(P)")
+                              ))
 
 
-(setq org-actionable-keywords '("TODO"))
+    )
 
-(custom-set-variables '(org-stuck-projects
-			'("/+PROJECT" ("TODO") nil "")))
 
-(defun +org-set-price ()
-  (interactive)
-  (org-set-property "PRICE" (read-string "Price: "))
-  )
 
-(provide '+org-core)
+  (setq org-root "~/org")
+  (setq org-projects-root (concat org-root "/projects"))
+
+
+
+  (setq org-actionable-keywords '("TODO"))
+
+  (custom-set-variables '(org-stuck-projects
+			  '("/+PROJECT" ("TODO") nil "")))
+
+  (defun +org-set-price ()
+    (interactive)
+    (org-set-property "PRICE" (read-string "Price: "))
+    )
+
+  (provide '+org-core))
