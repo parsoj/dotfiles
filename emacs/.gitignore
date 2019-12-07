@@ -3,6 +3,8 @@ straight/build/*
 straight/repos/*
 straight/build-cache.el
 
+eshell/history
+eshell/lastdir
 
 recentf
 projectile-bookmarks.eld
