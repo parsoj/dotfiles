@@ -1,13 +1,14 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
 
 
+
 (setq make-backup-files nil
       create-lockfiles nil)
 (setq scroll-bar-mode -1)
 (menu-bar-showhide-tool-bar-menu-customize-disable) 
 
-;;--------------------------------------------------------------------------------
-;; straight.el Boostrap block
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; straight.el Boostrap 
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -29,39 +30,66 @@
 ;;allow use package to talk to OS package managers, to specify deps on OS bins
 (use-package use-package-ensure-system-package)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Additional core elisp libraries
+
 (use-package dash)
 
-(defmacro with-eval-after-packages (features &rest body)
-  (if (null features)
-      `(progn ,@body)
-    `(eval-after-load (quote ,(car features))
-       (quote (with-eval-after-packages ,(cdr features) ,@body)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Module/file loading
 
+;; main directories
 (setq home-dir "/Users/jeffparsons")   
-(setq config-root "~/configuration/emacs/")
+(setq config-root "~/.config/emacs/")
 (setq modules-root (concat config-root "modules/") )
-(setq scratch-root (concat config-root "scratch/") ) 
 
 
-(defun get-scratch-list ()
-  (directory-files-recursively scratch-root "\\.el$"))
+;; search Regexes
+(setq all-elisp-files-regex "\\.el$")
 
-(defun get-modules-list ()
-  (directory-files-recursively modules-root "\\.el$"))
+(setq dev-files-regex 
+      ".*\.\\(dev\\)\.el$")
+
+(setq test-files-regex
+      ".*\.\\(test\\)\.el$")
+
+(defun get-all-config-files ()
+  (directory-files-recursively modules-root all-elisp-files-regex)
+  )
+
+(defun get-load-files ()
+  (--filter (not (or  (string-match-p dev-files-regex it)
+		      (string-match-p test-files-regex it)))
+	    (get-all-config-files))
+  )
+
+;;(defun get-modules-list ()
+;;  (directory-files-recursively modules-root all-elisp-files-regex))
 
 (defun get-modules-directories ()
-  (-filter (lambda (x) (not (string-match "\\.el$" x)))
-          (directory-files-recursively modules-root ".*" t)
-          )
+  (-filter (lambda (x) (not (string-match all-elisp-files-regex x)))
+           (directory-files-recursively modules-root ".*" t)
+           )
   )
 
 (defun load-all-config-files () 
   (interactive)
-  (mapc (lambda (f) (load-file f)) (get-modules-list))
+  (mapc (lambda (f) (load-file f)) (get-load-files-list))
 )
 
 (load-all-config-files)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; run server
+
 (server-start) 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom-set-variables block 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
