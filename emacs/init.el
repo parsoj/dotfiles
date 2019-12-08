@@ -57,6 +57,8 @@
   (directory-files-recursively modules-root all-elisp-files-regex)
   )
 
+;; essentially, any files ending in ".dev.el" or ".test.el" will *not* be loaded
+;; this way, we can mix some scratch/dev files with actual config files
 (defun get-load-files ()
   (--filter (not (or  (string-match-p dev-files-regex it)
 		      (string-match-p test-files-regex it)))
