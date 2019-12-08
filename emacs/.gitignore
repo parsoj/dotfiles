@@ -6,5 +6,6 @@ straight/build-cache.el
 eshell/history
 eshell/lastdir
 
+bookmarks
 recentf
 projectile-bookmarks.eld
