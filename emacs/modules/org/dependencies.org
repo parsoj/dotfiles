@@ -1,0 +1,40 @@
+#+TITLE: Dev Notes on Dependencies
+
+
+* Investigation Items
+** find out how to check availability of upstream blockers/deps
+
+* Tasks
+** build "unblock downstreams" functions
+*** actual edna action func
+    - just for-loop over args and call unblock func
+*** set-blocked func
+    - check if all upstream blockers are done
+      - if so, mark task as available
+      - else, mark task as unavailable/blocked
+
+* Notes
+** Block this task on another
+ 
+** Block another task on this
+  
+** Mark Task as Complete
+
+*** Check if we can complete it
+    - check if any blockers are active
+    - org edna should handle this automatically with the BLOCKER property
+
+*** Unblock tasks blocked on this one
+**** when completing a task - we need to remove it as a dep from downstream tasks  
+     - remove id from blocker list
+     - if blocker list is now empty, update TODO state 
+***** Answer:
+      From "extending org edna", "Actions" section:
+      https://www.nongnu.org/org-edna-el/#org369b38e
+    
+      you can define your own custom actions, finders, and conditions
+      
+**** steps
+    1. remove own ID from blocker list
+    2. check if blocker list is now empty
+       - if so - change state to available

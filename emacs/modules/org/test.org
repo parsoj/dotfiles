@@ -1,0 +1,8 @@
+
+
+
+* Test Item 
+  :PROPERTIES:
+  :BLOCKER:  id("foo" "bar")
+  :ID:       85E3018F-BD08-448D-BAB4-E4E9F0D42375
+  :END:
