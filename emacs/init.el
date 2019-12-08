@@ -76,7 +76,7 @@
 
 (defun load-all-config-files () 
   (interactive)
-  (mapc (lambda (f) (load-file f)) (get-load-files-list))
+  (mapc (lambda (f) (load-file f)) (get-load-files))
 )
 
 (load-all-config-files)
