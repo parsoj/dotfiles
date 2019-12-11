@@ -20,7 +20,7 @@
   (setq
    lsp-ui-doc-header nil
    lsp-ui-doc-include-signature t
-   lsp-ui-doc-position 'bottom
+   lsp-ui-doc-position 'top
    lsp-ui-doc-alignment 'window
    lsp-ui-doc-use-childframe t
    ) 
