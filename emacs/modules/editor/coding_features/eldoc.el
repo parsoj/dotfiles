@@ -45,7 +45,7 @@
        :width 60
 
        :poshandler 
-       #'+posframe-poshandler-bottom-right-offset
+       #'+posframe-poshandler-top-right-offset
 
 
        )))
