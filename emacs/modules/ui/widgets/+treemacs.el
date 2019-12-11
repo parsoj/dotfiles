@@ -2,7 +2,7 @@
 
 (use-package treemacs
   :config
-  (treemacs-follow-mode t)
+  (treemacs-follow-mode nil) 
 
   (setq treemacs-width 35
         treemacs-display-in-side-window t
