@@ -16,16 +16,16 @@
 					 (title . "ivy-posframe")
 					 )) 
 
- ; (set-face-attribute 'ivy-posframe-border :background 'white)
+					; (set-face-attribute 'ivy-posframe-border :background 'white)
 
   (setq ivy-posframe-display-functions-alist 
 
 	'(
-	 (counsel-shell-history . ivy-posframe-display-at-point)
-	 (counsel-git-grep . ivy-display-function-fallback)
-	 (counsel-rg . ivy-display-function-fallback)
-	 (swiper . ivy-posframe-display-at-point)
-	 (t . ivy-posframe-display-at-frame-center)))
+	  (counsel-shell-history . ivy-posframe-display-at-point)
+	  (counsel-git-grep . ivy-display-function-fallback)
+	  (counsel-rg . ivy-display-function-fallback)
+	  (swiper . ivy-posframe-display-at-window-bottom-left)
+	  (t . ivy-posframe-display-at-frame-center)))
 
   (ivy-posframe-mode 1)
 
