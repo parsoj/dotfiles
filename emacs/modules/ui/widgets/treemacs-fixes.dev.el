@@ -23,6 +23,18 @@
 
 
 
+(setf  (treemacs-workspace->projects (treemacs-current-workspace))
+       nil
+       )
+
+(treemacs--rerender-after-workspace-change)
+
+
+#s(treemacs-workspace "Default" nil)
+
+#s(treemacs-workspace "configuration" (#s(treemacs-project "configuration" "/Users/jeffparsons/configuration" local-readable)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; utility funcs
 (defun +treemacs-find-workspace-for-path (path) 
@@ -64,3 +76,9 @@
 
 
 
+(defun +treemacs-clear-workspace ()
+  (interactive)
+  (progn
+    (setf  (treemacs-workspace->projects (treemacs-current-workspace))
+	   nil)
+    (treemacs--rerender-after-workspace-change)))

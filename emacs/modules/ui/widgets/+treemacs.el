@@ -72,5 +72,12 @@
   (if (eq (treemacs-current-visibility) 'visible)
       (delete-window (treemacs-get-local-window))))
 
+(defun +treemacs-clear-workspace ()
+  (interactive)
+  (progn
+    (setf  (treemacs-workspace->projects (treemacs-current-workspace))
+	   nil)
+    (treemacs--rerender-after-workspace-change)))
+
 (provide '+treemacs)
 ;;; +treemacs.el ends here
