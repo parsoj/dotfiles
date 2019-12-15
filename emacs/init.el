@@ -40,9 +40,13 @@
 
 ;; main directories
 (setq home-dir "/Users/jeffparsons")   
-(setq config-root "~/.config/emacs/")
+(setq config-root "~/configuration/emacs/")
 (setq modules-root (concat config-root "modules/") )
+(setq package-repos-dir "~/configuration/emacs/straight/repos/")
 
+(defun get-all-package-files ()
+  (directory-files-recursively package-repos-dir "\\.el$" t)
+  )
 
 ;; search Regexes
 (setq all-elisp-files-regex "\\.el$")
