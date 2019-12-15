@@ -52,6 +52,7 @@
    "pp" 'counsel-projectile-switch-project
    "pr" '(lambda () (interactive) (funcall run-project-func))
    "ps" 'counsel-projectile-rg
+   "pt" '+treemacs-open-current-project
 
    "rt" '(lambda () (interactive) (funcall run-test-func))
 
