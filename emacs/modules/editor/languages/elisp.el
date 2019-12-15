@@ -27,6 +27,7 @@
     #'aggressive-indent-mode
     #'evil-cleverparens-mode
     #'smartparens-strict-mode
+    #'which-function-mode
     ))
   )
    
