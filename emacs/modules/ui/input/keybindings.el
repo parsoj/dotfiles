@@ -71,6 +71,8 @@
    "ed" 'eval-defun
 
    "sd" 'counsel-rg
+
+   "fd" '+delete-file-and-buffer
    )
 
   ;;we want the ESC key to be able to quit/escape out of *anything*
