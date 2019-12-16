@@ -10,6 +10,15 @@
     (evil-set-initial-state 'org-mode 'normal)  
 
     (general-define-key
+     :states '(normal visual emacs movement treemacs)    
+     :prefix "SPC"
+     "o" 'hydra-org-actions/body
+
+     )
+
+
+
+    (general-define-key
      :keymaps 'org-mode-map
      :states 'normal
      :prefix ","
@@ -31,6 +40,26 @@
      "p" 'org-paste-subtree
      "u" 'undo
      )
+
+    (defvar hydra-org-actions--title "Org Actions")
+
+    (pretty-hydra-define hydra-org-actions
+      (:color teal :title hydra-org-actions--title)
+      (
+       "Jump To..."
+       (("p" jump-to-org-project "Jump to project file")
+	)))
+
+    (defun jump-to-org-project ()
+      (interactive)
+      (let ((module-path (completing-read
+			  "Jump To Org Project: "
+			  (directory-files-recursively projects-root ".*" t)
+			  nil t)))
+	(find-file module-path)
+	)
+
+      )
 
     )
   )
