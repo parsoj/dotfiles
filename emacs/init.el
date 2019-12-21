@@ -7,6 +7,8 @@
 (setq scroll-bar-mode -1)
 (menu-bar-showhide-tool-bar-menu-customize-disable) 
 
+
+;; make the titlebar "transparent" in osx
 (add-to-list 'default-frame-alist
              '(ns-transparent-titlebar . t))
 
