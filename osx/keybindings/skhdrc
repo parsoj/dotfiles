@@ -60,7 +60,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 ################################################################################
 # Emacs 
 
-ctrl + alt + cmd - e : /Applications/Emacs.app/Contents/MacOS/Emacs --name "main-frame"
+ctrl + alt + cmd - e : /Applications/Emacs.app/Contents/MacOS/Emacs --name "emacs (main frame)"
 
 ctrl + alt + cmd - k : pkill -SIGUSR2 Emacs
 #ctrl + alt + cmd - k : pkill Emacs
@@ -79,5 +79,3 @@ ctrl + alt - b : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser 
 ctrl + alt - r : open /Applications/Reeder.app
 ctrl + alt - m : open /Applications/Music.app
 
-ctrl + alt + cmd - s : pkill -SIGUSR2 Emacs
-ctrl + alt + cmd - k : pkill Emacs
