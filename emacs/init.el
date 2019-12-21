@@ -7,6 +7,9 @@
 (setq scroll-bar-mode -1)
 (menu-bar-showhide-tool-bar-menu-customize-disable) 
 
+(add-to-list 'default-frame-alist
+             '(ns-transparent-titlebar . t))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; straight.el Boostrap 
 (defvar bootstrap-version)
