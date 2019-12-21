@@ -48,6 +48,9 @@
       (
        "Jump To..."
        (("p" jump-to-org-project "Jump to project file")
+	("i" (find-file (concat org-root "/inbox/inbox.org")))
+	("r" +refresh-org-refile-targets "Refresh Org-Refile Targets")
+	("a" org-agenda "Agenda")
 	)))
 
     (defun jump-to-org-project ()

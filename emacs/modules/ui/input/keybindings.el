@@ -56,13 +56,10 @@
 
    "rt" '(lambda () (interactive) (funcall run-test-func))
 
-
    "ag" 'magit-status
    "aa" 'org-agenda
 
    "'" '+eshell-pop-window
-
-   "o" 'hydra-org-actions/body
 
    "ee" 'eval-last-sexp
    "ep" 'eval-print-last-sexp
