@@ -43,7 +43,7 @@
        :internal-border-color "grey"
        :left-fringe 10
        :width 60
-
+       :timeout 4
        :poshandler 
        #'+posframe-poshandler-top-right-offset
 
