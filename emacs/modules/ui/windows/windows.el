@@ -3,6 +3,11 @@
   :config
   (winum-mode)
 
+  )
+
+
+
+(with-eval-after-load 'general
   (general-define-key
    :states '(normal visual emacs movement treemacs)
    :prefix "SPC"
@@ -17,5 +22,4 @@
    "8" 'winum-select-window-8
    "9" 'winum-select-window-9
    )
-  )
-
+)
