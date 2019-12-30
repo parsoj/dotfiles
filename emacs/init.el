@@ -1,7 +1,6 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
 
-
-
+(setq inhibit-startup-screen t)
 (setq make-backup-files nil
       create-lockfiles nil)
 (setq scroll-bar-mode -1)
