@@ -22,5 +22,8 @@ anaconda-mode/*
 projectile-bookmarks.eld
 projectile.cache
 
+.dap-breakpoints
+
+mspyls/*
 
 url/*
