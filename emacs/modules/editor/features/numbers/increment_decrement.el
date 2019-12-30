@@ -59,8 +59,10 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   (interactive "p")
   (increment-integer-at-point (- (or dec 1))))
 
+(with-eval-after-load 'general
 (general-define-key
  :states '(normal)
  "+" 'increment-integer-at-point
  "-" 'decrement-integer-at-point
  )
+)
