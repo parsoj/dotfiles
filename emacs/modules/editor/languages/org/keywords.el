@@ -1,5 +1,6 @@
 (with-eval-after-load 'doom-themes
   (with-eval-after-load 'org
+
     (setq org-todo-keyword-faces `(
 				   ("PROJECT" . ,(doom-color 'violet))
 				   ("TODO" . ,(doom-color 'yellow))
@@ -8,12 +9,12 @@
 				   )
 
 	  org-todo-keywords '(
-                              (sequence "TODO(t)" "BLOCKED(b)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
+                              (sequence "TODO(t)" "NEXT(n)" "BLOCKED(b)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d!)" )
                               (sequence "PROJECT(p)" "|" "PROJECT-COMPLETED(P)")
                               ))
 
 
-    (setq org-actionable-keywords '("TODO"))
+    (setq org-actionable-keywords '("TODO" "NEXT"))
     (setq org-done-keywords '("DONE"))
 
     (defun +org-todo-state-actionable-p (keyword-string)

@@ -3,9 +3,8 @@
 (defun refresh-org-agenda-files () 
   (interactive) 
   (setq org-agenda-files    
-	(directory-files-recursively
-	 org-projects-root
-	 "\\.org$")))
+	(+org-all-project-files)
+	))
 
 
 (refresh-org-agenda-files) 
@@ -14,10 +13,17 @@
 (setq org-agenda-custom-commands
       '(("a" "Main Agenda"
 	 (
+	  (tags
+	   ;;"TODO=\"TODO\"|TODO=\"NEXT\""
+	   "/+TODO|+NEXT"
+	   (
+	    (org-agenda-files (+org-inbox-files))
+	    (org-agenda-overriding-header "Test Bed"))
+	   )
 	  (tags-todo "DEADLINE<=\"<+3d>\"+SCHEDULED>=\"<today>\""
 		     ((org-agenda-overriding-header "Due Soon")))
 
-	  (tags "+inbox"
+	  (tags "TODO=\"INBOX\""
 		((org-agenda-overriding-header "Inbox Items")))
 
 	  (tags-todo "DEADLINE>\"<+3d>\"+DEADLINE<=\"<+1w>\"+SCHEDULED>=\"<today>\""
@@ -25,12 +31,13 @@
 
 	  (tags-todo (concat
 		      "TODO=" (string-join org-actionable-keywords "|")
-		      "+SCHEDULED>=\"<today>\"")
+		      "+SCHEDULED=\"\"+SCHEDULED>=\"<today>\"")
 		     ;;TODO add contextual info (actionable in current context)
 		     ((org-agenda-overriding-header "Actionable Tasks"))
 		     )
+
 	  )
 	 )))
 
 
-(org-agenda)
+(org-agenda nil "a")
