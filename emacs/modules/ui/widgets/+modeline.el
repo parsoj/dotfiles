@@ -5,18 +5,25 @@
   :config
   :hook (after-init . doom-modeline-mode)
   :init
-  (setq doom-modeline-bar-width 3
-        doom-modeline-minor-modes nil
-        doom-modeline-buffer-file-name-style 'truncate-upto-project
-	doom-modeline-icon t
-	doom-modeline-major-mode-icon t
-	doom-modeline-major-mode-color-icon t
-	doom-modeline-buffer-state-icon t
-	doom-modeline-buffer-modification-icon t
-	doom-modeline-buffer-encoding t
-	doom-modeline-lsp t
-	doom-modeline-env-version t
-	)
+  (setq
+   doom-modeline-height 1
+   )
+  (set-face-attribute 'mode-line nil :height 130)
+  (set-face-attribute 'mode-line-inactive nil :height 130)
+
+  (setq
+   doom-modeline-bar-width 3
+   doom-modeline-minor-modes nil
+   doom-modeline-buffer-file-name-style 'truncate-upto-project
+   doom-modeline-icon t
+   doom-modeline-major-mode-icon t
+   doom-modeline-major-mode-color-icon t
+   doom-modeline-buffer-state-icon t
+   doom-modeline-buffer-modification-icon t
+   doom-modeline-buffer-encoding t
+   doom-modeline-lsp t
+   doom-modeline-env-version t
+   )
   
 
   (setq doom-modeline-env-enable-python t
