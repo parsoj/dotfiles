@@ -1,3 +1,0 @@
-
-* Test Dep A
-* Test Dep B

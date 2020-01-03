@@ -34,7 +34,7 @@
 	)
        "Package Dependencies"
        (("l" (lambda() (interactive) (find-file "~/.emacs.d/straight/versions/default.el") ) "packages lockfile")
-	("p" (lambda() (interactive) (do-find-file-jump "Jump To Package: " (get-all-package-files)) ) "package code")
+	("p" (lambda() (interactive) (do-find-file-jump "Jump To Package: " (get-all-package-files-cached)) ) "package code")
 	)
 
        "Window Mangement"

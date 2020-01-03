@@ -67,9 +67,10 @@
    "er" 'eval-region
    "ed" 'eval-defun
 
-   "sd" 'counsel-rg
+   "sd" '(lambda () (interactive) (counsel-rg nil default-directory))
 
    "fd" '+delete-file-and-buffer
+   "fr" '+rename-file-and-buffer
    )
 
   ;;we want the ESC key to be able to quit/escape out of *anything*

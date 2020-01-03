@@ -6,6 +6,8 @@
   :init (setq ivy-use-virtual-buffers t) 
   (setq ivy-initial-inputs-alist nil) 
   (setq completion-ignored-extensions '("~" ".swp" "#")) 
+
+  (setq counsel-switch-buffer-preview-virtual-buffers nil)
   :config (ivy-mode 1))
 
 (use-package ivy-posframe 

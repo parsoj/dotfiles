@@ -1,11 +1,16 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
 
+;; this just avoids that startup warning. some other package is trying to load evil before evil.el is 
+(setq evil-want-keybinding nil)
+
 (setq inhibit-startup-screen t)
+
 (setq make-backup-files nil
       create-lockfiles nil)
+
+
 (setq scroll-bar-mode -1)
 (menu-bar-showhide-tool-bar-menu-customize-disable) 
-
 
 ;; make the titlebar "transparent" in osx
 (add-to-list 'default-frame-alist
@@ -50,6 +55,18 @@
 
 (defun get-all-package-files ()
   (directory-files-recursively package-repos-dir "\\.el$" t)
+  )
+
+(setq package-files-list nil)
+
+(defun get-all-package-files-cached ()
+  (if package-files-list package-files-list
+    (refresh-package-files-list)
+    )
+  )
+
+(defun refresh-package-files-list ()
+  (setq package-files-list (get-all-package-files))
   )
 
 ;; search Regexes

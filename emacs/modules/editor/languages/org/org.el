@@ -35,12 +35,13 @@
 
 
   (with-eval-after-load '+yasnippet
+	(with-eval-after-load '+general
     (general-add-hook
      'org-mode
      (list
       #'yas-minor-mode
       ))
-    )
+    ))
 
   (provide '+org-core)
   )

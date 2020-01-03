@@ -3,9 +3,10 @@
 (use-package 
   elisp-slime-nav 
   ;;:hook ((emacs-lisp-mode . elisp-slime-nav-mode) ) 
-  :config (setq +nav-goto-def-func (lambda () 
-				     (elisp-slime-nav-find-elisp-thing-at-point (symbol-name
-										 (symbol-at-point))))) 
+  :config
+  (setq +nav-goto-def-func (lambda () 
+			     (elisp-slime-nav-find-elisp-thing-at-point (symbol-name
+									 (symbol-at-point))))) 
   (setq +doc-at-point-func (lambda () 
 			     (elisp-slime-nav-describe-elisp-thing-at-point (symbol-name
 									     (symbol-at-point))))))

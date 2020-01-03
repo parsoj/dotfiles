@@ -25,13 +25,16 @@
        :prefix ","
 
        
-       "k" 'outline-backward-same-level
+       "h" 'outline-up-heading
        "j" 'outline-forward-same-level
+       "k" 'outline-backward-same-level
        "l" #'(lambda () (interactive) (progn
 				   (outline-show-children)
 				   (outline-show-entry)
 				   (outline-next-heading)))
-       "h" 'outline-up-heading
+
+
+
        "r" 'org-refile
        "i" 'evil-insert
 

@@ -1,0 +1,45 @@
+
+#+begin_src restclient :async
+GET https://jsonplaceholder.typicode.com/todos/1
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}
+// GET https://jsonplaceholder.typicode.com/todos/1
+// HTTP/1.1 200 OK
+// Date: Tue, 31 Dec 2019 01:47:34 GMT
+// Content-Type: application/json; charset=utf-8
+// Transfer-Encoding: chunked
+// Connection: keep-alive
+// Set-Cookie: __cfduid=df0c2f7afdaf3f1f930130e75967452a91577756854; expires=Thu, 30-Jan-20 01:47:34 GMT; path=/; domain=.typicode.com; HttpOnly; SameSite=Lax
+// X-Powered-By: Express
+// Vary: Origin, Accept-Encoding
+// Access-Control-Allow-Credentials: true
+// Cache-Control: max-age=14400
+// Pragma: no-cache
+// Expires: -1
+// X-Content-Type-Options: nosniff
+// Etag: W/"53-hfEnumeNh6YirfjyjaujcOPPT+s"
+// Via: 1.1 vegur
+// CF-Cache-Status: HIT
+// Age: 6741
+// Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+// Server: cloudflare
+// CF-RAY: 54d896142bc8936a-SJC
+// Request duration: 2.385345s
+#+END_SRC
+
+
+
+#+begin_src shell :async
+curl https://jsonplaceholder.typicode.com/todos/1
+#+end_src
+
+#+RESULTS:
+: a6d4850a50cacdadc4234bd5a2718d36
