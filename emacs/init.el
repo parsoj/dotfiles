@@ -48,9 +48,10 @@
 ;; Module/file loading
 
 ;; main directories
-(setq home-dir "/Users/jeffparsons")   
-(setq config-root "~/configuration/emacs/")
-(setq modules-root (concat config-root "modules/") )
+(setq home-dir "/Users/jeff")   
+(setq system-config-root "~/code/dotfiles/")
+(setq emacs-config-root "~/.config/emacs/")
+(setq modules-root (concat emacs-config-root "modules/") )
 (setq package-repos-dir "~/configuration/emacs/straight/repos/")
 
 (defun get-all-package-files ()
