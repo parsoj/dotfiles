@@ -35,8 +35,8 @@ ctrl + alt + cmd - s: pmset sleepnow
 ################################################################################
 # Desktp control
 
-ctrl + alt + cmd - n : ~/configuration/osx/window-management/workspaces/create_workspace
-ctrl + alt + cmd - w : ~/configuration/osx/window-management/workspaces/destroy_workspace
+ctrl + alt + cmd - n : ~/code/dotfiles/osx/app_settings/yabai/scripts/create_workspace
+ctrl + alt + cmd - w : ~/code/dotfiles/osx/app_settings/yabai/scripts/destroy_workspace
 
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis

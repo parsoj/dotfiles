@@ -52,6 +52,16 @@ brew "jq"
 cask "docker"
 brew "awscli"
 
+################################################################################
+# emacs compilation & support
+
+#compilation
+brew "automake"
+brew "pkg-config"
+brew "texinfo"
+brew "libxml2"
+brew "gnutls"
+brew "gtk+3"
 
 ################################################################################
 # Menu Bar stuff

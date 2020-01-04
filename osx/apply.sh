@@ -13,11 +13,11 @@ brew bundle
 
 ################################################################################
 # Window Management
-rm -f ~/.yabairc ; ln -s $(pwd)/yabairc ~/.yabairc
+rm -f ~/.yabairc ; ln -s $(pwd)/app_settings/yabai/yabairc ~/.yabairc
 sudo yabai --install-sa
 brew services restart yabai
 
 ################################################################################
 # Keybindings
-rm -f ~/.skhdrc; ln -s $(pwd)/skhdrc ~/.skhdrc
+rm -f ~/.skhdrc; ln -s $(pwd)/app_settings/skhd/skhdrc ~/.skhdrc
 brew services restart skhd
