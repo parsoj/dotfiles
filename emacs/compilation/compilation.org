@@ -1,0 +1,72 @@
+#+TITLE: Compiling Emacs from Source
+
+* Steps
+** Install Xcode
+** Install xcode command-line tools
+   #+BEGIN_SRC bash
+   xcode-select --install
+   #+END_SRC
+*** you might need to nuke the existing solution if this isn't working:
+    #+BEGIN_SRC bash
+    sudo rm -rf /Library/Developer/CommandLineTools
+    #+END_SRC
+** Install macOS sdk headers
+    #+BEGIN_SRC bash
+    open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
+    #+END_SRC
+
+** note: might need to adjust CPATH to point to mac sdks (catalina no longer uses usr/local)
+** fix texinfo/makeinfo stuff
+ brew install texinfo
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
+
+** Install libxml2
+   #+BEGIN_SRC bash
+   brew install libxml2
+   export LIBXML2_CFLAGS=`xml2-config --cflags`
+   export LIBXML2_LIBS=`xml2-config --libs`
+   #+END_SRC
+   
+** Install gnutls
+   #+BEGIN_SRC bash
+   brew install gnutls
+   export PATH=$PATH:/usr/local/Cellar/gnutls/3.6.10/bin/
+   #+END_SRC
+*** NOTE: homebrew may claim that gnutls was successfully installed when it wasn't
+    - if you run into an issue where `./configure` can't find gnutls, check that gnutls has all of its dependencies met:
+      #+BEGIN_SRC
+      brew info gnutls
+      #+END_SRC
+     and then manually install those dependencies, before reinstalling gnutls
+   
+** Set environment variables
+   #+BEGIN_SRC bash
+   export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+   #+END_SRC
+
+** Run the Compilation (Run from the root dir of the cloned emacs repo:
+*** Autogen
+   #+BEGIN_SRC bash
+   ./autogen.sh
+   #+END_SRC
+*** Configure
+   #+BEGIN_SRC bash
+   ./configure
+   #+END_SRC
+*** Make & Install
+   #+BEGIN_SRC bash
+   make && make install
+   #+END_SRC
+   
+
+*** also:
+needed to run "mkdir -p /usr/local/libexec/emacs"
+** Copy the compiled app to your `/Applications` folder
+   #+BEGIN_SRC bash
+   cp -r nextstep/Emacs.app /Applications/
+   #+END_SRC
+
+
+* Thanks To
+  - Chris Lockard, for his blog post that got me 95% of the way there:
+  https://chrislockard.net/posts/2019-09-17-notes-on-compiling-emacs-for-macos/

@@ -1,0 +1,25 @@
+From 49ac1b0d4dcc0438e09c2fa2d3cf13b3f27eb84c Mon Sep 17 00:00:00 2001
+From: Jeff Parsons <jeff@Jeffs-MacBook-Air.local>
+Date: Sat, 4 Jan 2020 10:01:45 -0800
+Subject: [PATCH] revised no-titlebar patch
+
+---
+ src/nsterm.m | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/nsterm.m b/src/nsterm.m
+index 0e581dc0a6..b4b7ab0322 100644
+--- a/src/nsterm.m
++++ b/src/nsterm.m
+@@ -452,7 +452,7 @@ - (NSColor *)colorUsingDefaultColorSpace
+ 
+ /* These flags will be OR'd or XOR'd with the NSWindow's styleMask
+    property depending on what we're doing.  */
+-#define FRAME_UNDECORATED_FLAGS (NSWindowStyleMaskResizable         \
++#define FRAME_UNDECORATED_FLAGS ( NSWindowStyleMaskResizable         \
+                                | NSWindowStyleMaskMiniaturizable    \
+                                | NSWindowStyleMaskClosable)
+ 
+-- 
+2.24.1
+
