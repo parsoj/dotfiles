@@ -1,5 +1,0 @@
-# -*- mode:ruby -*-
-
-tap "koekeishiya/formulae"
-brew "skhd"
-

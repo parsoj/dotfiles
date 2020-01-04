@@ -1,19 +1,30 @@
 # -*- mode:ruby -*-
+
+###############################################################################
+# setup hombrew core
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "mas-cli/tap"
+brew "mas"
+
+tap "parsoj/formulae" 
+
 ###############################################################################
 # Apps
 
 # Util Apps
 mas "1Password", id: 1333542190
-cask "dropbox"
+#cask "dropbox"
 
 # Chat apps
 cask "discord"
 mas "Slack", id: 803453959
 
 # productivity apps
-cask "rescuetime"
 mas "Fantastical 2", id: 975937182
 
+cask "brave-browser"
 
 ###############################################################################
 # Development tools
@@ -28,10 +39,8 @@ brew "the_platinum_searcher"
 brew "aspell"
 brew "gnupg2"
 brew "wget"
-brew "wgrep"
 brew "fd"
 brew "gnu-tar"
-brew "languagetool"
 brew "sqlite"
 #cask "mactex"
 brew "gnutls"
@@ -42,3 +51,19 @@ brew "jq"
 # external devtools
 cask "docker"
 brew "awscli"
+
+
+################################################################################
+# Menu Bar stuff
+cask "istat-menus"
+cask "bitbar"
+
+
+################################################################################
+# Keybindings
+brew "koekeishiya/formulae/skhd"
+
+################################################################################
+# Window Management
+brew "koekeishiya/formulae/yabai"
+

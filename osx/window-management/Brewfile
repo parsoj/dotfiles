@@ -1,6 +1,0 @@
-# -*- mode:ruby -*-
-###############################################################################
-# OSX UI fixes
-tap "koekeishiya/formulae"
-brew "yabai"
-
