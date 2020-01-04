@@ -8,7 +8,7 @@
 )
 
 (use-package inf-ruby
-  :ensure-system-package (("/usr/local/lib/ruby/gems/2.6.0/bin/irb" . "gem install irb"))
+  ;;:ensure-system-package (("/usr/local/lib/ruby/gems/2.6.0/bin/irb" . "gem install irb"))
   ) 
 
 
