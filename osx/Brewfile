@@ -45,6 +45,7 @@ brew "sqlite"
 #cask "mactex"
 brew "gnutls"
 brew "libressl"
+brew "ruby"
 brew "python" # several emacs packages require python packages to support them
 brew "jq"
 
