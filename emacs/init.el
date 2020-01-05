@@ -52,7 +52,7 @@
 (setq system-config-root "~/code/dotfiles/")
 (setq emacs-config-root "~/.config/emacs/")
 (setq modules-root (concat emacs-config-root "modules/") )
-(setq package-repos-dir "~/configuration/emacs/straight/repos/")
+(setq package-repos-dir "~/.config/emacs/straight/repos/")
 
 (defun get-all-package-files ()
   (directory-files-recursively package-repos-dir "\\.el$" t)
@@ -67,6 +67,7 @@
   )
 
 (defun refresh-package-files-list ()
+  (interactive)
   (setq package-files-list (get-all-package-files))
   )
 

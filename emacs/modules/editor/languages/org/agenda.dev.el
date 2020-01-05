@@ -21,19 +21,20 @@
 	  ;;	((org-agenda-overriding-header "Due Soon")))
 
 
-	  ;;(tags "+DEADLINE>\"<+3d>\"+DEADLINE<=\"<+1w>\"+SCHEDULED>=\"<today>\""
-	  ;;    ((org-agenda-overriding-header "Due Within the Week")))
+	  (tags
+	   "+DEADLINE>\"<+3d>\"+DEADLINE<=\"<+1w>\"+SCHEDULED>=\"<today>\""  
+	   ((org-agenda-overriding-header "Due Within the Week")))
 
-	  (tags-todo (concat
-		      "TODO=" (string-join org-actionable-keywords "|")
-		      "+SCHEDULED=\"\"+SCHEDULED>=\"<today>\"")
-		     ;;TODO add contextual info (actionable in current context)
-		     ((org-agenda-overriding-header "Actionable Tasks"))
-		     )
+	  (tags (concat
+		 "/+" (string-join org-actionable-keywords "+|")
+		 ;;"+SCHEDULED=\"\"+SCHEDULED>=\"<today>\""
+		 )
+		;;TODO add contextual info (actionable in current context)
+		((org-agenda-overriding-header "Actionable Tasks"))
+		)
 
 	  )
 	 )))
 
 
 (org-agenda nil "a")
-
