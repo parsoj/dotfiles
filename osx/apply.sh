@@ -1,15 +1,16 @@
-
+#!/bin/bash
 
 ################################################################################
 # Homebrew Setup 
-BREW_BIN_PATH=/usr/local/bin/brew
-if [ ! -f "$BREW_BIN_PATH" ]; then
-    echo "Homebrew not found on system. Installing Hombrew..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+#BREW_BIN_PATH=/usr/local/bin/brew
+#if [ ! -f "$BREW_BIN_PATH" ]; then
+#    echo "Homebrew not found on system. Installing Hombrew..."
+#    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#fi
+#
+#brew bundle
 
-brew bundle
-
+brew tap homebrew/services
 
 ################################################################################
 # Window Management
