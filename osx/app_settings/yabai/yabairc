@@ -65,7 +65,7 @@ yabai -m rule --add app="System Preferences" manage=off grid=40:40:15:12:6:8
 yabai -m rule --add app="Deliveries" manage=off sticky=on grid=20:20:3:2:14:16
 yabai -m rule --add app="Podcasts" manage=off sticky=on grid=20:20:3:2:14:16
 yabai -m rule --add app="Music" manage=off sticky=on grid=20:20:3:2:14:16
-yabai -m rule --add app="Music" title="MiniPlayer" manage=off sticky=on 
+yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
 
 yabai -m rule --add app="Messages" manage=off sticky=on grid=20:20:4:4:10:12
 #yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
