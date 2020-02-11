@@ -44,7 +44,7 @@ yabai -m config window_gap                   00
 # Emacs Settings
 
 
-yabai -m rule --add app="Emacs$" manage=off
+yabai -m rule --add app="Emacs$" manage=on
 
 yabai -m rule --add app="Emacs" title="^org-capture" manage=off sticky=on grid=20:20:6:8:8:6
 yabai -m rule --add app="Emacs" title="^ivy-posframe*" manage=off 
