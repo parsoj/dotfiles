@@ -15,19 +15,31 @@ tap "parsoj/formulae"
 
 # Util Apps
 mas "1Password", id: 1333542190
-#cask "dropbox"
+cask "dropbox"
+cask "obinslab-starter"
 
 # Chat apps
 cask "discord"
 mas "Slack", id: 803453959
+cask "zoom"
 
 # productivity apps
 mas "Fantastical 2", id: 975937182
+mas "PDF Expert", id: 1055273043
+cask "freedom"
 
 cask "brave-browser"
 
 ###############################################################################
-# Development tools
+# Development Apps
+cask "docker"
+
+mas "Xcode", id: 497799835
+
+brew "plantuml"
+
+###############################################################################
+# Development cli tools
 
 # cli dev tools
 brew "coreutils" # replace OSX utils with GNU stuff
@@ -47,16 +59,17 @@ brew "gnutls"
 brew "libressl"
 brew "ruby"
 brew "python" # several emacs packages require python packages to support them
+brew "go"
 brew "jq"
+brew "protobuf"
 
 # external devtools
-cask "docker"
 brew "awscli"
 
 ################################################################################
-# emacs compilation & support
+# emacs 
 
-#compilation
+#compiling emacs
 brew "automake"
 brew "pkg-config"
 brew "texinfo"
@@ -64,17 +77,23 @@ brew "libxml2"
 brew "gnutls"
 brew "gtk+3"
 
+tap "d12frosted/emacs-plus"
+brew "d12frosted/emacs-plus/emacs-plus", args: ["with-modern-icon", "with-no-frame-refocus", "without-spacemacs-icon"]
+
 ################################################################################
 # Menu Bar stuff
 cask "istat-menus"
 cask "bitbar"
+cask "bartender"
 
 
 ################################################################################
-# Keybindings
-brew "koekeishiya/formulae/skhd"
+#  skhd and yabai
+tap "koekeishiya/formulae"
+brew "skhd"
+brew "yabai"
+
 
 ################################################################################
-# Window Management
-brew "koekeishiya/formulae/yabai"
+# Alfred
 
