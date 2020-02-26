@@ -15,8 +15,8 @@ tap "parsoj/formulae"
 
 # Util Apps
 mas "1Password", id: 1333542190
-cask "dropbox"
-cask "obinslab-starter"
+#cask "dropbox"
+cask "expressvpn"
 
 # Chat apps
 cask "discord"
