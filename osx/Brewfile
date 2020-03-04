@@ -17,11 +17,13 @@ tap "parsoj/formulae"
 mas "1Password", id: 1333542190
 #cask "dropbox"
 cask "expressvpn"
+mas "Deliveries", id: 924726344
 
-# Chat apps
+# Communication apps
 cask "discord"
 mas "Slack", id: 803453959
 cask "zoom"
+mas "Spark", id: 1176895641 
 
 # productivity apps
 mas "Things 3", id: 904280696

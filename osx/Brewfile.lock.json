@@ -671,7 +671,15 @@
         "id": "497799835",
         "version": "11.3.1"
       },
-      "Things 3": null
+      "Things 3": null,
+      "Spark": {
+        "id": "1176895641",
+        "version": "2.5.5"
+      },
+      "Deliveries": {
+        "id": "924726344",
+        "version": "3.2.2"
+      }
     },
     "cask": {
       "discord": {
