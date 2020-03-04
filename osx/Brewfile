@@ -24,6 +24,7 @@ mas "Slack", id: 803453959
 cask "zoom"
 
 # productivity apps
+mas "Things 3", id: 904280696
 mas "Fantastical 2", id: 975937182
 mas "PDF Expert", id: 1055273043
 cask "freedom"
@@ -44,6 +45,7 @@ brew "plantuml"
 # cli dev tools
 brew "coreutils" # replace OSX utils with GNU stuff
 brew "git"
+brew "git-lfs"
 brew "ripgrep"
 brew "trash"
 brew "markdown"
