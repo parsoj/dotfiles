@@ -18,6 +18,7 @@ mas "1Password", id: 1333542190
 #cask "dropbox"
 cask "expressvpn"
 mas "Deliveries", id: 924726344
+cask "homebrew/cask-drivers/logitech-options"
 
 # Communication apps
 cask "discord"
@@ -33,11 +34,14 @@ cask "freedom"
 
 cask "brave-browser"
 
+cask "ultimaker-cura"
+
 ###############################################################################
 # Development Apps
 cask "docker"
 
 mas "Xcode", id: 497799835
+brew "xctool"
 
 brew "plantuml"
 
@@ -62,10 +66,17 @@ brew "sqlite"
 brew "gnutls"
 brew "libressl"
 brew "ruby"
+
 brew "python" # several emacs packages require python packages to support them
+brew "pipenv"
+
 brew "go"
 brew "jq"
 brew "protobuf"
+
+brew "clojure"
+brew "openjdk"
+brew "leiningen"
 
 # external devtools
 brew "awscli"
