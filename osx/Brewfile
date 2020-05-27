@@ -23,7 +23,7 @@ cask "homebrew/cask-drivers/logitech-options"
 # Communication apps
 cask "discord"
 mas "Slack", id: 803453959
-cask "zoom"
+cask "zoomus"
 mas "Spark", id: 1176895641 
 
 # productivity apps
