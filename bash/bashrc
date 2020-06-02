@@ -37,6 +37,16 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 #export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
 ################################################################################
+# Python
+alias python=/usr/local/bin/python3
+export PATH="$HOME/.poetry/bin:$PATH"
+
+################################################################################
+# Terraform
+
+alias tf=terraform
+
+################################################################################
 # required when compiling emacs
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export LIBXML2_CFLAGS=`xml2-config --cflags`
