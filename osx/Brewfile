@@ -85,15 +85,15 @@ brew "awscli"
 # emacs 
 
 #compiling emacs
-brew "automake"
-brew "pkg-config"
-brew "texinfo"
-brew "libxml2"
-brew "gnutls"
-brew "gtk+3"
+#brew "automake"
+#brew "pkg-config"
+#brew "texinfo"
+#brew "libxml2"
+#brew "gnutls"
+#brew "gtk+3"
 
-tap "d12frosted/emacs-plus"
-brew "d12frosted/emacs-plus/emacs-plus", args: ["with-modern-icon", "with-no-frame-refocus", "without-spacemacs-icon"]
+#tap "d12frosted/emacs-plus"
+#brew "d12frosted/emacs-plus/emacs-plus", args: ["HEAD", "with-jansson", "with-modern-icon", "with-no-frame-refocus", "without-spacemacs-icon"]
 
 ################################################################################
 # Menu Bar stuff
