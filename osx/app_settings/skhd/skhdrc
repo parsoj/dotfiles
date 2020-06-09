@@ -74,7 +74,7 @@ ctrl + alt - n : /usr/local/bin/emacsclient -n -e "(org-notepad-pop-frame)"
 # application launching
 
 
-ctrl + alt - b : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window
+ctrl + alt - b : ~/.config/osx/app_settings/yabai/scripts/launch_current_space /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window
 
 ctrl + alt - r : open /Applications/Reeder.app
 ctrl + alt - m : open /Applications/Music.app

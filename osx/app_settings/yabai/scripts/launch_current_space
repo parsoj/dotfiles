@@ -1,0 +1,12 @@
+#!/usr/local/opt/ruby/bin/ruby
+
+require 'json'
+
+curr_space_id = JSON.parse(`yabai -m query --spaces --space`)["index"]
+
+system ARGV
+
+sleep(0.14)
+selected_window_id = JSON.parse(`yabai -m query --windows --window`)["id"]
+
+system "yabai -m window %d --space %d" % [selected_window_id, curr_space_id]
