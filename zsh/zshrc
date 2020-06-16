@@ -1,3 +1,4 @@
+#!/bin/zsh
 
 ################################################################################
 # Homebrew
@@ -45,6 +46,8 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 ################################################################################
 # Python
+
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 alias python=/usr/local/bin/python3
 export PATH="$HOME/.poetry/bin:$PATH"
 
@@ -65,3 +68,11 @@ export PATH=$PATH:/usr/local/Cellar/gnutls/3.6.10/bin/
 # Calibre Config
 
 export CALIBRE_CONFIG_DIRECTORY="~/Dropbox/AppData/Calibre/Config"
+
+################################################################################
+# init completions
+
+fpath+=~/.config/zsh/zfunc/_poetry
+
+autoload -U compinit
+compinit
