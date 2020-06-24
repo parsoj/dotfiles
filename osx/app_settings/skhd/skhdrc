@@ -71,6 +71,12 @@ ctrl + alt - i : /usr/local/bin/emacsclient -n -e "(org-capture-pop-frame)"
 ctrl + alt - n : /usr/local/bin/emacsclient -n -e "(org-notepad-pop-frame)" 
 
 ################################################################################
+# VPN / Network
+
+ctrl + alt + cmd - 1 : osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "connect \"Glympse\"" -e "end tell"
+ctrl + alt + cmd - 2 : osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "connect \"Legacy_Tools\"" -e "end tell"
+
+################################################################################
 # application launching
 
 
