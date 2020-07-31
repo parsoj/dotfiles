@@ -1,3 +1,4 @@
+
 ################################################################################
 # Window control
 # focus window
@@ -30,13 +31,15 @@ shift + cmd - l : chunkc tiling::window --warp east
 ##########################################################################################
 # System commands
 
-ctrl + alt + cmd - s: pmset sleepnow
+#ctrl + alt + cmd - s: pmset sleepnow
 
 ################################################################################
 # Desktp control
 
 ctrl + alt + cmd - n : ~/.config/osx/app_settings/yabai/scripts/create_workspace
 ctrl + alt + cmd - w : ~/.config/osx/app_settings/yabai/scripts/destroy_workspace
+
+ctrl + alt + cmd - f : yabai -m window --toggle zoom-fullscreen
 
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis
@@ -50,7 +53,7 @@ ctrl + alt + cmd - l : yabai -m window --focus east
 ctrl + alt + cmd - m : yabai -m window --focus next
 
 #ctrl + alt + cmd - + : yabai -m space --balance
-ctrl + alt + cmd - g : yabai -m space --toggle gap
+#ctrl + alt + cmd - g : yabai -m space --toggle gap
 
 ctrl + alt + shift - h : yabai -m window --insert west
 ctrl + alt + shift - j : yabai -m window --insert south
@@ -79,9 +82,32 @@ ctrl + alt + cmd - 2 : osascript -e "tell application \"/Applications/Tunnelblic
 ################################################################################
 # application launching
 
-
-ctrl + alt - b : ~/.config/osx/app_settings/yabai/scripts/launch_current_space /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window
-
 ctrl + alt - r : open /Applications/Reeder.app
 ctrl + alt - m : open /Applications/Music.app
 
+:: default : skhd_bitbar_update "default" 
+
+##########################################################################################
+# Browser launching
+
+:: browser : skhd_bitbar_update "browser-launcher"
+ctrl + alt + cmd - b ;  browser
+
+browser < p : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory=Default && skhd -k "escape"
+browser < s : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 2" && skhd -k "escape"
+browser < g : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 3" && skhd -k "escape"
+
+browser < escape ; default
+
+##########################################################################################
+# Window Resizing
+
+:: winresize : skhd_bitbar_update "window-resize"
+ctrl + alt + cmd - s ; winresize
+
+winresize < h : yabai -m window --resize left:10:0
+winresize < j : yabai -m window --resize bottom:0:10
+winresize < k : yabai -m window --resize top:0:10
+winresize < l : yabai -m window --resize right:10:0
+
+winresize < escape ; default
