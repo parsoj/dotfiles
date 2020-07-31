@@ -93,9 +93,9 @@ ctrl + alt - m : open /Applications/Music.app
 :: browser : skhd_bitbar_update "browser-launcher"
 ctrl + alt + cmd - b ;  browser
 
-browser < p : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory=Default && skhd -k "escape"
-browser < s : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 2" && skhd -k "escape"
-browser < g : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 3" && skhd -k "escape"
+browser < p : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory=Default
+browser < s : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 2"
+browser < g : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 3"
 
 browser < escape ; default
 
