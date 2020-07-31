@@ -76,3 +76,15 @@ fpath+=~/.config/zsh/zfunc/_poetry
 
 autoload -U compinit
 compinit
+
+
+##########################################################################################
+# AWS configurations
+export AWS_PROFILE=legacy_tools
+
+#export VAULT_TOKEN=$(curl https://vault.sandbox.glympse.com/v1/auth/github/login -d '{ "token": "'d388e298ea0c46e2808cff0578e2b2da60bd9b13'" }' | jq '.auth.client_token')
+
+##########################################################################################
+# Helper scripts
+
+#source /Users/jeff/.config/osx/app_settings/bitbar/helpers/*
