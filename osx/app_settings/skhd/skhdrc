@@ -69,7 +69,7 @@ ctrl + alt + cmd - e ; emacs
 emacs < escape ; default
 
 emacs < e : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --name "emacs (main frame)"
-emacs < d : skhd -k "escape" && emacs --with-profile doom
+emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
 
 emacs < k : pkill -SIGUSR2 Emacs
 #ctrl + alt + cmd - k : pkill Emacs
