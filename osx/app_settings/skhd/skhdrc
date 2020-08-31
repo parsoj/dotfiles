@@ -95,6 +95,7 @@ ctrl + alt + cmd - 2 : osascript -e "tell application \"/Applications/Tunnelblic
 
 ctrl + alt + cmd - t : open /Applications/TIDAL.app
 ctrl + alt + cmd - m : open /Applications/Franz.app
+ctrl + alt + cmd - i : open /System/Applications/Messages.app
 
 :: default : skhd_bitbar_update "default" 
 
