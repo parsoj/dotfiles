@@ -83,7 +83,7 @@ yabai -m rule --add app="Podcasts" manage=off sticky=on grid=20:20:3:2:14:16
 yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
 
 yabai -m rule --add app="Messages" manage=off sticky=on grid=20:20:4:4:10:12
-yabai -m rule --add app="Franz" manage=off sticky=on grid=20:20:2:2:16:16
+yabai -m rule --add app="Franz" manage=off sticky=on grid=20:20:1:1:18:18
 yabai -m rule --add app="TIDAL" manage=off sticky=on grid=20:20:2:2:16:16
 #yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
 #yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
