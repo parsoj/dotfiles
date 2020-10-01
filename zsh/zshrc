@@ -1,4 +1,7 @@
 #!/bin/zsh
+################################################################################
+# Doom
+export PATH="$PATH:$HOME/doom-emacs/bin"
 
 ################################################################################
 # Homebrew
@@ -33,8 +36,15 @@ export CC=gcc;
 #export GOROOT="$(brew --prefix golang)/libexec"
 #export GOPATH="$HOME/.go"
 #export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
-export PATH="$PATH:go/bin"
+#export PATH="$PATH:$HOME/go/bin"
+
 export GO111MODULE=on
+
+export GOPATH=~/go/
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
 
 ################################################################################
 # ruby

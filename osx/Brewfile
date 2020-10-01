@@ -57,6 +57,7 @@ brew "trash"
 brew "markdown"
 brew "the_platinum_searcher"
 brew "aspell"
+brew "shellcheck"
 brew "gnupg2"
 brew "wget"
 brew "fd"
@@ -80,6 +81,8 @@ brew "leiningen"
 
 # external devtools
 brew "awscli"
+
+brew "gabrie30/utils/ghorg"
 
 ################################################################################
 # emacs 

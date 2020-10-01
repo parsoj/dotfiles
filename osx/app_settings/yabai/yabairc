@@ -90,4 +90,6 @@ yabai -m rule --add app="TIDAL" manage=off sticky=on grid=20:20:2:2:16:16
 
 yabai -m rule --add app="Brave" title="^Pinboard" manage=off
 
+yabai -m rule --add app="Fantastical" manage=off
+
 echo "yabai configuration loaded.."
