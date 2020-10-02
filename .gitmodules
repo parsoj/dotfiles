@@ -1,6 +1,3 @@
-[submodule "emacs"]
-	path = emacs
-	url = git@github.com:indery/BMAcs.git
 [submodule "secrets"]
 	path = secrets
 	url = git@github.com:parsoj/secrets.git
