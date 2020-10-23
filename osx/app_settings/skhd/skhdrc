@@ -40,6 +40,7 @@ ctrl + alt + cmd - n : ~/.config/osx/app_settings/yabai/scripts/create_workspace
 ctrl + alt + cmd - w : ~/.config/osx/app_settings/yabai/scripts/destroy_workspace
 
 ctrl + alt + cmd - f : yabai -m window --toggle zoom-fullscreen
+ctrl + alt + cmd - t : yabai -m window --toggle float
 
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis
@@ -69,7 +70,8 @@ ctrl + alt + cmd - e ; emacs
 emacs < escape ; default
 
 emacs < e : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --name "emacs (main frame)"
-emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
+#emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
+emacs < d : skhd -k "escape" && /usr/local/opt/gccemacs/bin/emacsclient -c
 
 emacs < k : pkill -SIGUSR2 Emacs
 
@@ -93,8 +95,8 @@ ctrl + alt + cmd - 2 : osascript -e "tell application \"/Applications/Tunnelblic
 #ctrl + alt - r : open /Applications/Reeder.app
 #ctrl + alt - m : open /Applications/Music.app
 
-ctrl + alt + cmd - t : open /Applications/TIDAL.app
-ctrl + alt + cmd - m : open /Applications/Franz.app
+ctrl + alt + cmd - m : open /Applications/TIDAL.app
+ctrl + alt + cmd - s : open /Applications/Franz.app
 ctrl + alt + cmd - i : open /System/Applications/Messages.app
 
 :: default : skhd_bitbar_update "default" 
@@ -106,9 +108,9 @@ ctrl + alt + cmd - i : open /System/Applications/Messages.app
 ctrl + alt + cmd - b ;  browser
 
 #browser < p : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory=Default
-browser < p : skhd -k "escape" && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 1"
+browser < p : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 1"
 browser < s : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 2"
-browser < g : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 3"
+browser < g : skhd -k "escape" && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 1"
 browser < i : skhd -k "escape" && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --incognito
 
 browser < k : pkill Brave
