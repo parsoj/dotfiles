@@ -1,19 +1,6 @@
 #!/bin/zsh
-################################################################################
-# Doom
-export PATH="$PATH:$HOME/.emacs.d/bin"
 
-################################################################################
-# Homebrew
 
-export HOMEBREW_NO_ANALYTICS=1
-export PATH="/usr/local/opt/bin:$PATH"
-
-################################################################################
-# Emacs Support 
-export PATH="/Applications/Emacs-NS.app/Contents/MacOS:$PATH"
-export EDITOR="$HOME/dotfiles/osx/scripts/emacs/client"
-export VISUAL="$EDITOR -c"
 
 ################################################################################
 # OSX scripts
