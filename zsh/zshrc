@@ -88,14 +88,14 @@ export PATH="$HOME/.config/osx/scripts/:$PATH"
 ################################################################################
 # swift
 
-export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/"
+#export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/"
 
 ################################################################################
 # go
 
-export CPATH="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
-export CGO_ENABLED=1
-export CC=gcc;
+#export CPATH="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
+#export CGO_ENABLED=1
+#export CC=gcc;
 
 
 #export GOROOT="$(brew --prefix golang)/libexec"
@@ -114,7 +114,7 @@ export PATH=$PATH:$GOROOT/bin
 ################################################################################
 # ruby
 
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+#export PATH="/usr/local/opt/ruby/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/ruby/lib"
 #export CPPFLAGS="-I/usr/local/opt/ruby/include"
 #export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
@@ -122,9 +122,9 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 ################################################################################
 # Python
 
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 #alias python=/usr/local/bin/python3
-export PATH="$HOME/.poetry/bin:$PATH"
+#export PATH="$HOME/.poetry/bin:$PATH"
 
 ################################################################################
 # Terraform
@@ -133,11 +133,11 @@ alias tf=terraform
 
 ################################################################################
 # required when compiling emacs
-export PATH="/usr/local/opt/texinfo/bin:$PATH"
-export LIBXML2_CFLAGS=`xml2-config --cflags`
-export LIBXML2_LIBS=`xml2-config --libs`
-
-export PATH=$PATH:/usr/local/Cellar/gnutls/3.6.10/bin/
+#export PATH="/usr/local/opt/texinfo/bin:$PATH"
+#export LIBXML2_CFLAGS=`xml2-config --cflags`
+#export LIBXML2_LIBS=`xml2-config --libs`
+#
+#export PATH=$PATH:/usr/local/Cellar/gnutls/3.6.10/bin/
 
 ################################################################################
 # Calibre Config
@@ -147,10 +147,10 @@ export CALIBRE_CONFIG_DIRECTORY="~/Dropbox/AppData/Calibre/Config"
 ################################################################################
 # init completions
 
-fpath+=~/.config/zsh/zfunc/_poetry
-
-autoload -U compinit
-compinit
+#fpath+=~/.config/zsh/zfunc/_poetry
+#
+#autoload -U compinit
+#compinit
 
 
 ##########################################################################################
