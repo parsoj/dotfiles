@@ -69,13 +69,13 @@ ctrl + alt + cmd - e ; emacs
 
 emacs < escape ; default
 
-emacs < e : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --name "emacs (main frame)"
+emacs < e : skhd -k "escape" && emacs -c
 #emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
-emacs < d : skhd -k "escape" && /usr/local/opt/gccemacs/bin/emacsclient -c
+emacs < d : skhd -k "escape" && emacsclient -c
 
 emacs < k : pkill -SIGUSR2 Emacs
 
-emacs < c : skhd -k "escape" && /Users/jeff/doom-emacs/bin/org-capture
+emacs < c : skhd -k "escape" && org-capture
 #ctrl + alt + cmd - k : pkill Emacs
 
 #ctrl + alt - e : ~/.config/osx/app_settings/yabai/scripts/launch_current_space /usr/local/bin/emacsclient --no-wait --create-frame --eval "(shell-client-frame)" --frame-parameters='(quote (title . "emacs-client"))'
