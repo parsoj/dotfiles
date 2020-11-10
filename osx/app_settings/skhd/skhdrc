@@ -109,7 +109,7 @@ ctrl + alt + cmd - b ;  browser
 
 #browser < p : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory=Default
 browser < p : skhd -k "escape" && /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window --profile-directory="Profile 1"
-browser < s : skhd -k "escape" && osascript -e "tell application \"Safari\" to make new document"
+browser < s : skhd -k "escape" && osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 browser < g : skhd -k "escape" && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 1"
 browser < i : skhd -k "escape" && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --incognito
 
