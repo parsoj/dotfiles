@@ -13,10 +13,6 @@
 	default = matching
 [core]
 	editor = emacsclient
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com/
 [github]
 	user = parsoj@gmail.com
 [filter "lfs"]
