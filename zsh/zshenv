@@ -9,9 +9,14 @@ export PATH="$PATH:$HOME/.emacs.d/bin"
 
 export HOMEBREW_NO_ANALYTICS=1
 export PATH="/usr/local/opt/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 ################################################################################
 # Emacs Support 
 # export PATH="/Applications/Emacs-NS.app/Contents/MacOS:$PATH"
 export EDITOR="$HOME/dotfiles/osx/scripts/emacs/client"
 export VISUAL="$EDITOR -c"
+
+###############################################################################
+# nix
+source ~/.nix-profile/etc/profile.d/nix.sh
