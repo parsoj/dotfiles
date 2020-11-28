@@ -51,8 +51,8 @@
        (popup            ; tame sudden yet inevitable temporary windows
         +all
         +defaults)
-       (pretty-code +iosevka       ; ligatures or substitute text with pretty symbols
-                    )
+       ;;(pretty-code +iosevka       ; ligatures or substitute text with pretty symbols
+       ;;             )
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
