@@ -41,13 +41,17 @@ yabai -m config right_padding                00
 yabai -m config window_gap                   00
 
 ##########################################################################################
+# Default yabai to off for everything (so we can explicitly whitelist apps for yabai)
+yabai -m rule --add app=".*" manage=off
+
+##########################################################################################
 # Emacs Settings
 
 
 #yabai -m rule --add app="Emacs" title="^$" manage=off
 #yabai -m rule --add app="Emacs" title!="^$" manage=on #ivy-posframe windows currently have an empty title
 #yabai -m rule --add app="Emacs" title="emacs-client" manage=on
-yabai -m rule --add app="emacs"  manage=on
+yabai -m rule --add app="Emacs"  manage=on
 
 yabai -m rule --add app="Emacs" title="doom-capture.*" manage=off sticky=on grid=20:20:4:4:10:12
 
@@ -72,25 +76,27 @@ yabai -m rule --add app="Emacs" title=".*UPPER.*" manage=off layer=above
 ##########################################################################################
 # OSX App Settings
 
-yabai -m rule --add app="iStat Menus" manage=on
+yabai -m rule --add app="Safari" manage=on
 
-yabai -m rule --add app="Fantastical" manage=off
-yabai -m rule --add app="1Password 7" manage=off sticky=on grid=40:40:4:4:30:32
-yabai -m rule --add app="System Preferences" manage=off grid=40:40:15:12:6:8
-yabai -m rule --add app="Deliveries" manage=off sticky=on grid=20:20:3:2:14:16
-yabai -m rule --add app="Podcasts" manage=off sticky=on grid=20:20:3:2:14:16
-
-#yabai -m rule --add app="Music" manage=off #grid=20:20:3:2:14:16
-yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
-
-yabai -m rule --add app="Messages" manage=off sticky=on grid=20:20:4:4:10:12
-yabai -m rule --add app="Franz" manage=off sticky=on grid=20:20:1:1:18:18
-yabai -m rule --add app="TIDAL" manage=off sticky=on grid=20:20:2:2:16:16
-#yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
-#yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
-
-yabai -m rule --add app="Brave" title="^Pinboard" manage=off
-
-yabai -m rule --add app="Fantastical" manage=off
+#yabai -m rule --add app="iStat Menus" manage=on
+#
+#yabai -m rule --add app="Fantastical" manage=off
+#yabai -m rule --add app="1Password 7" manage=off sticky=on grid=40:40:4:4:30:32
+#yabai -m rule --add app="System Preferences" manage=off grid=40:40:15:12:6:8
+#yabai -m rule --add app="Deliveries" manage=off sticky=on grid=20:20:3:2:14:16
+#yabai -m rule --add app="Podcasts" manage=off sticky=on grid=20:20:3:2:14:16
+#
+##yabai -m rule --add app="Music" manage=off #grid=20:20:3:2:14:16
+#yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
+#
+#yabai -m rule --add app="Messages" manage=off sticky=on grid=20:20:4:4:10:12
+#yabai -m rule --add app="Franz" manage=off sticky=on grid=20:20:1:1:18:18
+#yabai -m rule --add app="TIDAL" manage=off sticky=on grid=20:20:2:2:16:16
+##yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
+##yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
+#
+#yabai -m rule --add app="Brave" title="^Pinboard" manage=off
+#
+#yabai -m rule --add app="Fantastical" manage=off
 
 echo "yabai configuration loaded.."
