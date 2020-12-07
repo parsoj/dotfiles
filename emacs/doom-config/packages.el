@@ -51,3 +51,6 @@
 
 
 (package! graphql-mode)
+
+(package! osascripts
+  :recipe (:host github :repo "leoliu/osascripts" ))

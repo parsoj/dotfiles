@@ -71,3 +71,5 @@
 
 (setq projectile-project-root-files-bottom-up '(".projectile"))
 (setq projectile-project-root-files-functions '(projectile-root-bottom-up ))
+
+(use-package! osascripts)

@@ -1,0 +1,27 @@
+{
+  "entries": {
+    "tap": {
+      "koekeishiya/formulae": {
+        "revision": "02297fba8debe8e6371489ceeda8e12f19399c93"
+      }
+    },
+    "brew": {
+      "skhd": {
+        "version": "0.3.5",
+        "bottle": false
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "catalina": {
+        "HOMEBREW_VERSION": "2.6.0",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "cc60bcab602e7fdceb87e5d4118f7b7364cdf64d",
+        "CLT": "12.2.0.0.1.1604628099",
+        "Xcode": "12.2",
+        "macOS": "10.15.7"
+      }
+    }
+  }
+}
