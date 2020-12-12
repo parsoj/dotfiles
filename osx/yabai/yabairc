@@ -42,7 +42,8 @@ yabai -m config window_gap                   00
 
 ##########################################################################################
 # Default yabai to off for everything (so we can explicitly whitelist apps for yabai)
-yabai -m rule --add app=".*" manage=off
+#yabai -m rule --add app=".*" manage=off
+yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Slack|iTerm2|Finder)$" manage=off
 
 ##########################################################################################
 # Emacs Settings
@@ -76,7 +77,7 @@ yabai -m rule --add app="Emacs" title=".*UPPER.*" manage=off layer=above
 ##########################################################################################
 # OSX App Settings
 
-yabai -m rule --add app="Safari" manage=on
+#yabai -m rule --add app="Safari" manage=on
 
 #yabai -m rule --add app="iStat Menus" manage=on
 #
