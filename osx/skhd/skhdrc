@@ -73,7 +73,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 #cmd + alt + e : emacs -c
 
 cmd + alt - e : emacs -c
-cmd + alt - c : org-capture
+cmd + alt - c : org-capture -k x
 cmd + alt - b : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
 #emacs < k : pkill -SIGUSR2 Emacs
