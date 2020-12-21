@@ -78,6 +78,5 @@
 (setq extras-dir (expand-file-name (concat doom-private-dir "extras")))
 
 
-(after! 'dash
-  (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
-  )
+(require 'dash)
+(-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
