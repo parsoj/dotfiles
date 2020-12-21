@@ -74,5 +74,10 @@
 
 (use-package! osascripts)
 
-(setq third-party-dir (concat doom-private-dir "third-party"))
-(setq extras-dir (concat doom-private-dir "extras"))
+(setq third-party-dir (expand-file-name (concat doom-private-dir "third-party")))
+(setq extras-dir (expand-file-name (concat doom-private-dir "extras")))
+
+
+(after! 'dash
+  (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
+  )
