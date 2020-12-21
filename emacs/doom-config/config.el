@@ -73,3 +73,6 @@
 (setq projectile-project-root-files-functions '(projectile-root-bottom-up ))
 
 (use-package! osascripts)
+
+(setq third-party-dir (concat doom-private-dir "third-party"))
+(setq extras-dir (concat doom-private-dir "extras"))
