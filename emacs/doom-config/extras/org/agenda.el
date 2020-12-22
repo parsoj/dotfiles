@@ -37,7 +37,7 @@
 
 (use-package! org-super-agenda)
 
-(org-super-agenda-mode -1)
+(org-super-agenda-mode 1)
 
 (progn
 
@@ -74,9 +74,12 @@
                                      (tags "active/!AVAILABLE|NEXT"
                                            ((org-agenda-overriding-header "On Deck")))
                                      (tags "TODO=\"PROJECT\"&+active"
-                                           ((org-agenda-overriding-header "Active Projects")))
+                                           ((org-agenda-overriding-header "Active Projects")
+                                            (org-super-agenda-groups '((:auto-category t)))
+                                            ))
                                      (tags "SCHEDULED<=\"<today>\"&+active"
-                                           ((org-agenda-overriding-header "Items For Today")))
+                                           ((org-agenda-overriding-header "Items For Today")
+                                            ))
                                      ;; (agenda "" ((org-agenda-span 1)
                                      ;;             (org-agenda-start-day "today")))
                                      ;; (todo "NEXT")
