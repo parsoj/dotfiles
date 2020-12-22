@@ -28,13 +28,16 @@
 ;;   )
 ;;
 
-(setq org-todo-keywords '((type "INBOX(i)" "PROJECT(p)" "|")
+(setq org-todo-keywords '((type "INBOX(i)" "PROJECT(p)" "ROUTINE(r)" "|")
                           (sequence  "AVAILABLE(a)" "BLOCKED(b)" "NEXT(n)"  "|" "DONE(d)")))
 
-(setq org-todo-keyword-faces '((
-                                "PROJECT" . "purple")))
+(setq org-todo-keyword-faces '(("PROJECT" . "purple")
+                               ("ROUTINE" . "pink")))
 
 
+(use-package! org-super-agenda)
+
+(org-super-agenda-mode -1)
 
 (progn
 
@@ -72,6 +75,8 @@
                                            ((org-agenda-overriding-header "On Deck")))
                                      (tags "TODO=\"PROJECT\"&+active"
                                            ((org-agenda-overriding-header "Active Projects")))
+                                     (tags "SCHEDULED<=\"<today>\"&+active"
+                                           ((org-agenda-overriding-header "Items For Today")))
                                      ;; (agenda "" ((org-agenda-span 1)
                                      ;;             (org-agenda-start-day "today")))
                                      ;; (todo "NEXT")
@@ -80,9 +85,5 @@
                                      ;;
                                      ))))
 
-  ;; (org-agenda t "x")
+  (org-agenda t "x")
   )
-
-(use-package! org-super-agenda)
-
-(org-super-agenda-mode -1)
