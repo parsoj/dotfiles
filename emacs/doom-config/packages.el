@@ -52,6 +52,7 @@
 
 (package! graphql-mode)
 (package! org-super-agenda)
+(package! org-ql)
 
 (package! osascripts
   :recipe (:host github :repo "leoliu/osascripts" ))

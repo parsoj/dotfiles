@@ -36,6 +36,7 @@
 
 
 (use-package! org-super-agenda)
+(use-package! org-ql)
 
 (org-super-agenda-mode 1)
 
