@@ -98,7 +98,7 @@ ctrl + alt + cmd - 2 : osascript -e "tell application \"/Applications/Tunnelblic
 #ctrl + alt - r : open /Applications/Reeder.app
 #ctrl + alt - m : open /Applications/Music.app
 
-ctrl + alt + cmd - m : open /Applications/TIDAL.app
+cmd + alt - m : open /Applications/TIDAL.app
 ctrl + alt + cmd - s : open /Applications/Franz.app
 ctrl + alt + cmd - i : open /System/Applications/Messages.app
 
