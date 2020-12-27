@@ -41,7 +41,7 @@
 
 ;; (org-super-agenda-mode 1)
 
-(setq org-active-states '("NEXT" "AVAILABLE"))
+(setq org-active-states '("NEXT" "AVAILABLE" "ROUTINE"))
 
 (setq org-agenda-custom-commands '(
                                    ("x" "custom agenda"
