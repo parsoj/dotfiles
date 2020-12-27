@@ -48,14 +48,16 @@
                                     (
                                      (tags "+TODO=\"INBOX\""
                                            ((org-agenda-overriding-header "Inbox Items")))
+                                     ;; (tags "SCHEDULED<=\"<today>\"&+active"
+                                     ;;       ((org-agenda-overriding-header "Due Today")
+                                     ;;        ))
+                                     (org-ql-block '(deadline :to today)
+                                                   ((org-ql-block-header "Due Today")))
                                      (org-ql-block `(and (tags "active")
                                                          (or (scheduled :to today)
                                                              (not (scheduled)))
                                                          ,(append '(todo) org-active-states))
-                                                   ((org-ql-block-header "Due Today")))
-                                     (tags "SCHEDULED<=\"<today>\"&+active"
-                                           ((org-agenda-overriding-header "Available Today")
-                                            ))
+                                                   ((org-ql-block-header "Available Today")))
                                      (tags "TODO=\"PROJECT\"&+active"
                                            ((org-agenda-overriding-header "Active Projects")
                                             (org-super-agenda-groups '((:auto-category t)))
