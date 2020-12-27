@@ -6,14 +6,16 @@
 ;; (setq org-active-states '("ROUTINE" "AVAILABLE" ))
 
 
-;; (org-ql-search
-;;   org-agenda-files
-;;    '(and
+(org-ql-search
+  org-agenda-files
+   `(and
+     ;; (todo "ROUTINE" "NEXT" "AVAILABLE")
+     ,(append '(todo) org-active-states)
 
-;;      (deadline :to today)
-;;      (todo "ROUTINE" "NEXT" "AVAILABLE")
-;;      )
-;;   )
+     (deadline :to today)
+
+     )
+  )
 
 (setq org-agenda-custom-commands '(
                                    ("x" "custom agenda"
@@ -23,7 +25,10 @@
                                      ;; (tags "SCHEDULED<=\"<today>\"&+active"
                                      ;;       ((org-agenda-overriding-header "Due Today")
                                      ;;        ))
-                                     (org-ql-block '(deadline :to today)
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (deadline :to today)
+                                                     )
                                                    ((org-ql-block-header "Due Today")))
                                      (org-ql-block `(and (tags "active")
                                                          (or (scheduled :to today)

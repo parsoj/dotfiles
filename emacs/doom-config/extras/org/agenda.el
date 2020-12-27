@@ -51,7 +51,10 @@
                                      ;; (tags "SCHEDULED<=\"<today>\"&+active"
                                      ;;       ((org-agenda-overriding-header "Due Today")
                                      ;;        ))
-                                     (org-ql-block '(deadline :to today)
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (deadline :to today)
+                                                     )
                                                    ((org-ql-block-header "Due Today")))
                                      (org-ql-block `(and (tags "active")
                                                          (or (scheduled :to today)
