@@ -1,7 +1,7 @@
 ;;; ../.config/emacs/doom-config/extras/keybinds.el -*- lexical-binding: t; -*-
 
 
-(setq os-config-files '("~/.skhdrc" "~/.yabairc" "~/.zshrc"))
+(setq os-config-files '("~/.skhdrc" "~/.yabairc" "~/.zshrc" "~/.zshenv"))
 
 (defun jump-to-os-config-file ()
   (interactive)
