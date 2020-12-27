@@ -52,6 +52,8 @@
                                      ;;       ((org-agenda-overriding-header "Due Today")
                                      ;;        ))
                                      (org-ql-block `(and
+;;; there appears to be a bug where ordering
+;;; matters for the "and" predicate. be wary here
                                                      ,(append '(todo) org-active-states)
                                                      (deadline :to today)
                                                      )
