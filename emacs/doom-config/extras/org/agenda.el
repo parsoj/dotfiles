@@ -29,19 +29,21 @@
 ;;   )
 ;;
 
-(setq org-todo-keywords '((type "INBOX(i)" "PROJECT(p)" "ROUTINE(r)" "|")
-                          (sequence  "AVAILABLE(a)" "BLOCKED(b)" "NEXT(n)"  "|" "DONE(d)")))
-
-(setq org-todo-keyword-faces '(("PROJECT" . "purple")
-                               ("ROUTINE" . "pink")))
-
 
 (use-package! org-super-agenda)
 (use-package! org-ql)
 
 ;; (org-super-agenda-mode 1)
 
+;;;  todo keywords must be set after org-ql and org-super agenda have been loaded
+(setq org-todo-keywords '((type "INBOX(i)" "PROJECT(p)" "ROUTINE(r)" "|")
+                          (sequence  "AVAILABLE(a)" "BLOCKED(b)" "NEXT(n)"  "|" "DONE(d)")))
+
+(setq org-todo-keyword-faces '(("PROJECT" . "purple")
+                               ("ROUTINE" . "pink")))
+
 (setq org-active-states '("NEXT" "AVAILABLE" "ROUTINE"))
+
 
 (setq org-agenda-custom-commands '(
                                    ("x" "custom agenda"
