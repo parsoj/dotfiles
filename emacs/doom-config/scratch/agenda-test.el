@@ -9,11 +9,9 @@
 (org-ql-search
   org-agenda-files
    `(and
-     ;; ,(append '(todo) org-active-states)
-
-     (todo "ROUTINE" "NEXT" "AVAILABLE")
-     (deadline :to today)
-
+     (todo "PROJECT")
+     (tags "active")
+     (not (descendants ,(append '(todo) org-active-states)))
      )
   )
 

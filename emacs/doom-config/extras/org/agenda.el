@@ -73,4 +73,17 @@
                                            ((org-agenda-overriding-header "Active Projects")
                                             (org-super-agenda-groups '((:auto-category t)))
                                             ))
+                                     (org-ql-block `(and
+                                                     (todo "PROJECT")
+                                                     (tags "active")
+                                                     (not (descendants ,(append '(todo) org-active-states)))
+                                                     )
+                                                   ((org-ql-block-header "Stuck Projects")))
                                      ))))
+
+
+
+(map! :leader
+      (:prefix-map ("o". "open")
+       :desc "Agenda" "x" (lambda! () (org-agenda t "x" ))
+       ))
