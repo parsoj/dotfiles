@@ -28,5 +28,9 @@
 
                     )))
 
-(setq org-refile-targets `(
-                           (,(org-get-refile-files) :maxlevel . 2)))
+(defun refresh-org-refile-targets ()
+  (interactive)
+  (setq org-refile-targets `(
+                             (,(org-get-refile-files) :maxlevel . 2))))
+
+(refresh-org-refile-targets)
