@@ -67,6 +67,7 @@
                                      (org-ql-block `(and (tags "active")
                                                          (or (scheduled :to today)
                                                              (not (scheduled)))
+                                                         (not (deadline :to today))
                                                          ,(append '(todo) org-active-states))
                                                    ((org-ql-block-header "Available Today")))
                                      (tags "TODO=\"PROJECT\"&+active"
