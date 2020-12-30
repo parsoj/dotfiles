@@ -46,7 +46,7 @@
 (setq org-todo-keyword-faces '(("PROJECT" . "purple")
                                ("ROUTINE" . "pink")))
 
-(setq org-active-states '("NEXT" "AVAILABLE" "ROUTINE"))
+(setq org-active-states '("NEXT" "AVAILABLE" "ROUTINE" "TODO"))
 
 
 (setq org-agenda-custom-commands '(
