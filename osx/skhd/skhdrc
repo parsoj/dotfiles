@@ -72,7 +72,8 @@ ctrl + alt + shift - l : yabai -m window --insert east
 #emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
 #cmd + alt + e : emacs -c
 
-cmd + alt - e : emacs -c
+cmd + alt - e : emacs
+cmd + alt - a : emacs --eval "(org-agenda nil \"x\")" 
 cmd + alt - c : org-capture -k x
 cmd + alt - b : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
