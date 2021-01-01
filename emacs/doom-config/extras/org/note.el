@@ -2,6 +2,7 @@
 
 
 
-(defun org-quick-note ()
-  (interactive)
-  (find-file (concat (read-file-name "Choose name for note file: " "~/org/inbox/" "notes.org") ".org")))
+(defun org-quick-note (fn)
+  (interactive "sChoose name for note file: ")
+  (find-file (concat "~/org/inbox/" fn ".org"))
+  )
