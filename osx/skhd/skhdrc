@@ -74,6 +74,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 
 cmd + alt - e : emacs
 cmd + alt - a : emacs --eval "(org-agenda nil \"x\")" 
+cmd + alt - i : emacs --eval "(find-file \"~/org/inbox/inbox\.org\")"
 cmd + alt - c : org-capture -k x
 cmd + alt - b : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
