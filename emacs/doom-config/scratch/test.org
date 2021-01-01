@@ -1,0 +1,7 @@
+#+TITLE: Test
+
+* TODO thing b
+SCHEDULED: <2020-12-31 Thu 09:00>
+
+* NEXT thing a
+SCHEDULED: <2020-12-31 Thu 21:00>

@@ -1,43 +1,39 @@
 ;;; ../.config/emacs/doom-config/scratch/agenda-test.el -*- lexical-binding: t; -*-
 
 
-(setq org-active-states '("ROUTINE" "NEXT" "AVAILABLE" ))
+;; (org-super-agenda-mode 1)
 
-;; (setq org-active-states '("ROUTINE" "AVAILABLE" ))
+(let
+
+    (
+
+     (org-agenda-files '("~/.config/emacs/doom-config/scratch/test.org" "~/.config/emacs/doom-config/scratch/foobar.org"))
+     (org-agenda-custom-commands '(
+                                   ("z" "custom agenda"
+                                    (
+                                     ;; (agenda)
+                                     (org-ql-block `(and
+
+                                                     ,(append '(todo) org-active-states)
+                                                     (scheduled :to ,(ts-now))
+                                                     )
+                                                   (
+                                                    ;; (org-ql-block-header "fack")
+                                                    ;; (org-ql-block-header "Due xToday")
+                                                    ;; (org-super-agenda-groups
+                                                    ;;  '(
+                                                    ;;    (:name "test todo"
+                                                    ;;     :todo "TEST")
+                                                    ;;    (:name "foink"
+                                                    ;;     ;; :todo "TEST"
+                                                    ;;     :auto-ts t
+                                                    ;;     )
+                                                    ;;    ))
+                                                    )))))))
 
 
-(org-ql-search
-  org-agenda-files
-   `(and
-     (todo "PROJECT")
-     (tags "active")
-     (not (descendants ,(append '(todo) org-active-states)))
-     )
+  (org-agenda t "z")
   )
-
-;; (setq org-agenda-custom-commands '(
-;;                                    ("x" "custom agenda"
-;;                                     (
-;;                                      (tags "+TODO=\"INBOX\""
-;;                                            ((org-agenda-overriding-header "Inbox Items")))
-;;                                      ;; (tags "SCHEDULED<=\"<today>\"&+active"
-;;                                      ;;       ((org-agenda-overriding-header "Due Today")
-;;                                      ;;        ))
-;;                                      (org-ql-block `(and
-;;                                                      ,(append '(todo) org-active-states)
-;;                                                      (deadline :to today)
-;;                                                      )
-;;                                                    ((org-ql-block-header "Due Today")))
-;;                                      (org-ql-block `(and (tags "active")
-;;                                                          (or (scheduled :to today)
-;;                                                              (not (scheduled)))
-;;                                                          ,(append '(todo) org-active-states))
-;;                                                    ((org-ql-block-header "Available Today")))
-;;                                      (tags "TODO=\"PROJECT\"&+active"
-;;                                            ((org-agenda-overriding-header "Active Projects")
-;;                                             (org-super-agenda-groups '((:auto-category t)))
-;;                                             ))
-;;                                      ))))
+(org-time-stamp)
 
 
-;; (org-agenda t "x")
