@@ -88,3 +88,10 @@
       (:prefix-map ("o". "open")
        :desc "Agenda" "x" (lambda! () (org-agenda t "x" ))
        ))
+
+
+;;;  auto-save org-mode buffers from agenda
+(add-hook 'org-agenda-mode-hook
+          (lambda ()
+            (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+            (auto-save-mode)))
