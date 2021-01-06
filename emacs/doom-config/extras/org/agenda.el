@@ -20,7 +20,7 @@
 
 
 
-(defun refresh-agenda-files ()
+(defun org-refresh-agenda-files ()
   (interactive)
   (setq org-agenda-files (org-get-agenda-files)))
 
