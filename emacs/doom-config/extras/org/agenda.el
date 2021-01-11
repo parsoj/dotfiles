@@ -24,7 +24,7 @@
   (interactive)
   (setq org-agenda-files (org-get-agenda-files)))
 
-(refresh-agenda-files)
+(org-refresh-agenda-files)
 
 
 ;; (defun org-set-agenda-files ()
@@ -72,7 +72,9 @@
                                                    ((org-ql-block-header "Available Today")))
                                      (tags "TODO=\"PROJECT\"&+active"
                                            ((org-agenda-overriding-header "Active Projects")
-                                            (org-super-agenda-groups '((:auto-category t)))
+                                            (org-super-agenda-groups '(
+                                                                       (:auto-category t)
+                                                                       ))
                                             ))
                                      (org-ql-block `(and
                                                      (todo "PROJECT")

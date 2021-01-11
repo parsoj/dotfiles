@@ -33,4 +33,4 @@
   (setq org-refile-targets `(
                              (,(org-get-refile-files) :maxlevel . 2))))
 
-(refresh-org-refile-targets)
+(org-refresh-refile-targets)
