@@ -64,18 +64,21 @@
                                                      (deadline :to today)
                                                      )
                                                    ((org-ql-block-header "Due Today")))
-                                     (org-ql-block `(and (tags "active")
-                                                         (or (scheduled :to today)
-                                                             (not (scheduled)))
-                                                         (not (deadline :to today))
-                                                         ,(append '(todo) org-active-states))
-                                                   ((org-ql-block-header "Available Today")))
-                                     (tags "TODO=\"PROJECT\"&+active"
-                                           ((org-agenda-overriding-header "Active Projects")
-                                            (org-super-agenda-groups '(
-                                                                       (:auto-category t)
-                                                                       ))
-                                            ))
+                                     ;; (org-ql-block `(and (tags "active")
+                                     ;;                     (or (scheduled :to today)
+                                     ;;                         (not (scheduled)))
+                                     ;;                     (not (deadline :to today))
+                                     ;;                     ,(append '(todo) org-active-states))
+                                     ;;               ((org-ql-block-header "Available Today")))
+                                     (org-ql-block
+                                      `(and
+                                        (todo "PROJECT")
+                                        (tags "active")
+                                        )
+                                      ((org-ql-block-header "Active Projects")
+                                       ;; (org-agenda-super-groups '((:auto-category t)))
+                                       (org-super-agenda-groups '((:auto-category t))))
+                                      )
                                      (org-ql-block `(and
                                                      (todo "PROJECT")
                                                      (tags "active")
@@ -83,6 +86,8 @@
                                                      )
                                                    ((org-ql-block-header "Stuck Projects")))
                                      ))))
+
+(org-super-agenda-mode 1)
 
 
 

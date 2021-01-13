@@ -16,7 +16,7 @@
                                         )
                                       ((org-ql-block-header "Active Projects")
                                        ;; (org-agenda-super-groups '((:auto-category t)))
-                                       (org-super-agenda-groups '((:regexp "cloud"))))
+                                       (org-super-agenda-groups '((:auto-category t))))
                                       )
 
                                      )))))
