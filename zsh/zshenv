@@ -1,8 +1,8 @@
+# -*- mode: sh -*-
 
 ################################################################################
 # Doom
 export PATH="$PATH:$HOME/.emacs.d/bin"
-
 
 ################################################################################
 # Homebrew
@@ -17,6 +17,10 @@ export PATH="/usr/local/sbin:$PATH"
 # export PATH="/Applications/Emacs-NS.app/Contents/MacOS:$PATH"
 export EDITOR="$HOME/dotfiles/osx/scripts/emacs/client"
 export VISUAL="$EDITOR -c"
+
+###############################################################################
+# ruby
+export PATH="$PATH:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin"
 
 ###############################################################################
 # nix
