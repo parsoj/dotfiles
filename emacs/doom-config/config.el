@@ -78,5 +78,12 @@
 (setq extras-dir (expand-file-name (concat doom-private-dir "extras")))
 
 
+;; line number settings
+(setq display-line-numbers t)
+(setq display-line-numbers-type 'relative)
+
+;; word-wrap mode by default for shell mode
+(add-hook! 'shell-mode-hook #'+word-wrap-mode)
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
