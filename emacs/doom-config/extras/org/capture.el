@@ -6,7 +6,15 @@
 
 (setq org-capture-templates
 
-      `(("x" "Inbox item" entry
+      `(
+        ("i" "General inbox item" entry
          (file+headline ,org-inbox-file "Inbox")
-         "* INBOX %?\n%i\n%a" :prepend t))
- )
+         "* %?\n%i\n%a" :prepend t)
+        ("n" "Inbox note" entry
+         (file+headline ,org-inbox-file "Inbox")
+         "* NOTE %?\n%i\n%a" :prepend t)
+        ("t" "Inbox task" entry
+         (file+headline ,org-inbox-file "Inbox")
+         "* TODO %?\n%i\n%a" :prepend t)
+        )
+      )
