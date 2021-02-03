@@ -1,7 +1,7 @@
 ;;; ../.config/emacs/doom-config/extras/org/agenda.el -*- lexical-binding: t; -*-
 
 
-(setq agenda-folders '("inbox" "active"))
+(setq agenda-folders '("inbox" "current_projects"))
 
 
 (defun org-get-agenda-folders ()
@@ -85,7 +85,19 @@
                                                      (not (descendants ,(append '(todo) org-active-states)))
                                                      )
                                                    ((org-ql-block-header "Stuck Projects")))
-                                     ))))
+                                     ))
+                                   ("m" "Morning Planning"
+
+                                    )
+                                   ("e" "Evening shutdown"
+
+                                    )
+                                   ("w" "Weekly Planning"
+
+                                    )
+
+
+                                   ))
 
 (org-super-agenda-mode 1)
 
