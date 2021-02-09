@@ -1,7 +1,7 @@
 ;;; ../.config/emacs/doom-config/extras/org/refile.el -*- lexical-binding: t; -*-
 
 
-(setq refile-folders '("current_projects" "inbox" "on_hold" "reference"))
+(setq refile-folders '("current_projects" "inbox" "someday_projects" "reference"))
 
 (defun org-get-refile-folders ()
   (-map (lambda (x) (expand-file-name (concat org-directory "/" x "/"))) refile-folders)
