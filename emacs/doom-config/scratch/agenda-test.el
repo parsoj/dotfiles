@@ -9,18 +9,28 @@
      (org-agenda-custom-commands '(
                                    ("d" "Daily Planning"
                                     (
-                                     (
-                                      ;; tags-todo "+TODO=\"TODO\""
-                                      agenda ""
-                                      ((org-agenda-overriding-header "Weekly Overview")
-                                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("ROUTINE")))
-                                       (org-agenda-span 5))) ;TODO
-                                     (tags "FOO"
-                                           ((org-agenda-overriding-header "Due Today"))) ;TODO
-                                     (tags "FOO"
-                                           ((org-agenda-overriding-header "Scheduled Today"))) ;TODO
-                                     (tags "FOO"
-                                           ((org-agenda-overriding-header "Due in new 3 days"))) ;TODO
+                                     (agenda ""
+                                             ((org-agenda-overriding-header "Weekly Overview")
+                                              (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("ROUTINE")))
+                                              (org-agenda-span 7)))
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (deadline :to today)
+                                                     (not (tags "routine"))
+                                                     )
+                                                   ((org-ql-block-header "Due Today")))
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (scheduled :to today)
+                                                     )
+                                                   ((org-ql-block-header "Scheduled Today")))
+
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (deadline :to +3)
+                                                     (not (tags "routine"))
+                                                     )
+                                                   ((org-ql-block-header "Due in next 3 days")))
                                      (tags "FOO"
                                            ((org-agenda-overriding-header "Next items for each project"))) ;TODO
                                      (tags "FOO"
