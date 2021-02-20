@@ -6,3 +6,32 @@ DEADLINE: <2020-12-31 Thu 22:00> SCHEDULED: <2020-12-30 Wed 21:30>
 
 
 * TODO test logging
+
+
+
+
+* Test org-id
+:PROPERTIES:
+:ID:       fc48b072-ff3e-42d7-beb7-edfa5a5b26e9
+:END:
+
+
+
+* TODO Test Source
+:PROPERTIES:
+:TRIGGER:  ids(16eb6173-ea5e-498f-9801-fbe3752d3fab) todo!(DONE)
+:END:
+
+
+
+* TODO Test Target 1
+:PROPERTIES:
+:ID:       16eb6173-ea5e-498f-9801-fbe3752d3fab
+:TRIGGER: ids(750d318f-a311-4485-acf1-3786b593cbc4) todo!(AVAILABLE)
+:END:
+
+
+* TODO Test Target 2
+:PROPERTIES:
+:ID:       750d318f-a311-4485-acf1-3786b593cbc4
+:END:
