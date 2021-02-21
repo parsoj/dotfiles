@@ -93,11 +93,6 @@
                                      ))
                                    ("d" "Daily Planning"
                                     (
-                                     ;; (agenda ""
-                                     ;;         ((org-agenda-overriding-header "Weekly Overview")
-                                     ;;          (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("ROUTINE")))
-                                     ;;          (org-agenda-span 7)))
-                                     ;;
                                      (org-ql-block `(and
                                                      ,(append '(todo) org-active-states)
                                                      (not (tags "routine" "spare_time"))
@@ -132,7 +127,12 @@
                                      ;; TODO filter files down to just projects
                                      )
                                     )
-                                   ("w" "Weekly Planning"
+                                   ("w" "Weekly Overview"
+                                    (
+                                     (agenda ""
+                                             ((org-agenda-overriding-header "Weekly Overview")
+                                              (org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp  ":routine:"))
+                                              (org-agenda-span 7))))
 
                                     )
 
