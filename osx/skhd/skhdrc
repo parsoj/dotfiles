@@ -36,8 +36,8 @@ shift + cmd - l : chunkc tiling::window --warp east
 ################################################################################
 # Desktp control
 
-ctrl + alt + cmd - n : ~/.config/osx/app_settings/yabai/scripts/create_workspace
-ctrl + alt + cmd - w : ~/.config/osx/app_settings/yabai/scripts/destroy_workspace
+ctrl + alt + cmd - n : ~/.config/osx/yabai/scripts/create_workspace
+ctrl + alt + cmd - w : ~/.config/osx/yabai/scripts/destroy_workspace
 
 ctrl + alt + cmd - f : yabai -m window --toggle zoom-fullscreen
 ctrl + alt + cmd - t : yabai -m window --toggle float
