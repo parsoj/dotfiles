@@ -86,5 +86,8 @@
 ;; word-wrap mode by default for shell mode
 (add-hook! 'shell-mode-hook #'+word-wrap-mode)
 
+;; python settings
+(set-repl-handler! 'python-mode #'+python/open-ipython-repl)
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
