@@ -89,5 +89,17 @@
 ;; python settings
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
+;; org-capture frames need the display frame param to avoid the
+;; "unknown terminal type" error when running from an emacsclient executing
+;; against a headless server/daemon
+(setq +org-capture-frame-parameters
+  `((name . "doom-capture")
+    (width . 70)
+    (height . 25)
+    (transient . t)
+    ;; (display . ":0")
+    (display . ,(getenv "DISPLAY"))
+    ,(if IS-MAC '(menu-bar-lines . 1))))
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
