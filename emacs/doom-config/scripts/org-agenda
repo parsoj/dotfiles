@@ -1,0 +1,13 @@
+
+set -e
+
+cleanup() {
+  emacsclient --eval '(let (kill-emacs-hook) (kill-emacs))'
+}
+
+# If emacs isn't running, we start a temporary daemon, solely for this window.
+if ! emacsclient -s org --suppress-output --eval nil; then
+  emacs --daemon=org
+  trap cleanup EXIT INT TERM
+  daemon=1
+fi
