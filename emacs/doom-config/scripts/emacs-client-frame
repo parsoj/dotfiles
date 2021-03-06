@@ -3,12 +3,12 @@
 set -e
 
 # If emacs isn't running, we start a daemon
-if ! emacsclient -s dev --suppress-output --eval nil; then
-  emacs --daemon=dev
+if ! emacsclient -s $1 --suppress-output --eval nil; then
+  emacs --daemon=$1
 fi
 
 emacsclient -a "" \
-  -s dev \
+  -s $1 \
   -c \
   -F '((name . "Doom Emacs") (display . ":0"))' \
   -e "(let ((default-directory \"~/\")) (progn (+shell/here) (select-frame-set-input-focus (selected-frame))))"
