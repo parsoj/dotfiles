@@ -101,5 +101,10 @@
     (display . ,(getenv "DISPLAY"))
     ,(if IS-MAC '(menu-bar-lines . 1))))
 
+;;  org-super-agenda tries to force its own keybinds on you
+;;  prevent this from happening
+(setq org-super-agenda-header-map (make-sparse-keymap))
+
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
