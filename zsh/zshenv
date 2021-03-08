@@ -24,5 +24,9 @@ export PATH="$PATH:/usr/local/opt/python@3.9/libexec/bin"
 export PATH="$PATH:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin"
 
 ###############################################################################
+# terraform
+alias tf=terraform
+
+###############################################################################
 # nix
 source ~/.nix-profile/etc/profile.d/nix.sh
