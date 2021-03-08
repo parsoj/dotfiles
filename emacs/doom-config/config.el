@@ -105,6 +105,8 @@
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
 
+(set-popup-rule! "^\\*helpful" :side 'right :size 0.40)
+
 
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
