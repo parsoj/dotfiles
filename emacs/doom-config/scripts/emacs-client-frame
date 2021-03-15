@@ -10,5 +10,5 @@ fi
 emacsclient -a "" \
   -s $1 \
   -c \
-  -F '((name . "Doom Emacs") (display . ":0"))' \
-  -e "(let ((default-directory \"~/\")) (progn (+shell/here) (select-frame-set-input-focus (selected-frame))))"
+  -F "((name . \"Doom Emacs: $1\") (display . \":0\"))" \
+  -e '(progn (+get-create-shell "~/") (+focus-this-frame))'
