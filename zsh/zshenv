@@ -35,6 +35,22 @@ source ~/.nix-profile/etc/profile.d/nix.sh
 # kubernetes
 alias kc=kubectl
 
+kcns () {
+    if [ -z "$1" ]; then
+        echo "no namespace provided"
+        exit 1
+    fi
+  kubectl config set-context --current --namespace=$1  
+}
+
+kcbb () {
+    if [ -z "$1" ]; then
+        echo "no command provided"
+        exit 1
+    fi
+  kubctl run bb --image=bb --rm -it --restart=Never -- $1
+}
+
 ###############################################################################
 # gcloud
 
