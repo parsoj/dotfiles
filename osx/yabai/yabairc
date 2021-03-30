@@ -82,7 +82,7 @@ yabai -m rule --add app="Emacs" title=".*UPPER.*" manage=off layer=above
 
 #yabai -m rule --add app="iStat Menus" manage=on
 #
-#yabai -m rule --add app="Fantastical" manage=off
+yabai -m rule --add app="Things" title!="Quick Entry" manage=on
 #yabai -m rule --add app="1Password 7" manage=off sticky=on grid=40:40:4:4:30:32
 #yabai -m rule --add app="System Preferences" manage=off grid=40:40:15:12:6:8
 #yabai -m rule --add app="Deliveries" manage=off sticky=on grid=20:20:3:2:14:16
