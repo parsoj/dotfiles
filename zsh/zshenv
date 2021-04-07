@@ -18,6 +18,7 @@ export VISUAL="$EDITOR -c"
 ###############################################################################
 # python
 export PATH="$PATH:/usr/local/opt/python@3.9/libexec/bin"
+source $HOME/.poetry/env
 
 ###############################################################################
 # ruby
