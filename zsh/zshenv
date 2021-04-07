@@ -24,6 +24,10 @@ source $HOME/.poetry/env
 # ruby
 export PATH="$PATH:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin"
 
+##########################################################################################
+# java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+
 ###############################################################################
 # terraform
 alias tf=terraform
