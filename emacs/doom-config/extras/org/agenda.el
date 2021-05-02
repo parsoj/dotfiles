@@ -1,7 +1,7 @@
 ;;; ../.config/emacs/doom-config/extras/org/agenda.el -*- lexical-binding: t; -*-
 
 
-(setq agenda-folders '("inbox" "current_projects"))
+(setq agenda-folders '("active"))
 
 
 (defun org-get-agenda-folders ()
@@ -54,7 +54,33 @@
 (setq org-active-states '("NEXT" "AVAILABLE" "ROUTINE" "TODO"))
 
 
+(defun org-is-active-p ()
+
+
+  )
+
 (setq org-agenda-custom-commands '(
+
+                                   ("p" "Available Items Per Area"
+                                    (
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (not (tags "routine" "spare_time"))
+                                                     (or
+                                                      (scheduled :to today)
+                                                      (not (scheduled))
+                                                      )
+                                                     )
+                                                   (
+                                                    (org-ql-block-header "Next items for each Area of Focus")
+                                                    ;; (org-agenda-files
+                                                    ;;  (get-org-files-in-folder (expand-file-name "~/org/current_projects"))
+                                                    ;;  )
+                                                    (org-super-agenda-groups '((:auto-category t)))
+
+                                                    )))
+                                    )
+
                                    ("x" "custom agenda"
                                     (
                                      (tags "+TODO=\"INBOX\""
