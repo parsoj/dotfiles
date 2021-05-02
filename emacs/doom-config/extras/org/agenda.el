@@ -54,14 +54,21 @@
 (setq org-active-states '("NEXT" "AVAILABLE" "ROUTINE" "TODO"))
 
 
-(defun org-is-active-p ()
-
-
+(defun jeff/ts-beg-of-week (ts)
+  (->> ts
+       (ts-adjust 'day (- (ts-dow (ts-now))))
+       (ts-apply :hour 0 :minute 0 :second 0))
   )
+
+
+(defun jeff/ts-end-of-week (ts)
+  (->> ts
+       (ts-adjust 'day (- 6 (ts-dow (ts-now))))
+       (ts-apply :hour 23 :minute 59 :second 59)))
 
 (setq org-agenda-custom-commands '(
 
-                                   ("p" "Available Items Per Area"
+                                   ("t" "Items Available TODAY (grouped per area)"
                                     (
                                      (org-ql-block `(and
                                                      ,(append '(todo) org-active-states)
@@ -72,7 +79,27 @@
                                                       )
                                                      )
                                                    (
-                                                    (org-ql-block-header "Next items for each Area of Focus")
+                                                    (org-ql-block-header "Available TODAY for each Area of Focus")
+                                                    ;; (org-agenda-files
+                                                    ;;  (get-org-files-in-folder (expand-file-name "~/org/current_projects"))
+                                                    ;;  )
+                                                    (org-super-agenda-groups '((:auto-category t)))
+
+                                                    )))
+                                    )
+
+                                   ("w" "Items Available THIS WEEK (grouped per area)"
+                                    (
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (not (tags "routine" "spare_time"))
+                                                     (or
+                                                      (scheduled :to ,(jeff/ts-end-of-week (ts-now)))
+                                                      (not (scheduled))
+                                                      )
+                                                     )
+                                                   (
+                                                    (org-ql-block-header "Available THIS WEEK for each Area of Focus")
                                                     ;; (org-agenda-files
                                                     ;;  (get-org-files-in-folder (expand-file-name "~/org/current_projects"))
                                                     ;;  )
@@ -153,14 +180,14 @@
                                      ;; TODO filter files down to just projects
                                      )
                                     )
-                                   ("w" "Weekly Overview"
-                                    (
-                                     (agenda ""
-                                             ((org-agenda-overriding-header "Weekly Overview")
-                                              (org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp  ":routine:"))
-                                              (org-agenda-span 7))))
+                                   ;; ("w" "Weekly Overview"
+                                   ;;  (
+                                   ;;   (agenda ""
+                                   ;;           ((org-agenda-overriding-header "Weekly Overview")
+                                   ;;            (org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp  ":routine:"))
+                                   ;;            (org-agenda-span 7))))
 
-                                    )
+                                   ;;  )
 
 
                                    ))
@@ -175,8 +202,17 @@
        ))
 
 
+(defun jeff/org-save-all-non-agenda-org-buffers ()
+  "Save all Org buffers without user confirmation."
+  (interactive)
+  (message "Saving all Org buffers...")
+  (save-some-buffers t (lambda () (and (derived-mode-p 'org-mode)
+                                       (not (derived-mode-p 'org-agenda-mode)))))
+  (when (featurep 'org-id) (org-id-locations-save))
+  (message "Saving all Org buffers... done"))
+
 ;;;  auto-save org-mode buffers from agenda
 (add-hook 'org-agenda-mode-hook
           (lambda ()
-            (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+            (add-hook 'auto-save-hook 'jeff/org-save-all-non-agenda-org-buffers nil t)
             (auto-save-mode)))
