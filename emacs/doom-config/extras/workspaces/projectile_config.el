@@ -27,10 +27,7 @@
   (set-popup-rule! "^\\*compilation\\*"  :side 'right :quit nil :select t)
 
   (map! :leader
-        (:prefix-map ("p" . "project")
-         :desc "Run project"                  "R" #'jeff/projectile-run-project
-
-         )
+        (:desc "Run project"                  "p R" #'jeff/projectile-run-project)
         )
 
   )
