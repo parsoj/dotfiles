@@ -5,25 +5,36 @@
 ;; Author: Jeff Parsons <parsoj@gmail.com>
 
 
+(defun jeff/projectile-run-project ()
+  (interactive)
+
+  (let ((func-or-cmd projectile-project-run-cmd))
+    (cond ((stringp func-or-cmd)
+           (projectile-run-project func-or-cmd))
+          ((functionp func-or-cmd)
+           (funcall func-or-cmd))
+          (t
+           (eval func-or-cmd)
+           )
+      ))
+
+  )
+
 (after! projectile
   ;;(setq projectile-project-root-functions '(projectile-root-bottom-up))
   (setq projectile-project-root-files-bottom-up '(".projectile"))
 
-  )
+  (set-popup-rule! "^\\*compilation\\*"  :side 'right :quit nil :select t)
 
+  (map! :leader
+        (:prefix-map ("p" . "project")
+         :desc "Run project"                  "R" #'jeff/projectile-run-project
 
-
-(defun +create-new-workspace-at (parent-dir workspace-name)
-  (let ((workspace-path (concat parent-dir "/" workspace-name)))
-    (if (file-directory-p workspace-path)
-        t
-      (progn
-        (make-directory workspace-path t)
-        (write-region "" nil (concat workspace-path "/.projectile"))
-        (write-region "" nil (concat workspace-path "/" workspace-name ".org"))
+         )
         )
-      ))
+
   )
+
 
 
 
