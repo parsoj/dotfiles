@@ -152,9 +152,9 @@
                                                      )
                                                    (
                                                     (org-ql-block-header "Next items for each project")
-                                                    (org-agenda-files
-                                                     (get-org-files-in-folder (expand-file-name "~/org/current_projects"))
-                                                     )
+                                                    ;;(org-agenda-files
+                                                     ;;(get-org-files-in-folder (expand-file-name "~/org/current_projects"))
+                                                     ;;)
                                                     (org-super-agenda-groups '((:auto-category t)))
 
                                                     ))
