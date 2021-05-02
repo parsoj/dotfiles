@@ -35,3 +35,11 @@ If popup is focused, kill it."
         (+shell--send-input buffer command)))
     buffer
     ))
+
+
+
+(map! :leader
+      :mode 'shell-mode
+      :desc "Search History" "m h" #'counsel-shell-history
+
+      )
