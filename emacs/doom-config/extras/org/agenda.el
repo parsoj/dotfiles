@@ -55,6 +55,7 @@
 
 
 (defun jeff/ts-beg-of-week (ts)
+  "Get a timestamp for the very beginning of the week of the input timestamp"
   (->> ts
        (ts-adjust 'day (- (ts-dow (ts-now))))
        (ts-apply :hour 0 :minute 0 :second 0))
@@ -62,13 +63,33 @@
 
 
 (defun jeff/ts-end-of-week (ts)
+  "Get a timestamp for the very end of the week of the input timestamp"
   (->> ts
        (ts-adjust 'day (- 6 (ts-dow (ts-now))))
        (ts-apply :hour 23 :minute 59 :second 59)))
 
-(setq org-agenda-custom-commands '(
+(defun jeff/ts-get-day-of-this-week-absolute (daynum)
+  "get a timestamp for a given day of the current week.
+   daynum is an int 0-6 corresponding to day of week"
 
-                                   ("t" "Items Available TODAY (grouped per area)"
+  (->> (ts-now)
+    (ts-adjust 'day (- (ts-dow (ts-now))))
+    (ts-adjust 'day daynum)
+    )
+
+  )
+
+(defun jeff/dow-generate-range (daynum)
+
+  `(
+    :scheduled (after ,(ts-format (ts-apply :hour 23 :minute 59 :second 59  (jeff/ts-get-day-of-this-week-absolute (- daynum 1) ))))
+    :scheduled (before ,(ts-format (ts-apply :hour 0 :minute 0 :second 0 (jeff/ts-get-day-of-this-week-absolute (+ daynum 1)))))
+    )
+
+)
+
+(setq org-agenda-custom-commands '(
+                                   ("a" "Items Available TODAY (grouped per area)"
                                     (
                                      (org-ql-block `(and
                                                      ,(append '(todo) org-active-states)
@@ -88,7 +109,27 @@
                                                     )))
                                     )
 
-                                   ("w" "Items Available THIS WEEK (grouped per area)"
+                                   ("A" "Items Available THIS WEEK (grouped per area)"
+                                    (
+                                     (org-ql-block `(and
+                                                     ,(append '(todo) org-active-states)
+                                                     (not (tags "routine" "spare_time"))
+                                                     (or
+                                                      (scheduled :to ,(jeff/ts-end-of-week (ts-now)))
+                                                      (not (scheduled))
+                                                      )
+                                                     )
+                                                   (
+                                                    (org-ql-block-header "Weekly Overview")
+                                                    ;; (org-agenda-files
+                                                    ;;  (get-org-files-in-folder (expand-file-name "~/org/current_projects"))
+                                                    ;;  )
+                                                    (org-super-agenda-groups '((:auto-category t)))
+
+                                                    )))
+                                    )
+
+                                   ("w" "Weekly Overview"
                                     (
                                      (org-ql-block `(and
                                                      ,(append '(todo) org-active-states)
@@ -103,7 +144,16 @@
                                                     ;; (org-agenda-files
                                                     ;;  (get-org-files-in-folder (expand-file-name "~/org/current_projects"))
                                                     ;;  )
-                                                    (org-super-agenda-groups '((:auto-category t)))
+                                                    (org-super-agenda-groups `(
+                                                                               (:name "Sunday" :and ,(jeff/dow-generate-range 0))
+                                                                               (:name "Monday" :and ,(jeff/dow-generate-range 1))
+                                                                               (:name "Tuesday" :and ,(jeff/dow-generate-range 2))
+                                                                               (:name "Wednesday" :and ,(jeff/dow-generate-range 3))
+                                                                               (:name "Thursday" :and ,(jeff/dow-generate-range 4))
+                                                                               (:name "Friday" :and ,(jeff/dow-generate-range 5))
+                                                                               (:name "Saturday" :and ,(jeff/dow-generate-range 6))
+                                                                               (:name "Unassigned" :anything)
+                                                                               ))
 
                                                     )))
                                     )
@@ -153,8 +203,8 @@
                                                    (
                                                     (org-ql-block-header "Next items for each project")
                                                     ;;(org-agenda-files
-                                                     ;;(get-org-files-in-folder (expand-file-name "~/org/current_projects"))
-                                                     ;;)
+                                                    ;;(get-org-files-in-folder (expand-file-name "~/org/current_projects"))
+                                                    ;;)
                                                     (org-super-agenda-groups '((:auto-category t)))
 
                                                     ))
