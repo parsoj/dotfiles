@@ -242,6 +242,7 @@
 
                                    ))
 
+(setq org-super-agenda-header-separator "\n\n------------------------------------------------------------\n")
 (org-super-agenda-mode 1)
 
 
