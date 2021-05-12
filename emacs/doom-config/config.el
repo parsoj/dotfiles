@@ -108,5 +108,7 @@
 (set-popup-rule! "^\\*helpful" :side 'right :size 0.40)
 
 
+(map! :leader "SPC" #'counsel-M-x)
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
