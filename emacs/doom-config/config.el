@@ -109,6 +109,7 @@
 
 
 (map! :leader "SPC" #'counsel-M-x)
+(map! :leader "p n"  (cmd! (find-file (concat (projectile-project-root) "notes.org"))))
 
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
