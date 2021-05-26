@@ -7,13 +7,25 @@
 (defun +create-new-workspace ()
   (interactive)
   (let (
-        (workspace-name (read-string "Name for new workspace: ")))
+        (workspace-parent-dir (completing-read "Select Workspace Dir: " (+list-workspace-directories workspaces-root)))
+        (workspace-name (completing-read "Name for Workspace: " nil nil nil))
+        )
     (progn
-      (+workspace-create-at workspaces-root workspace-name)
+      (+workspace-create-at workspace-parent-dir workspace-name)
       (find-file
        (concat workspaces-root "/" workspace-name "/" workspace-name ".org"))
       )
     )
+  )
+
+(defun +f-entries-names (dir)
+  (--map (f-filename it) (f-entries dir))
+  )
+
+(defun +list-workspace-directories (root-dir)
+
+  (f-directories root-dir (lambda (dir) (not (-contains-p (+f-entries-names dir) ".projectile")) ))
+
   )
 
 
