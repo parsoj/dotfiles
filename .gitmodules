@@ -1,9 +1,3 @@
 [submodule "secrets"]
 	path = secrets
 	url = git@github.com:parsoj/secrets.git
-[submodule "emacs/doom-core"]
-	path = emacs/doom-core
-	url = https://github.com/hlissner/doom-emacs
-[submodule "emacs/emacs-core"]
-	path = emacs/emacs-core
-	url = git@github.com:emacs-mirror/emacs.git
