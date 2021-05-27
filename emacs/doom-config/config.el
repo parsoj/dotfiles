@@ -38,6 +38,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
+;; (setq display-line-numbers-type 'absolute)
 (setq display-line-numbers-type nil)
 
 
@@ -62,9 +63,17 @@
 (setq ivy-re-builders-alist
       '((t . ivy--regex-ignore-order)))
 
+(setq ivy-posframe-height-alist '(
+                                  (+ivy-read-string     . 1)
+                                  ))
+
+(setq ivy-posframe-parameters
+      '((left-fringe . 5)
+        (right-fringe . 5)))
+
 
 ;; don't obnoxiously expand the minibuffer all the time
-(setq resize-mini-windows nil)
+;; (setq resize-mini-windows nil)
 
 
 ;; graphql mode
@@ -79,15 +88,13 @@
 (setq extras-dir (expand-file-name (concat doom-private-dir "extras")))
 
 
-;; line number settings
-(setq display-line-numbers t)
-(setq display-line-numbers-type 'relative)
 
 ;; word-wrap mode by default for shell mode
-(add-hook! 'shell-mode-hook #'+word-wrap-mode)
+;; (add-hook! 'shell-mode-hook #'+word-wrap-mode)
 
 ;; python settings
-(set-repl-handler! 'python-mode #'+python/open-ipython-repl)
+(after!
+  (set-repl-handler! 'python-mode #'+python/open-ipython-repl))
 
 ;; org-capture frames need the display frame param to avoid the
 ;; "unknown terminal type" error when running from an emacsclient executing

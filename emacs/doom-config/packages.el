@@ -55,5 +55,7 @@
 (package! org-ql)
 (package! org-edna)
 
+(package! applescript-mode)
+
 (package! osascripts
   :recipe (:host github :repo "leoliu/osascripts" ))
