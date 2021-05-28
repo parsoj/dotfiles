@@ -10,10 +10,15 @@ export PATH="/usr/local/sbin:$PATH"
 
 ################################################################################
 # Emacs Support 
-# export PATH="/Applications/Emacs-NS.app/Contents/MacOS:$PATH"
+
 export PATH="$PATH:$HOME/.config/emacs/doom-config/scripts"
+export PATH="$PATH:$HOME/.emacs.d/bin"
 export EDITOR="$HOME/dotfiles/osx/scripts/emacs/client"
-export VISUAL="$EDITOR -c"
+
+if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
+  export PATH="/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
+  alias emacs="emacs -nw" # Always launch "emacs" in terminal mode.
+fi
 
 ###############################################################################
 # python
