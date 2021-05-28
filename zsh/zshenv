@@ -23,7 +23,7 @@ fi
 ###############################################################################
 # python
 export PATH="$PATH:/usr/local/opt/python@3.9/libexec/bin"
-source $HOME/.poetry/env
+#source $HOME/.poetry/env
 
 ###############################################################################
 # ruby
@@ -39,7 +39,7 @@ alias tf=terraform
 
 ###############################################################################
 # nix
-source ~/.nix-profile/etc/profile.d/nix.sh
+#source ~/.nix-profile/etc/profile.d/nix.sh
 
 ###############################################################################
 # kubernetes
