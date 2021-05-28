@@ -30,6 +30,14 @@
         (:desc "Run project"                  "p R" #'jeff/projectile-run-project)
         )
 
+  (map! :leader "p n"  (cmd! (find-file (concat (projectile-project-root) "notes.org"))))
+
+  (setq projectile-project-search-path '("~/workspaces"))
+
+  (setq projectile-project-root-files-bottom-up '(".projectile"))
+  (setq projectile-project-root-files-functions '(projectile-root-bottom-up ))
+
+
   )
 
 

@@ -79,9 +79,6 @@
 ;; graphql mode
 (use-package! graphql-mode)
 
-(setq projectile-project-root-files-bottom-up '(".projectile"))
-(setq projectile-project-root-files-functions '(projectile-root-bottom-up ))
-
 (use-package! osascripts)
 
 (setq third-party-dir (expand-file-name (concat doom-private-dir "third-party")))
@@ -116,7 +113,6 @@
 
 
 (map! :leader "SPC" #'counsel-M-x)
-(map! :leader "p n"  (cmd! (find-file (concat (projectile-project-root) "notes.org"))))
 
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
