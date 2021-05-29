@@ -48,7 +48,7 @@ at the top level of DIRECTORY."
              (if (projectile-project-p dir)
                  (projectile-add-known-project dir)
                (when (> recursion-depth 1)
-                 (projectile-discover-projects-in-directory dir (- recursion-depth 1))
+                 (jeff/projectile-discover-projects-in-directory dir (- recursion-depth 1))
                  )
                )))
          subdirs))
