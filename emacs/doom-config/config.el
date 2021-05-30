@@ -24,6 +24,8 @@
 (setq doom-font (font-spec :family "Iosevka" :size 16)
       ;;doom-variable-pitch-font (font-spec :family "ETBembo" :size 16)
       )
+(setq doom-big-font-increment 6)
+
 
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 ;; There are two ways to load a theme. Both assume the theme is installed and
