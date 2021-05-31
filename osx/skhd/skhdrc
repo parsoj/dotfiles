@@ -72,14 +72,15 @@ ctrl + alt + shift - l : yabai -m window --insert east
 #emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
 #cmd + alt + e : emacs -c
 
-cmd + alt - e : emacs-client-frame dev
-cmd + alt - o : emacs-client-frame org
-cmd + alt - a : emacs --eval "(org-agenda nil \"x\")" -F '((name . "Agenda"))'
-cmd + alt - i : emacs --eval "(find-file \"~/org/inbox/inbox\.org\")"
-#cmd + alt - n : emacs --eval "(call-interactively 'org-quick-note)"
-cmd + alt - t : org-capture -k t
-cmd + alt - n : org-capture -k n
+#cmd + alt - e : emacs-client-frame dev
+#cmd + alt - o : emacs-client-frame org
+#cmd + alt - a : emacs --eval "(org-agenda nil \"x\")" -F '((name . "Agenda"))'
+#cmd + alt - i : emacs --eval "(find-file \"~/org/inbox/inbox\.org\")"
+##cmd + alt - n : emacs --eval "(call-interactively 'org-quick-note)"
+#cmd + alt - t : org-capture -k t
+#cmd + alt - n : org-capture -k n
 
+cmd + alt - e : osascript -e 'display notification "Emacs is Launching..."' ; /Applications/Emacs.app/Contents/MacOS/Emacs &
 
 #emacs < k : pkill -SIGUSR2 Emacs
 
