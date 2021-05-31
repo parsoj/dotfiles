@@ -20,6 +20,17 @@
 (setq doom-theme 'doom-vibrant)
 
 
+(defun +startup-buffer ()
+  (progn
+    (+get-create-shell "~/")
+    (+focus-this-frame))
+)
+
+
+(setq inhibit-startup-screen nil)
+(setq initial-buffer-choice #'+startup-buffer)
+
+
 (doom! :input
        ;;chinese
        ;;japanese
@@ -100,7 +111,7 @@
        grammar                       ; tasing grammar mistake every you make
 
        :os
-       macos             ; MacOS-specific commands
+       macos                            ; MacOS-specific commands
 
        :tools
        ;;ansible
@@ -114,7 +125,7 @@
        (lookup
         +dictionary
         +docsets
-        )                         ; navigate your code and its documentation
+        )                             ; navigate your code and its documentation
        (lsp
         +peek)
        magit                    ; a git porcelain for Emacs
