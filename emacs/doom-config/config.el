@@ -62,6 +62,14 @@
 ;; they are implemented.
 
 
+
+;; you know how to delete windows vs buffers - don't let doom override the ability
+;; to delete a buffer if you need to
+(advice-remove #'kill-current-buffer #'doom--switch-to-fallback-buffer-maybe-a)
+
+
+
+
 (setq ivy-re-builders-alist
       '((t . ivy--regex-ignore-order)))
 
