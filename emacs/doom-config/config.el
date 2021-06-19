@@ -119,7 +119,7 @@
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
 
-(set-popup-rule! "^\\*helpful" :side 'right :size 0.40)
+(set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
 
 
 (map! :leader "SPC" #'counsel-M-x)
