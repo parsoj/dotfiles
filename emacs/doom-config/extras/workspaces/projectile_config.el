@@ -95,20 +95,6 @@ at the top level of DIRECTORY."
   )
 
 
-(after! counsel-projectile
-
-  ;; (setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
-  (map! :leader "p p"  #'projectile-switch-project)
-
-  ;; (counsel-projectile-modify-action
-  ;;  'counsel-projectile-switch-project-action
-  ;;  '((add ("n" +projectile-jump-to-notes "jump to project notes file") 1))
-  ;;  )
-
-
-  )
-
-
 
 
 
