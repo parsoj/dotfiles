@@ -55,6 +55,12 @@ at the top level of DIRECTORY."
     (message "Project search path directory %s doesn't exist" directory)))
 
 
+(defun +projectile-jump-to-notes ()
+  (interactive)
+  (find-file (concat (projectile-project-root) "notes.org"))
+
+  )
+
 (after! projectile
   ;;(setq projectile-project-root-functions '(projectile-root-bottom-up))
   ;; (setq projectile-project-root-files-bottom-up '(".projectile"))
@@ -65,7 +71,7 @@ at the top level of DIRECTORY."
         (:desc "Run project"                  "p R" #'jeff/projectile-run-project)
         )
 
-  (map! :leader "p n"  (cmd! (find-file (concat (projectile-project-root) "notes.org"))))
+  (map! :leader "p n"  #'+projectile-jump-to-notes)
 
   (setq projectile-project-search-path '("~/workspaces/"))
 
@@ -76,6 +82,9 @@ at the top level of DIRECTORY."
 
 
   (jeff/projectile-discover-projects-in-directory "~/workspaces" 15)
+
+  (setq projectile-switch-project-action #'+projectile-jump-to-notes)
+
 
   ;; (setq projectile-project-root-files-top-down-recurring '(".projectile"))
 
