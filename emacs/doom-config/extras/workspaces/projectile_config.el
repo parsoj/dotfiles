@@ -55,7 +55,7 @@ at the top level of DIRECTORY."
     (message "Project search path directory %s doesn't exist" directory)))
 
 
-(defun +projectile-jump-to-notes ()
+(defun +projectile-jump-to-notes (&optional counsel-projectile-candidate)
   (interactive)
   (find-file (concat (projectile-project-root) "notes.org"))
 
@@ -69,9 +69,10 @@ at the top level of DIRECTORY."
 
   (map! :leader
         (:desc "Run project"                  "p R" #'jeff/projectile-run-project)
+        (:desc "Switch project"                  "p p" (cmd! (projectile-switch-project)))
+        (:desc "Jump to project notes"  "p n" #'+projectile-jump-to-notes)
         )
 
-  (map! :leader "p n"  #'+projectile-jump-to-notes)
 
   (setq projectile-project-search-path '("~/workspaces/"))
 
@@ -89,6 +90,20 @@ at the top level of DIRECTORY."
   ;; (setq projectile-project-root-files-top-down-recurring '(".projectile"))
 
   ;; (setq projectile-project-root-functions '(projectile-root-top-down-recurring ))
+
+
+  )
+
+
+(after! counsel-projectile
+
+  ;; (setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
+  (map! :leader "p p"  #'projectile-switch-project)
+
+  ;; (counsel-projectile-modify-action
+  ;;  'counsel-projectile-switch-project-action
+  ;;  '((add ("n" +projectile-jump-to-notes "jump to project notes file") 1))
+  ;;  )
 
 
   )
