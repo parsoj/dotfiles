@@ -38,6 +38,13 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/H
 alias tf=terraform
 
 ###############################################################################
+# digital ocean
+
+do_get_token() {
+	export DIGITALOCEAN_ACCESS_TOKEN=$(op get item DigitalOcean_PAT | jq '.details.sections[0].fields[1].v')
+}
+
+###############################################################################
 # nix
 #source ~/.nix-profile/etc/profile.d/nix.sh
  
