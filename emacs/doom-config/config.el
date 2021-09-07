@@ -124,5 +124,21 @@
 
 (map! :leader "SPC" #'counsel-M-x)
 
+(progn
+  (define-key evil-normal-state-map "h" nil)
+  (define-key evil-normal-state-map "j" nil)
+  (define-key evil-normal-state-map "k" nil)
+  (define-key evil-normal-state-map "l" nil)
+  (define-key evil-normal-state-map ";" nil)
+
+  (define-key evil-motion-state-map "j" 'evil-backward-char)
+  (define-key evil-motion-state-map "k" 'evil-next-line)
+  (define-key evil-motion-state-map "l" 'evil-previous-line)
+  (define-key evil-motion-state-map ";" 'evil-forward-char)
+
+  )
+
+
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
