@@ -139,6 +139,31 @@
   )
 
 
+(map!
+ :nvm "j" #'evil-backward-char
+ :nvm ";" #'evil-forward-char
+
+ :nvm "l" #'evil-previous-line
+ :nvm "k" #'evil-next-line
+ )
+
+(map! :map magit-mode-map
+ :nvm "j" #'evil-backward-char
+ :nvm ";" #'evil-forward-char
+
+ :nvm "l" #'evil-previous-line
+ :nvm "k" #'evil-next-line
+      )
+
+(after! treemacs-evil
+  (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
+  (evil-define-key 'treemacs treemacs-mode-map "l" #'evil-previous-line)
+
+  (evil-define-key 'treemacs treemacs-mode-map ";" #'evil-forward-char)
+  (evil-define-key 'treemacs treemacs-mode-map "j" #'evil-backward-char)
+  )
+
+
 
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
