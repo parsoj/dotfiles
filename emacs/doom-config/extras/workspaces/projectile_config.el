@@ -55,11 +55,22 @@ at the top level of DIRECTORY."
     (message "Project search path directory %s doesn't exist" directory)))
 
 
+
+
+;;------------------------------------------------------------------------------------------
+;; projectile jump-to-project action
+;;
 (defun +projectile-jump-to-notes (&optional counsel-projectile-candidate)
   (interactive)
   (find-file (concat (projectile-project-root) "notes.org"))
 
   )
+
+(setq projectile-switch-project-action #'+projectile-jump-to-notes)
+(setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
+
+
+;; ------------------------------------------------------------------------------------------
 
 (after! projectile
   ;;(setq projectile-project-root-functions '(projectile-root-bottom-up))
@@ -83,8 +94,6 @@ at the top level of DIRECTORY."
 
 
   (jeff/projectile-discover-projects-in-directory "~/workspaces" 15)
-
-  (setq projectile-switch-project-action #'+projectile-jump-to-notes)
 
 
   ;; (setq projectile-project-root-files-top-down-recurring '(".projectile"))
