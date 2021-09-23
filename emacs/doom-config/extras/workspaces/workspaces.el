@@ -3,6 +3,8 @@
 
 (setq workspaces-root "~/workspaces")
 
+;; ------------------------------------------------------------------------------------------
+;; workspace creation
 
 (defun +create-new-workspace ()
   (interactive)
@@ -45,6 +47,14 @@
       )
       )
   )
+
+
+
+;; run "treemacs-display-current-project-exclusively" after every project switch to ensure we always show the current project
+(add-hook 'projectile-after-switch-project-hook #'treemacs-display-current-project-exclusively)
+
+;; ------------------------------------------------------------------------------------------
+;; workspace switching
 
 ;; (defun +treemacs-workspace-switch-create (ws-name)
 ;;   (unless (eq 'success (car (treemacs-do-switch-workspace ws-name)))
