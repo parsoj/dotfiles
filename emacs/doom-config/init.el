@@ -68,11 +68,16 @@
        ;;(pretty-code +iosevka       ; ligatures or substitute text with pretty symbols
        ;;             )
        ;;tabs              ; an tab bar for Emacs
-       treemacs         ; a project drawer, like neotree but cooler
-       unicode          ; extended unicode support for various languages
-       vc-gutter        ; vcs diff in the fringe
-       vi-tilde-fringe  ; fringe tildes to mark beyond EOB
-       window-select    ; visually switch windows
+       (treemacs
+        +lsp
+        )                 ; a project drawer, like neotree but cooler
+
+       unicode                  ; extended unicode support for various languages
+       vc-gutter                ; vcs diff in the fringe
+       vi-tilde-fringe          ; fringe tildes to mark beyond EOB
+       (window-select
+        +numbers
+        ) ; visually switch windows
        ;; workspaces       ; tab emulation, persistence & separate workspaces
 
        ;;zen               ; distraction-free coding or writing
@@ -116,7 +121,8 @@
 
        :tools
        ;;ansible
-       debugger              ; FIXME stepping through code, to help you add bugs
+       (debugger
+        +lsp)              ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
@@ -129,7 +135,8 @@
         )                             ; navigate your code and its documentation
        (lsp
         +peek)
-       magit                    ; a git porcelain for Emacs
+       (magit
+        +forge)                    ; a git porcelain for Emacs
        make                     ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf                              ; pdf enhancements
@@ -165,7 +172,7 @@
        ;;idris             ;
        json    ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)           ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)    ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
