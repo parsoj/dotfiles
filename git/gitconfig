@@ -14,9 +14,11 @@
 [core]
 	editor = emacsclient
 [github]
-	user = parsoj@gmail.com
+	user = jeff@jeffparsons.me
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[url "git@github.com:"]
+	insteadOf = https://github.com/
