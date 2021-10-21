@@ -130,7 +130,7 @@ browser < q : skhd -k "escape" && /Applications/Google\ Chrome.app/Contents/MacO
 #
 #browser < escape ; default
 
-cmd + alt - b : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
+brower < b : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
 ##########################################################################################
 # Window Resizing
