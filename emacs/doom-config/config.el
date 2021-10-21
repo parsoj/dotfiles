@@ -141,14 +141,31 @@
 
 
 (map!
+ :nvmo "j" #'evil-backward-char
+ :nvmo ";" #'evil-forward-char
+
+ :nvmo "l" #'evil-previous-line
+ :nvmo "k" #'evil-next-line
+ )
+
+(map! :map magit-mode-map :after magit
  :nvm "j" #'evil-backward-char
  :nvm ";" #'evil-forward-char
 
  :nvm "l" #'evil-previous-line
  :nvm "k" #'evil-next-line
- )
+      )
 
-(map! :map magit-mode-map
+
+(map! :map ivy-occur-mode-map
+ :nvm "j" #'evil-backward-char
+ :nvm ";" #'evil-forward-char
+
+ :nvm "l" #'evil-previous-line
+ :nvm "k" #'evil-next-line
+      )
+
+(map! :map ivy-occur-grep-mode-map
  :nvm "j" #'evil-backward-char
  :nvm ";" #'evil-forward-char
 
