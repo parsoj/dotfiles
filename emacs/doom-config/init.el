@@ -28,7 +28,8 @@
 
 
 (setq inhibit-startup-screen nil)
-(setq initial-buffer-choice #'+startup-buffer)
+(setq initial-buffer-choice t)
+;;(setq initial-buffer-choice #'+startup-buffer)
 
 
 (doom! :input
