@@ -207,6 +207,8 @@
 (setq org-plantuml-jar-path (expand-file-name "/usr/local/Cellar/plantuml/1.2021.12/libexec/plantuml.jar"))
 
 
+
+(setq doom-modeline-major-mode-icon t)
 ;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
 (with-eval-after-load 'git-timemachine
   (evil-make-overriding-map git-timemachine-mode-map 'normal)
