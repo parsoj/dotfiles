@@ -184,6 +184,10 @@
       "8" #'winum-select-window-8
       "9" #'winum-select-window-9
       )
+(map! :map eshell-mode-map
+      (:localleader
+       :desc "history" "h" #'counsel-esh-history)
+      )
 
 (after! treemacs-evil
   (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
