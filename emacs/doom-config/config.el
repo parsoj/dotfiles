@@ -173,6 +173,11 @@
  :nvm "k" #'evil-next-line
       )
 
+(map! :map emacs-lisp-mode-map
+      (:localleader
+       :desc "eval-print" "e p" #'eval-print-last-sexp)
+      )
+
 (map! :leader
       "1" #'winum-select-window-1
       "2" #'winum-select-window-2
