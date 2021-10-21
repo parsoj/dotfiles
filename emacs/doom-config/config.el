@@ -200,5 +200,13 @@
   ;; force update evil keymaps after git-timemachine-mode loaded
   (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
 
+;; Save sessions history
+(progn
+  (setq savehist-save-minibuffer-history 1)
+  (setq savehist-additional-variables
+        '(kill-ring search-ring regexp-search-ring compile-history log-edit-comment-ring)
+        savehist-file "~/.emacs.d/savehist")
+  (savehist-mode t))
+
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
