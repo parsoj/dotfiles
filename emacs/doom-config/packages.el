@@ -55,8 +55,10 @@
 (package! org-super-agenda)
 ;; (package! org-ql)
 (package! org-edna)
+(package! ob-restclient)
 
 (package! groovy-mode)
+
 
 (package! applescript-mode)
 (package! osascripts
