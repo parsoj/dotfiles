@@ -65,7 +65,7 @@
        ophints                    ; highlight the region an operation acts on
        (popup                     ; tame sudden yet inevitable temporary windows
         +all
-        +defaults)
+        )
        ;;(pretty-code +iosevka       ; ligatures or substitute text with pretty symbols
        ;;             )
        ;;tabs              ; an tab bar for Emacs
