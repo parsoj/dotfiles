@@ -10,12 +10,12 @@
 
 
 
-
-
-(defun +eshell-in-directory ()
+(defun +eshell-switch-directory-in-project ()
   (interactive)
-  (let ((default-directory (completing-read "Run eshell in project directory:" (+f-directories-max-depth (projectile-project-root) 10))))
-    (+eshell/here)
 
-    )
-  )
+  (setq default-directory
+        (expand-file-name
+         (concat
+          (completing-read "switch to directory:" (+f-directories-max-depth (projectile-project-root) 6))
+          "/")))
+ )
