@@ -212,6 +212,12 @@
   ;; force update evil keymaps after git-timemachine-mode loaded
   (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
 
+
+(set-eshell-alias!
+ "kc" "kubectl $*"
+ "dd" "(+eshell-switch-directory-in-project)"
+ )
+
 ;; Save sessions history
 (progn
   (setq savehist-save-minibuffer-history 1)
