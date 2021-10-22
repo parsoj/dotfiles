@@ -119,11 +119,8 @@
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
 
-(set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
-(set-popup-rule! "^\\*compilation" :side 'top :size 0.40)
-
-
 (map! :leader "SPC" #'counsel-M-x)
+(map! :leader "b R" #'rename-buffer)
 
 (progn
   (define-key evil-normal-state-map "h" nil)
@@ -222,6 +219,15 @@
         '(kill-ring search-ring regexp-search-ring compile-history log-edit-comment-ring)
         savehist-file "~/.emacs.d/savehist")
   (savehist-mode t))
+
+
+
+(progn
+  (set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
+  (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :quit t)
+  (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
+  (set-popup-rule! "^\\magit" :side 'right :size 0.40))
+
 
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
