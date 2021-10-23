@@ -3,8 +3,10 @@
 
 
 (after! company
-  (setq company-idle-delay 0)
-  (setq company-echo-delay 0)
+  (setq company-idle-delay 0.1)
+
+  (setq company-echo-delay 0.1)
+
   (setq company-show-numbers t)
 
 
