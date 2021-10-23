@@ -206,6 +206,8 @@
 
 
 (setq doom-modeline-major-mode-icon t)
+(  add-to-list 'auth-sources "~/.authinfo")
+
 ;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
 (with-eval-after-load 'git-timemachine
   (evil-make-overriding-map git-timemachine-mode-map 'normal)
