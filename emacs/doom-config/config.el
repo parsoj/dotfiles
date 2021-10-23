@@ -206,6 +206,10 @@
 
 
 (setq doom-modeline-major-mode-icon t)
+
+;; (after! eshell
+;;   (add-to-list 'eshell-visual-commands "docker"))
+
 (  add-to-list 'auth-sources "~/.authinfo")
 
 ;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
@@ -214,6 +218,8 @@
   ;; force update evil keymaps after git-timemachine-mode loaded
   (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
 
+;;(eval-after-load 'tramp-remote-path
+ ;; (add-to-list 'tramp-remote-path "/root/.asdf/shims"))
 
 (set-eshell-alias!
  "kc" "kubectl $*"
