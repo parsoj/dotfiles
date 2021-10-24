@@ -132,6 +132,7 @@ ctrl + alt + cmd - i : open /System/Applications/Messages.app
 #
 #browser < escape ; default
 
+cmd + alt - c : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 4"
 cmd + alt - s : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
 ##########################################################################################
