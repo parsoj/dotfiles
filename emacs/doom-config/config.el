@@ -243,6 +243,8 @@
   (set-popup-rule! "^\\magit" :side 'right :size 0.40))
 
 (after! lsp
+  ;; override the project root function to auto-guess the
+  ;; project root based on the custom workspaces structure
   (defun lsp--suggest-project-root ()
     (let ((top-level-project-dirs (f-directories
                                    (condition-case nil
