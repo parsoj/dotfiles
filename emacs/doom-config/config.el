@@ -222,6 +222,9 @@
   (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
 
 (setq magit-commit-show-diff nil)
+(setq magit-main-branch-names
+      '("main" "master" "trunk" "develop"))
+
 ;;(eval-after-load 'tramp-remote-path
  ;; (add-to-list 'tramp-remote-path "/root/.asdf/shims"))
 
