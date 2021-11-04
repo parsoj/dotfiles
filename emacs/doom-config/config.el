@@ -242,6 +242,25 @@
   (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
   (set-popup-rule! "^\\magit" :side 'right :size 0.40))
 
+(after! lsp
+  (defun lsp--suggest-project-root ()
+    (let ((top-level-project-dirs (f-directories
+                                   (condition-case nil
+                                       (projectile-project-root)
+                                     (error nil))) )
+          (buffer-dir default-directory)
+          )
+
+      (-filter (lambda (d) (or (f-same? d buffer-dir) (f-ancestor-of? d buffer-dir))) top-level-project-dirs)
+
+
+      )
+    )
+
+  (setq lsp-auto-guess-root t)
+  (setq lsp-file-watch-threshold 2000)
+
+  )
 
 (require 'dash)
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
