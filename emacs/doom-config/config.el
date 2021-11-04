@@ -121,6 +121,9 @@
 
 (map! :leader "SPC" #'counsel-M-x)
 (map! :leader "b R" #'rename-buffer)
+(map! :leader "b R" #'rename-buffer)
+(map! :leader "g c p" #'+forge-create-pullreq-from-current-branch)
+
 
 (progn
   (define-key evil-normal-state-map "h" nil)
