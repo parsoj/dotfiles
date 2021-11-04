@@ -236,11 +236,12 @@
 
 
 
-(progn
-  (set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
-  (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :quit t)
-  (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
-  (set-popup-rule! "^\\magit" :side 'right :size 0.40))
+(after! popup
+  (progn
+    (set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
+    (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :quit t)
+    (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
+    (set-popup-rule! "^\\magit" :side 'right :size 0.40)))
 
 (after! lsp
   ;; override the project root function to auto-guess the
