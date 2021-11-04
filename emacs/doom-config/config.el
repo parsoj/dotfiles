@@ -221,6 +221,7 @@
   ;; force update evil keymaps after git-timemachine-mode loaded
   (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
 
+(setq magit-commit-show-diff nil)
 ;;(eval-after-load 'tramp-remote-path
  ;; (add-to-list 'tramp-remote-path "/root/.asdf/shims"))
 
