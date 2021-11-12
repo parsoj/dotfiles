@@ -9,22 +9,10 @@
 
 (defun clone-repo-from-organization (organization clone-dir)
   (let (
-        (repo (completing-read "Pick Repo to clone:" (alist-get organization organization-repos))))
+        (repo (pick-repo-for-active-organization)))
 
     (magit-clone-shallow repo clone-dir nil 1)
     )
-  )
-
-
-(defun clone-project-repo-for-organization ()
-  (interactive)
-  (clone-repo-from-organization active-organization (projectile-project-root))
-  )
-
-
-(defun set-active-organization ()
-  (interactive)
-  (setq active-organization (intern (completing-read "Select active Organization:" (-map #'car organization-repos))))
   )
 
 
@@ -33,8 +21,20 @@
   )
 
 
+
+(defun set-active-organization ()
+  (interactive)
+  (setq active-organization (intern (completing-read "Select active Organization:" (-map #'car organization-repos))))
+  )
+
+
 (defun pick-repo-for-active-organization ()
   (interactive)
   (completing-read "pick repo:" (get-repos-for-organization active-organization))
   )
 
+
+(defun clone-project-repo-for-organization ()
+  (interactive)
+  (clone-repo-from-organization active-organization (projectile-project-root))
+  )
