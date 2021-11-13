@@ -93,7 +93,7 @@
 
 (setq third-party-dir (expand-file-name (concat doom-private-dir "third-party")))
 (setq extras-dir (expand-file-name (concat doom-private-dir "extras")))
-(setq libs-dir (expand-file-name (concat doom-private-dir "elisp-libraries")))
+(setq libs-dir (expand-file-name (concat doom-private-dir "libraries")))
 
 
 
