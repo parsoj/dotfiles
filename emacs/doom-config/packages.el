@@ -59,6 +59,7 @@
 
 (package! groovy-mode)
 
+(package! slack)
 
 (package! applescript-mode)
 (package! osascripts
