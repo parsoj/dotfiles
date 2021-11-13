@@ -231,6 +231,7 @@
 
 (set-eshell-alias!
  "kc" "kubectl $*"
+ "tf" "terraform $*"
  "dd" "(+eshell-switch-directory-in-project)"
  )
 
