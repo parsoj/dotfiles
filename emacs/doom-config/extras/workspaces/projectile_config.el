@@ -62,7 +62,7 @@ at the top level of DIRECTORY."
 ;;
 (defun +projectile-jump-to-notes (&optional counsel-projectile-candidate)
   (interactive)
-  (find-file (concat (projectile-project-root) "notes.org"))
+  (find-file (concat (projectile-project-root) project-notes-file))
 
   )
 

@@ -273,6 +273,10 @@
 
   )
 
+
+(setq workspaces-root "~/workspaces")
+(setq project-notes-file "README.org")
+
 (require 'dash)
 
 (-map (lambda (x) (load! x)) (directory-files-recursively libs-dir ".*\\.el$"))

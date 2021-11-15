@@ -1,7 +1,6 @@
 ;;; ../.config/emacs/doom-config/extras/workspaces/workspaces.el -*- lexical-binding: t; -*-
 
 
-(setq workspaces-root "~/workspaces")
 
 ;; ------------------------------------------------------------------------------------------
 ;; workspace creation
@@ -16,7 +15,7 @@
     (progn
       (+workspace-create-at workspace-name workspace-path)
       (find-file
-       (concat workspace-path "/" "notes.org"))
+       (concat workspace-path "/" project-notes-file))
       )
     )
   )
