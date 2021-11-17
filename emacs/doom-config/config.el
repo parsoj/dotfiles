@@ -276,8 +276,19 @@
 
 (setq workspaces-root "~/workspaces")
 (setq project-notes-file "README.org")
+(setq emacs-env-dir "~/emacs-confs")
 
 (require 'dash)
+(require 'f)
+
+
+(progn
+  (if (not (f-exists? emacs-env-dir))
+      (f-mkdir emacs-env-dir)
+    )
+
+  (-map (lambda (x) (load! x)) (directory-files-recursively emacs-env-dir ".*\\.el$"))
+  )
 
 (-map (lambda (x) (load! x)) (directory-files-recursively libs-dir ".*\\.el$"))
 (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
