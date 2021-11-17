@@ -262,7 +262,8 @@
           (buffer-dir default-directory)
           )
 
-      (-filter (lambda (d) (or (f-same? d buffer-dir) (f-ancestor-of? d buffer-dir))) top-level-project-dirs)
+      (car
+       (-filter (lambda (d) (or (f-same? d buffer-dir) (f-ancestor-of? d buffer-dir))) top-level-project-dirs))
 
 
       )
