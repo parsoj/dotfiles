@@ -6,6 +6,8 @@
 (defvar active-organization)
 
 
+(setq magit-clone-set-remote.pushDefault t)
+
 
 (defun clone-repo-from-organization (organization clone-dir)
   (let (
