@@ -247,7 +247,7 @@
 
 (progn
     (set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
-    (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :quit t)
+    (set-popup-rule! "^\\*compilation" :side 'right :size 80 :quit t)
     (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
     (set-popup-rule! "^\\magit" :side 'right :size 0.40))
 
