@@ -13,7 +13,7 @@
   (let (
         (repo (pick-repo-for-active-organization)))
 
-    (magit-clone-shallow repo clone-dir nil 1)
+    (magit-clone-regular repo clone-dir nil)
     )
   )
 
@@ -39,4 +39,11 @@
 (defun clone-project-repo-for-organization ()
   (interactive)
   (clone-repo-from-organization active-organization (projectile-project-root))
+  )
+
+
+(defun +create-pullreq   ( )
+  (interactive)
+
+  (forge-create-pullreq (magit-get-current-branch) (magit-main-branch))
   )

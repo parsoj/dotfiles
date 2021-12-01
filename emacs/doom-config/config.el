@@ -123,7 +123,7 @@
 (map! :leader "SPC" #'counsel-M-x)
 (map! :leader "b R" #'rename-buffer)
 (map! :leader "b R" #'rename-buffer)
-(map! :leader "g c p" #'+forge-create-pullreq-from-current-branch)
+(map! :leader "g c p" #'+create-pullreq)
 
 
 (progn
