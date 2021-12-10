@@ -256,6 +256,7 @@
 (set-popup-rule! "^\\magit" :side 'right :size 0.40)
 (set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 15)
 
+(set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
 (after! lsp-mode
   ;; override the project root function to auto-guess the
