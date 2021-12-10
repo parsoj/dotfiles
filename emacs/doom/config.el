@@ -266,6 +266,13 @@
 
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
+(setq lsp-ui-peek-peek-height 30)
+(setq lsp-ui-peek-list-width 60)
+(custom-set-faces!
+  '(lsp-ui-peek-highlight :inherit lsp-ui-peek-header :background "goldenrod" :foreground "#282c34" :box 1))
+
+
+
 (after! lsp-mode
   ;; override the project root function to auto-guess the
   ;; project root based on the custom workspaces structure
