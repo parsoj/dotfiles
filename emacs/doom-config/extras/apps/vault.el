@@ -20,6 +20,7 @@
 
 
 (defun vault-userpass-login ()
+  (interactive)
   (let* ((vault-resp (plz 'post (concat vault-addr vault-userpass-login-path vault-userpass-username)
                        :headers `(("Content-Type" . "application/json")
                                   ("X-Vault-Namespace" . ,vault-namespace))
