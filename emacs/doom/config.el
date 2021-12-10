@@ -266,6 +266,9 @@
 
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
+(setq lsp-ui-doc-position 'top)
+(setq lsp-ui-doc-alignment 'window)
+
 (setq lsp-ui-peek-peek-height 30)
 (setq lsp-ui-peek-list-width 60)
 (custom-set-faces!
