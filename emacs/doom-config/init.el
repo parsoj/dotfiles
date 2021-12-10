@@ -195,6 +195,7 @@
         +pandoc
         +dragndrop
         +noter
+        +roam2
         )
                                         ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
