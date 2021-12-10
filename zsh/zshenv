@@ -11,7 +11,7 @@ export PATH="/usr/local/sbin:$PATH"
 ################################################################################
 # Emacs Support 
 
-export PATH="$PATH:$HOME/.config/emacs/doom-config/scripts"
+#export PATH="$PATH:$HOME/.config/emacs/doom-config/scripts"
 export PATH="$PATH:$HOME/.emacs.d/bin"
 export EDITOR="$HOME/dotfiles/osx/scripts/emacs/client"
 
