@@ -83,7 +83,9 @@ export AWS_PROFILE=legacy_tools
 
 #source /Users/jeff/.config/osx/app_settings/bitbar/helpers/*
 
-
+docker_killall(){
+    docker stop $(docker ps -a -q)
+}
 
 
 ################################################################################
