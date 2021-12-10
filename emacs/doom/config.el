@@ -21,9 +21,11 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Fira Code Retina" :size 15 :weight 'thin)
-      doom-variable-pitch-font (font-spec :family "ETBembo" :size 20)
-      )
+(setq
+ doom-font (font-spec :family "Fira Code" :size 15 :weight 'thin)
+ ;; doom-font (font-spec :family "Fira Code Light" :size 15)
+ doom-variable-pitch-font (font-spec :family "EB Garamond Medium" :size 20)
+ )
 
 (setq doom-big-font-increment 6)
 
