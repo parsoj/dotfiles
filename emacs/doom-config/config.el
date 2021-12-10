@@ -123,6 +123,7 @@
 (setq +org-capture-fn #'org-roam-capture)
 
 (add-hook 'org-mode-hook 'variable-pitch-mode)
+(setq org-hide-emphasis-markers t)
 
 
 ;;  org-super-agenda tries to force its own keybinds on you
