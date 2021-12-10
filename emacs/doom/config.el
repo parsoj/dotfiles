@@ -213,6 +213,10 @@
   (evil-define-key 'treemacs treemacs-mode-map "j" #'evil-backward-char)
   )
 
+(setq treemacs-recenter-after-file-follow 'on-distance)
+(setq treemacs-recenter-after-tag-follow 'on-distance)
+(setq treemacs-recenter-distance 15)
+
 
 (setq plantuml-default-exec-mode 'jar)
 (setq org-plantuml-jar-path (expand-file-name "/usr/local/Cellar/plantuml/1.2021.12/libexec/plantuml.jar"))
