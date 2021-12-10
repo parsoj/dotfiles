@@ -106,6 +106,7 @@
 ;; python settings
 (after! 'python
   (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
+ )
 
 ;; org-capture frames need the display frame param to avoid the
 ;; "unknown terminal type" error when running from an emacsclient executing
