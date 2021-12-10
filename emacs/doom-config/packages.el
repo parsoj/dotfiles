@@ -49,6 +49,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! plz
+  :recipe (:host github :repo "alphapapa/plz.el")
+  )
 
 (package! graphql-mode)
 
