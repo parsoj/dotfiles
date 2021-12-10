@@ -24,7 +24,7 @@
 (setq
  doom-font (font-spec :family "Fira Code" :size 15 :weight 'thin)
  ;; doom-font (font-spec :family "Fira Code Light" :size 15)
- doom-variable-pitch-font (font-spec :family "EB Garamond Medium" :size 20)
+ doom-variable-pitch-font (font-spec :family "EB Garamond" :size 20)
  )
 
 (setq doom-big-font-increment 6)
