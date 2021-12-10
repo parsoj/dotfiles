@@ -122,6 +122,7 @@
 
 (setq +org-capture-fn #'org-roam-capture)
 
+(setq org-confirm-babel-evaluate nil)   ;; Allow babel code execution without confirming it every time.
 
 ;;  org-super-agenda tries to force its own keybinds on you
 ;;  prevent this from happening
