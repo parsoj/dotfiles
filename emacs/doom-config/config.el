@@ -122,6 +122,9 @@
 
 (setq +org-capture-fn #'org-roam-capture)
 
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+
+
 ;;  org-super-agenda tries to force its own keybinds on you
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
