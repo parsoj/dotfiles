@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+
+set -e
+
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-modules
+ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
+
+./link.sh
+
+rm -rf ~/.emacs.d
+git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
