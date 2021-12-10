@@ -131,6 +131,7 @@
        ;;gist              ; interacting with github gists
        (lookup
         +dictionary
+        +offline
         +docsets
         )                             ; navigate your code and its documentation
        (lsp
