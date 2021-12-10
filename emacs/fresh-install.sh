@@ -3,7 +3,7 @@
 set -e
 
 brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-modules
+brew install emacs-mac --with-modules --with-no-title-bars
 ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
 
 ./link.sh
