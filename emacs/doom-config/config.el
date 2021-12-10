@@ -217,7 +217,6 @@
 ;; (after! eshell
 ;;   (add-to-list 'eshell-visual-commands "docker"))
 
-(  add-to-list 'auth-sources "~/.authinfo")
 
 ;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
 (with-eval-after-load 'git-timemachine
