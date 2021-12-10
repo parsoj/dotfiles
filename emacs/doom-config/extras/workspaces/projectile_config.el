@@ -67,7 +67,7 @@ at the top level of DIRECTORY."
   )
 
 (setq projectile-switch-project-action #'+projectile-jump-to-notes)
-(setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
+;; (setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
 
 
 ;; ------------------------------------------------------------------------------------------
