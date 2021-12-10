@@ -61,6 +61,8 @@
 
 (package! slack)
 
+(package! protobuf-mode)
+
 (package! applescript-mode)
 (package! osascripts
   :recipe (:host github :repo "leoliu/osascripts" ))
