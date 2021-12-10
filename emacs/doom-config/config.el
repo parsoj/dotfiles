@@ -251,10 +251,12 @@
 
 
 
-(set-popup-rule! "^\\*helpful" :side 'top :size 0.40)
-(set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :quit t)
-(set-popup-rule! "^\\*Man" :side 'right :size 0.40)
-(set-popup-rule! "^\\magit" :side 'right :size 0.40)
+    (set-popup-rule! "^\\*helpful" :side 'right :size 90)
+    (set-popup-rule! "^\\*eww" :side 'right :size 90)
+    (set-popup-rule! "^\\*compilation" :side 'right :size 100 :select t :quit t)
+    (set-popup-rule! "^\\*Python" :side 'right :size 100 :select t :quit t)
+    (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
+    (set-popup-rule! "^\\magit" :side 'right :size 0.40)
 (set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 15)
 
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
