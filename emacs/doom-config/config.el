@@ -284,6 +284,8 @@
 
   )
 
+;; unset company backends for magit commit msg buffers
+(set-company-backend! 'text-mode nil)
 
 (setq workspaces-root "~/workspaces")
 (setq project-notes-file "README.org")
