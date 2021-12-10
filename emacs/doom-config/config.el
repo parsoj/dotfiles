@@ -117,6 +117,8 @@
     (display . ,(getenv "DISPLAY"))
     ,(if IS-MAC '(menu-bar-lines . 1))))
 
+(setq +org-capture-fn #'org-roam-capture)
+
 ;;  org-super-agenda tries to force its own keybinds on you
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
