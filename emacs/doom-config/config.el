@@ -229,6 +229,8 @@
 (setq magit-main-branch-names
       '("main" "master" "trunk" "develop"))
 
+(setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
+
 ;;(eval-after-load 'tramp-remote-path
  ;; (add-to-list 'tramp-remote-path "/root/.asdf/shims"))
 
