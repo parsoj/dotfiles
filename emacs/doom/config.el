@@ -216,6 +216,7 @@
 (setq treemacs-recenter-after-file-follow 'on-distance)
 (setq treemacs-recenter-after-tag-follow 'on-distance)
 (setq treemacs-recenter-distance 15)
+(setq treemacs-collapse-dirs t)
 
 
 (setq plantuml-default-exec-mode 'jar)
