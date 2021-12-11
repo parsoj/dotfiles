@@ -270,8 +270,12 @@
 
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
-(setq lsp-ui-doc-position 'top)
 (setq lsp-ui-doc-alignment 'window)
+
+;; need to set this on a hook to override doom's lazy-loaded
+;; lsp-ui use-package settings
+(add-hook! lsp-ui-mode (setq lsp-ui-doc-position 'top))
+
 
 (setq lsp-ui-peek-peek-height 30)
 (setq lsp-ui-peek-list-width 60)
