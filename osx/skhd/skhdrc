@@ -36,6 +36,10 @@ shift + cmd - l : chunkc tiling::window --warp east
 ################################################################################
 # Desktp control
 
+# restart the yabai launch agent
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+
 ctrl + alt + cmd - n : ~/.config/osx/yabai/scripts/create_workspace
 ctrl + alt + cmd - w : ~/.config/osx/yabai/scripts/destroy_workspace
 
@@ -43,7 +47,7 @@ ctrl + alt + cmd - m : yabai -m window --toggle zoom-fullscreen
 ctrl + alt + cmd - f : yabai -m window --toggle native-fullscreen
 ctrl + alt + cmd - t : yabai -m window --toggle float
 
-ctrl + alt + cmd - r : yabai -m space --rotate 90
+#ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis
 ctrl + alt + cmd - y : yabai -m space --mirror y-axis
 
