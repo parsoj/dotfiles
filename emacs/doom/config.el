@@ -280,7 +280,7 @@
 
 
 (setq lsp-ui-peek-peek-height 30)
-(setq lsp-ui-peek-list-width 60)
+(setq lsp-ui-peek-list-width 70)
 (custom-set-faces!
   '(lsp-ui-peek-header :background "grey50" :foreground "white" )
   '(lsp-ui-peek-highlight :background "goldenrod" :foreground "#282c34" )
