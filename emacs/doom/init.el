@@ -60,14 +60,14 @@
                                         ; 🙂
        hl-todo                ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
-       indent-guides                  ; highlighted indent columns
+       indent-guides                    ; highlighted indent columns
        (ligatures
         +extra
         +fira
         )
-       minimap                        ; show a map of the code on the side
-       modeline                     ; snazzy, Atom-inspired modeline, plus API
-       nav-flash                      ; blink cursor line after big motions
+       minimap     ; show a map of the code on the side
+       modeline    ; snazzy, Atom-inspired modeline, plus API
+       nav-flash   ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints                    ; highlight the region an operation acts on
        (popup                     ; tame sudden yet inevitable temporary windows
@@ -76,11 +76,11 @@
        ;;tabs              ; an tab bar for Emacs
        (treemacs
         +lsp
-        )                 ; a project drawer, like neotree but cooler
+        )                            ; a project drawer, like neotree but cooler
        ;; unicode                  ; extended unicode support for various languages
        ;; vc-gutter
                                         ; vcs diff in the fringe
-       vi-tilde-fringe          ; fringe tildes to mark beyond EOB
+       vi-tilde-fringe                  ; fringe tildes to mark beyond EOB
        (window-select
         +numbers
         ) ; visually switch windows
@@ -117,14 +117,14 @@
        vterm                            ; the best terminal emulation in Emacs
 
        :checkers
-       syntax                        ; tasing you for every semicolon you forget
+       syntax        ; tasing you for every semicolon you forget
        ;;(spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar                       ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
        (debugger
-        +lsp)              ; FIXME stepping through code, to help you add bugs
+        +lsp)                ; FIXME stepping through code, to help you add bugs
        ;;direnv
        (docker
         +lsp)
@@ -140,8 +140,8 @@
        (lsp
         +peek)
        (magit
-        +forge)                    ; a git porcelain for Emacs
-       make                     ; run make tasks from Emacs
+        +forge)            ; a git porcelain for Emacs
+       make                ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf                              ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -152,7 +152,7 @@
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
-       (:if IS-MAC macos)  ; improve compatibility with macOS
+       (:if IS-MAC macos)               ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
@@ -190,7 +190,9 @@
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       (markdown
+        +grip
+        )                ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -214,11 +216,11 @@
        ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
-       ;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+                                        ;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
-       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       sh     ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
@@ -247,6 +249,6 @@
 
 
        :forked
-       default
+       (default +bindings +smartparens)
 
        )
