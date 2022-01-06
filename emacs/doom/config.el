@@ -135,6 +135,7 @@
 (map! :leader "b R" #'rename-buffer)
 (map! :leader "b R" #'rename-buffer)
 (map! :leader "g c p" #'+create-pullreq)
+(map! :leader "i i" #'aya-expand)
 
 
 (progn
