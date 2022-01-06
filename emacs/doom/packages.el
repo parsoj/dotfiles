@@ -53,6 +53,8 @@
   :recipe (:host github :repo "alphapapa/plz.el")
   )
 
+(package! aggressive-indent)
+
 (package! graphql-mode)
 
 (package! org-super-agenda)

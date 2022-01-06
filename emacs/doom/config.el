@@ -95,6 +95,7 @@
 (use-package! osascripts)
 (use-package! protobuf-mode)
 (use-package! plz)
+(use-package! aggressive-indent)
 
 (setq third-party-dir (expand-file-name (concat doom-private-dir "third-party")))
 (setq extras-dir (expand-file-name (concat doom-private-dir "extras")))
