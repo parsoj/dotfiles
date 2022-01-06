@@ -242,4 +242,11 @@
 
        :config
        ;;literate
-       (default +bindings +smartparens))
+       ;; (default +bindings +smartparens)
+       ;;
+
+
+       :forked
+       default
+
+       )
