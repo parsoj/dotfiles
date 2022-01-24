@@ -262,6 +262,18 @@
   (savehist-mode t))
 
 
+;; don't ask "xxx has a running process - you sure you wanna kill it?"
+(setq confirm-kill-processes nil)
+
+(defun set-no-process-query-on-exit ()
+    (let ((proc (get-buffer-process (current-buffer))))
+    (when (processp proc)
+    (set-process-query-on-exit-flag proc nil))))
+
+(add-hook 'term-exec-hook 'set-no-process-query-on-exit)
+(add-hook 'shell-mode-hook 'set-no-process-query-on-exit)
+(add-hook 'vterm-mode-hook 'set-no-process-query-on-exit)
+
 
 (set-popup-rule! "^\\*helpful" :side 'right :size 90)
 (set-popup-rule! "^\\*eww" :side 'right :size 90)
