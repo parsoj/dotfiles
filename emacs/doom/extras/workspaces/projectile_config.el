@@ -10,7 +10,7 @@
 
   (let ((func-or-cmd projectile-project-run-cmd))
     (cond ((stringp func-or-cmd)
-           (projectile-run-project func-or-cmd))
+           (jeff/run-in-vterm (projectile-project-root) func-or-cmd ))
           ((functionp func-or-cmd)
            (funcall func-or-cmd))
           (t
@@ -20,6 +20,27 @@
 
   )
 
+(defun jeff/run-in-vterm (dir cmd)
+  (let ((default-directory dir))
+    (progn
+      (+vterm/toggle t)
+      (vterm-send-string cmd)
+      (vterm-send-return)
+
+      ))
+
+  )
+
+
+(defun jeff/set-project-run-command ()
+  (interactive)
+  (let ((default-directory (projectile-project-root))
+        (run-cmd (completing-read "Set project run command: " nil nil nil)))
+
+    (add-dir-local-variable nil 'projectile-project-run-cmd run-cmd)
+    )
+
+  )
 
 
 ;; (defcustom projectile-auto-discover-search-depth nil
