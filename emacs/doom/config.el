@@ -207,6 +207,8 @@
        :desc "history" "h" #'counsel-esh-history)
       )
 
+;; have avy-jump select options from all windows (not just current buffer)
+(setq avy-all-windows t)
 
 (setq vterm-shell "/usr/local/bin/fish")
 
