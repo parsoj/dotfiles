@@ -207,6 +207,9 @@
        :desc "history" "h" #'counsel-esh-history)
       )
 
+
+(setq vterm-shell "/usr/local/bin/fish")
+
 (after! treemacs-evil
   (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
   (evil-define-key 'treemacs treemacs-mode-map "l" #'evil-previous-line)
