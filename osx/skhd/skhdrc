@@ -119,7 +119,7 @@ ctrl + alt + cmd - i : open /System/Applications/Messages.app
 ##########################################################################################
 # Browser launching
 
-:: browser : skhd_bitbar_update "browser-launcher"
+:: browser @ : skhd_bitbar_update "browser-launcher"
 cmd - b ;  browser
 browser < escape ; default
 #
@@ -136,8 +136,8 @@ browser < escape ; default
 #
 #browser < escape ; default
 
-browser < p : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 4"
-browser < s : osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
+browser < p : skhd -k "escape" ; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 4"
+browser < s : skhd -k "escape" ; osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
 ##########################################################################################
 # Window Resizing
