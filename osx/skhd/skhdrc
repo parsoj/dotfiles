@@ -86,7 +86,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 #cmd + alt - n : org-capture -k n
 
 #cmd + alt - e : osascript -e 'display notification "Emacs is Launching..."' ; /Applications/Emacs.app/Contents/MacOS/Emacs &
-cmd + alt - e : emacsclient -c
+cmd - e : open /Applications/Emacs.app
 
 #emacs < k : pkill -SIGUSR2 Emacs
 
