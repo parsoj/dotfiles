@@ -281,6 +281,7 @@
 
 
 (set-popup-rule! "^\\*helpful" :side 'right :size 90)
+(set-popup-rule! "^magit" :side 'right :size 90)
 (set-popup-rule! "^\\*eww" :side 'right :size 90)
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
 (set-popup-rule! "^\\*doom:vterm-popup" :side 'right :size 0.40 :select t :quit t)
