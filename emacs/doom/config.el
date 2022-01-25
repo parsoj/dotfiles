@@ -284,7 +284,7 @@
 (set-popup-rule! "^magit" :side 'right :size 90)
 (set-popup-rule! "^\\*eww" :side 'right :size 90)
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
-(set-popup-rule! "^\\*doom:vterm-popup" :side 'right :size 0.40 :select t :quit t)
+(set-popup-rule! "^\\*doom:vterm-popup" :side 'right :size 0.50 :select t :quit t)
 (set-popup-rule! "^\\*Python" :side 'right :size 100 :select t :quit t)
 (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
 (set-popup-rule! "^\\magit" :side 'right :size 0.40)
