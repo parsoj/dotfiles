@@ -136,7 +136,8 @@ browser < escape ; default
 #
 #browser < escape ; default
 
-browser < p : skhd -k "escape" ; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 4"
+browser < p : skhd -k "escape" ; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile_Personal"
+browser < i : skhd -k "escape" ; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile_iSP"
 browser < s : skhd -k "escape" ; osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
 ##########################################################################################
