@@ -62,8 +62,9 @@
        hydra
        indent-guides                    ; highlighted indent columns
        (ligatures
-        +extra
-        +fira
+        ;;; ligature module flags ignored in emacs-mac
+        ;; +extra
+        ;; +fira
         )
        minimap     ; show a map of the code on the side
        modeline    ; snazzy, Atom-inspired modeline, plus API
