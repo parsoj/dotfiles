@@ -9,7 +9,7 @@
     )
   )
 
-  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c)")
+  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "STUBBED(s)" "IMPLEMENTED(i)" "|" "DONE(d)" "CANCELLED(c)")
                            (sequence "WAIT(w)" "LOWPRIO(l)")))
   ;; (setq org-todo-keyword-faces `(("TODO" . "#FD9446" )
   ;;                                 ("NEXT" . "#F4605C")
@@ -42,6 +42,16 @@
                                  `("TODO"
                                    ,@todo-keyword-font
                                    :foreground ,rainbow-5
+                                   :weight bold
+                                   )
+                                 `("STUBBED"
+                                   ,@todo-keyword-font
+                                   :foreground ,rainbow-4
+                                   :weight bold
+                                   )
+                                 `("IMPLEMENTED"
+                                   ,@todo-keyword-font
+                                   :foreground ,rainbow-3
                                    :weight bold
                                    )
                                  `("NEXT"
