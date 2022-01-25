@@ -87,6 +87,12 @@ at the top level of DIRECTORY."
 
   )
 
+(defun +projectile-jump-to-makefile (&optional counsel-projectile-candidate)
+  (interactive)
+  (find-file (concat (projectile-project-root) "Makefile"))
+
+  )
+
 (setq projectile-switch-project-action #'+projectile-jump-to-notes)
 ;; (setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
 
@@ -103,6 +109,7 @@ at the top level of DIRECTORY."
         (:desc "Run project"                  "p R" #'jeff/projectile-run-project)
         (:desc "Switch project"                  "p p" (cmd! (projectile-switch-project)))
         (:desc "Jump to project notes"  "p n" #'+projectile-jump-to-notes)
+        (:desc "Jump to project Makefile"  "p m" #'+projectile-jump-to-makefile)
         )
 
 
