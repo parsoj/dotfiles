@@ -106,7 +106,7 @@ at the top level of DIRECTORY."
   (set-popup-rule! "^\\*compilation\\*"  :side 'right :quit nil :select t)
 
   (map! :leader
-        (:desc "Run project"                  "p R" #'jeff/projectile-run-project)
+        (:desc "Run project"                  "p r" #'jeff/projectile-run-project)
         (:desc "Switch project"                  "p p" (cmd! (projectile-switch-project)))
         (:desc "Jump to project notes"  "p n" #'+projectile-jump-to-notes)
         (:desc "Jump to project Makefile"  "p m" #'+projectile-jump-to-makefile)
