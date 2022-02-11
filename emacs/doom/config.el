@@ -232,6 +232,7 @@
 
 
 (setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-buffer-file-name-style 'truncate-with-project)
 
 ;; (after! eshell
 ;;   (add-to-list 'eshell-visual-commands "docker"))
