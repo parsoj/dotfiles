@@ -49,6 +49,10 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+;; Git stuff
+(package! blamer)
+
+;; a better elisp HTTP lib
 (package! plz
   :recipe (:host github :repo "alphapapa/plz.el")
   )

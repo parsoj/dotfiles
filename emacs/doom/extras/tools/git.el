@@ -10,4 +10,11 @@
 
 (defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'ediff-copy-both-to-C))
 
+
 (add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
+
+
+(use-package! blamer
+  :config
+  (global-blamer-mode 1)
+  )
