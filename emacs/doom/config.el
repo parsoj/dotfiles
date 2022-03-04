@@ -171,19 +171,19 @@
 
 
 (map! :map ivy-occur-mode-map
- :nvm "j" #'evil-backward-char
- :nvm ";" #'evil-forward-char
+ :nvme "j" #'evil-backward-char
+ :nvme ";" #'evil-forward-char
 
- :nvm "l" #'evil-previous-line
- :nvm "k" #'evil-next-line
+ :nvme "l" #'evil-previous-line
+ :nvme "k" #'evil-next-line
       )
 
 (map! :map ivy-occur-grep-mode-map
- :nvm "j" #'evil-backward-char
- :nvm ";" #'evil-forward-char
+ :nvme "j" #'evil-backward-char
+ :nvme ";" #'evil-forward-char
 
- :nvm "l" #'evil-previous-line
- :nvm "k" #'evil-next-line
+ :nvme "l" #'evil-previous-line
+ :nvme "k" #'evil-next-line
       )
 
 (map! :map emacs-lisp-mode-map
