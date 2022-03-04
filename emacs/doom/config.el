@@ -107,7 +107,7 @@
 ;; (add-hook! 'shell-mode-hook #'+word-wrap-mode)
 
 ;; python settings
-(after! 'python
+(after! python
   (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
  )
 

@@ -50,7 +50,8 @@
 
 
 ;; run "treemacs-display-current-project-exclusively" after every project switch to ensure we always show the current project
-(add-hook 'projectile-after-switch-project-hook #'treemacs-display-current-project-exclusively)
+(after! treemacs
+  (add-hook 'projectile-after-switch-project-hook #'treemacs-display-current-project-exclusively))
 
 ;; ------------------------------------------------------------------------------------------
 ;; workspace switching
