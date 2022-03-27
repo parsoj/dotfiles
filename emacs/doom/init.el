@@ -30,7 +30,10 @@
 (setq inhibit-startup-screen nil)
 (setq initial-buffer-choice t)
 ;;(setq initial-buffer-choice #'+startup-buffer)
-(setq initial-buffer-choice #'+eshell/here)
+;; (setq initial-buffer-choice #'+eshell/here)
+
+(setq initial-buffer-choice (cmd! (let ((default-directory "~/")) (+vterm/here t))))
+
 
 
 (doom! :input
