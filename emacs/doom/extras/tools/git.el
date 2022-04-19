@@ -16,5 +16,15 @@
 
 (use-package! blamer
   :config
+  (setq blamer-min-offset 30)
+  (setq blamer-max-commit-message-length 10)
+
+  (setq blamer-uncommitted-changes-message "-NC-")
+
+
+  (setq blamer-type 'visual)
+  (setq blamer--overlay-popup-position 'top)
+
+
   (global-blamer-mode 1)
   )
