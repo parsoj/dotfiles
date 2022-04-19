@@ -268,6 +268,8 @@
   (savehist-mode t))
 
 
+(setq max-mini-window-height 2)
+
 ;; don't ask "xxx has a running process - you sure you wanna kill it?"
 (setq confirm-kill-processes nil)
 
@@ -294,10 +296,12 @@
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
 (setq lsp-ui-doc-alignment 'window)
+(setq lsp-ui-doc-max-height 20)
 
 ;; need to set this on a hook to override doom's lazy-loaded
 ;; lsp-ui use-package settings
 (add-hook! lsp-ui-mode (setq lsp-ui-doc-position 'top))
+
 
 
 (setq lsp-ui-peek-peek-height 30)
