@@ -17,3 +17,6 @@ gh/*
 
 flutter/*
 raycast/*
+
+
+emacs/doom/custom.el
