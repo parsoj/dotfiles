@@ -43,7 +43,7 @@ yabai -m config window_gap 00
 ##########################################################################################
 # Default yabai to off for everything (so we can explicitly whitelist apps for yabai)
 #yabai -m rule --add app=".*" manage=off
-yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Slack|iTerm2|Finder)$" manage=off
+yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Vivaldi|Slack|iTerm2|Finder)$" manage=off
 
 ##########################################################################################
 # Emacs Settings
