@@ -353,7 +353,12 @@
     )
 
   (-map (lambda (x) (load! x)) (directory-files-recursively emacs-env-dir ".*\\.el$"))
+
+  (-map (lambda (x) (load! x)) (directory-files-recursively libs-dir ".*\\.el$"))
+
+  (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
+
+  (load! "bindings.el")
+
   )
 
-(-map (lambda (x) (load! x)) (directory-files-recursively libs-dir ".*\\.el$"))
-(-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
