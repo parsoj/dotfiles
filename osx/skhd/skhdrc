@@ -128,7 +128,8 @@ ctrl + alt + cmd - i : open /System/Applications/Messages.app
 #browser < s : skhd -k "escape" ; osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
 
 
-cmd - b: /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --new-window
+#cmd - b: /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --new-window
+cmd - b: vpcli default
 
 ##########################################################################################
 # Window Resizing
