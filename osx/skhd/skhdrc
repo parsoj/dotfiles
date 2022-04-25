@@ -99,6 +99,12 @@ cmd - e : open /Applications/Emacs.app
 #ctrl + alt - n : /usr/local/bin/emacsclient -n -e "(org-notepad-pop-frame)" 
 
 ################################################################################
+# OSX / Theme controls
+
+cmd + ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
+
+
+################################################################################
 # VPN / Network
 
 #ctrl + alt + cmd - 1 : osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "connect \"Glympse\"" -e "end tell"
