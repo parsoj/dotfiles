@@ -37,6 +37,16 @@
 (setq doom-theme 'doom-palenight)
 (setq doom-themes-treemacs-theme 'doom-colors)
 
+;; use the emacs-plus hook to change the doom theme to match OSX dark mode
+(defun sync-osx-dark-mode (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme 'doom-tomorrow-day t))
+    ('dark (load-theme 'doom-palenight t))))
+
+(add-hook 'ns-system-appearance-change-functions #'sync-osx-dark-mode)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
