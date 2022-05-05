@@ -26,6 +26,10 @@
     (+focus-this-frame))
 )
 
+;; tell lsp-mode to use plist json deserialization
+;; (reccomended by "lsp-doctor" command -- for performance)
+(setenv "LSP_USE_PLISTS" "1")
+(setq lsp-use-plists t)
 
 (setq inhibit-startup-screen nil)
 (setq initial-buffer-choice t)
