@@ -1,5 +1,10 @@
 ;;; ../.config/emacs/doom-config/extras/shell.el -*- lexical-binding: t; -*-
 
+;; just a quick alias because this is a super common need
+(defun sh (cmd)
+  (shell-command-to-string cmd)
+  )
+
 
 (defun +shell--send-input (buffer input &optional no-newline)
   (when input
