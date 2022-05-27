@@ -142,7 +142,7 @@
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
 
-(map! :leader "SPC" #'counsel-M-x)
+(map! :leader "SPC" #'execute-extended-command)
 (map! :leader "b R" #'rename-buffer)
 (map! :leader "b R" #'rename-buffer)
 (map! :leader "g c p" #'+create-pullreq)
