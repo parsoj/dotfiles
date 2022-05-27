@@ -1,22 +1,8 @@
 #+title: Todos
 
 * Emacs Server-client work
-** NEXT fix issues with emacs client
-- e.g. ivy popups disappearing
-
-- isn't related to yabai (occurs with yabai turned off)
-
-- this issue:  https://github.com/alexmurray/flycheck-posframe/issues/25 suggests it has to do with 'window-configuration-change-hook'
-
-- issue could be related to *vterm* buffer (or at least the first vterm buffer that is opened on startup)
-
 ** make it so the main/server window gets backgrounded + sent to separate desktop by yabai
-*** TODO set up special named desktop with a few  "always in the background" things
-  - music
-  - emacsclient
-****  also separate named desktop for "comms"
-
-*** TODO set up a launcher script that will name the main emacs window something unique
+*** NEXT set up a launcher script that will name the main emacs window something unique
 **** naming the server
 #+begin_src emacs-lisp
 (setq frame-title-format "Hello world")
@@ -26,6 +12,11 @@
 #+begin_src bash
 emacsclient -c --frame-parameters='(quote (name . "client-frame"))'
 #+end_src
+
+*** TODO set up special named desktop with a few  "always in the background" things
+  - music
+  - emacsclient
+****  also separate named desktop for "comms"
 
 *** TODO set up yabai rule to always send that window to its named-desktop (or background it)
 
@@ -56,3 +47,12 @@ brew install emacs-mac --with-native-comp --with-xwidgets --with-natural-title-b
 - need to fix treemacs behavior
 
 * switch to Vertico
+
+* WAIT fix issues with emacs client
+- e.g. ivy popups disappearing
+
+- isn't related to yabai (occurs with yabai turned off)
+
+- this issue:  https://github.com/alexmurray/flycheck-posframe/issues/25 suggests it has to do with 'window-configuration-change-hook'
+
+- issue could be related to *vterm* buffer (or at least the first vterm buffer that is opened on startup)
