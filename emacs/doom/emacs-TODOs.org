@@ -1,5 +1,4 @@
 #+title: Todos
-* TODO Add a jump-to shortcut for emacs-todos file
 
 * Emacs Server-client work
 ** NEXT fix issues with emacs client
