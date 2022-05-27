@@ -116,12 +116,12 @@ at the top level of DIRECTORY."
   (setq projectile-project-search-path '("~/workspaces/"))
 
 
-  ;; (setq projectile-project-root-files-bottom-up '(".projectile"))
+  (setq projectile-project-root-files-bottom-up '(".projectile"))
   (setq projectile-project-root-files '(".projectile"))
   (setq projectile-auto-discover t)
 
 
-  (jeff/projectile-discover-projects-in-directory "~/workspaces" 15)
+  (jeff/projectile-discover-projects-in-directory "~/workspaces" 25)
 
 
   ;; (setq projectile-project-root-files-top-down-recurring '(".projectile"))
