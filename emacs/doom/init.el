@@ -60,7 +60,8 @@
 
        ;;ivy               ; a search engine for love and life
        (vertico
-        +icons)           ; the search engine of the future
+        +childframe
+        +icons)                         ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -73,7 +74,7 @@
        hydra
        indent-guides                    ; highlighted indent columns
        (ligatures
-        ;;; ligature module flags ignored in emacs-mac
+;;; ligature module flags ignored in emacs-mac
         ;; +extra
         ;; +fira
         )
@@ -152,8 +153,8 @@
        (lsp
         +peek)
        (magit
-        +forge)            ; a git porcelain for Emacs
-       make                ; run make tasks from Emacs
+        +forge)                 ; a git porcelain for Emacs
+       make                     ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf                              ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -180,7 +181,7 @@
        (dart
         +lsp
         +flutter
-        )      ; paint ui and not much else
+        )                           ; paint ui and not much else
        ;;dhall
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
@@ -198,10 +199,10 @@
        ;;idris             ;
        json    ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)    ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)  ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex             ; writing papers in Emacs has never been so fun
+       latex          ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
@@ -238,7 +239,7 @@
        sh     ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
-       swift             ; who asked for emoji variables?
+       swift  ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        web                              ; the tubes
        yaml                             ; JSON, but readable
