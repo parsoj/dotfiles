@@ -36,7 +36,9 @@
 ;;(setq initial-buffer-choice #'+startup-buffer)
 ;; (setq initial-buffer-choice #'+eshell/here)
 
-(setq initial-buffer-choice (cmd! (let ((default-directory "~/")) (+vterm/here t))))
+;; FIXME disable the vterm startup buffer for now - it seems to be messing with
+;;  posframes on emacsclient frames
+;; (setq initial-buffer-choice (cmd! (let ((default-directory "~/")) (+vterm/here t))))
 
 
 
