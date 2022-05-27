@@ -31,6 +31,10 @@
 (setenv "LSP_USE_PLISTS" "1")
 (setq lsp-use-plists t)
 
+;; **********************************************************************
+;; frame title (OSX window title for yabai to key into)
+
+(setq frame-title-format "server-frame")
 
 ;;**********************************************************************
 ;; Startup buffer config
