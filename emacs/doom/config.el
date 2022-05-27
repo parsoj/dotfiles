@@ -22,7 +22,8 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq
- doom-font (font-spec :family "Fira Code" :size 15 :weight 'thin)
+ ;; doom-font (font-spec :family "Fira Code" :size 15 :weight 'thin)
+ doom-font (font-spec :family "Fira Code" :size 15)
  ;; doom-font (font-spec :family "Fira Code Light" :size 15)
  doom-variable-pitch-font (font-spec :family "EB Garamond" :size 20)
  )
@@ -298,6 +299,7 @@
 (set-popup-rule! "^\\*eww" :side 'right :size 90)
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
 (set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 0.40 :select t :ttl nil :quit t)
+(set-popup-rule! "\\*Flutter" :side 'bottom :size 0.20 :select t :ttl nil)
 (set-popup-rule! "^\\*Python" :side 'bottom :size 0.4 :select t :quit t)
 (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
 (set-popup-rule! "^\\magit" :side 'right :size 0.40)
