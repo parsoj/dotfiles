@@ -1,0 +1,102 @@
+#+title: Bindings Migration
+
+
+* Command-Tree breakdown
+
+
+* :leader
+      :desc "Eval expression"       ";"    #'pp-eval-expression
+      :desc "M-x"                   ":"    #'execute-extended-command
+      :desc "Pop up scratch buffer" "x"    #'doom/open-scratch-buffer
+      :desc "Org Capture"           "X"    #'org-capture
+      ;; C-u is used by evil
+      :desc "Universal argument"    "u"    #'universal-argument
+      :desc "window"                "w"    evil-window-map
+      :desc "help"                  "h"    help-map
+
+      (:when (featurep! :ui popup)
+       :desc "Toggle last popup"     "~"    #'+popup/toggle)
+      :desc "Find file"             "."    #'find-file
+      :desc "Switch buffer"         ","    #'switch-to-buffer
+      (:when (featurep! :ui workspaces)
+       :desc "Switch workspace buffer" "," #'persp-switch-to-buffer
+       :desc "Switch buffer"           "<" #'switch-to-buffer)
+      :desc "Switch to last buffer" "`"    #'evil-switch-to-windows-last-buffer
+      :desc "Resume last search"    "'"
+      (cond ((featurep! :completion vertico)    #'vertico-repeat)
+            ((featurep! :completion ivy)        #'ivy-resume)
+            ((featurep! :completion helm)       #'helm-resume))
+
+      :desc "Search for symbol in project" "*" #'+default/search-project-for-symbol-at-point
+      :desc "Search project"               "/" #'+default/search-project
+
+      :desc "Find file in project"  "SPC"  #'projectile-find-file
+      :desc "Jump to bookmark"      "RET"  #'bookmark-jump
+
+      ;;; <leader> TAB --- workspace
+      (:when (featurep! :ui workspaces)
+** TAB workspace
+** b buffer
+** c code
+** f file
+** g git
+** i insert
+** n notes
+** o open
+** p project
+** q quit/session
+** s search
+** t toggle
+
+
+
+* Actions to support
+** Project Actions
+** UI elements / toggles
+- treemacs
+- debugger
+- notes
+
+
+** Docker
+** launch/open
+- terminal
+
+
+
+
+* verbs
+ - find-file
+ - search
+
+ - save
+
+
+ - get-docs
+ - go-to-definition
+ - go-to-implementation
+ - go-to-references
+
+
+ - evaluate/eval
+
+ - format
+
+* nouns
+ - window
+ - buffer
+ - project
+ - repo?
+ - file
+ - process
+
+ - paragraph
+ - block/closure
+ - function
+ - line
+ - word/symbol
+ - character
+
+ - bookmark
+
+ - region
