@@ -31,6 +31,10 @@
 (setenv "LSP_USE_PLISTS" "1")
 (setq lsp-use-plists t)
 
+
+;;**********************************************************************
+;; Startup buffer config
+
 (setq inhibit-startup-screen nil)
 (setq initial-buffer-choice t)
 ;;(setq initial-buffer-choice #'+startup-buffer)
@@ -41,6 +45,8 @@
 ;; (setq initial-buffer-choice (cmd! (let ((default-directory "~/")) (+vterm/here t))))
 
 
+;; **********************************************************************
+;; doom modules
 
 (doom! :input
        ;;chinese
