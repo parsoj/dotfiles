@@ -1,0 +1,44 @@
+#+title: Todos
+* TODO Add a jump-to shortcut for emacs-todos file
+
+* Emacs Server-client work
+** NEXT fix issues with emacs client
+- e.g. ivy popups disappearing
+
+** TODO find some launcher hotkeys that don't conflict with Apple design guidelines
+
+** make it so the main/server window gets backgrounded + sent to separate desktop by yabai
+*** TODO set up special named desktop with a few  "always in the background" things
+  - music
+  - emacsclient
+****  also separate named desktop for "comms"
+
+*** TODO set up a launcher script that will name the main emacs window something unique
+
+*** TODO set up yabai rule to always send that window to its named-desktop (or background it)
+
+*** TODO set up yabai rule to tile emacsclient windows as normal
+
+
+* Flutter env
+** TODO research for a way to fix that weird comment injection behavior on new code blocks (flutter LSP)
+** TODO find a way to run flutter in an xwidget window
+
+* TODO Recompile emacs with no titlebar
+#+begin_src bash
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-native-comp --with-xwidgets --with-no-title-bars
+#+end_src
+
+
+- this might not work as you hope (hoping that it will "delete" the titlebar entirely, vs remove something else) - in that case just re-compile with the natural titlebar setting
+
+#+begin_src bash
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-native-comp --with-xwidgets --with-natural-title-bar
+#+end_src
+
+* Projects
+- need to fix treemacs behavior
+
+* switch to Vertico

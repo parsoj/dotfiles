@@ -18,4 +18,5 @@
       (:prefix-map ("f". "file")
        :desc "Open OS config file"  "o"   #'jump-to-os-config-file
        :desc "Open elisp scratch file" "z" (cmd! () (doom-project-find-file scratch-dir))
+       :desc "Open emacs-config TODOs file" "t" (cmd! (find-file "~/.config/emacs/doom/emacs-TODOs.org") )
        ))
