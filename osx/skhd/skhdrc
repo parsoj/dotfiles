@@ -86,7 +86,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 #cmd + alt - n : org-capture -k n
 
 #cmd + alt - e : osascript -e 'display notification "Emacs is Launching..."' ; /Applications/Emacs.app/Contents/MacOS/Emacs &
-cmd - e : open /Applications/Emacs.app
+ctrl + alt + cmd - e : ~/.config/emacs/doom/scripts/launch-emacs-client.sh
 
 #emacs < k : pkill -SIGUSR2 Emacs
 
@@ -149,4 +149,3 @@ winresize < k : yabai -m window --resize top:0:10
 winresize < l : yabai -m window --resize right:10:0
 
 winresize < escape ; default
-
