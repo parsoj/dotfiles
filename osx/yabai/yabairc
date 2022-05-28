@@ -98,7 +98,7 @@ yabai -m rule --add app="Slack" manage=on #grid=20:20:2:2:16:16
 #yabai -m rule --add app="OmniFocus" manage=on #grid=20:20:2:2:16:16
 
 yabai -m rule --add app="Emacs" title="client-frame" manage=on
-yabai -m rule --add app="Emacs" title="server-frame" manage=off
+yabai -m rule --add app="Emacs" title="server-frame" manage=off space=1
 
 ##yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
 ##yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
