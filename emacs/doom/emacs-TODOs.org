@@ -1,8 +1,22 @@
 #+title: Todos
+* Launcher shortcuts
+- open a shell
+- open a project
+- create a new project
 
 * Emacs Server-client work
 ** make it so the main/server window gets backgrounded + sent to separate desktop by yabai
-*** NEXT set up a launcher script that will name the main emacs window something unique
+*** TODO set up special named desktop with a few  "always in the background" things
+  - music
+  - emacsclient
+****  also separate named desktop for "comms"
+
+*** TODO set up yabai rule to always send that window to its named-desktop (or background it)
+
+*** DONE set up yabai rule to tile emacsclient windows as normal
+
+
+*** DONE set up a launcher script that will name the main emacs window something unique
 **** naming the server
 #+begin_src emacs-lisp
 (setq frame-title-format "Hello world")
@@ -13,35 +27,11 @@
 emacsclient -c --frame-parameters='(quote (name . "client-frame"))'
 #+end_src
 
-*** TODO set up special named desktop with a few  "always in the background" things
-  - music
-  - emacsclient
-****  also separate named desktop for "comms"
-
-*** TODO set up yabai rule to always send that window to its named-desktop (or background it)
-
-*** TODO set up yabai rule to tile emacsclient windows as normal
-
-
 ** TODO find some launcher hotkeys that don't conflict with Apple design guidelines
 
 * Flutter env
 ** TODO research for a way to fix that weird comment injection behavior on new code blocks (flutter LSP)
 ** TODO find a way to run flutter in an xwidget window
-
-* TODO Recompile emacs with no titlebar
-#+begin_src bash
-brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-native-comp --with-xwidgets --with-no-title-bars
-#+end_src
-
-
-- this might not work as you hope (hoping that it will "delete" the titlebar entirely, vs remove something else) - in that case just re-compile with the natural titlebar setting
-
-#+begin_src bash
-brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-native-comp --with-xwidgets --with-natural-title-bar
-#+end_src
 
 * Projects
 - need to fix treemacs behavior
@@ -56,3 +46,19 @@ brew install emacs-mac --with-native-comp --with-xwidgets --with-natural-title-b
 - this issue:  https://github.com/alexmurray/flycheck-posframe/issues/25 suggests it has to do with 'window-configuration-change-hook'
 
 - issue could be related to *vterm* buffer (or at least the first vterm buffer that is opened on startup)
+
+* DONE Recompile emacs with no titlebar
+#+begin_src bash
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-native-comp --with-xwidgets --with-no-title-bars
+#+end_src
+
+
+- this might not work as you hope (hoping that it will "delete" the titlebar entirely, vs remove something else) - in that case just re-compile with the natural titlebar setting
+
+#+begin_src bash
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-native-comp --with-xwidgets --with-natural-title-bar
+#+end_src
+
+#+RESULTS:
