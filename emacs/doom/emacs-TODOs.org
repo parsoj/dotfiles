@@ -1,4 +1,6 @@
 #+title: Todos
+* grok display-buffer-alist so you can better automate workflows
+* fix keybinding-confusion between evil escape and the global dismiss/escape action (which dismisses popups)
 * Launcher shortcuts
 - open a shell
 - open a project
@@ -31,7 +33,11 @@ emacsclient -c --frame-parameters='(quote (name . "client-frame"))'
 
 * Flutter env
 ** TODO research for a way to fix that weird comment injection behavior on new code blocks (flutter LSP)
-** TODO find a way to run flutter in an xwidget window
+- it appears that opening a curly-brace block triggers company mode, and the first completion option is a comment line (which is why that happens)
+
+
+** WAIT find a way to run flutter in an xwidget window
+- flutter doesn't have hot-reloading support on browsers right now anyway
 
 * Projects
 - need to fix treemacs behavior
