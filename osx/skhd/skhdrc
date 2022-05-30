@@ -135,7 +135,7 @@ ctrl + alt + cmd - i : open /System/Applications/Messages.app
 
 
 #cmd - b: /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --new-window
-cmd - b: vpcli default
+cmd - b: osascript -e 'tell app "Vivaldi" to make new window'
 
 ##########################################################################################
 # Window Resizing
