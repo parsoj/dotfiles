@@ -16,7 +16,7 @@
           (t
            (eval func-or-cmd)
            )
-      ))
+          ))
 
   )
 
@@ -82,12 +82,14 @@ at the top level of DIRECTORY."
 ;; projectile jump-to-project action
 ;;
 (defun +projectile-jump-to-notes (&optional counsel-projectile-candidate)
+  ;; TODO deprecate me
   (interactive)
   (find-file (concat (projectile-project-root) project-notes-file))
 
   )
 
 (defun +projectile-jump-to-makefile (&optional counsel-projectile-candidate)
+  ;; TODO deprecate me
   (interactive)
   (find-file (concat (projectile-project-root) "Makefile"))
 
@@ -96,6 +98,21 @@ at the top level of DIRECTORY."
 (setq projectile-switch-project-action #'+projectile-jump-to-notes)
 ;; (setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
 
+(defun +projectile-pop-notes ()
+  (interactive)
+  (let* ((file-path (concat (projectile-project-root) project-notes-file))
+         (buffer-name "*Project Notes*")
+         (buffer (find-file-noselect file-path))
+
+         )
+    (progn
+      (with-current-buffer buffer
+        (rename-buffer buffer-name))
+      (pop-to-buffer buffer-name))
+    )
+  )
+
+(set-popup-rule! "*Project Notes*" :side 'right :size 70 :quit 'current)
 
 ;; ------------------------------------------------------------------------------------------
 
@@ -108,7 +125,7 @@ at the top level of DIRECTORY."
   (map! :leader
         (:desc "Run project"                  "p r" #'jeff/projectile-run-project)
         (:desc "Switch project"                  "p p" (cmd! (projectile-switch-project)))
-        (:desc "Jump to project notes"  "p n" #'+projectile-jump-to-notes)
+        (:desc "Jump to project notes"  "p n" #'+projectile-pop-notes)
         (:desc "Jump to project Makefile"  "p m" #'+projectile-jump-to-makefile)
         )
 
