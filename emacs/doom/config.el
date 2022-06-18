@@ -147,7 +147,7 @@
 (map! :leader "b R" #'rename-buffer)
 (map! :leader "g c p" #'+create-pullreq)
 (map! :leader "i i" #'aya-expand)
-
+(map! :g "s-w" (cmd! (delete-frame nil t)))
 
 (progn
   (define-key evil-normal-state-map "h" nil)
