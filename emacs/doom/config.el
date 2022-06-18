@@ -293,17 +293,20 @@
 (add-hook 'shell-mode-hook 'set-no-process-query-on-exit)
 (add-hook 'vterm-mode-hook 'set-no-process-query-on-exit)
 
+(set-popup-rule! "^\\*eww" :side 'right :size 90)
 
 (set-popup-rule! "^\\*helpful" :side 'right :size 90)
-(set-popup-rule! "^magit" :side 'right :size 90)
-(set-popup-rule! "^\\*eww" :side 'right :size 90)
-(set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
+(set-popup-rule! "^\\*Man" :side 'right :size 0.40)
+
+;; (set-popup-rule! "^magit" :side 'right :size 90)
+(set-popup-rule! "^\\magit" :side 'right :width 70  )
+
 (set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 0.40 :select t :ttl nil :quit t)
+(set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 15)
+
+(set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
 (set-popup-rule! "\\*Flutter" :side 'bottom :size 0.20 :select t :ttl nil)
 (set-popup-rule! "^\\*Python" :side 'bottom :size 0.4 :select t :quit t)
-(set-popup-rule! "^\\*Man" :side 'right :size 0.40)
-(set-popup-rule! "^\\magit" :side 'right :size 0.40)
-(set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 15)
 
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
 
