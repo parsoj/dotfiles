@@ -90,20 +90,21 @@ yabai -m rule --add app="Emacs" title=".*UPPER.*" manage=off layer=above
 #
 ##yabai -m rule --add app="Music" manage=off #grid=20:20:3:2:14:16
 #yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
-#
-yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=on                               #grid=20:20:2:2:16:16
 
-yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=on #grid=20:20:2:2:16:16
-yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
-yabai -m rule --add app="Slack" manage=on #grid=20:20:2:2:16:16
-yabai -m rule --add app="^Obsidian$" manage=on #grid=20:20:2:2:16:16
-yabai -m rule --add app="^zoom.us$" title="^Zoom Meeting$" manage=on #grid=20:20:2:2:16:16
-#yabai -m rule --add app="OmniFocus" manage=on #grid=20:20:2:2:16:16
-
-yabai -m rule --add app="Emacs" title="client-frame" manage=on
 yabai -m rule --add app="Emacs" title="server-frame" manage=off space=1
 yabai -m rule --add app="AWS VPN Client" title="AWS VPN Client" manage=off space=1
-yabai -m rule --add app="Music" title="Music" manage=off space=2
+
+yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=off space=1                               #grid=20:20:2:2:16:16
+yabai -m rule --add app="Music" title="Music" manage=off space=1
+
+yabai -m rule --add app="^zoom.us$" title="^Zoom Meeting$" manage=off space=1
+yabai -m rule --add app="Slack" manage=off space=1
+
+yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=on space=2
+yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
+yabai -m rule --add app="^Obsidian$" manage=off space=2
+
+yabai -m rule --add app="Emacs" title="client-frame" manage=off
 
 ##yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
 ##yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
