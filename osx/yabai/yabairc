@@ -42,8 +42,8 @@ yabai -m config window_gap 00
 
 ##########################################################################################
 # Default yabai to off for everything (so we can explicitly whitelist apps for yabai)
-#yabai -m rule --add app=".*" manage=off
-yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Vivaldi|Slack|iTerm2|Finder)$" manage=off
+yabai -m rule --add app=".*" manage=off
+#yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Vivaldi|Slack|iTerm2|Finder)$" manage=off
 
 ##########################################################################################
 # Emacs Settings
@@ -54,7 +54,7 @@ yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Vivaldi|Slack|iTerm2|Find
 
 #yabai -m rule --add app="Emacs" title=" *Minibuf-2* .*" manage=off
 yabai -m rule --add app="Emacs" title="doom-capture.*" manage=off sticky=on grid=20:20:4:4:10:12
-yabai -m rule --add app="Emacs" title=".*Doom\ Emacs" manage=on
+yabai -m rule --add app="Emacs" title=".*Doom\ Emacs" manage=off
 
 #yabai -m rule --add app="Emacs" title="^\*.*\*$" manage=off
 #yabai -m rule --add app="Emacs" title="^Ediff$" manage=off
