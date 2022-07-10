@@ -221,7 +221,7 @@
 ;; have avy-jump select options from all windows (not just current buffer)
 (setq avy-all-windows t)
 
-(setq vterm-shell "/usr/local/bin/fish")
+(setq vterm-shell "/opt/homebrew/bin/fish")
 
 (after! treemacs-evil
   (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
