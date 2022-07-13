@@ -119,9 +119,10 @@ cmd + ctrl - d: osascript -e 'tell app "System Events" to tell appearance prefer
 #ctrl + alt - r : open /Applications/Reeder.app
 #ctrl + alt - m : open /Applications/Music.app
 
-cmd + alt - m : open /Applications/TIDAL.app
+#cmd + alt - m : open /Applications/TIDAL.app
 #ctrl + alt + cmd - s : open /Applications/Franz.app
-ctrl + alt + cmd - i : open /System/Applications/Messages.app
+#ctrl + alt + cmd - i : open /System/Applications/Messages.app
+
 
 :: default : skhd_bitbar_update "default" 
 
