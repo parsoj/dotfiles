@@ -1,0 +1,60 @@
+{
+    "window.autoDetectColorScheme": true,
+    "workbench.colorTheme": "Default Light+",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j"],
+            "after": ["h"]
+        },
+        {
+            "before": ["k"],
+            "after": ["j"]
+        },
+        {
+            "before": ["l"],
+            "after": ["k"]
+        },
+        {
+            "before": [";"],
+            "after": ["l"]
+        }
+    ],
+    "vim.operatorPendingModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j"],
+            "after": ["h"]
+        },
+        {
+            "before": ["k"],
+            "after": ["j"]
+        },
+        {
+            "before": ["l"],
+            "after": ["k"]
+        },
+        {
+            "before": [";"],
+            "after": ["l"]
+        }
+    
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j"],
+            "after": ["h"]
+        },
+        {
+            "before": ["k"],
+            "after": ["j"]
+        },
+        {
+            "before": ["l"],
+            "after": ["k"]
+        },
+        {
+            "before": [";"],
+            "after": ["l"]
+        }
+    
+    ]
+}
