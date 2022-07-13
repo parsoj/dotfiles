@@ -48,6 +48,12 @@
 ;;  posframes on emacsclient frames
 ;; (setq initial-buffer-choice (cmd! (let ((default-directory "~/")) (+vterm/here t))))
 
+;;**********************************************************************
+;;set variable-pitch headers in markdown-mode (needed before markdown module is loaded
+
+(setq markdown-header-scaling t)
+(setq markdown-asymmetric-header t)
+(setq markdown-marginalize-headers t)
 
 ;; **********************************************************************
 ;; doom modules
