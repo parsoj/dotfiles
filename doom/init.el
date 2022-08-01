@@ -54,6 +54,8 @@
 (setq markdown-header-scaling t)
 (setq markdown-asymmetric-header t)
 (setq markdown-marginalize-headers t)
+(setq markdown-header-scaling-values '(1.8 1.6 1.4 1.2 1.1 1.0)
+ )
 
 ;; **********************************************************************
 ;; doom modules
