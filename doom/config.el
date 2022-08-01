@@ -302,8 +302,8 @@
 ;; (set-popup-rule! "^magit" :side 'right :size 90)
 (set-popup-rule! "^\\magit" :side 'right :width 70  )
 
-(set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 0.40 :select t :ttl nil :quit t)
-(set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 15)
+(set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
+(set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
 (set-popup-rule! "\\*Flutter" :side 'bottom :size 0.20 :select t :ttl nil)
