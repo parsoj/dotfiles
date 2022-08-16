@@ -38,6 +38,9 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-palenight)
 (setq doom-themes-treemacs-theme 'doom-colors)
+(after! (:and projectile treemacs
+         )
+  (add-hook! 'treemacs-pre-refresh-hook #'treemacs-display-current-project-exclusively))
 
 ;; use the emacs-plus hook to change the doom theme to match OSX dark mode
 (defun sync-osx-dark-mode (appearance)
