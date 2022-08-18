@@ -299,7 +299,7 @@
 
 (set-popup-rule! "^\\*eww" :side 'right :size 90)
 
-(set-popup-rule! "^\\*helpful" :side 'right :size 90)
+(set-popup-rule! "^\\*helpful" :side 'right :size 0.50 :vslot -5)
 (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
 
 ;; (set-popup-rule! "^magit" :side 'right :size 90)
