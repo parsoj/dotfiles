@@ -30,16 +30,72 @@
 
 
 
-  (dap-register-debug-template "Go dlv direct"
-                               (list :type "dlv"
-                                     :request "attach"
-                                     :mode "remote"
-                                     ;; :args ""
-                                     ;; :name "dlv-direct remote attach"
-                                     ;; :program nil
-                                     ;; :envFile nil
-                                     ;; :port 40001
-                                     ;; :env nil
-                                     ))
+  ;; (dap-register-debug-template "Go dlv direct"
+  ;;                              (list :type "dlv"
+  ;;                                    :request "attach"
+  ;;                                    :mode "remote"
+  ;;                                    ;; :args ""
+  ;;                                    ;; :name "dlv-direct remote attach"
+  ;;                                    ;; :program nil
+  ;;                                    ;; :envFile nil
+  ;;                                    ;; :port 40001
+  ;;                                    ;; :env nil
+  ;;                                    ))
+  ;;
+
+
+
+
+
+;(dap-register-debug-template
+;  "SCIPCTL DEBUG"
+;  (list :type "go"
+;        :request "launch"
+;        :name "Launch File"
+;        :mode "debug"
+;        :program "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/scipctl/main.go"
+;        :args "apply infra"
+;        :cwd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+;
+;        ;; :buildFlags nil
+;        ;; :buildFlags "---wd=/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+;        ;;:--wd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+;        :env nil))
+
+
+
+
+;;(setq dap-dlv-go-extra-args "--wd=\"/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/\"")
+
+
+;(dap-register-debug-template
+;  "SCIPCTL DEBUG BIN"
+;  (list :type "go"
+;        :request "launch"
+;        :name "Launch bin"
+;        :mode "exec"
+;        ;:program "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/scipctl/main.go"
+;        :program "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/scipctl/scipctl"
+;        :args "apply infra"
+;        :cwd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+;
+;        ;; :buildFlags nil
+;        ;; :buildFlags "---wd=/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+;        ;;:--wd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+;        :env nil))
+
+
+
 
   )
+
+;; go install github.com/x-motemen/gore/cmd/gore@latest
+;; go install github.com/stamblerre/gocode@latest
+;; go install golang.org/x/tools/cmd/godoc@latest
+;; go install golang.org/x/tools/cmd/goimports@latest
+;; go install golang.org/x/tools/cmd/gorename@latest
+;; go install golang.org/x/tools/cmd/guru@latest
+;; go install github.com/cweill/gotests/gotests@latest
+;; go install github.com/fatih/gomodifytags@latest
+;; go install github.com/go-delve/delve/cmd/dlv@latest
+;; go install honnef.co/go/tools/cmd/staticcheck@2022.1
