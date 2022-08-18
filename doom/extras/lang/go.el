@@ -47,20 +47,22 @@
 
 
 
-;(dap-register-debug-template
-;  "SCIPCTL DEBUG"
-;  (list :type "go"
-;        :request "launch"
-;        :name "Launch File"
-;        :mode "debug"
-;        :program "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/scipctl/main.go"
-;        :args "apply infra"
-;        :cwd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
-;
-;        ;; :buildFlags nil
-;        ;; :buildFlags "---wd=/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
-;        ;;:--wd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
-;        :env nil))
+;; (dap-register-debug-template
+;;   "SCIPCTL DEBUG"
+;;   (list :type "go"
+;;         :request "launch"
+;;         :name "Launch File"
+;;         :mode "debug"
+;;         :program "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/scipctl/main.go"
+;;         :args "apply infra"
+
+;;         ;; this is the wd to run the code in
+;;         :cwd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/dbl-galactus/"
+
+;;         ;;this is the directory of the project being compiled/debugged
+;;         :dlvCwd "/Users/Jeff.Parsons/workspaces/dreambox/SRE-22234/scipctl/"
+
+;;         :env nil))
 
 
 
