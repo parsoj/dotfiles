@@ -309,11 +309,18 @@
 (set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
+(add-hook! 'compilation-mode-hook (+word-wrap-mode 1))
+
 (set-popup-rule! "\\*Flutter" :side 'bottom :size 0.20 :select t :ttl nil)
 (set-popup-rule! "^\\*Python" :side 'bottom :size 0.4 :select t :quit t)
-(set-popup-rule! "^\\*Launch File" :side 'right :size 0.4 :select nil :quit t)
-(set-popup-rule! "\\*edebug" :side 'right :width 0.4 :height 30 :slot 5)
-(add-hook! 'edebug-eval-mode-hook (+word-wrap-mode 1))
+
+;(set-popup-rule! "\\*edebug" :side 'right :width 0.4 :height 30 :slot 5)
+;(add-hook! 'edebug-eval-mode-hook (+word-wrap-mode 1))
+;
+;;;DAP-mode buffers
+;(set-popup-rule! "^\\*Launch File" :side 'right :size 0.4 :slot -2 :select nil :quit t)
+;(set-popup-rule! "^\\*dap-ui-sessions" :side 'right :size 0.4 :slot -1 :select nil :quit t)
+
 
 
 (set-repl-handler! 'python-mode #'+python/open-ipython-repl)
