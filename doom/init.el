@@ -15,6 +15,9 @@
 ;;      directory (for easy access to its source code).
 (setq comp-async-jobs-number 16)
 
+;; no titlebar (emacs 29 only)
+(add-to-list 'default-frame-alist '(undecorated . t))
+
 (setq confirm-kill-emacs nil)
 
 (setq doom-theme 'doom-vibrant)
