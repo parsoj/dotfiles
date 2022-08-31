@@ -6,6 +6,6 @@
 
 (after! vertico
   (setq vertico-resize t)
-  (setq vertico-count 50)
+  (setq vertico-count 35)
   (vertico-indexed-mode 1)
   )
