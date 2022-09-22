@@ -153,6 +153,12 @@
 (map! :leader "i i" #'aya-expand)
 (map! :g "s-w" (cmd! (delete-frame nil t)))
 
+
+;; code nav re-bindings
+(map! :leader :desc "find references" "c r" #'+lsp-lookup-references-handler)
+(map! :leader :desc "find definition" "c d" #'+lsp-lookup-definition-handler)
+(map! :leader :desc "find implementation" "c i" #'lsp-find-implementation)
+
 (progn
   (define-key evil-normal-state-map "h" nil)
   (define-key evil-normal-state-map "j" nil)
