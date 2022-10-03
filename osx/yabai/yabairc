@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
 # bar settings
 yabai -m config status_bar off
 yabai -m config status_bar_text_font "Helvetica Neue:Bold:12.0"
@@ -91,7 +94,6 @@ yabai -m rule --add app="Emacs" title=".*UPPER.*" manage=off layer=above
 ##yabai -m rule --add app="Music" manage=off #grid=20:20:3:2:14:16
 #yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
 
-yabai -m rule --add app="Emacs" title="server-frame" manage=off
 yabai -m rule --add app="AWS VPN Client" title="AWS VPN Client" manage=off
 
 yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=off
@@ -104,7 +106,10 @@ yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=off
 yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
 yabai -m rule --add app="^Obsidian$" manage=off
 
-yabai -m rule --add app="Emacs" title="client-frame" manage=off layer=above
+yabai -m rule --add app="Emacs" title="server-frame" manage=on layer=normal
+yabai -m rule --add label="emacs" app="Emacs" title="client-frame" manage=on layer=normal
+
+yabai -m rule --add label="typora" app="Typora" title=".*" manage=off sticky=on layer=above grid=10:10:7:1:3:8
 
 ##yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
 ##yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
