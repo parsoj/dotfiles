@@ -5,42 +5,57 @@
 ;; Author: Jeff Parsons <parsoj@gmail.com>
 
 
+(defun jeff/set-project-variable (key value)
+  (let (default-directory (projectile-project-root))
+    (add-dir-local-variable nil key value)
+    )
+  )
+
+(defun jeff/set-project-run-script()
+  (interactive)
+       (jeff/set-project-variable
+        'project-run-script
+         (concat "./" (completing-read
+          "select run script:"
+          (directory-files (projectile-project-root) nil "^run-.*\\.sh$")))
+                                       )
+
+  )
+
 (defun jeff/projectile-run-project ()
   (interactive)
 
-  (let ((func-or-cmd projectile-project-run-cmd))
-    (cond ((stringp func-or-cmd)
-           (jeff/run-in-vterm (projectile-project-root) func-or-cmd ))
-          ((functionp func-or-cmd)
-           (funcall func-or-cmd))
-          (t
-           (eval func-or-cmd)
-           )
-          ))
-
-  )
-
-(defun jeff/run-in-vterm (dir cmd)
-  (let ((default-directory dir))
-    (progn
-      (+vterm/toggle t)
-      (vterm-send-string cmd)
-      (vterm-send-return)
-
-      ))
-
-  )
-
-
-(defun jeff/set-project-run-command ()
-  (interactive)
-  (let ((default-directory (projectile-project-root))
-        (run-cmd (completing-read "Set project run command: " nil nil nil)))
-
-    (add-dir-local-variable nil 'projectile-project-run-cmd run-cmd)
+  (progn
+    (cond ( (not project-run-script)
+          (jeff/set-project-run-script)
+          )
+          )
+    (projectile-run-async-shell-command-in-root project-run-script)
     )
 
   )
+
+;;(defun jeff/run-in-vterm (dir cmd)
+;;  (let ((default-directory dir))
+;;    (progn
+;;      (+vterm/toggle t)
+;;      (vterm-send-string cmd)
+;;      (vterm-send-return)
+;;
+;;      ))
+;;
+;;  )
+
+
+;;(defun jeff/set-project-run-command ()
+;;  (interactive)
+;;  (let ((default-directory (projectile-project-root))
+;;        (run-cmd (completing-read "Set project run command: " nil nil nil)))
+;;
+;;    (add-dir-local-variable nil 'projectile-project-run-cmd run-cmd)
+;;    )
+;;
+;;  )
 
 
 ;; (defcustom projectile-auto-discover-search-depth nil
@@ -123,7 +138,8 @@ at the top level of DIRECTORY."
   (set-popup-rule! "^\\*compilation\\*"  :side 'right :quit nil :select t)
 
   (map! :leader
-        (:desc "Run project"                  "p r" #'jeff/projectile-run-project)
+       (:desc "Run project"                  "p r" #'jeff/projectile-run-project)
+       (:desc "Set Project Run Script"       "p R" #'jeff/set-project-run-script)
         (:desc "Switch project"                  "p p" (cmd! (projectile-switch-project)))
         (:desc "Jump to project notes"  "p n" #'+projectile-pop-notes)
         (:desc "Jump to project Makefile"  "p m" #'+projectile-jump-to-makefile)
