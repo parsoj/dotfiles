@@ -23,11 +23,11 @@
 (setq doom-theme 'doom-vibrant)
 
 
-(defun +startup-buffer ()
-  (progn
-    (+get-create-shell "~/")
-    (+focus-this-frame))
-)
+;;(defun +startup-buffer ()
+;;  (progn
+;;    (+get-create-shell "~/")
+;;    (+focus-this-frame))
+;;)
 
 ;; tell lsp-mode to use plist json deserialization
 ;; (reccomended by "lsp-doctor" command -- for performance)
@@ -118,7 +118,7 @@
        (window-select
         +numbers
         ) ; visually switch windows
-       ;; workspaces       ; tab emulation, persistence & separate workspaces
+       workspaces       ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
        :editor
@@ -129,8 +129,9 @@
         +onsave
         )
        ;;god               ; run Emacs commands without modifier keys
-       lispy                       ; vim for lisp, for people who don't like vim
-       multiple-cursors            ; editing in many places at once
+       ;; lispy  ; vim for lisp, for people who don't like vim ; NOTE: lispy breaks edebug RN
+       multiple-cursors
+                                        ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
@@ -220,7 +221,9 @@
        ;;idris             ;
        json    ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)  ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript   ; all(hope(abandon(ye(who(enter(here))))))
+        +tree-sitter
+        +lsp)
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        latex          ; writing papers in Emacs has never been so fun
@@ -262,7 +265,10 @@
        ;;solidity          ; do you need a blockchain? No.
        swift  ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web                              ; the tubes
+       (web                              ; the tubes
+        +lsp
+        +tree-sitter
+        )
        yaml                             ; JSON, but readable
        ;;zig               ; C, but simpler
 

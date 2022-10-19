@@ -158,6 +158,9 @@
 (map! :leader :desc "find references" "c r" #'+lsp-lookup-references-handler)
 (map! :leader :desc "find definition" "c d" #'+lsp-lookup-definition-handler)
 (map! :leader :desc "find implementation" "c i" #'lsp-find-implementation)
+(map! :leader :desc "yank to register" "r y" #'copy-to-register)
+(map! :leader :desc "yank to register" "r i" #'insert-register)
+
 
 (progn
   (define-key evil-normal-state-map "h" nil)
@@ -279,6 +282,9 @@
  "tf" "terraform $*"
  "dd" "(+eshell-switch-directory-in-project)"
  )
+(after! eshell
+  (remove-hook 'eshell-mode-hook #'fish-completion-mode)
+  )
 
 ;; Save sessions history
 (progn
@@ -307,14 +313,17 @@
 
 (set-popup-rule! "^\\*helpful" :side 'right :size 0.50 :vslot -5)
 (set-popup-rule! "^\\*Man" :side 'right :size 0.40)
+(set-popup-rule! "^\\*Embark Collect" :side 'right :size 0.40)
+(set-popup-rule! "^\\*Embark Export" :side 'right :size 0.40 :quit nil)
 
 ;; (set-popup-rule! "^magit" :side 'right :size 90)
-(set-popup-rule! "^\\magit" :side 'right :width 70  )
 
 (set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 (set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
+(set-popup-rule! "^\\*Async Shell Command" :side 'right :size 0.40 :select t :quit t)
+
 (add-hook! 'compilation-mode-hook (+word-wrap-mode 1))
 
 (set-popup-rule! "\\*Flutter" :side 'bottom :size 0.20 :select t :ttl nil)
@@ -352,22 +361,25 @@
 (after! lsp-mode
   ;; override the project root function to auto-guess the
   ;; project root based on the custom workspaces structure
-  (defun lsp--suggest-project-root ()
-    (let ((top-level-project-dirs (f-directories
-                                   (condition-case nil
-                                       (projectile-project-root)
-                                     (error nil))) )
-          (buffer-dir default-directory)
-          )
-
-      (car
-       (-filter (lambda (d) (or (f-same? d buffer-dir) (f-ancestor-of? d buffer-dir))) top-level-project-dirs))
 
 
-      )
-    )
+    ;; (defun lsp--suggest-project-root ()
+    ;;(let ((top-level-project-dirs (f-directories
+    ;;                               (condition-case nil
+    ;;                                   (projectile-project-root)
+    ;;                                 (error nil))) )
+    ;;      (buffer-dir default-directory)
+    ;;      )
 
-  (setq lsp-auto-guess-root t)
+    ;;  (car
+    ;;   (-filter (lambda (d) (or (f-same? d buffer-dir) (f-ancestor-of? d buffer-dir))) top-level-project-dirs))
+
+
+    ;;  )
+    ;;)
+
+  (setq lsp-auto-guess-root nil)
+;;  (setq lsp-auto-guess-root nil)
   (setq lsp-file-watch-threshold 2000)
 
   )
@@ -397,5 +409,7 @@
   (load! "bindings.el")
 
   )
+
+(set-popup-rule! "^magit" :side 'right :width 80  )
 
 (server-start)

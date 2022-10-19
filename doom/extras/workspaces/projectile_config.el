@@ -110,7 +110,6 @@ at the top level of DIRECTORY."
 
   )
 
-(setq projectile-switch-project-action #'+projectile-jump-to-notes)
 ;; (setq counsel-projectile-switch-project-action #'+projectile-jump-to-notes)
 
 (defun +projectile-pop-notes ()
@@ -135,6 +134,7 @@ at the top level of DIRECTORY."
   ;;(setq projectile-project-root-functions '(projectile-root-bottom-up))
   ;; (setq projectile-project-root-files-bottom-up '(".projectile"))
 
+  (setq projectile-switch-project-action #'+projectile-jump-to-notes)
   (set-popup-rule! "^\\*compilation\\*"  :side 'right :quit nil :select t)
 
   (map! :leader
