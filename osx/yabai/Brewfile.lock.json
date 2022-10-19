@@ -2,12 +2,12 @@
   "entries": {
     "tap": {
       "koekeishiya/formulae": {
-        "revision": "02297fba8debe8e6371489ceeda8e12f19399c93"
+        "revision": "14828329ddf9c2cd577c672036371ec706f88579"
       }
     },
     "brew": {
       "yabai": {
-        "version": "3.3.5",
+        "version": "4.0.1",
         "bottle": false
       }
     }
@@ -21,6 +21,14 @@
         "CLT": "12.2.0.0.1.1604628099",
         "Xcode": "12.2",
         "macOS": "10.15.7"
+      },
+      "monterey": {
+        "HOMEBREW_VERSION": "3.5.2",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "bae311d81899fe3b9242dde91665aa7c0f443651",
+        "CLT": "13.4.0.0.1.1651278267",
+        "Xcode": "13.4",
+        "macOS": "12.2"
       }
     }
   }

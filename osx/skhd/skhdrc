@@ -87,7 +87,9 @@ ctrl + alt + shift - l : yabai -m window --insert east
 
 #cmd + alt - e : osascript -e 'display notification "Emacs is Launching..."' ; /Applications/Emacs.app/Contents/MacOS/Emacs &
 #ctrl + alt + cmd - e : ~/.config/emacs/doom/scripts/launch-emacs-client.sh
-ctrl + alt + cmd - e : ~/.config/doom/scripts/launch-emacs-client.sh '(+eshell/here)'
+#ctrl + alt + cmd - e : ~/.config/doom/scripts/launch-emacs-client.sh '(+eshell/here)'
+
+ctrl + alt + cmd - e : osascript -e 'display notification "Emacs is Launching..."' ; open /Applications/Emacs.app
 
 #alt + cmd - n : curl "obsidian://advanced-uri?vault=obsidian_demo&commandname=QuickAdd%3A%20Add%20Note%20to%20Inbox"
 
