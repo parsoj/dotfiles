@@ -28,7 +28,7 @@
       :desc "Switch to last buffer" "`"    #'evil-switch-to-windows-last-buffer
       :desc "Resume last search"    "'" #'vertico-repeat
 
-      :desc "Search for symbol in project" "*" #'+default/search-project-for-symbol-at-point
+      :desc "Search for symbol in project" "*" #'(cmd! (+vertico/project-search nil symbol dir))
       :desc "Search project"               "/" #'+vertico/project-search
 
       :desc "Find file in project"  "SPC"  #'projectile-find-file
@@ -107,7 +107,6 @@
          :desc "Outgoing call hierarchy"             "Y"   (cmd!! #'lsp-treemacs-call-hierarchy t)
          :desc "References tree"                     "R"   (cmd!! #'lsp-treemacs-references t)
          :desc "Symbols"                             "S"   #'lsp-treemacs-symbols)
-         :desc "LSP"                                 "l"   #'+default/lsp-command-map
          :desc "LSP Rename"                          "r"   #'lsp-rename)
        (:when (featurep! :tools lsp +eglot)
         :desc "LSP Execute code action" "a" #'eglot-code-actions
@@ -133,7 +132,7 @@
        :desc "Find type definition"                  "t"   #'+lookup/type-definition
        :desc "Delete trailing whitespace"            "w"   #'delete-trailing-whitespace
        :desc "Delete trailing newlines"              "W"   #'doom/delete-trailing-newlines
-       :desc "List errors"                           "x"   #'+default/diagnostics
+       :desc "List errors"                           "x"   #'flycheck-list-errors
        )
 
       ;;; <leader> f --- file
@@ -236,10 +235,7 @@
       (:prefix-map ("n" . "notes")
        :desc "Org agenda"                   "a" #'org-agenda
        (:when (featurep! :tools biblio)
-        :desc "Bibliographic entries"        "b"
-        (cond ((featurep! :completion vertico)  #'citar-open-entry)
-              ((featurep! :completion ivy)      #'ivy-bibtex)
-              ((featurep! :completion helm)     #'helm-bibtex)))
+        :desc "Bibliographic entries"        "b" #'citar-open-entry)
 
        :desc "Toggle last org-clock"        "c" #'+org/toggle-last-clock
        :desc "Cancel current org-clock"     "C" #'org-clock-cancel
@@ -355,7 +351,6 @@
 
       ;;; <leader> p --- project
       (:prefix-map ("p" . "project")
-       :desc "Browse project"               "." #'+default/browse-project
        :desc "Browse other project"         ">" #'doom/browse-in-other-project
        :desc "Run cmd in project root"      "!" #'projectile-run-shell-command-in-root
        :desc "Async cmd in project root"    "&" #'projectile-run-async-shell-command-in-root
@@ -364,7 +359,6 @@
        :desc "Compile in project"           "c" #'projectile-compile-project
        :desc "Repeat last command"          "C" #'projectile-repeat-last-command
        :desc "Remove known project"         "d" #'projectile-remove-known-project
-       :desc "Discover projects in folder"  "D" #'+default/discover-projects
        :desc "Edit project .dir-locals"     "e" #'projectile-edit-dir-locals
        :desc "Find file in project"         "f" #'projectile-find-file
        :desc "Find file in other project"   "F" #'doom/find-file-in-other-project
@@ -380,14 +374,10 @@
        :desc "Test project"                 "T" #'projectile-test-project
        :desc "Pop up scratch buffer"        "x" #'doom/open-project-scratch-buffer
        :desc "Switch to scratch buffer"     "X" #'doom/switch-to-project-scratch-buffer
-       (:when (and (featurep! :tools taskrunner)
-                   (or (featurep! :completion ivy)
-                       (featurep! :completion helm)))
-        :desc "List project tasks"          "z" #'+taskrunner/project-tasks))
+       )
 
       ;;; <leader> q --- quit/session
       (:prefix-map ("q" . "quit/session")
-       :desc "Restart emacs server"         "d" #'+default/restart-server
        :desc "Delete frame"                 "f" #'delete-frame
        :desc "Clear current frame"          "F" #'doom/kill-all-buffers
        :desc "Kill Emacs (and daemon)"      "K" #'save-buffers-kill-emacs
@@ -423,7 +413,7 @@
        :desc "Search buffer"                "b"  #'consult-
        :desc "Search all open buffers"      "B" (cmd!! #'consult-line-multi 'all-buffers)
        :desc "Search current directory"     "d" #'+vertico/project-search-from-cwd
-       :desc "Search other directory"       "D" #'+default/search-other-cwd
+       :desc "Search other directory"       "D" (cmd! #'++search-dir)
        :desc "Locate file"                  "f" #'locate
        :desc "Jump to symbol"               "i" #'imenu
        :desc "Jump to visible link"         "l" #'link-hint-open-link
