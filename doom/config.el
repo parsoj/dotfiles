@@ -146,102 +146,11 @@
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
 
-;;(map! :leader "SPC" #'execute-extended-command)
-;(map! :leader "b R" #'rename-buffer)
-;;(map! :leader "g c p" #'+create-pullreq)
-(map! :leader "i i" #'aya-expand)
-
-
-
-;; code nav re-bindings
-;(map! :leader :desc "find references" "c r" #'+lsp-lookup-references-handler)
-;(map! :leader :desc "find definition" "c d" #'+lsp-lookup-definition-handler)
-;(map! :leader :desc "find implementation" "c i" #'lsp-find-implementation)
-(map! :leader :desc "yank to register" "r y" #'copy-to-register)
-(map! :leader :desc "yank to register" "r i" #'insert-register)
-
-
-(progn
-  (define-key evil-normal-state-map "h" nil)
-  (define-key evil-normal-state-map "j" nil)
-  (define-key evil-normal-state-map "k" nil)
-  (define-key evil-normal-state-map "l" nil)
-  (define-key evil-normal-state-map ";" nil)
-
-  (define-key evil-motion-state-map "j" 'evil-backward-char)
-  (define-key evil-motion-state-map "k" 'evil-next-line)
-  (define-key evil-motion-state-map "l" 'evil-previous-line)
-  (define-key evil-motion-state-map ";" 'evil-forward-char)
-
-  )
-
-
-(map!
- :nvmo "j" #'evil-backward-char
- :nvmo ";" #'evil-forward-char
-
- :nvmo "l" #'evil-previous-line
- :nvmo "k" #'evil-next-line
- )
-
-(map! :map magit-mode-map :after magit
- :nvm "j" #'evil-backward-char
- :nvm ";" #'evil-forward-char
-
- :nvm "l" #'evil-previous-line
- :nvm "k" #'evil-next-line
-      )
-
-
-(map! :map ivy-occur-mode-map
- :nvme "j" #'evil-backward-char
- :nvme ";" #'evil-forward-char
-
- :nvme "l" #'evil-previous-line
- :nvme "k" #'evil-next-line
-      )
-
-(map! :map ivy-occur-grep-mode-map
- :nvme "j" #'evil-backward-char
- :nvme ";" #'evil-forward-char
-
- :nvme "l" #'evil-previous-line
- :nvme "k" #'evil-next-line
-      )
-
-(map! :map emacs-lisp-mode-map
-      (:localleader
-       :desc "eval-print" "e p" #'eval-print-last-sexp)
-      )
-
-(map! :leader
-      "1" #'winum-select-window-1
-      "2" #'winum-select-window-2
-      "3" #'winum-select-window-3
-      "4" #'winum-select-window-4
-      "5" #'winum-select-window-5
-      "6" #'winum-select-window-6
-      "7" #'winum-select-window-7
-      "8" #'winum-select-window-8
-      "9" #'winum-select-window-9
-      )
-(map! :map eshell-mode-map
-      (:localleader
-       :desc "history" "h" #'counsel-esh-history)
-      )
-
 ;; have avy-jump select options from all windows (not just current buffer)
 (setq avy-all-windows t)
 
 (setq vterm-shell "/opt/homebrew/bin/fish")
 
-(after! treemacs-evil
-  (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
-  (evil-define-key 'treemacs treemacs-mode-map "l" #'evil-previous-line)
-
-  (evil-define-key 'treemacs treemacs-mode-map ";" #'evil-forward-char)
-  (evil-define-key 'treemacs treemacs-mode-map "j" #'evil-backward-char)
-  )
 
 (setq treemacs-recenter-after-file-follow 'on-distance)
 (setq treemacs-recenter-after-tag-follow 'on-distance)
@@ -410,8 +319,6 @@
 
   (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
 
-
-  (load! "bindings.el")
 
   )
 

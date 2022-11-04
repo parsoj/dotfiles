@@ -19,8 +19,10 @@
 
       (:when (featurep! :ui popup)
        :desc "Toggle last popup"     "~"    #'+popup/toggle)
+
       :desc "Find file"             "."    #'find-file
       :desc "Switch buffer"         ","    #'switch-to-buffer
+
       (:when (featurep! :ui workspaces)
        :desc "Switch workspace buffer" "," #'persp-switch-to-buffer
        :desc "Switch buffer"           "<" #'switch-to-buffer)
@@ -227,7 +229,18 @@
        :desc "From evil register"            "r"   #'evil-show-registers
        :desc "Snippet"                       "s"   #'yas-insert-snippet
        :desc "Unicode"                       "u"   #'insert-char
-       :desc "From clipboard"                "y"   #'consult-yank-pop)
+       :desc "From clipboard"                "y"   #'consult-yank-pop
+
+       :desc "aya expand" "i i" #'aya-expand
+       )
+
+
+
+
+       (:prefix-map ("r" . "register")
+        :desc "yank to register" "r y" #'copy-to-register
+        :desc "yank to register" "r i" #'insert-register
+                    )
 
       ;;; <leader> n --- notes
       (:prefix-map ("n" . "notes")
@@ -251,45 +264,31 @@
        :desc "Org export to clipboard"        "y" #'+org/export-to-clipboard
        :desc "Org export to clipboard as RTF" "Y" #'+org/export-to-clipboard-as-rich-text
 
-       (:when (featurep! :lang org +roam)
-        (:prefix ("r" . "roam")
-         :desc "Switch to buffer"              "b" #'org-roam-switch-to-buffer
-         :desc "Org Roam Capture"              "c" #'org-roam-capture
-         :desc "Find file"                     "f" #'org-roam-find-file
-         :desc "Show graph"                    "g" #'org-roam-graph
-         :desc "Insert"                        "i" #'org-roam-insert
-         :desc "Insert (skipping org-capture)" "I" #'org-roam-insert-immediate
-         :desc "Org Roam"                      "r" #'org-roam
-         (:prefix ("d" . "by date")
-          :desc "Arbitrary date" "d" #'org-roam-dailies-find-date
-          :desc "Today"          "t" #'org-roam-dailies-find-today
-          :desc "Tomorrow"       "m" #'org-roam-dailies-find-tomorrow
-          :desc "Yesterday"      "y" #'org-roam-dailies-find-yesterday)))
 
-       (:when (featurep! :lang org +roam2)
-        (:prefix ("r" . "roam")
-         :desc "Open random node"           "a" #'org-roam-node-random
-         :desc "Find node"                  "f" #'org-roam-node-find
-         :desc "Find ref"                   "F" #'org-roam-ref-find
-         :desc "Show graph"                 "g" #'org-roam-graph
-         :desc "Insert node"                "i" #'org-roam-node-insert
-         :desc "Capture to node"            "n" #'org-roam-capture
-         :desc "Toggle roam buffer"         "r" #'org-roam-buffer-toggle
-         :desc "Launch roam buffer"         "R" #'org-roam-buffer-display-dedicated
-         :desc "Sync database"              "s" #'org-roam-db-sync
-         (:prefix ("d" . "by date")
-          :desc "Goto previous note"        "b" #'org-roam-dailies-goto-previous-note
-          :desc "Goto date"                 "d" #'org-roam-dailies-goto-date
-          :desc "Capture date"              "D" #'org-roam-dailies-capture-date
-          :desc "Goto next note"            "f" #'org-roam-dailies-goto-next-note
-          :desc "Goto tomorrow"             "m" #'org-roam-dailies-goto-tomorrow
-          :desc "Capture tomorrow"          "M" #'org-roam-dailies-capture-tomorrow
-          :desc "Capture today"             "n" #'org-roam-dailies-capture-today
-          :desc "Goto today"                "t" #'org-roam-dailies-goto-today
-          :desc "Capture today"             "T" #'org-roam-dailies-capture-today
-          :desc "Goto yesterday"            "y" #'org-roam-dailies-goto-yesterday
-          :desc "Capture yesterday"         "Y" #'org-roam-dailies-capture-yesterday
-          :desc "Find directory"            "-" #'org-roam-dailies-find-directory)))
+;       (:when (featurep! :lang org +roam2)
+;        (:prefix ("r" . "roam")
+;         :desc "Open random node"           "a" #'org-roam-node-random
+;         :desc "Find node"                  "f" #'org-roam-node-find
+;         :desc "Find ref"                   "F" #'org-roam-ref-find
+;         :desc "Show graph"                 "g" #'org-roam-graph
+;         :desc "Insert node"                "i" #'org-roam-node-insert
+;         :desc "Capture to node"            "n" #'org-roam-capture
+;         :desc "Toggle roam buffer"         "r" #'org-roam-buffer-toggle
+;         :desc "Launch roam buffer"         "R" #'org-roam-buffer-display-dedicated
+;         :desc "Sync database"              "s" #'org-roam-db-sync
+;         (:prefix ("d" . "by date")
+;          :desc "Goto previous note"        "b" #'org-roam-dailies-goto-previous-note
+;          :desc "Goto date"                 "d" #'org-roam-dailies-goto-date
+;          :desc "Capture date"              "D" #'org-roam-dailies-capture-date
+;          :desc "Goto next note"            "f" #'org-roam-dailies-goto-next-note
+;          :desc "Goto tomorrow"             "m" #'org-roam-dailies-goto-tomorrow
+;          :desc "Capture tomorrow"          "M" #'org-roam-dailies-capture-tomorrow
+;          :desc "Capture today"             "n" #'org-roam-dailies-capture-today
+;          :desc "Goto today"                "t" #'org-roam-dailies-goto-today
+;          :desc "Capture today"             "T" #'org-roam-dailies-capture-today
+;          :desc "Goto yesterday"            "y" #'org-roam-dailies-goto-yesterday
+;          :desc "Capture yesterday"         "Y" #'org-roam-dailies-capture-yesterday
+;          :desc "Find directory"            "-" #'org-roam-dailies-find-directory)))
 
        (:when (featurep! :lang org +journal)
         (:prefix ("j" . "journal")
@@ -436,26 +435,39 @@
        :desc "Flymake"                      "f" #'flymake-mode
        (:when (featurep! :checkers syntax)
         :desc "Flycheck"                   "f" #'flycheck-mode)
+
        :desc "Frame fullscreen"             "F" #'toggle-frame-fullscreen
        :desc "Evil goggles"                 "g" #'evil-goggles-mode
+
        (:when (featurep! :ui indent-guides)
         :desc "Indent guides"              "i" #'highlight-indent-guides-mode)
+
        :desc "Indent style"                 "I" #'doom/toggle-indent-style
        :desc "Line numbers"                 "l" #'doom/toggle-line-numbers
        (:when (featurep! :ui minimap)
         :desc "Minimap"                      "m" #'minimap-mode)
+
        (:when (featurep! :lang org +present)
         :desc "org-tree-slide mode"        "p" #'org-tree-slide-mode)
+
        :desc "Read-only mode"               "r" #'read-only-mode
+
        (:when (and (featurep! :checkers spell) (not (featurep! :checkers spell +flyspell)))
         :desc "Spell checker"              "s" #'spell-fu-mode)
+
        (:when (featurep! :checkers spell +flyspell)
         :desc "Spell checker"              "s" #'flyspell-mode)
+
        (:when (featurep! :lang org +pomodoro)
         :desc "Pomodoro timer"             "t" #'org-pomodoro)
+
        :desc "Soft line wrapping"           "w" #'visual-line-mode
+
        (:when (featurep! :editor word-wrap)
         :desc "Soft line wrapping"         "w" #'+word-wrap-mode)
+
        (:when (featurep! :ui zen)
         :desc "Zen mode"                   "z" #'+zen/toggle
-        :desc "Zen mode (fullscreen)"      "Z" #'+zen/toggle-fullscreen)))
+        :desc "Zen mode (fullscreen)"      "Z" #'+zen/toggle-fullscreen)
+
+       ))
