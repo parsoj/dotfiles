@@ -4,9 +4,8 @@
 (map! :g "s-w" (cmd! (delete-frame nil t)))
 
 
-(map! :leader "SPC" #'execute-extended-command)
-
 (map! :leader
+
       :desc "Command Pallaete" "SPC" #'execute-extended-command
 
       :desc "Eval expression"       ";"    #'pp-eval-expression
@@ -31,7 +30,6 @@
       :desc "Search for symbol in project" "*" #'(cmd! (+vertico/project-search nil symbol dir))
       :desc "Search project"               "/" #'+vertico/project-search
 
-      :desc "Find file in project"  "SPC"  #'projectile-find-file
       :desc "Jump to bookmark"      "RET"  #'bookmark-jump
 
       ;;; <leader> TAB --- workspace
