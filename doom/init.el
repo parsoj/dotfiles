@@ -80,9 +80,6 @@
        ;;      )
 
        ;;ivy               ; a search engine for love and life
-       (vertico
-        +childframe
-        +icons)                         ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -292,6 +289,9 @@
 
 
        :forked
-       (default +bindings +smartparens)
+      ;; (default +bindings +smartparens)
+       (vertico
+        +childframe
+        +icons)                         ; the search engine of the future
 
        )
