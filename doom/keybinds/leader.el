@@ -353,8 +353,12 @@
        :desc "Async cmd in project root"    "&" #'projectile-run-async-shell-command-in-root
        :desc "Add new project"              "a" #'projectile-add-known-project
        :desc "Switch to project buffer"     "b" #'projectile-switch-to-buffer
-       :desc "Compile in project"           "c" #'projectile-compile-project
-       :desc "Repeat last command"          "C" #'projectile-repeat-last-command
+
+       ;:desc "Compile in project"           "c" #'projectile-compile-project
+       ;:desc "Repeat last command"          "C" #'projectile-repeat-last-command
+       :desc "create new project"           "C" #'+create-new-workspace
+       :desc "clone repo into project"      "c" #'clone-project-repo-for-organization
+
        :desc "Remove known project"         "d" #'projectile-remove-known-project
        :desc "Edit project .dir-locals"     "e" #'projectile-edit-dir-locals
        :desc "Find file in project"         "f" #'projectile-find-file
