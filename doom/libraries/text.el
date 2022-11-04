@@ -1,6 +1,5 @@
 ;;; libraries/text.el -*- lexical-binding: t; -*-
 
-;;;###autoload
 (defun ++yank-buffer-path (&optional root)
   "Copy the current buffer's path to the kill ring."
   (interactive)
@@ -13,7 +12,6 @@
                             filename))))
     (error "Couldn't find filename in current buffer")))
 
-;;;###autoload
 (defun ++yank-buffer-path-relative-to-project (&optional include-root)
   "Copy the current buffer's path to the kill ring.
 With non-nil prefix INCLUDE-ROOT, also include the project's root."
@@ -24,7 +22,6 @@ With non-nil prefix INCLUDE-ROOT, also include the project's root."
      (doom-project-root))))
 
 
-;;;###autoload
 (defun ++insert-file-path (arg)
   "Insert the file name (absolute path if prefix ARG).
 If `buffer-file-name' isn't set, uses `default-directory'."

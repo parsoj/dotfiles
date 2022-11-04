@@ -6,18 +6,14 @@
   (interactive) (doom-project-browse (doom-project-root)))
 ;; NOTE No need for find-in-project, use `projectile-find-file'
 
-;;;###autoload
 (defun ++browse-templates ()
   "Browse files from `+file-templates-dir'."
   (interactive) (doom-project-browse +file-templates-dir))
 
-;;;###autoload
 (defun ++find-in-templates ()
   "Find a file under `+file-templates-dir', recursively."
   (interactive) (doom-project-find-file +file-templates-dir))
 
-
-;;;###autoload
 (defun ++find-file-under-here ()
   "Perform a recursive file search from the current directory."
   (interactive)
