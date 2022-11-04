@@ -146,18 +146,17 @@
 ;;  prevent this from happening
 (setq org-super-agenda-header-map (make-sparse-keymap))
 
-(map! :leader "SPC" #'execute-extended-command)
-(map! :leader "b R" #'rename-buffer)
-(map! :leader "b R" #'rename-buffer)
-(map! :leader "g c p" #'+create-pullreq)
+;;(map! :leader "SPC" #'execute-extended-command)
+;(map! :leader "b R" #'rename-buffer)
+;;(map! :leader "g c p" #'+create-pullreq)
 (map! :leader "i i" #'aya-expand)
-(map! :g "s-w" (cmd! (delete-frame nil t)))
+
 
 
 ;; code nav re-bindings
-(map! :leader :desc "find references" "c r" #'+lsp-lookup-references-handler)
-(map! :leader :desc "find definition" "c d" #'+lsp-lookup-definition-handler)
-(map! :leader :desc "find implementation" "c i" #'lsp-find-implementation)
+;(map! :leader :desc "find references" "c r" #'+lsp-lookup-references-handler)
+;(map! :leader :desc "find definition" "c d" #'+lsp-lookup-definition-handler)
+;(map! :leader :desc "find implementation" "c i" #'lsp-find-implementation)
 (map! :leader :desc "yank to register" "r y" #'copy-to-register)
 (map! :leader :desc "yank to register" "r i" #'insert-register)
 
@@ -295,7 +294,7 @@
   (savehist-mode t))
 
 
-(setq max-mini-window-height 2)
+;;(setq max-mini-window-height 2)
 
 ;; don't ask "xxx has a running process - you sure you wanna kill it?"
 (setq confirm-kill-processes nil)
@@ -357,7 +356,7 @@
   )
 
 
-
+(setq lsp-auto-guess-root nil)
 (after! lsp-mode
   ;; override the project root function to auto-guess the
   ;; project root based on the custom workspaces structure
@@ -390,6 +389,9 @@
 (setq workspaces-root "~/workspaces")
 (setq project-notes-file "README.org")
 (setq emacs-env-dir "~/emacs-confs")
+(setq keybinds-dir "~/emacs-confs")
+
+(setq keybinds-dir (expand-file-name (concat doom-private-dir "keybinds")))
 
 (require 'dash)
 (require 'f)
@@ -404,7 +406,10 @@
 
   (-map (lambda (x) (load! x)) (directory-files-recursively libs-dir ".*\\.el$"))
 
+  (-map (lambda (x) (load! x)) (directory-files-recursively keybinds-dir ".*\\.el$"))
+
   (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
+
 
   (load! "bindings.el")
 
