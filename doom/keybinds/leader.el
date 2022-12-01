@@ -413,8 +413,8 @@
       (:prefix-map ("s" . "search")
        :desc "Search buffer"                "b"  #'consult-
        :desc "Search all open buffers"      "B" (cmd!! #'consult-line-multi 'all-buffers)
-       :desc "Search current directory"     "d" #'+vertico/project-search-from-cwd
-       :desc "Search other directory"       "D" (cmd! #'++search-dir)
+       :desc "Search current directory"     "d" (cmd! (consult-ripgrep default-directory ""))
+       :desc "Search other directory"       "D" (cmd! (consult-ripgrep (read-directory-name "Search within directory: ") ""))
        :desc "Locate file"                  "f" #'locate
        :desc "Jump to symbol"               "i" #'imenu
        :desc "Jump to visible link"         "l" #'link-hint-open-link
@@ -425,7 +425,7 @@
        :desc "Look up online (w/ prompt)"   "O" #'+lookup/online-select
        :desc "Look up in local docsets"     "k" #'+lookup/in-docsets
        :desc "Look up in all docsets"       "K" #'+lookup/in-all-docsets
-       :desc "Search project"               "p" #'+vertico/project-search
+       :desc "Search project"               "p" (cmd! (consult-ripgrep (projectile-project-root) ))
        :desc "Jump to mark"                 "r" #'evil-show-marks
        :desc "Search buffer"                "b" (cmd! (consult-line))
        :desc "Search buffer for thing at point" "S" #'+vertico/search-symbol-at-point
