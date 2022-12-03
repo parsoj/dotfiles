@@ -428,9 +428,10 @@
        :desc "Search project"               "p" (cmd! (consult-ripgrep (projectile-project-root) ))
        :desc "Jump to mark"                 "r" #'evil-show-marks
        :desc "Search buffer"                "b" (cmd! (consult-line))
-       :desc "Search buffer for thing at point" "S" #'+vertico/search-symbol-at-point
-       :desc "Dictionary"                   "t" #'+lookup/dictionary-definition
-       :desc "Thesaurus"                    "T" #'+lookup/synonyms)
+       :desc "Search buffer for thing at point" "S" (cmd! (consult-line (thing-at-point 'symbol)))
+       ;:desc "Dictionary"                   "t" #'+lookup/dictionary-definition
+       ;:desc "Thesaurus"                    "T" #'+lookup/synonyms
+       )
 
       ;;; <leader> t --- toggle
       (:prefix-map ("t" . "toggle")
@@ -447,7 +448,8 @@
         :desc "Indent guides"              "i" #'highlight-indent-guides-mode)
 
        :desc "Indent style"                 "I" #'doom/toggle-indent-style
-       :desc "Line numbers"                 "l" #'doom/toggle-line-numbers
+       :desc "Line numbers"                 "l" (cmd! (setq display-line-numbers (not display-line-numbers)))
+
        (:when (featurep! :ui minimap)
         :desc "Minimap"                     "M" #'minimap-mode)
 
