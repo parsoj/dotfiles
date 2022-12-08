@@ -132,7 +132,8 @@
        :desc "Find type definition"                  "t"   #'+lookup/type-definition
        :desc "Delete trailing whitespace"            "w"   #'delete-trailing-whitespace
        :desc "Delete trailing newlines"              "W"   #'doom/delete-trailing-newlines
-       :desc "List errors"                           "x"   #'flycheck-list-errors
+       :desc "next error"                            "x"   #'flycheck-next-error
+       :desc "List errors"                           "X"   #'flycheck-list-errors
        )
 
       ;;; <leader> f --- file
