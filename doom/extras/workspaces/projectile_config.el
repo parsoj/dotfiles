@@ -5,19 +5,42 @@
 ;; Author: Jeff Parsons <parsoj@gmail.com>
 
 
-(defun jeff/set-project-variable (key value)
-  (let (default-directory (projectile-project-root))
-    (add-dir-local-variable nil key value)
+;; (defun jeff/set-project-variable (key value)
+;;   (let ((default-directory (projectile-project-root)))
+;;     (if (not(file-exists-p "./.dir-locals.el")) (f-touch "./.dir-locals.el"))
+;;     (add-dir-local-variable nil key value)
+;;     )
+;;   )
+
+(defun jeff/create-project-run-script ()
+  (interactive)
+  (let* ((run-scripts-dir (concat (projectile-project-root) "run-scripts") )
+        (script-name (read-string "What do you want to name your run script?" ))
+        (script-path (concat run-scripts-dir "/" script-name))
+        )
+
+
+    (progn
+      (if
+          (not(file-exists-p run-scripts-dir))
+          (mkdir run-scripts-dir)
+        )
+      (f-touch script-path)
+      (find-file script-path)
+
+      )
     )
   )
 
-(defun jeff/set-project-run-script()
+(defvar active-run-script nil)
+
+(defun jeff/set-project-run-script ()
   (interactive)
-       (jeff/set-project-variable
-        'project-run-script
-         (concat "./" (completing-read
+       (setq
+        active-run-script
+         (concat "./run-scripts/" (completing-read
           "select run script:"
-          (directory-files (projectile-project-root) nil "^run-.*\\.sh$")))
+          (directory-files (concat (projectile-project-root) "/run-scripts" ) nil "^.*\\.sh$")))
                                        )
 
   )
@@ -26,11 +49,12 @@
   (interactive)
 
   (progn
-    (cond ( (not project-run-script)
+    (cond ( (not active-run-script)
           (jeff/set-project-run-script)
           )
           )
-    (projectile-run-async-shell-command-in-root project-run-script)
+  ;  (chmod project-run-script 0777)
+    (projectile-run-async-shell-command-in-root active-run-script)
     )
 
   )
