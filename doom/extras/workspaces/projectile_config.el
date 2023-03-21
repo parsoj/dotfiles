@@ -33,6 +33,7 @@
   )
 
 (defvar active-run-script nil)
+(add-hook 'projectile-before-switch-project-hook (lambda () (setq active-run-script nil)))
 
 (defun jeff/set-project-run-script ()
   (interactive)
