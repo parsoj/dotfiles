@@ -66,7 +66,9 @@
     (cond
 
      ((is-elisp-file-p active-run-script)
-      (load-file (concat (projectile-project-root) active-run-script))
+      (let ((default-directory (projectile-project-root)))
+        (load-file (concat (projectile-project-root) active-run-script))
+        )
       )
 
      ((is-shellscript-file-p active-run-script)
@@ -75,9 +77,10 @@
 
      )
 
+    )
+
   )
 
-)
 
 ;;(defun jeff/run-in-vterm (dir cmd)
 ;;  (let ((default-directory dir))
