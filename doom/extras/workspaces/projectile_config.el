@@ -41,24 +41,43 @@
         active-run-script
          (concat "./run-scripts/" (completing-read
           "select run script:"
-          (directory-files (concat (projectile-project-root) "/run-scripts" ) nil "^.*\\.sh$")))
-                                       )
+          (directory-files (concat (projectile-project-root) "/run-scripts" ) nil "^.*\\.\\(sh\\|el\\)$")))
+         )
 
   )
+
+
+(defun is-shellscript-file-p (filename)
+  (string= "sh" (file-name-extension filename))
+  )
+
+(defun is-elisp-file-p (filename)
+  (string= "el" (file-name-extension filename))
+  )
+
 
 (defun jeff/projectile-run-project ()
   (interactive)
 
   (progn
-    (cond ( (not active-run-script)
-          (jeff/set-project-run-script)
-          )
-          )
-  ;  (chmod project-run-script 0777)
-    (projectile-run-async-shell-command-in-root active-run-script)
-    )
+
+    (unless active-run-script (jeff/set-project-run-script))
+
+    (cond
+
+     ((is-elisp-file-p active-run-script)
+      (load-file (concat (projectile-project-root) active-run-script))
+      )
+
+     ((is-shellscript-file-p active-run-script)
+      (projectile-run-async-shell-command-in-root active-run-script)
+      )
+
+     )
 
   )
+
+)
 
 ;;(defun jeff/run-in-vterm (dir cmd)
 ;;  (let ((default-directory dir))
