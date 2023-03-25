@@ -39,9 +39,9 @@
   (interactive)
        (setq
         active-run-script
-         (concat "./run-scripts/" (completing-read
+         (completing-read
           "select run script:"
-          (directory-files (concat (projectile-project-root) "/run-scripts" ) nil "^.*\\.\\(sh\\|el\\)$")))
+          (directory-files (concat (projectile-project-root) "/run-scripts" ) nil "^.*\\.\\(sh\\|el\\)$"))
          )
 
   )
@@ -66,20 +66,31 @@
     (cond
 
      ((is-elisp-file-p active-run-script)
-      (let ((default-directory (projectile-project-root)))
-        (load-file (concat (projectile-project-root) active-run-script))
+      (let ((default-directory (projectile-project-root))
+            (e-text (f-read-text active-run-script))
+            (exec-buffer-name "Project Run Script")
+            )
+
+        (progn
+          (kill-buffer exec-buffer-name)
+          (with-temp-buffer-window "Project Run Script" nil nil
+                                        ;(load (concat (projectile-project-root) active-run-script))
+            ;;(print e-text)
+
+            (eval (read e-text))
+            )
+          )
         )
       )
 
      ((is-shellscript-file-p active-run-script)
       (projectile-run-async-shell-command-in-root active-run-script)
       )
-
      )
-
     )
-
   )
+
+
 
 
 ;;(defun jeff/run-in-vterm (dir cmd)
