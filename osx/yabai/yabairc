@@ -104,9 +104,12 @@ yabai -m rule --add app="Slack" manage=off
 
 yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=off
 yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
-yabai -m rule --add app="^Obsidian$" manage=off
+#yabai -m rule --add app="^Obsidian$" manage=off
+yabai -m rule --add app="Obsidian" role="AXWindow" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="Emacs" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
+yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
+yabai -m rule --add app="Hyper" title="Hyper" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
 ##yabai -m rule --add label="emacs" app="Emacs" title="client-frame" manage=on layer=normal
 
 yabai -m rule --add app="Safari" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
@@ -115,7 +118,7 @@ yabai -m rule --add app="Firefox" role="AXWindow" subrole="AXStandardWindow" man
 yabai -m rule --add label="typora" app="Typora" title=".*" manage=off sticky=on layer=above grid=10:10:7:1:3:8
 
 ##yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
-##yabai -m rule --add app="Slack" manage=off sticky=on grid=10:10:2:1:6:8
+yabai -m rule --add app="Slack"  sticky=on layer=above grid=10:20:1:1:18:8
 #
 #yabai -m rule --add app="Brave" title="^Pinboard" manage=off
 #
