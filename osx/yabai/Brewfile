@@ -1,7 +1,0 @@
-# -*- mode:ruby -*-
-
-################################################################################
-#  skhd and yabai
-tap "koekeishiya/formulae"
-brew "yabai"
-

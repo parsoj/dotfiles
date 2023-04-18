@@ -1,0 +1,20 @@
+set shell := ["/opt/homebrew/bin/fish", "-c"]
+
+install: 
+    brew install koekeishiya/formulae/yabai
+
+upgrade: 
+    brew upgrade koekeishiya/formulae/yabai
+
+link:
+    -rm ~/Library/LaunchAgents/yabai.plist
+    ln -s (pwd)/yabai.plist ~/Library/LaunchAgents/yabai.plist
+
+start-service: 
+    launchctl load -w ~/Library/LaunchAgents/yabai.plist
+
+stop-service:
+    launchctl unload -w ~/Library/LaunchAgents/yabai.plist
+
+status: 
+    launchctl list | grep yabai
