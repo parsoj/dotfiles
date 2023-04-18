@@ -1,0 +1,20 @@
+set shell := ["/opt/homebrew/bin/fish", "-c"]
+
+install: 
+    brew install koekeishiya/formulae/skhd
+
+upgrade:
+    brew upgrade koekeishiya/formulae/skhd
+
+link:
+    -rm ~/Library/LaunchAgents/skhd.plist
+    ln -s (pwd)/skhd.plist ~/Library/LaunchAgents/skhd.plist
+
+start-service: 
+    launchctl load -w ~/Library/LaunchAgents/skhd.plist
+
+stop-service:
+    launchctl unload -w ~/Library/LaunchAgents/skhd.plist
+
+status: 
+    launchctl list | grep skhd

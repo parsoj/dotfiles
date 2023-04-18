@@ -47,7 +47,7 @@ ctrl + alt + cmd - m : yabai -m window --toggle zoom-fullscreen
 ctrl + alt + cmd - f : yabai -m window --toggle native-fullscreen
 ctrl + alt + cmd - t : yabai -m window --toggle float
 
-#ctrl + alt + cmd - r : yabai -m space --rotate 90
+alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - x : yabai -m space --mirror x-axis
 ctrl + alt + cmd - y : yabai -m space --mirror y-axis
 
@@ -89,7 +89,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 #ctrl + alt + cmd - e : ~/.config/emacs/doom/scripts/launch-emacs-client.sh
 #ctrl + alt + cmd - e : ~/.config/doom/scripts/launch-emacs-client.sh '(+eshell/here)'
 
-ctrl + alt + cmd - e : osascript -e 'display notification "Emacs is Launching..."' ; open /Applications/Emacs.app
+#ctrl + alt + cmd - e : osascript -e 'display notification "Emacs is Launching..."' ; open /Applications/Emacs.app
 
 #alt + cmd - n : curl "obsidian://advanced-uri?vault=obsidian_demo&commandname=QuickAdd%3A%20Add%20Note%20to%20Inbox"
 
@@ -108,6 +108,7 @@ ctrl + alt + cmd - e : osascript -e 'display notification "Emacs is Launching...
 
 cmd + ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
+ctrl - w: 
 
 ################################################################################
 # VPN / Network
