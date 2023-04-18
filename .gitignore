@@ -20,3 +20,5 @@ raycast/*
 
 
 emacs/doom/custom.el
+
+AWSVPNClient/*
