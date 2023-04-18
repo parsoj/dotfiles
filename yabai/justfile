@@ -1,4 +1,7 @@
 set shell := ["/opt/homebrew/bin/fish", "-c"]
+set export
+
+USER_ID := `id -u`
 
 install: 
     brew install koekeishiya/formulae/yabai
@@ -10,11 +13,14 @@ link:
     -rm ~/Library/LaunchAgents/yabai.plist
     ln -s (pwd)/yabai.plist ~/Library/LaunchAgents/yabai.plist
 
-start-service: 
+start: 
     launchctl load -w ~/Library/LaunchAgents/yabai.plist
 
-stop-service:
+stop:
     launchctl unload -w ~/Library/LaunchAgents/yabai.plist
+
+restart:
+    launchctl kickstart -k gui/$USER_ID/yabai
 
 status: 
     launchctl list | grep yabai
