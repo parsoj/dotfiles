@@ -4,7 +4,11 @@ set export
 USER_ID := `id -u`
 
 install: 
-    brew install koekeishiya/formulae/yabai
+    brew install koekeishiya/formulae/yabai --HEAD
+#need to install dev version of yabai M1 support not yet released
+
+uninstall: 
+    brew uninstall koekeishiya/formulae/yabai
 
 upgrade: 
     brew upgrade koekeishiya/formulae/yabai
@@ -12,6 +16,20 @@ upgrade:
 link:
     -rm ~/Library/LaunchAgents/yabai.plist
     ln -s (pwd)/yabai.plist ~/Library/LaunchAgents/yabai.plist
+
+get-sudoers-entry:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    USER=$(whoami)
+    YABAI_PATH=$(which yabai)
+    HASH=$(shasum -a 256 $YABAI_PATH)
+    echo "$USER ALL=(root) NOPASSWD: sha256:$HASH $YABAI_PATH --load-sa"
+
+link-scripts:
+    -rm -f /usr/local/bin/push_space
+    ln -s $(pwd)/scripts/push_space ~/.local/bin/push_space
+    -rm -f /usr/local/bin/pop_space
+    ln -s $(pwd)/scripts/pop_space ~/.local/bin/pop_space
 
 start: 
     launchctl load -w ~/Library/LaunchAgents/yabai.plist
