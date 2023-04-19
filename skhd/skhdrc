@@ -108,7 +108,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 
 cmd + ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
-ctrl - w: 
+ctrl - w: pop_space
 
 ################################################################################
 # VPN / Network
@@ -144,7 +144,7 @@ ctrl - w:
 #cmd - b: /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --new-window
 #cmd - b: osascript -e 'tell app "Vivaldi" to make new window'
 #cmd - b: osascript ~/.config/osx/safari_new_window.applescript
-cmd - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
+ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
 
 ##########################################################################################
 # Window Resizing
