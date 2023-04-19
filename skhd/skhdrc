@@ -109,6 +109,7 @@ ctrl + alt + shift - l : yabai -m window --insert east
 cmd + ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
 ctrl - w: pop_space
+ctrl - s: push_space
 
 ################################################################################
 # VPN / Network
