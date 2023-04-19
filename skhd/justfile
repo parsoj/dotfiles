@@ -10,6 +10,10 @@ link:
     -rm ~/Library/LaunchAgents/skhd.plist
     ln -s (pwd)/skhd.plist ~/Library/LaunchAgents/skhd.plist
 
+link-scripts:
+    sudo rm -f /usr/local/bin/push_space; ln -s $(pwd)/scripts/push_space ~/.local/bin/push_space
+    sudo rm -f /usr/local/bin/pop_space; ln -s $(pwd)/scripts/pop_space ~/.local/bin/pop_space
+
 start-service: 
     launchctl load -w ~/Library/LaunchAgents/skhd.plist
 
