@@ -1,16 +1,25 @@
-#!/usr/local/opt/ruby/bin/ruby
+#!/opt/homebrew/bin/fish
 
-require 'json'
+#require 'json'
 
 # query current focused desktop
-windows_on_desktop = JSON.parse(`yabai -m query --windows --space`) 
+#windows_on_desktop = JSON.parse(`yabai -m query --windows --space`) 
+set windows_query (yabai -m query --windows --space)
+#echo $windows_query | jq -r '.[]'
 
-for win in windows_on_desktop
-  `yabai -m window #{win["id"]} --close`
+
+
+#for win in windows_on_desktop
+#  `yabai -m window #{win["id"]} --close`
+#end
+for window in (echo $windows_query | jq -c '.[]')
+  set window_id (echo $window | jq '.id')
+  yabai -m window $window_id --close
 end
 
-`yabai -m space --focus prev`
+set PREV_SPACE_INDEX (yabai -m query --spaces --space prev | jq '.index')
+set CURR_SPACE_INDEX (yabai -m query --spaces --space | jq '.index')
 
-`yabai -m space recent --destroy`
-
+yabai -m space --focus $PREV_SPACE_INDEX
+yabai -m space --destroy $CURR_SPACE_INDEX
 
