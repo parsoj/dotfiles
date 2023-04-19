@@ -1,12 +1,10 @@
-#!/usr/local/opt/ruby/bin/ruby
+#!/opt/homebrew/bin/fish
 
-require 'json'
+yabai -m space --create
 
-`yabai -m space --create`
+set last_space_index (yabai -m query --spaces --display | jq '.[-1].index')
 
-last_space_index = JSON.parse(`yabai -m query --spaces --display`).length
-
-`yabai -m space --focus #{last_space_index}`
+yabai -m space --focus $last_space_index
 
 
 
