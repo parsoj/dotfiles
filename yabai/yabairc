@@ -36,81 +36,23 @@ yabai -m rule --add app=".*" manage=off
 #yabai -m rule --add app!="^(Google Chrome|Safari|Brave|Vivaldi|Slack|iTerm2|Terminal|Finder)$" manage=off
 
 ##########################################################################################
-# Emacs Settings
-
-#yabai -m rule --add app="Emacs" title="^$" manage=off
-#yabai -m rule --add app="Emacs" title!="^$" manage=on #ivy-posframe windows currently have an empty title
-#yabai -m rule --add app="Emacs" title="emacs-client" manage=on
-
-#yabai -m rule --add app="Emacs" title=" *Minibuf-2* .*" manage=off
-yabai -m rule --add app="Emacs" title="doom-capture.*" manage=off sticky=on grid=20:20:4:4:10:12
-yabai -m rule --add app="Emacs" title=".*Doom\ Emacs" manage=off
-
-#yabai -m rule --add app="Emacs" title="^\*.*\*$" manage=off
-#yabai -m rule --add app="Emacs" title="^Ediff$" manage=off
-
-yabai -m rule --add app="Emacs" title="^Ediff" manage=off
-yabai -m rule --add app="Emacs" title="^\*ediff-merge" manage=off layer=above
-yabai -m rule --add app="Emacs" title=".*LOWER.*" manage=off layer=above
-yabai -m rule --add app="Emacs" title=".*UPPER.*" manage=off layer=above
-
-#yabai -m rule --add app="Emacs" title="^org-capture" manage=off sticky=on grid=20:20:6:8:8:6
-#yabai -m rule --add app="Emacs" title="^ivy-posframe*" manage=off
-#yabai -m rule --add app="Emacs" title="emacs \(main frame\)" manage=on
-#yabai -m rule --add app="Emacs" title="emacs-client" manage=on
-
-# grid-layout docs --> rows:cols:left:top:width:height
-
-#yabai -m rule --add app="Finder" title=Copy manage=off
-#yabai -m rule --add --label "App Store" --state float
-
-##########################################################################################
 # OSX App Settings
-
-#yabai -m rule --add app="Safari" manage=on
-
-#yabai -m rule --add app="iStat Menus" manage=on
-#
-#yabai -m rule --add app="Things" title!="^(Quick Entry|General|Things Cloud|Reminders|Calendar)$" manage=on
-#yabai -m rule --add app="Bear" title="Bear" manage=on
-#yabai -m rule --add app="1Password 7" manage=off sticky=on grid=40:40:4:4:30:32
-#yabai -m rule --add app="System Preferences" manage=off grid=40:40:15:12:6:8
-#yabai -m rule --add app="Deliveries" manage=off sticky=on grid=20:20:3:2:14:16
-#yabai -m rule --add app="Podcasts" manage=off sticky=on grid=20:20:3:2:14:16
-#
-##yabai -m rule --add app="Music" manage=off #grid=20:20:3:2:14:16
-#yabai -m rule --add app="Music" title="MiniPlayer" manage=on sticky=off
 
 yabai -m rule --add app="AWS VPN Client" title="AWS VPN Client" manage=off
 
 yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=off
 yabai -m rule --add app="Music" title="Music" manage=off
 
-#yabai -m rule --add app="Slack" manage=off
-#yabai -m rule --add app="Slack"  sticky=on layer=above grid=10:20:1:1:18:8
-yabai -m rule --add app="Slack" space=first
-
-#yabai -m rule --add app="zoom.us" space=first
-
 yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=off
 yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
-#yabai -m rule --add app="^Obsidian$" manage=off
+
 yabai -m rule --add app="Obsidian" role="AXWindow" subrole="AXStandardWindow" manage=on
 
-yabai -m rule --add app="Emacs" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
-yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
-yabai -m rule --add app="Hyper" title="Hyper" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
-##yabai -m rule --add label="emacs" app="Emacs" title="client-frame" manage=on layer=normal
+yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
+yabai -m rule --add app="Firefox" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="Hyper" title="Hyper" role="AXWindow" subrole="AXStandardWindow" manage=on
 
-yabai -m rule --add app="Safari" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
-yabai -m rule --add app="Firefox" role="AXWindow" subrole="AXStandardWindow" manage=on layer=normal
+yabai -m rule --add app="Safari" role="AXWindow" subrole="AXStandardWindow" manage=on
 
-yabai -m rule --add label="typora" app="Typora" title=".*" manage=off sticky=on layer=above grid=10:10:7:1:3:8
-
-##yabai -m rule --add app="Discord" manage=off sticky=on grid=40:40:4:4:30:32
-
-#yabai -m rule --add app="Brave" title="^Pinboard" manage=off
-#
-#yabai -m rule --add app="Fantastical" manage=off
 
 echo "yabai configuration loaded.."
