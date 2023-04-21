@@ -66,42 +66,6 @@ ctrl + alt + shift - j : yabai -m window --insert south
 ctrl + alt + shift - k : yabai -m window --insert north
 ctrl + alt + shift - l : yabai -m window --insert east
 
-################################################################################
-# Emacs 
-
-#:: emacs : skhd_bitbar_update "emacs-launcher"
-#ctrl + alt + cmd - e ; emacs
-#emacs < escape ; default
-#emacs < e : skhd -k "escape" && emacs -c
-#
-#emacs < d : skhd -k "escape" && /Applications/Emacs.app/Contents/MacOS/Emacs --with-profile doom
-#cmd + alt + e : emacs -c
-
-#cmd + alt - e : emacs-client-frame dev
-#cmd + alt - o : emacs-client-frame org
-#cmd + alt - a : emacs --eval "(org-agenda nil \"x\")" -F '((name . "Agenda"))'
-#cmd + alt - i : emacs --eval "(find-file \"~/org/inbox/inbox\.org\")"
-##cmd + alt - n : emacs --eval "(call-interactively 'org-quick-note)"
-#cmd + alt - t : org-capture -k t
-#cmd + alt - n : org-capture -k n
-
-#cmd + alt - e : osascript -e 'display notification "Emacs is Launching..."' ; /Applications/Emacs.app/Contents/MacOS/Emacs &
-#ctrl + alt + cmd - e : ~/.config/emacs/doom/scripts/launch-emacs-client.sh
-#ctrl + alt + cmd - e : ~/.config/doom/scripts/launch-emacs-client.sh '(+eshell/here)'
-
-#ctrl + alt + cmd - e : osascript -e 'display notification "Emacs is Launching..."' ; open /Applications/Emacs.app
-
-#alt + cmd - n : curl "obsidian://advanced-uri?vault=obsidian_demo&commandname=QuickAdd%3A%20Add%20Note%20to%20Inbox"
-
-#emacs < k : pkill -SIGUSR2 Emacs
-
-#emacs < c : skhd -k "escape" && org-capture
-#ctrl + alt + cmd - k : pkill Emacs
-
-#ctrl + alt - e : ~/.config/osx/app_settings/yabai/scripts/launch_current_space /usr/local/bin/emacsclient --no-wait --create-frame --eval "(shell-client-frame)" --frame-parameters='(quote (title . "emacs-client"))'
-
-#ctrl + alt - i : /usr/local/bin/emacsclient -n -e "(org-capture-pop-frame)" 
-#ctrl + alt - n : /usr/local/bin/emacsclient -n -e "(org-notepad-pop-frame)" 
 
 ################################################################################
 # OSX / Theme controls
@@ -111,41 +75,12 @@ ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences 
 ctrl - w: pop_space
 ctrl - s: push_space
 
-################################################################################
-# VPN / Network
-
-#ctrl + alt + cmd - 1 : osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "connect \"Glympse\"" -e "end tell"
-#ctrl + alt + cmd - 2 : osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "connect \"Legacy_Tools\"" -e "end tell"
 
 ################################################################################
-# application launching
+# Launch Apps
 
-#ctrl + alt - r : open /Applications/Reeder.app
-#ctrl + alt - m : open /Applications/Music.app
-
-#cmd + alt - m : open /Applications/TIDAL.app
-#ctrl + alt + cmd - s : open /Applications/Franz.app
-#ctrl + alt + cmd - i : open /System/Applications/Messages.app
-
-
-:: default : skhd_bitbar_update "default" 
-
-##########################################################################################
-# Browser launching
-
-#:: browser @ : skhd_bitbar_update "browser-launcher"
-#cmd - b ;  browser
-#browser < escape ; default
-#
-#browser < p : skhd -k "escape" ; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile_Personal"
-#browser < i : skhd -k "escape" ; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile_iSP"
-#browser < s : skhd -k "escape" ; osascript -e "tell application \"Safari\" to make new document" & osascript -e "tell application \"Safari\" to activate"
-
-
-#cmd - b: /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --new-window
-#cmd - b: osascript -e 'tell app "Vivaldi" to make new window'
-#cmd - b: osascript ~/.config/osx/safari_new_window.applescript
 ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
+ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
 
 ##########################################################################################
 # Window Resizing
