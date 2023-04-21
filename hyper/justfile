@@ -1,0 +1,5 @@
+set shell := ["/opt/homebrew/bin/fish", "-c"]
+
+link: 
+    -rm ~/Library/Application\ Support/Hyper/.hyper.js
+    ln -s (pwd)/hyper.js ~/Library/Application\ Support/Hyper/.hyper.js
