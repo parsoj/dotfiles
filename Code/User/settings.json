@@ -1,21 +1,174 @@
 {
+    "gicomai.openai_apikey": "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",
+    "terminal.integrated.shell.osx": "/opt/homebrew/bin/fish",
+
     "window.autoDetectColorScheme": true,
+
+    "modaledit.keybindings": {
+        "i": "modaledit.enterInsert",
+        "I": [
+            "cursorHome",
+            "modaledit.enterInsert"
+        ],
+        "a": [
+            {
+                "condition": "__char == ''",
+                "false": "cursorRight"
+            },
+            "modaledit.enterInsert"
+        ],
+        "A": [
+            "cursorEnd",
+            "modaledit.enterInsert"
+        ],
+        "o": [
+            "editor.action.insertLineAfter",
+            "modaledit.enterInsert"
+        ],
+        "O": [
+            "editor.action.insertLineBefore",
+            "modaledit.enterInsert"
+        ],
+
+        "v": "modaledit.toggleSelection",
+        "V": "expandLineSelection",
+
+        "u": "undo",
+
+        //Movement bindings
+        "j": {
+            "command": "cursorMove",
+            "args": "{ to: 'left', select: __selecting }"
+        },
+        "k": {
+            "command": "cursorMove",
+            "args": "{ to: 'down', select: __selecting }"
+        },
+        "l": {
+            "command": "cursorMove",
+            "args": "{ to: 'up', select: __selecting }"
+        },
+        ";": {
+            "command": "cursorMove",
+            "args": "{ to: 'right', select: __selecting }"
+        },
+
+        "w": {
+            "condition": "__selecting",
+            "true": "cursorWordStartRightSelect",
+            "false": "cursorWordStartRight"
+        },
+        "b": {
+            "condition": "__selecting",
+            "true": "cursorWordStartLeftSelect",
+            "false": "cursorWordStartLeft"
+        },
+        "e": {
+            "condition": "__selecting",
+            "true": "cursorWordEndRightSelect",
+            "false": "cursorWordEndRight"
+        },
+        "g": {
+            "_": {
+                "command": "cursorMove",
+                "args": "{ to: 'wrappedLineLastNonWhitespaceCharacter', select: __selecting }",
+            },
+            "g": {
+                    "condition": "__selecting",
+                    "true": "cursorTopSelect",
+                    "false": "cursorTop"
+                },
+            },
+        "G": {
+                "condition": "__selecting",
+                "true": "cursorBottomSelect",
+                "false": "cursorBottom"
+        },
+
+        "z": {
+            "z": {
+                "command": "revealLine",
+                "args": "{ lineNumber: __line, at: 'center' }"
+            }
+        },
+
+        "y": [
+            "editor.action.clipboardCopyAction",
+            "modaledit.cancelSelection"
+        ],
+        "p": [
+            "cursorRight",
+            "editor.action.clipboardPasteAction"
+        ],
+        "P": "editor.action.clipboardPasteAction",
+        " ": {
+            " ": {
+                "command": "workbench.action.showCommands"
+            }
+        },
+
+        "d": {
+            "d": [
+                "deleteAllLeft",
+                "deleteAllRight"
+                ]
+        }
+
+    },
+
+
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["j"],
-            "after": ["h"]
+            "before": [
+                "j"
+            ],
+            "after": [
+                "h"
+            ]
         },
         {
-            "before": ["k"],
-            "after": ["j"]
+            "before": [
+                "k"
+            ],
+            "after": [
+                "j"
+            ]
         },
         {
-            "before": ["l"],
-            "after": ["k"]
+            "before": [
+                "l"
+            ],
+            "after": [
+                "k"
+            ]
         },
         {
-            "before": [";"],
-            "after": ["l"]
+            "before": [
+                ";"
+            ],
+            "after": [
+                "l"
+            ]
+        },
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
         }
     ],
     "vim.operatorPendingModeKeyBindingsNonRecursive": [
@@ -39,24 +192,58 @@
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["j"],
-            "after": ["h"]
+            "before": [
+                "j"
+            ],
+            "after": [
+                "h"
+            ]
         },
         {
-            "before": ["k"],
-            "after": ["j"]
+            "before": [
+                "k"
+            ],
+            "after": [
+                "j"
+            ]
         },
         {
-            "before": ["l"],
-            "after": ["k"]
+            "before": [
+                "l"
+            ],
+            "after": [
+                "k"
+            ]
         },
         {
-            "before": [";"],
-            "after": ["l"]
+            "before": [
+                ";"
+            ],
+            "after": [
+                "l"
+            ]
+        },
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
         }
-    
     ],
-    "workbench.colorTheme": "Default Light+",
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -69,5 +256,22 @@
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": false
     },
-    "dart.openDevTools": "flutter"
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "editor.fontSize": 14,
+    "git.autofetch": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "editor.minimap.enabled": false,
+    "git.confirmSync": false,
+    "gitlens.views.commits.avatars": false,
+    "terminal.integrated.fontSize": 14,
+    "debug.console.fontSize": 14,
+    "workbench.preferredDarkColorTheme": "One Dark Pro",
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "workbench.preferredLightColorTheme": "Atom One Light",
+    "workbench.colorTheme": "Atom One Light"
 }
