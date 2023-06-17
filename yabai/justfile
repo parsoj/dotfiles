@@ -25,6 +25,9 @@ get-sudoers-entry:
     HASH=$(shasum -a 256 $YABAI_PATH)
     echo "$USER ALL=(root) NOPASSWD: sha256:$HASH $YABAI_PATH --load-sa"
 
+codesign:
+    codesign -fs 'yabai-cert' $(which yabai)
+
 link-scripts:
     -rm -f /usr/local/bin/push_space
     ln -s $(pwd)/scripts/push_space ~/.local/bin/push_space
