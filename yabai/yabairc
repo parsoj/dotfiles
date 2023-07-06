@@ -42,7 +42,7 @@ yabai -m rule --add app="AWS VPN Client" title="AWS VPN Client" manage=off
 yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=off
 yabai -m rule --add app="Music" title="Music" manage=off
 
-#yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=off
+yabai -m rule --add app="^Fantastical$" title="^Fantastical$" manage=off
 #yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
 
 yabai -m rule --add app="Obsidian" role="AXWindow" subrole="AXStandardWindow" manage=on
