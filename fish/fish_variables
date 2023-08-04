@@ -1,7 +1,8 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export GO111MODULE:on
-SETUVAR --export --path GOPATH:/Users/Jeff\x2eParsons/go
+SETUVAR --export AWS_PROFILE:dbl\x2dsre\x2dsre
+SETUVAR GOROOT:/opt/homebrew/Cellar/go/1\x2e20\x2e4
+SETUVAR --export VAULT_ADDR:https\x3a//vault\x2emgmt\x2edev\x2edreambox\x2enet
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
@@ -25,10 +26,11 @@ SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrbl
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_greeting:\x1d
+SETUVAR fish_key_bindings:fish_vi_key_bindings
 SETUVAR fish_pager_color_completion:\x1d
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/opt/homebrew/opt/grep/libexec/gnubin\x1e/Users/Jeff\x2eParsons/workspaces/dreambox/SRE\x2d22234\x1e/Users/Jeff\x2eParsons/go/bin\x1e/opt/homebrew/bin\x1e/Users/Jeff\x2eParsons/\x2eemacs\x2ed/bin\x1e/Users/jeff/go/bin\x1e/Users/jeff/\x2eemacs\x2ed/bin
+SETUVAR fish_user_paths:/Users/Jeff\x2eParsons/\x2elocal/bin\x1e/opt/homebrew/opt/grep/libexec/gnubin\x1e/Users/Jeff\x2eParsons/go/bin\x1e/opt/homebrew/bin\x1e/Users/jeff/go/bin
