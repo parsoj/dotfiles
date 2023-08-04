@@ -22,12 +22,12 @@ export PATH="$HOME/.config/osx/scripts/:$PATH"
 #export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 #export PATH="$PATH:$HOME/go/bin"
 
-export GO111MODULE=on
+#export GO111MODULE=on
 
-export GOPATH=~/go/
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+#export GOPATH=~/go/
+#export GOROOT=/usr/local/opt/go/libexec
+#export PATH=$PATH:$GOPATH/bin
+#export PATH=$PATH:$GOROOT/bin
 
 
 ################################################################################
@@ -49,6 +49,13 @@ export PATH=$PATH:$GOROOT/bin
 # Terraform
 
 alias tf=terraform
+
+################################################################################
+# Kubernetes
+
+alias kc=kubectl
+alias ka=kubeadm
+export KUBE_EDITOR="code -w"
 
 ################################################################################
 # required when compiling emacs
@@ -74,7 +81,7 @@ export CALIBRE_CONFIG_DIRECTORY="~/Dropbox/AppData/Calibre/Config"
 
 ##########################################################################################
 # AWS configurations
-export AWS_PROFILE=legacy_tools
+#export AWS_PROFILE=legacy_tools
 
 #export VAULT_TOKEN=$(curl https://vault.sandbox.glympse.com/v1/auth/github/login -d '{ "token": "'d388e298ea0c46e2808cff0578e2b2da60bd9b13'" }' | jq '.auth.client_token')
 
@@ -90,42 +97,42 @@ docker_killall(){
 
 ################################################################################
 # Vterm stuff
-vterm_printf(){
-    if [ -n "$TMUX" ]; then
-        # Tell tmux to pass the escape sequences through
-        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
-}
+# vterm_printf(){
+#     if [ -n "$TMUX" ]; then
+#         # Tell tmux to pass the escape sequences through
+#         # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+#         printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+#     elif [ "${TERM%%-*}" = "screen" ]; then
+#         # GNU screen (screen, screen-256color, screen-256color-bce)
+#         printf "\eP\e]%s\007\e\\" "$1"
+#     else
+#         printf "\e]%s\e\\" "$1"
+#     fi
+# }
 
-vterm_prompt_end() {
-    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
-}
-#setopt PROMPT_SUBST
-#PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+# vterm_prompt_end() {
+#     vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+# }
+# #setopt PROMPT_SUBST
+# #PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
-vterm_cmd() {
-    local vterm_elisp
-    vterm_elisp=""
-    while [ $# -gt 0 ]; do
-        vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
-        shift
-    done
-    vterm_printf "51;E$vterm_elisp"
-}
+# vterm_cmd() {
+#     local vterm_elisp
+#     vterm_elisp=""
+#     while [ $# -gt 0 ]; do
+#         vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
+#         shift
+#     done
+#     vterm_printf "51;E$vterm_elisp"
+# }
 
-find_file() {
-    vterm_cmd find-file "$(realpath "${@:-.}")"
-}
+# find_file() {
+#     vterm_cmd find-file "$(realpath "${@:-.}")"
+# }
 
-say() {
-    vterm_cmd message "%s" "$*"
-}
+# say() {
+#     vterm_cmd message "%s" "$*"
+# }
 ################################################################################
 
 # export MANPATH="/usr/local/man:$MANPATH"
