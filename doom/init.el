@@ -16,7 +16,7 @@
 (setq comp-async-jobs-number 16)
 
 ;; no titlebar (emacs 29 only)
-(add-to-list 'default-frame-alist '(undecorated . t))
+;;(add-to-list 'default-frame-alist '(undecorated . t))
 
 (setq confirm-kill-emacs nil)
 
@@ -97,7 +97,9 @@
         ;; +fira
         )
        minimap     ; show a map of the code on the side
-       modeline    ; snazzy, Atom-inspired modeline, plus API
+       (modeline    ; snazzy, Atom-inspired modeline, plus API
+        +light
+        )
        nav-flash   ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints                    ; highlight the region an operation acts on
@@ -170,7 +172,9 @@
         +docsets
         )                             ; navigate your code and its documentation
        (lsp
-        +peek)
+        ;+eglot
+        +peek
+        )
        (magit
         +forge)                 ; a git porcelain for Emacs
        make                     ; run make tasks from Emacs
@@ -182,6 +186,7 @@
        terraform  ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+       tree-sitter
 
        :os
        (:if IS-MAC macos)               ; improve compatibility with macOS
@@ -238,7 +243,7 @@
         +pandoc
         +dragndrop
         +noter
-        +roam2
+        ;+roam2
         )
                                         ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
@@ -247,6 +252,8 @@
        (python                          ; beautiful is better than ugly
         +lsp
         +poetry
+        +pyright
+        +tree-sitter
         )
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
@@ -291,7 +298,7 @@
        :forked
       ;; (default +bindings +smartparens)
        (vertico
-        +childframe
+        ;;+childframe
         +icons)                         ; the search engine of the future
 
        )

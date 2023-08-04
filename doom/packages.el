@@ -49,12 +49,18 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! straight :pin "3eca39d")
+
 ;; Git stuff
 (package! blamer)
 
 ;; a better elisp HTTP lib
 (package! plz
   :recipe (:host github :repo "alphapapa/plz.el")
+  )
+
+(package! bookmark+
+  :recipe (:host github :repo "emacsmirror/bookmark-plus")
   )
 
 (package! aggressive-indent)

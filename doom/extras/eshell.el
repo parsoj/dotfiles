@@ -5,4 +5,9 @@
 
 
 (setq eshell-visual-subcommands
-      '(("make" "build" "dev-down" "dev-up")))
+      '(("make" "build" "dev-down" "dev-up")
+        ("scipctl" "transaction" "status" "-F")
+        ("docker" "build")
+        ))
+
+;;(add-to-list eshell-visual-subcommands ')

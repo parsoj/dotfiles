@@ -3,11 +3,11 @@
 
 
 (after! company
-  (setq company-idle-delay 0.1)
+  (setq company-idle-delay 0.3)
 
-  (setq company-echo-delay 0.1)
+  (setq company-echo-delay 0.3)
 
-  (setq company-show-numbers t)
+  (setq company-show-numbers nil)
 
 
   ;; ------------------------------------------------------------------------------------------

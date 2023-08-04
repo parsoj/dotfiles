@@ -54,58 +54,58 @@
 
 ;;********************************************************************************
 
-;;(progn
-;;  (define-key evil-normal-state-map "h" nil)
-;;  (define-key evil-normal-state-map "j" nil)
-;;  (define-key evil-normal-state-map "k" nil)
-;;  (define-key evil-normal-state-map "l" nil)
-;;  (define-key evil-normal-state-map ";" nil)
-;;
-;;  (define-key evil-motion-state-map "j" 'evil-backward-char)
-;;  (define-key evil-motion-state-map "k" 'evil-next-line)
-;;  (define-key evil-motion-state-map "l" 'evil-previous-line)
-;;  (define-key evil-motion-state-map ";" 'evil-forward-char)
-;;
-;;  )
+(progn
+  (define-key evil-normal-state-map "h" nil)
+  (define-key evil-normal-state-map "j" nil)
+  (define-key evil-normal-state-map "k" nil)
+  (define-key evil-normal-state-map "l" nil)
+  (define-key evil-normal-state-map ";" nil)
+
+  (define-key evil-motion-state-map "j" 'evil-backward-char)
+  (define-key evil-motion-state-map "k" 'evil-next-line)
+  (define-key evil-motion-state-map "l" 'evil-previous-line)
+  (define-key evil-motion-state-map ";" 'evil-forward-char)
+
+  )
 
 
-;;(map!
-;; :nvmo "j" #'evil-backward-char
-;; :nvmo ";" #'evil-forward-char
-;;
-;; :nvmo "l" #'evil-previous-line
-;; :nvmo "k" #'evil-next-line
-;; )
-;;
-;;(map! :map magit-mode-map :after magit
-;; :nvm "j" #'evil-backward-char
-;; :nvm ";" #'evil-forward-char
-;;
-;; :nvm "l" #'evil-previous-line
-;; :nvm "k" #'evil-next-line
-;;      )
-;;
-;;
-;;(map! :map ivy-occur-mode-map
-;; :nvme "j" #'evil-backward-char
-;; :nvme ";" #'evil-forward-char
-;;
-;; :nvme "l" #'evil-previous-line
-;; :nvme "k" #'evil-next-line
-;;      )
-;;
-;;(map! :map ivy-occur-grep-mode-map
-;; :nvme "j" #'evil-backward-char
-;; :nvme ";" #'evil-forward-char
-;;
-;; :nvme "l" #'evil-previous-line
-;; :nvme "k" #'evil-next-line
-;;      )
-;;
-;;(after! treemacs-evil
-;;  (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
-;;  (evil-define-key 'treemacs treemacs-mode-map "l" #'evil-previous-line)
-;;
-;;  (evil-define-key 'treemacs treemacs-mode-map ";" #'evil-forward-char)
-;;  (evil-define-key 'treemacs treemacs-mode-map "j" #'evil-backward-char)
-;;  )
+(map!
+ :nvmo "j" #'evil-backward-char
+ :nvmo ";" #'evil-forward-char
+
+ :nvmo "l" #'evil-previous-line
+ :nvmo "k" #'evil-next-line
+ )
+
+(map! :map magit-mode-map :after magit
+ :nvm "j" #'evil-backward-char
+ :nvm ";" #'evil-forward-char
+
+ :nvm "l" #'evil-previous-line
+ :nvm "k" #'evil-next-line
+      )
+
+
+(map! :map ivy-occur-mode-map
+ :nvme "j" #'evil-backward-char
+ :nvme ";" #'evil-forward-char
+
+ :nvme "l" #'evil-previous-line
+ :nvme "k" #'evil-next-line
+      )
+
+(map! :map ivy-occur-grep-mode-map
+ :nvme "j" #'evil-backward-char
+ :nvme ";" #'evil-forward-char
+
+ :nvme "l" #'evil-previous-line
+ :nvme "k" #'evil-next-line
+      )
+
+(after! treemacs-evil
+  (evil-define-key 'treemacs treemacs-mode-map "k" #'evil-next-line)
+  (evil-define-key 'treemacs treemacs-mode-map "l" #'evil-previous-line)
+
+  (evil-define-key 'treemacs treemacs-mode-map ";" #'evil-forward-char)
+  (evil-define-key 'treemacs treemacs-mode-map "j" #'evil-backward-char)
+  )

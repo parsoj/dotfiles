@@ -61,7 +61,6 @@
 ;; (setq display-line-numbers-type 'absolute)
 (setq display-line-numbers-type nil)
 
-
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -163,12 +162,16 @@
 
 
 
+(global-hide-mode-line-mode t)
 (setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-buffer-file-name-style 'truncate-with-project)
+;;(setq doom-modeline-buffer-file-name-style 'truncate-except-project)
+(setq doom-modeline-buffer-file-name-style 'file-name)
 
 ;; (after! eshell
 ;;   (add-to-list 'eshell-visual-commands "docker"))
 
+;;(setq docker-container-default-sort-key "Created")
+(setq docker-container-default-sort-key nil)
 
 ;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
 (with-eval-after-load 'git-timemachine
@@ -229,13 +232,17 @@
 (set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 (set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 
-(set-popup-rule! "^\\*compilation" :side 'right :size 0.40 :select t :quit t)
-(set-popup-rule! "^\\*Async Shell Command" :side 'right :size 0.40 :select t :quit t)
+(set-popup-rule! "^\\*compilation" :side 'bottom :size 0.40 :select t :quit t)
+(set-popup-rule! "^\\*Async Shell Command" :side 'right :size 0.40 :select t :quit 'current)
+
 
 (add-hook! 'compilation-mode-hook (+word-wrap-mode 1))
 
 (set-popup-rule! "\\*Flutter" :side 'bottom :size 0.20 :select t :ttl nil)
 (set-popup-rule! "^\\*Python" :side 'bottom :size 0.4 :select t :quit t)
+(set-popup-rule! "\\*Go REPL\\*" :side 'bottom :size 0.3 :select t :quit t)
+
+
 
 ;(set-popup-rule! "\\*edebug" :side 'right :width 0.4 :height 30 :slot 5)
 ;(add-hook! 'edebug-eval-mode-hook (+word-wrap-mode 1))
@@ -254,8 +261,6 @@
 ;; need to set this on a hook to override doom's lazy-loaded
 ;; lsp-ui use-package settings
 (add-hook! lsp-ui-mode (setq lsp-ui-doc-position 'top))
-
-
 
 (setq lsp-ui-peek-peek-height 30)
 (setq lsp-ui-peek-list-width 70)
@@ -301,6 +306,7 @@
 (setq keybinds-dir "~/emacs-confs")
 
 (setq keybinds-dir (expand-file-name (concat doom-private-dir "keybinds")))
+(setq configurations-dir (expand-file-name (concat doom-private-dir "configurations")))
 
 (require 'dash)
 (require 'f)
@@ -316,6 +322,7 @@
   (-map (lambda (x) (load! x)) (directory-files-recursively libs-dir ".*\\.el$"))
 
   (-map (lambda (x) (load! x)) (directory-files-recursively keybinds-dir ".*\\.el$"))
+  (-map (lambda (x) (load! x)) (directory-files-recursively configurations-dir ".*\\.el$"))
 
   (-map (lambda (x) (load! x)) (directory-files-recursively extras-dir ".*\\.el$"))
 

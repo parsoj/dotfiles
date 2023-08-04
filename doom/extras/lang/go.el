@@ -1,9 +1,15 @@
-;;; ../.config/emacs/doom-config/extras/lang/go.el -*- lexical-binding: t; -*-
+;;-*- lexical-binding: t; -*-
 
 (set-lookup-handlers! 'go-mode
   :definition #'lsp-ui-peek-find-definitions
   :references #'lsp-ui-peek-find-references
   )
+
+(map! :map go-mode-map
+      (:leader :desc "eval line" "e l" #'gorepl-eval-line)
+      (:leader :desc "eval region" "e r" #'gorepl-eval-region)
+
+ )
 
 
 (add-hook! go-mode #'aggressive-indent-mode)
