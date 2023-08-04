@@ -40,8 +40,8 @@ shift + cmd - l : chunkc tiling::window --warp east
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 
-ctrl + alt + cmd - n : ~/.config/osx/yabai/scripts/create_workspace
-ctrl + alt + cmd - w : ~/.config/osx/yabai/scripts/destroy_workspace
+#ctrl + alt + cmd - n : ~/.config/osx/yabai/scripts/create_workspace
+#ctrl + alt + cmd - w : ~/.config/osx/yabai/scripts/destroy_workspace
 
 ctrl + alt + cmd - m : yabai -m window --toggle zoom-fullscreen
 ctrl + alt + cmd - f : yabai -m window --toggle native-fullscreen
@@ -73,13 +73,15 @@ ctrl + alt + shift - l : yabai -m window --insert east
 ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
 ctrl - w: pop_space
-ctrl - s: push_space
+ctrl - n: push_space
 
+ctrl - r: yabai -m space --rotate 90
 
 ################################################################################
 # Launch Apps
 
-ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
+#ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
+ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
 ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
 
 ##########################################################################################
