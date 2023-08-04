@@ -52,5 +52,8 @@ yabai -m rule --add app="Firefox" role="AXWindow" subrole="AXStandardWindow" man
 yabai -m rule --add app="Hyper" title="Hyper" role="AXWindow" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="Safari" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="Arc" role="AXWindow" subrole="AXStandardWindow" manage=on
+
+yabai -m rule --add app="GoodTask" title="GoodTask"  role="AXWindow" subrole="AXStandardWindow" manage=on
 
 echo "yabai configuration loaded.."
