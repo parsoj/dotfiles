@@ -53,6 +53,7 @@ yabai -m rule --add app="Hyper" title="Hyper" role="AXWindow" subrole="AXStandar
 
 yabai -m rule --add app="Safari" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Arc" title=".+" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="OmniFocus" role="AXWindow" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="GoodTask" title="GoodTask"  role="AXWindow" subrole="AXStandardWindow" manage=on
 
