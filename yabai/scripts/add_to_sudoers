@@ -1,0 +1,13 @@
+#!/bin/bash
+
+USER=$(whoami)
+HASH=$(shasum -a 256 $(which yabai))
+LOAD_PATH=$(which yabai)
+
+SUDOERS_STRING=$(printf "$USER ALL=(root) NOPASSWD: sha256:$HASH $YABAI_PATH --load-sa")
+
+#printf "writing the following to sudoers.d/yabai:\n\t\"$SUDOERS_STRING\"\n"
+
+echo $SUDOERS_STRING | sudo tee /private/etc/sudoers.d/yabai
+
+echo "done."
