@@ -1,0 +1,12 @@
+#!/bin/bash
+
+osascript <<END
+tell application "System Events"
+    set visibleProcesses to (name of every process where visible is true)
+end tell
+
+set mostRecentWindow to item 1 of visibleProcesses
+tell application mostRecentWindow
+    activate
+end tell
+END

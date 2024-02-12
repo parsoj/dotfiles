@@ -80,9 +80,13 @@ ctrl - r: yabai -m space --rotate 90
 ################################################################################
 # Launch Apps
 
-#ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
-ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
-ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
+ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window && ~/.config/osx/yabai/scripts/select_most_recent_window
+#ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
+#ctrl - b: osascript -e 'tell application "Safari" to make new document' 
+#ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
+
+#ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
+#ctrl - i: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 2"
 
 ##########################################################################################
 # Window Resizing
