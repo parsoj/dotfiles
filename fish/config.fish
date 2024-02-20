@@ -10,3 +10,4 @@ alias tf=terraform
 alias vssh="vault-ssh connect"
 
 source /Users/Jeff.Parsons/.docker/init-fish.sh || true # Added by Docker Desktop
+starship init fish | source
