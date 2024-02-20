@@ -70,17 +70,17 @@ ctrl + alt + shift - l : yabai -m window --insert east
 ################################################################################
 # OSX / Theme controls
 
-ctrl - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
+ctrl + alt + cmd - d: osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
 ctrl - w: pop_space
 ctrl - n: push_space
 
-ctrl - r: yabai -m space --rotate 90
+#ctrl - r: yabai -m space --rotate 90
 
 ################################################################################
 # Launch Apps
 
-ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window && ~/.config/osx/yabai/scripts/select_most_recent_window
+ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
 #ctrl - b: osascript -e 'tell application "Safari" to make new document' 
 #ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
