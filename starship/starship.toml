@@ -29,6 +29,9 @@ disabled = true
 symbol = "  "
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 
+[terraform]
+disabled = true
+
 [gcloud]
 disabled = true
 
