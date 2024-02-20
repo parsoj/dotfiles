@@ -71,6 +71,10 @@ export KUBE_EDITOR="code -w"
 export CALIBRE_CONFIG_DIRECTORY="~/Dropbox/AppData/Calibre/Config"
 
 ################################################################################
+# Redis
+export PATH=/opt/homebrew/Caskroom/redis-stack-server/6.2.6-v9/bin:$PATH
+
+################################################################################
 # init completions
 
 #fpath+=~/.config/zsh/zfunc/_poetry
