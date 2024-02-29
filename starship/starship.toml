@@ -38,7 +38,7 @@ disabled = true
 [aws]
 disabled = false
 symbol = " "
-format = '[$symbol($profile )]($style)'
+format = '[$symbol($profile )](fg:#FF9900)'
 
 [terraform]
 disabled = true
@@ -50,6 +50,7 @@ disabled = true
 read_only = " 󰌾"
 
 [docker_context]
+format = "[](fg:#23B9EB)"
 symbol = " "
 
 [golang]
@@ -60,9 +61,11 @@ disabled = true
 symbol = "󰍛 "
 
 [nodejs]
+format ="[$symbol($version )]($style)"
 symbol = " "
 
 [python]
+format ="[$symbol($version )](fg:#3872A2)"
 symbol = " "
 
 [rust]
