@@ -3,6 +3,8 @@
 #end
 
 fish_add_path /opt/homebrew/bin
+fish_add_path (brew --prefix python)/libexec/bin
+
 #oh-my-posh --init --shell fish --config ~/.poshthemes/cloud-native.json | source
 
 alias tg=terragrunt
