@@ -8,8 +8,12 @@ set -U all_environments '
         "VAULT_ADDR": "https://vault.mgmt.shared.dreambox.net",
         "AWS_PROFILE": "dbl-shared-sre"
     },
+    "stage": {
+        "VAULT_ADDR": "https://vault.mgmt.stage.dreambox.net",
+        "AWS_PROFILE": "dbl-stage-sre"
+    },
     "sre": {
-        "VAULT_ADDR": "https://vault.mgmt.shared.dreambox.net",
+        "VAULT_ADDR": "https://vault.mgmt.sre.dreambox.net",
         "AWS_PROFILE": "dbl-sre-sre"
     },
     "dev": {
@@ -54,7 +58,6 @@ end
 function _cl_complete
     set -lx environments $all_environments
     set -lx environment_names (echo $environments | jq -r 'keys | .[]')
-    echo "Completing with $environment_names"
     for environment_name in $environment_names
         #complete -c cl -f -a "$environment_name"
         #complete -c cl -n 'count (commandline -opc) < 2' -f -a "$environment_name"
