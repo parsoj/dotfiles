@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-#yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-#sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 # global settings
 #yabai -m config mouse_follows_focus on
@@ -58,5 +58,8 @@ yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage
 
 yabai -m rule --add app="GoodTask" title="GoodTask"  role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="OmniFocus" role="AXWindow" subrole="AXStandardWindow" manage=on
+
+
+yabai -m rule --add app="Perimeter 81" role="" subrole="" sticky=on
 
 echo "yabai configuration loaded.."
