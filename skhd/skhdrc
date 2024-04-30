@@ -74,6 +74,7 @@ ctrl + alt + cmd - d: osascript -e 'tell app "System Events" to tell appearance 
 
 ctrl - w: pop_space
 ctrl - n: push_space
+ctrl - e: clear_empty_spaces
 
 #ctrl - r: yabai -m space --rotate 90
 
