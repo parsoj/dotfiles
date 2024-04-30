@@ -6,7 +6,7 @@ function authme
 
     set VAULT_TOKEN (grep -w $VAULT_ADDR ~/.vault-tokens-stash | awk '{print $2}' | tail -n 1)
     
-    if set -q VAULT_TOKEN
+    if test -n "$VAULT_TOKEN"
         echo "Found token in stash for the current VAULT_ADDR."
     end
     

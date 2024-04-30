@@ -4,6 +4,9 @@ set -U all_environments '
         "VAULT_ADDR": "https://vault.mgmt.prod.dreambox.net",
         "AWS_PROFILE": "dbl-prod-sre"
     },
+    "rpprod": {
+        "AWS_PROFILE": "dbl-rpprod-sre"
+    },
     "shared": {
         "VAULT_ADDR": "https://vault.mgmt.shared.dreambox.net",
         "AWS_PROFILE": "dbl-shared-sre"
