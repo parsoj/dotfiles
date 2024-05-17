@@ -81,9 +81,9 @@ ctrl - e: clear_empty_spaces
 ################################################################################
 # Launch Apps
 
-ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
+#ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
-#ctrl - b: osascript -e 'tell application "Safari" to make new document' 
+ctrl - b: osascript -e 'tell application "Safari" to make new document' 
 #ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
