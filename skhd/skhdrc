@@ -78,12 +78,15 @@ ctrl - e: clear_empty_spaces
 
 #ctrl - r: yabai -m space --rotate 90
 
+#ctrl - p: osascript -e "display notification \"Current PATH: $PATH\" with title \"PATH Information\""
+#ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with title \"SHELL Information\""
 ################################################################################
 # Launch Apps
 
 #ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
 ctrl - b: osascript -e 'tell application "Safari" to make new document' 
+ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
 #ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"

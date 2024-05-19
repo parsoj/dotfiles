@@ -19,6 +19,12 @@ start-service:
 
 stop-service:
     launchctl unload -w ~/Library/LaunchAgents/skhd.plist
+    
+restart-service: 
+    launchctl remove skhd
+    launchctl load -w ~/Library/LaunchAgents/skhd.plist
+    
+
 
 status: 
     launchctl list | grep skhd

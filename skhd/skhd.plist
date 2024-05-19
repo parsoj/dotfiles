@@ -11,7 +11,9 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Jeff.Parsons/.local/bin</string>
+    <string>/opt/homebrew/bin:/usr/bin:/usr/local/jeffbin:/bin:/usr/sbin:/sbin</string>
+    <key>SHELL</key>
+    <string>/opt/homebrew/bin/fish</string>
   </dict>
   <key>RunAtLoad</key>
   <true/>
