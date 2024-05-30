@@ -1,0 +1,18 @@
+theme = "tokyonight"
+
+[keys.normal]
+"C-up" = "expand_selection"
+"C-down" = "shrink_selection"
+
+[keys.insert]
+"C-up" = "expand_selection"
+"C-down" = "shrink_selection"
+
+[keys.select]
+"C-up" = "expand_selection"
+"C-down" = "shrink_selection"
+
+[editor]
+color-modes = true
+
+
