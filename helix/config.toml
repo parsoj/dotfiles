@@ -14,5 +14,26 @@ theme = "tokyonight"
 
 [editor]
 color-modes = true
+popup-border = "popup"
+
+[editor.gutters]
+layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.gutters.line-numbers]
+min-width = 1
 
 
+[editor.cursor-shape]
+normal = "underline"
+insert = "bar"
+select = "block"
+
+[editor.lsp]
+enable = true
+# auto-signature-help = false
+# display-signature-help-docs = false
+# display-inlay-hints = false
+
+
+[editor.statusline]
+right = ["diagnostics"]
