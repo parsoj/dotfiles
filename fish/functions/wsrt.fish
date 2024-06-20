@@ -3,10 +3,10 @@ function wsrt
     set home_dir ~
 
     while test "$current_dir" != "$home_dir"
-        set workspace_files (ls -a $current_dir | grep '\\.code-workspace')
-        
+        set workspace_files (ls -a $current_dir | grep '\\.workspace')
+
         if test -n "$workspace_files"
-            echo "VS Code workspace found at $current_dir"
+            echo "workspace found at $current_dir"
             return 0
         end
 
@@ -14,5 +14,5 @@ function wsrt
         cd $current_dir
     end
 
-    echo "Reached home directory without finding a VS Code workspace"
+    echo "Reached home directory without finding a workspace"
 end
