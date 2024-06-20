@@ -1,0 +1,11 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - poetry run shiv -c aws_console -o aws_console.pyz . 
+  install:
+    cmds:
+      - chmod +x aws_console.pyz
+      - sudo rm /usr/local/jeffbin/aws_console
+      - sudo cp aws_console.pyz /usr/local/jeffbin/aws_console
