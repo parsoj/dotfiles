@@ -4,11 +4,18 @@ tasks:
   build:
     cmds:
       - poetry run shiv -c aws_console -o aws_console.pyz . 
+      - poetry run shiv -c chrome_gc -o chrome_gc.pyz . 
   install:
     cmds:
       - chmod +x aws_console.pyz
-      - sudo rm /usr/local/jeffbin/aws_console
+      - cmd: sudo rm /usr/local/jeffbin/aws_console
+        ignore_error: true
       - sudo cp aws_console.pyz /usr/local/jeffbin/aws_console
+
+      - chmod +x chrome_gc.pyz
+      - cmd: sudo rm /usr/local/jeffbin/chrome_gc
+        ignore_error: true
+      - sudo cp chrome_gc.pyz /usr/local/jeffbin/chrome_gc
 
   chrome:
     cmds: 

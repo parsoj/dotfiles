@@ -7,6 +7,7 @@ readme = "README.md"
 
 [tool.poetry.scripts]
 aws_console = "aws_console:main"
+chrome_gc = "chrome_gc:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"
