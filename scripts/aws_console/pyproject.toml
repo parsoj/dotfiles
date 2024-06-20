@@ -12,6 +12,7 @@ aws_console = "aws_console:main"
 python = "^3.12"
 boto3 = "^1.34.125"
 requests = "^2.32.3"
+psutil = "^6.0.0"
 
 
 [tool.poetry.group.dev.dependencies]

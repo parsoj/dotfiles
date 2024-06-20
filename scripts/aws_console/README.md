@@ -1,6 +1,5 @@
 
 ## TODOs
-- implement taskfile/makefile that will build the shiv, and install locally
 - implement fish completions for this
 - make it clean up the old chrome processes
 

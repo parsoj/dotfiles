@@ -9,3 +9,7 @@ tasks:
       - chmod +x aws_console.pyz
       - sudo rm /usr/local/jeffbin/aws_console
       - sudo cp aws_console.pyz /usr/local/jeffbin/aws_console
+
+  chrome:
+    cmds: 
+      - /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --no-first-run --no-default-browser-check --user-data-dir=./chrome_userdata_dirs/dir1

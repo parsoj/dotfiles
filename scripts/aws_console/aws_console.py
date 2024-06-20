@@ -109,7 +109,7 @@ def main():
 
     account = sys.argv[1]
 
-    print(account)
+    # print(account)
 
     # TODO check if creds in ~/.aws/credentials are expired
 
