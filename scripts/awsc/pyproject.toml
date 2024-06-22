@@ -17,7 +17,7 @@ license = {text = "MIT"}
 
 
 [project.scripts]
-aws-console = "aws_console:aws_console"
+awsc = "aws_console:aws_console"
 chrome-gc = "chrome_gc:chrome_gc"
 
 [build-system]
