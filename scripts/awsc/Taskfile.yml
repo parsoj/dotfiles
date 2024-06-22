@@ -1,0 +1,48 @@
+version: '3'
+
+vars:
+  SITE_PACKAGES: 
+    sh: pdm run python -c "import site; print(site.getsitepackages()[0])"
+
+tasks:
+      
+  install:
+    cmds:
+      - chmod +x aws_console.pyz
+      - cmd: sudo rm /usr/local/jeffbin/aws_console
+        ignore_error: true
+      - sudo cp aws_console.pyz /usr/local/jeffbin/aws_console
+
+  install-gc:
+    cmds:
+      - chmod +x chrome_gc.pyz
+      - cmd: sudo rm /usr/local/jeffbin/chrome_gc
+        ignore_error: true
+      - sudo cp chrome_gc.pyz /usr/local/jeffbin/chrome_gc
+
+  chrome:
+    cmds: 
+      - /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --no-first-run --no-default-browser-check --user-data-dir=./chrome_userdata_dirs/dir1
+
+  pack:
+    cmds:
+      - pdm build
+      - pdm pack -m chrome_gc:chrome_gc -o chrome_gc.pyz --exe
+      - pdm pack -m aws_console:aws_console -o aws_console.pyz --exe
+      # - pdm pack -o aws_console.pyz --exe
+
+  unpack: 
+    cmds: 
+      - unzip chrome_gc.pyz -d unpacked_chrome_gc
+      - unzip aws_console.pyz -d unpacked_aws_console
+      # - unzip aws_console.pyz -d unpacked_pyz
+
+
+  clean: 
+    cmds:
+      - cmd: rm *.pyz
+        ignore_error: true
+      - cmd: rm -rf unpacked*
+        ignore_error: true
+
+      

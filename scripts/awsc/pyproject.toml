@@ -1,0 +1,38 @@
+[project]
+name = "aws-console"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Jeff_Parsons", email = "jeff@jeffparsons.me"},
+    {name = "Jeff_Parsons", email = "JParsons@discoveryed.com"},
+]
+dependencies = [
+    "psutil>=6.0.0",
+    "boto3>=1.34.131",
+    "requests>=2.32.3",
+]
+requires-python = "<4.0,>=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[project.scripts]
+aws-console = "aws_console:aws_console"
+chrome-gc = "chrome_gc:chrome_gc"
+
+[build-system]
+# requires = ["pdm-pep517"]
+# build-backend = "pdm.pep517.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+includes = ["*.py"]
+
+[tool.pdm.dev-dependencies]
+dev = [
+]
+
+[tool.pdm.build]
+includes = []
