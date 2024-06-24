@@ -40,7 +40,7 @@ end
 
 function vl
     if test (count $argv) -ne 1
-        echo "Error: vl function only accepts one argument (the environment name)"
+        echo -e "\nError: vl function only accepts one argument (the environment name)"
         return 1
     end
 
@@ -48,7 +48,7 @@ function vl
     set -lx all_environments $all_environments
 
     if test -z "$environment_name"
-        echo "Environment must be specified as an argument (dev, sre, ...)"
+        echo -e "\nEnvironment must be specified as an argument (dev, sre, ...)"
         return 1
     end
 
@@ -59,15 +59,21 @@ function vl
     set -lx key (echo $property | cut -d' ' -f1)
     set -lx value (echo $property | cut -d' ' -f2-)
 
-    echo "looking up vault url for '$key'"
+    echo "looking up vault url for \"$environment_name\""
     if test -z "$value"
-        echo "Could not find property $key for environment $environment_name"
+        echo -e "\nCould not find property $key for environment $environment_name"
         return 1
     end
 
     echo "found vault url: $value"
 
     set -gx $key $value
+
+
+    if not curl --output /dev/null --silent --head --fail --max-time 3 $VAULT_ADDR
+        echo -e "\nVault isn't reachable - is the VPN connected? "
+        return 1
+    end
 
     # authme # Call to authme function
 
