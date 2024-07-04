@@ -1,0 +1,22 @@
+[project]
+name = "clear_empty_spaces"
+version = "0.1.0"
+description = "use yabai to clear empty OSX spaces"
+authors = [
+    {name = "Jeff Parsons", email = "jp@jeffparsons.me"},
+]
+dependencies = []
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+clear_empty_spaces = "main:main"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
