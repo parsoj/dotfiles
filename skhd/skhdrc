@@ -88,7 +88,8 @@ ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with titl
 # ctrl - b: osascript -e 'tell application "Safari" to make new document & activate' 
 
 ctrl - b: osascript -e 'tell application "Safari" to make new document' && osascript -e 'tell application "System Events" to tell process "Safari" to set frontmost to true'
-ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
+#ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
+ctrl - x:  kitty
 #ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
