@@ -1,4 +1,4 @@
-function wsgo
+function ws
     cd (wsls | fzf)
 
 end
