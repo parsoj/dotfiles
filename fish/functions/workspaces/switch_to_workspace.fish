@@ -1,4 +1,4 @@
 function switch_to_workspace
-    cd (wsls | fzf)
+    cd (list_workspaces | fzf)
 
 end
