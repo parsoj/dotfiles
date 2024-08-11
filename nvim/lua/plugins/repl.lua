@@ -8,6 +8,9 @@ return {
       require("nvim-python-repl").setup({
         execute_on_send = true,
         vsplit = true,
+        spawn_command = {
+          python = "source .venv/bin/activate.fish && ipython",
+        },
       })
     end,
   },
