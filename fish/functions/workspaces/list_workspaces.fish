@@ -1,4 +1,4 @@
-function wsls
+function list_workspaces
     set -l dirs (string split : $WS_DIRS)
     set -l result
 

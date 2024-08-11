@@ -1,4 +1,4 @@
-function wsrt
+function print_workspace_root
     set current_dir (pwd)
     set home_dir ~
 
@@ -6,13 +6,14 @@ function wsrt
         set workspace_files (ls -a $current_dir | grep '\\.workspace')
 
         if test -n "$workspace_files"
-            echo "workspace found at $current_dir"
+            echo "$current_dir"
             return 0
         end
 
         set current_dir (dirname $current_dir)
-        cd $current_dir
+
     end
 
     echo "Reached home directory without finding a workspace"
+    return 1
 end
