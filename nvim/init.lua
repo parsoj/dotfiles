@@ -43,6 +43,11 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>fp", builtin.git_files, {})
 vim.keymap.set("n", "<leader>fs", ":w<CR>", {})
 
+vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>er", "<cmd>Rest run<cr>", { desc = "Run request under the cursor" })
+--vim.keymap.set("n", "<leader>rl", "<cmd>RestNvimLast<cr>", { desc = "Re-run latest request" })
+
 --- window/pane movement
 --vim.api.nvim_set_keymap("n", "<leader>h", "<C-w>h", { noremap = true, silent = true })
 --vim.api.nvim_set_keymap("n", "<leader>j", "<C-w>j", { noremap = true, silent = true })
