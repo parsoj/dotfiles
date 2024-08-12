@@ -2,7 +2,7 @@
 # Commands to run in interactive sessions can go here
 #end
 
-alias refresh_config="source ~/.config/fish/config.fish"
+alias rrr="source ~/.config/fish/config.fish"
 
 fish_add_path /opt/homebrew/bin
 fish_add_path (brew --prefix python)/libexec/bin
@@ -20,6 +20,7 @@ fish_add_path (brew --prefix python)/libexec/bin
 
 fish_vi_key_bindings
 
+alias gs="git status"
 
 alias tg=terragrunt
 alias tf=terraform
@@ -46,7 +47,16 @@ set -x LUAROCKS_CONFIG "$HOME/.luaver/lua/5.1/luarocks/config-5.1.lua"
 # load workspaces functions
 set -U fish_function_path $fish_function_path ~/.config/fish/functions/workspaces
 
+alias wr=cd_workspace_root
+
 alias ff=open_workspace_file
+alias fd=open_cwd_child_file
+alias cdw=cd_workspace_directory
+alias cdd=cd_cwd_child_directory
+alias ww=switch_to_workspace
+
+
+################################################################################
 
 
 
