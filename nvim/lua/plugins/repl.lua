@@ -9,7 +9,7 @@ return {
         execute_on_send = true,
         vsplit = true,
         spawn_command = {
-          python = "source .venv/bin/activate.fish && ipython",
+          python = "pdm run ipython",
         },
       })
     end,

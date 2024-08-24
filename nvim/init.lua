@@ -47,6 +47,8 @@ vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", { n
 
 vim.keymap.set("n", "<leader>er", "<cmd>Rest run<cr>", { desc = "Run request under the cursor" })
 --vim.keymap.set("n", "<leader>rl", "<cmd>RestNvimLast<cr>", { desc = "Re-run latest request" })
+vim.keymap.set("n", "<leader>bp", "<C-^>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>rr", ":source $MYVIMRC<CR>", { noremap = true, silent = true })
 
 --- window/pane movement
 --vim.api.nvim_set_keymap("n", "<leader>h", "<C-w>h", { noremap = true, silent = true })
@@ -87,3 +89,20 @@ vim.api.nvim_set_keymap("n", "<C-l>", ":KittyNavigateRight<CR>", { noremap = tru
 --vim.api.nvim_set_keymap("n", "<leader>oi", "<cmd>lua organize_imports()<CR>", { noremap = true, silent = true })
 
 --------------------------------------------------------------------------------
+
+vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+
+vim.cmd([[let g:terraform_fmt_on_save=1]])
+vim.cmd([[let g:terraform_align=1]])
+
+--vim.keymap("n", "<leader>ti", ":!terraform init<CR>", {})
+--vim.keymap("n", "<leader>tv", ":!terraform validate<CR>", {})
+--vim.keymap("n", "<leader>tp", ":!terraform plan<CR>", {})
+--vim.keymap("n", "<leader>taa", ":!terraform apply -auto-approve<CR>", {})
+
+require("lspconfig").terraformls.setup({})
+require("lspconfig").tflint.setup({})
