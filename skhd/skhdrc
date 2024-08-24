@@ -21,7 +21,7 @@ shift + alt - l : chunkc tiling::window --swap east
 shift + cmd - h : chunkc tiling::window --warp west
 shift + cmd - j : chunkc tiling::window --warp south
 shift + cmd - k : chunkc tiling::window --warp north
-shift + cmd - l : chunkc tiling::window --warp east
+#shift + cmd - l : chunkc tiling::window --warp east
 
 #alt + cmd - 1: yabai -m window --display 1
 #alt + cmd - 2: yabai -m window --display 2
@@ -89,7 +89,10 @@ ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with titl
 
 ctrl - b: osascript -e 'tell application "Safari" to make new document' && osascript -e 'tell application "System Events" to tell process "Safari" to set frontmost to true'
 #ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
-ctrl - x:  kitty ~/
+#ctrl - x: osascript -e 'tell application "Kitty" to create window with default profile'
+ctrl - x:  kitty --single-instance --directory ~/
+
+#ctrl -x: kitty -o  --single-instance --listen-on unix:/tmp/mykitty --directory ~/
 #ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
