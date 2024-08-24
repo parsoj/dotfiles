@@ -21,7 +21,7 @@ func main() {
 	switch arg {
 	case "light":
 		// Run the command for light mode
-		cmd = exec.Command("/opt/homebrew/bin/kitten", "themes", "--reload-in=all", "Tokyo Night Day")
+		cmd = exec.Command("/opt/homebrew/bin/kitten", "themes", "--reload-in=all", "dayfox")
 	case "dark":
 		// Run the command for dark mode
 		cmd = exec.Command("/opt/homebrew/bin/kitten", "themes", "--reload-in=all", "Tokyo Night")
