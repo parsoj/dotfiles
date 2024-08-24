@@ -28,6 +28,9 @@ alias vssh="vault-ssh connect"
 
 alias nv=nvim
 
+alias py=ipython
+alias q=exit
+
 #source /Users/Jeff.Parsons/.docker/init-fish.sh || true # Added by Docker Desktop
 direnv hook fish | source
 STARSHIP_CONFIG=~/.config/starship/starship.toml starship init fish | source

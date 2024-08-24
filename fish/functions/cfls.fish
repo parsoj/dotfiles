@@ -1,7 +1,3 @@
-
-set -x CONFIG_DIRS "fish:git:kitty:nvim:skhd:ssh:yabai"
-set -x CONFIG_ROOT "$HOME/.config"
-
 function cfls
     set -l dirs (string split : $CONFIG_DIRS)
     set -l result
