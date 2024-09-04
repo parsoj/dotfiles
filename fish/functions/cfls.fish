@@ -4,7 +4,6 @@ function cfls
 
     for dir in $dirs
         set -l full_path "$CONFIG_ROOT/$dir"
-        echo $full_path
         if test -d $full_path
             set result $result (find $full_path -type f -maxdepth 5)
         end
