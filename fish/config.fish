@@ -26,7 +26,7 @@ alias tg=terragrunt
 alias tf=terraform
 alias vssh="vault-ssh connect"
 
-alias nv=nvim
+alias vv=nvim
 
 alias py=ipython
 alias q=exit
