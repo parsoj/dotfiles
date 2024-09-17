@@ -1,38 +1,30 @@
-function _complete_workspace_directory
-    for dir in (list_subfolders_in_ws_dirs)
-        echo $dir
-    end
-end
-
 function create_new_workspace
-    # Prompt the user to choose the base directory with Fish's completion
-    read -P "Select or autocomplete base directory: " base_dir
 
-    # Check if no base directory was selected
-    if test -z "$base_dir"
-        echo "No base directory selected. Exiting."
-        return
+    set parent_folder (list_workspace_containing_directories | fzf)
+
+    # Check if fzf was exited without a selection
+    if test -z "$parent_folder"
+        echo "No parent directory selected. Aborting."
+        return 1
     end
 
-    # Prompt the user to type out the remainder of the path
-    set -l new_dir
-    read -p "Enter the new directory path (relative to $base_dir): " new_dir
+    read -P "New workspace folder:
+     $parent_folder/" new_sub_directory
 
-    # Combine the base directory with the new directory path
-    set -l full_path "$base_dir/$new_dir"
+    # Check if the user didn't provide a subdirectory name
+    if test -z "$new_sub_directory"
+        echo "No subdirectory path provided. Aborting."
+        return 1
+    end
 
-    # Create the new directory
-    mkdir -p $full_path
+    set full_path "$parent_folder/$new_sub_directory"
 
-    # Create a .workspace file in the new directory
+    echo "Creating new workspace at: $full_path"
+    mkdir -p "$full_path"
+
     touch "$full_path/.workspace"
+    echo "Created .workspace file in $full_path"
 
-    # Confirm the directory was created
-    echo "Created new workspace directory: $full_path"
+    cd "$full_path"
+    echo "Changed directory to: $full_path"
 end
-
-
-complete -c create_new_workspace -e # Unregister existing completion
-
-# Register the completion function outside of create_new_workspace
-complete -c create_new_workspace -a (list_subfolders_in_ws_dirs)
