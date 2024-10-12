@@ -2,7 +2,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 
-format = "$time$all$character"
+# format = "$time$all$character"
+format = '''
+
+[┌──────────────────────────────────────────────────────────────<](bold green)
+[│](bold green)$directory$direnv
+[│](bold green)$git_branch$git_state
+[│](bold green)$kubernetes
+[└─>](bold green) '''
 
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -22,12 +29,29 @@ disabled = false
 disabled = true
 format ="[$time -]($style) "
 
+[directory]
+read_only = " 󰌾"
+truncation_length = 5
+truncate_to_repo = false
+repo_root_style = "bold purple"
+before_repo_root_style = "bold blue"
+
+
+[directory.substitutions]
+'~/code/workspaces/' = '|'
+
 [git_branch]
-symbol = " "
 format = '[$symbol$branch]($style) '
+style = "bold blue"
+
+[git_state]
+disabled = false
 
 [git_status]
 disabled = true
+
+[direnv]
+disabled = false
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -36,9 +60,14 @@ disabled = true
 
 # aws package config
 [aws]
+disabled = true
+#symbol = " "
+#format = '[$symbol($profile )](fg:#FF9900)'
+
+[kubernetes]
 disabled = false
-symbol = " "
-format = '[$symbol($profile )](fg:#FF9900)'
+style = "yellow"
+format = "[cluster: $context]($style) "
 
 [terraform]
 disabled = true
@@ -46,10 +75,9 @@ disabled = true
 [gcloud]
 disabled = true
 
-[directory]
-read_only = " 󰌾"
 
 [docker_context]
+disabled = true
 format = "[](fg:#23B9EB)"
 symbol = " "
 
