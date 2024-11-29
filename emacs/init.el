@@ -60,7 +60,9 @@
 
 ;; Expands to: (elpaca evil (use-package evil :demand t))
 (use-package evil :ensure (:wait t) :demand t)
+(use-package evil-collection :ensure (:wait t) )
 (evil-mode 1)
+(evil-collection-init)
 
 ;;Turns off elpaca-use-package-mode current declaration
 ;;Note this will cause evaluate the declaration immediately. It is not deferred.
@@ -137,6 +139,11 @@
   :prefix "SPC"
   :global-prefix "C-SPC") ;; Optional: global leader keybinding
 
+
+(defun cmd (body)
+  "Wrap BODY with `interactive` to create a command."
+  (lambda () (interactive) (eval body)))
+
 (my-leader-def
   "SPC" 'execute-extended-command ;; Use Consult for command selection
 
@@ -151,9 +158,13 @@
   "b"  '(:ignore t :which-key "buffers")
   "bb" 'consult-buffer
   "bd" 'kill-buffer
+  "bp" 'previous-buffer
+  "bn" 'next-buffer
+  "br" 'revert-buffer
 
   "p"  '(:ignore t :which-key "projectile")
   "pp" 'projectile-switch-project
+  "pf" 'projectile-find-file
 
   "t"  '(:ignore t :which-key "toggles")
   "tt" 'treemacs
@@ -166,6 +177,9 @@
   "jw" 'avy-goto-word-1
   "jl" 'avy-goto-line
   "jc" 'avy-goto-char-2
+
+  "rr" (lambda () (interactive) (load-file (expand-file-name "~/.config/emacs/init.el")))
+  "ci" (lambda () (interactive) (find-file (expand-file-name "~/.config/emacs/init.el")))
 
 
 ) 
@@ -230,13 +244,16 @@
               ("s-p" . projectile-command-map)
               ("C-c p" . projectile-command-map))
   :config
+  (setq projectile-enable-caching t)
+  (setq projectile-auto-discover nil)
   (setq projectile-project-root-files-bottom-up '(".workspace"))
   (setq projectile-project-search-path '(("~/code/workspaces/" . 4)))
   (setq projectile-completion-system 'default)
   (setq projectile-switch-project-action
-        (lambda ()
-          (vterm)
-          (cd (projectile-project-root)))))
+  (setq projectile-switch-project-action
+      (lambda ()
+        (find-file (expand-file-name "notes.md" (projectile-project-root)))))
+	))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -287,6 +304,11 @@
   :ensure (:wait t)
   :mode ("\\.ya?ml\\'" . yaml-mode))
 
+(add-hook 'yaml-mode-hook
+          (lambda ()
+            (highlight-indent-guides-mode)
+            (setq highlight-indent-guides-method 'character))) ; Or 'fill or 'column
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -307,6 +329,8 @@
   (setq avy-background t)
   (setq avy-style 'at-full)
 
+(use-package highlight-indent-guides :ensure t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -315,3 +339,65 @@
   :if (memq window-system '(mac ns x))
   :config
   (exec-path-from-shell-initialize))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package transient
+  :ensure t)
+
+(use-package magit
+  :ensure t
+  :after transient
+  )
+
+(use-package git-link
+  :ensure t)
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+
+(use-package lsp-mode
+  :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+    (python-mode . lsp)
+    (go-mode . lsp)
+         )
+  :commands lsp
+  :custom
+  (lsp-file-watch-threshold 2000))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-enable t)
+  (lsp-ui-sideline-enable t))
+
+;;(use-package company
+  ;;:ensure t
+  ;;:hook (after-init . global-company-mode)
+  ;;:custom
+  ;;(company-minimum-prefix-length 1)
+  ;;(company-idle-delay 0.0))
+
+;;(use-package which-key
+  ;;:ensure t
+  ;;:config
+  ;;(which-key-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;(with-eval-after-load 'lsp-mode
+;;(load "/Users/jeff/.config/emacs/ai.el")
+;;)
+
+
