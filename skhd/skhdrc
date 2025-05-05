@@ -83,11 +83,11 @@ ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with titl
 ################################################################################
 # Launch Apps
 
-#ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
+ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
 # ctrl - b: osascript -e 'tell application "Safari" to make new document & activate' 
 
-ctrl - b: osascript -e 'tell application "Safari" to make new document' && osascript -e 'tell application "System Events" to tell process "Safari" to set frontmost to true'
+#ctrl - b: osascript -e 'tell application "Safari" to make new document' && osascript -e 'tell application "System Events" to tell process "Safari" to set frontmost to true'
 #ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
 #ctrl - x: osascript -e 'tell application "Kitty" to create window with default profile'
 ctrl - x:  kitty --single-instance --directory ~/
@@ -97,6 +97,13 @@ ctrl - x:  kitty --single-instance --directory ~/
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
 #ctrl - i: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 2"
+
+cmd - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" launch_osx_app 
+cmd + alt - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" 
+ctrl - t: open /Applications/kitty.app -n  
+
+ctrl + alt + cmd - r: open /Applications/Raycast.app
+
 
 ##########################################################################################
 # Window Resizing
