@@ -27,6 +27,7 @@ alias tf=terraform
 alias vssh="vault-ssh connect"
 
 alias vv=nvim
+alias kc=kubectl
 
 alias py=ipython
 alias q=exit
@@ -38,11 +39,12 @@ STARSHIP_CONFIG=~/.config/starship/starship.toml starship init fish | source
 
 
 
-set -x PATH $HOME/.luaver/lua/5.1/bin $PATH
-set -x LUA_PATH "$HOME/.luaver/lua/5.1/share/lua/5.1/?.lua;$HOME/.luaver/lua/5.1/share/lua/5.1/?/init.lua;./?.lua;$HOME/.luaver/lua/5.1/lib/lua/5.1/?.lua;$HOME/.luaver/lua/5.1/lib/lua/5.1/?/init.lua"
-set -x LUA_CPATH "$HOME/.luaver/lua/5.1/lib/lua/5.1/?.so;./?.so"
-set -x LUAROCKS_CONFIG "$HOME/.luaver/lua/5.1/luarocks/config-5.1.lua"
+#set -x PATH $HOME/.luaver/lua/5.1/bin $PATH
+#set -x LUA_PATH "$HOME/.luaver/lua/5.1/share/lua/5.1/?.lua;$HOME/.luaver/lua/5.1/share/lua/5.1/?/init.lua;./?.lua;$HOME/.luaver/lua/5.1/lib/lua/5.1/?.lua;$HOME/.luaver/lua/5.1/lib/lua/5.1/?/init.lua"
+#set -x LUA_CPATH "$HOME/.luaver/lua/5.1/lib/lua/5.1/?.so;./?.so"
+#set -x LUAROCKS_CONFIG "$HOME/.luaver/lua/5.1/luarocks/config-5.1.lua"
 
+fish_add_path ~/.config/scripts/launchers/
 
 ################################################################################
 # Workspaces settings
@@ -67,3 +69,6 @@ alias ww=switch_to_workspace
 # else
 #     zellij
 # end
+
+# Added by Windsurf
+fish_add_path /Users/jeff/.codeium/windsurf/bin

@@ -4,7 +4,7 @@ function list_workspaces
 
     for dir in $dirs
         if test -d $dir
-            set result $result (rg --files --glob '**/.workspace' --hidden --no-messages ~/code/ | xargs -I {} dirname {})
+            set result $result (rg --files --glob '**/.workspace.json' --hidden --no-messages ~/workspaces/ | xargs -I {} dirname {})
         end
     end
 
