@@ -23,3 +23,5 @@ emacs/doom/custom.el
 
 packer/*
 AWSVPNCLIENT/*
+
+**/*.swp
