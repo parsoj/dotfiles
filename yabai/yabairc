@@ -55,8 +55,10 @@ yabai -m rule --add app="Thorium" title=".+" role="AXWindow" subrole="AXStandard
 
 yabai -m rule --add app="Xcode" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
+yabai -m rule --add app="Cursor" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
 yabai -m rule --add app="iTerm" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="kitty" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="kitty" title="kitty-popup" role="AXWindow" subrole="AXStandardWindow" grid=4:6:1:1:4:2 manage=off
 
 yabai -m rule --add app="GoodTask" title="GoodTask" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="OmniFocus" role="AXWindow" subrole="AXStandardWindow" manage=on

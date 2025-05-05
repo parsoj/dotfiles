@@ -4,7 +4,8 @@ set export
 USER_ID := `id -u`
 
 install: 
-    brew install koekeishiya/formulae/yabai --HEAD
+    brew install koekeishiya/formulae/yabai 
+    #brew install koekeishiya/formulae/yabai --HEAD
 #need to install dev version of yabai M1 support not yet released
 
 uninstall: 

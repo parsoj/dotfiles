@@ -23,7 +23,9 @@ shell_integration enabled
 
 enable_audio_bell no
 
-notify_on_cmd_finish invisible 10.0
+#notify_on_cmd_finish invisible 10.0
+#notify_on_cmd_finish none
+update_check_interval 0
 
 font_family      InconsolataGo Nerd Font
 font_size 16.0
@@ -71,6 +73,6 @@ map cmd+alt+\ launch --cwd=current --location=vsplit
 
 
 # BEGIN_KITTY_THEME
-# Tokyo Night
+# dayfox
 include current-theme.conf
 # END_KITTY_THEME
