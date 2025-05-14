@@ -1,15 +1,7 @@
 #!/bin/bash 
 
 { find /Applications -maxdepth 1 -name "*.app"; find /System/Applications -maxdepth 1 -name "*.app"; } |
-awk -F'/' '{print $0 " ## " $NF}' |
-sed 's/\.app ## /\.app ## /' |
+awk -F'/' '{print $0 " ## " substr($NF, 1, length($NF)-4)}' |
 fzf --delimiter ' ## ' --with-nth=2 |
 awk -F' ## ' '{print $1}' |
-xargs open
-
-
-  
-  
-  
-  
-  
+xargs -I{} sh -c 'open "{}"'
