@@ -73,6 +73,9 @@ class ServiceProvider: NSObject {
             notification.hasShadow = true
             notification.level = .floating
             
+            // Make the notification visible on all spaces/desktops
+            notification.collectionBehavior = .canJoinAllSpaces
+            
             // Create label for the notification text
             // Position it lower to avoid overlap with the window title
             let label = NSTextField(frame: NSRect(x: 10, y: 15, width: 280, height: 30))
@@ -105,7 +108,7 @@ class ServiceProvider: NSObject {
             notification.makeKeyAndOrderFront(nil)
             
             // Automatically close after 2 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 notification.close()
             }
         }
