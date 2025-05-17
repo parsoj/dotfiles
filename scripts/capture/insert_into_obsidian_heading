@@ -1,0 +1,139 @@
+#!/bin/bash
+
+set -e
+
+##########################################################################################
+# Step 1: Read text from stdin
+INPUT=$(cat)
+
+# Check if input is empty
+if [ -z "$INPUT" ]; then
+    echo "Error: No text provided. Please provide text via stdin."
+    exit 1
+fi
+
+##########################################################################################
+# Step 2: Use fzf to select an Obsidian file
+OBSIDIAN_VAULT="$HOME/Documents/Obsidian-Synced"
+
+# Check if Obsidian vault exists
+if [ ! -d "$OBSIDIAN_VAULT" ]; then
+    echo "Error: Obsidian vault not found at $OBSIDIAN_VAULT"
+    exit 1
+fi
+
+# Find all markdown files in the vault
+MARKDOWN_FILES=$(find "$OBSIDIAN_VAULT" -type f -name "*.md" | sort)
+
+# Check if any markdown files were found
+if [ -z "$MARKDOWN_FILES" ]; then
+    echo "Error: No markdown files found in $OBSIDIAN_VAULT"
+    exit 1
+fi
+
+# Use fzf to select a file
+SELECTED_FILE=$(echo "$MARKDOWN_FILES" | fzf --height=40% --layout=reverse --border --prompt="Select Obsidian file: ")
+
+# Check if a file was selected
+if [ -z "$SELECTED_FILE" ]; then
+    echo "No file selected. Exiting."
+    exit 1
+fi
+
+echo "Selected file: $SELECTED_FILE"
+
+##########################################################################################
+# Step 3: Use fzf to select a heading from the file
+
+# Extract headings (lines starting with #) from the selected file
+echo "Extracting headings from $SELECTED_FILE..."
+
+# First create a temporary file with the headings
+TMP_HEADINGS=$(mktemp)
+grep -n "^#" "$SELECTED_FILE" > "$TMP_HEADINGS" || true
+
+# Check if any headings were found
+if [ ! -s "$TMP_HEADINGS" ]; then
+    echo "Error: No headings found in $SELECTED_FILE"
+    rm "$TMP_HEADINGS"
+    exit 1
+fi
+
+# Display found headings for debugging
+echo "Found headings:"
+cat "$TMP_HEADINGS"
+
+# Use the headings directly with fzf
+echo "Select a heading (use arrow keys and press Enter):"
+
+# Use fzf to select a heading directly from the file
+SELECTED_HEADING=$(cat "$TMP_HEADINGS" | fzf --height=40% --layout=reverse --border --prompt="Select heading: ")
+rm "$TMP_HEADINGS"
+
+# Check if a heading was selected
+if [ -z "$SELECTED_HEADING" ]; then
+    echo "No heading selected. Exiting."
+    exit 1
+fi
+
+# Extract the line number cleanly
+HEADING_LINE_NUMBER=$(echo "$SELECTED_HEADING" | awk -F":" '{print $1}')
+
+# Extract heading text (everything after the first colon)
+HEADING_TEXT=$(echo "$SELECTED_HEADING" | awk -F":" '{$1=""; print $0}' | sed 's/^[ \t]*//')
+
+echo "Selected heading: $HEADING_TEXT (line $HEADING_LINE_NUMBER)"
+
+##########################################################################################
+# Step 4: Implement text insertion under the selected heading
+
+# Find the next heading or end of file to determine where to insert
+TOTAL_LINES=$(wc -l < "$SELECTED_FILE")
+
+# Make sure line number is clean
+HEADING_LINE_NUMBER=$(echo "$HEADING_LINE_NUMBER" | tr -d ' ')
+
+# Find next heading
+NEXT_HEADING_LINE=$(awk "NR > $HEADING_LINE_NUMBER && /^#/ {print NR; exit}" "$SELECTED_FILE" 2>/dev/null || echo "")
+
+# Find appropriate insert line - either after the content under the heading or before next heading
+
+# First find the immediate next non-empty line after the heading
+NEXT_CONTENT_LINE=$((HEADING_LINE_NUMBER + 1))
+
+# Then find the next heading or end of file
+if [ -z "$NEXT_HEADING_LINE" ]; then
+    # If no next heading, use the end of file
+    INSERT_LINE="$TOTAL_LINES"
+else
+    # Insert right before the next heading
+    INSERT_LINE=$((NEXT_HEADING_LINE - 1))
+fi
+
+# Use the heading line + 1 as a minimum insertion point
+if [ "$INSERT_LINE" -lt "$NEXT_CONTENT_LINE" ]; then
+    INSERT_LINE="$NEXT_CONTENT_LINE"
+fi
+
+echo "Inserting text after line $HEADING_LINE_NUMBER and before line $INSERT_LINE"
+
+# Create a temporary file for the modified content
+TMP_FILE=$(mktemp)
+
+# Copy the file content up to the insertion point
+head -n "$INSERT_LINE" "$SELECTED_FILE" > "$TMP_FILE"
+
+# Add a blank line and the input text
+echo "" >> "$TMP_FILE"
+echo "$INPUT" >> "$TMP_FILE"
+
+# Add the rest of the file content, if any
+if [ "$INSERT_LINE" -lt "$TOTAL_LINES" ]; then
+    tail -n +$((INSERT_LINE + 1)) "$SELECTED_FILE" >> "$TMP_FILE"
+fi
+
+# Replace the original file with the modified content
+cp "$TMP_FILE" "$SELECTED_FILE"
+rm "$TMP_FILE"
+
+echo "Successfully inserted text under heading '$HEADING_TEXT' in $SELECTED_FILE"
