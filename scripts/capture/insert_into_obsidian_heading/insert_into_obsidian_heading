@@ -54,10 +54,24 @@ grep -n "^#" "$SELECTED_FILE" > "$TMP_HEADINGS" || true
 
 # Check if any headings were found
 if [ ! -s "$TMP_HEADINGS" ]; then
-    echo "Error: No headings found in $SELECTED_FILE"
-    rm "$TMP_HEADINGS"
-    exit 1
+    echo "No headings found in $SELECTED_FILE. Prepending text to the beginning of the file."
+    rm "$TMP_HEADINGS" # Clean up the empty temp headings file
+
+    # Create a temporary file for prepending
+    PREPEND_TMP_FILE=$(mktemp)
+
+    # Write the new input first, then append the original file content
+    echo "$INPUT" > "$PREPEND_TMP_FILE"
+    echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
+    cat "$SELECTED_FILE" >> "$PREPEND_TMP_FILE"
+
+    # Replace the original file
+    mv "$PREPEND_TMP_FILE" "$SELECTED_FILE"
+
+    echo "Text successfully prepended to $SELECTED_FILE"
+    exit 0 # Successfully prepended, so exit normally
 fi
+# If we reach here, headings were found, so the script continues to heading selection.
 
 # Display found headings for debugging
 echo "Found headings:"
@@ -87,49 +101,53 @@ echo "Selected heading: $HEADING_TEXT (line $HEADING_LINE_NUMBER)"
 ##########################################################################################
 # Step 4: Implement text insertion under the selected heading
 
-# Find the next heading or end of file to determine where to insert
-TOTAL_LINES=$(wc -l < "$SELECTED_FILE")
+TOTAL_LINES_IN_FILE=$(wc -l < "$SELECTED_FILE" | tr -d ' ') # For boundary checks
 
-# Make sure line number is clean
-HEADING_LINE_NUMBER=$(echo "$HEADING_LINE_NUMBER" | tr -d ' ')
+# Determine the line number after which the new text should be prepended.
+# This will be the heading line itself, or the line of dashes if it exists immediately after the heading.
+PREPEND_AFTER_LINE_NUM=$HEADING_LINE_NUMBER
+TARGET_DASHES_LINE_NUM=$((HEADING_LINE_NUMBER + 1))
 
-# Find next heading
-NEXT_HEADING_LINE=$(awk "NR > $HEADING_LINE_NUMBER && /^#/ {print NR; exit}" "$SELECTED_FILE" 2>/dev/null || echo "")
+echo "Debug: Checking for dashes line at $TARGET_DASHES_LINE_NUM (Heading on $HEADING_LINE_NUMBER, Total lines: $TOTAL_LINES_IN_FILE)."
 
-# Find appropriate insert line - either after the content under the heading or before next heading
+# Check for '---' line
+if [ "$TARGET_DASHES_LINE_NUM" -le "$TOTAL_LINES_IN_FILE" ]; then
+    LINE_CONTENT_AFTER_HEADING=$(sed -n "${TARGET_DASHES_LINE_NUM}p" "$SELECTED_FILE")
+    TRIMMED_LINE_CONTENT=$(echo "$LINE_CONTENT_AFTER_HEADING" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
-# First find the immediate next non-empty line after the heading
-NEXT_CONTENT_LINE=$((HEADING_LINE_NUMBER + 1))
-
-# Then find the next heading or end of file
-if [ -z "$NEXT_HEADING_LINE" ]; then
-    # If no next heading, use the end of file
-    INSERT_LINE="$TOTAL_LINES"
+    if [[ "$TRIMMED_LINE_CONTENT" =~ ^-{3,}$ ]]; then
+        # Found a dashes line, so we will prepend new text after this dashes line
+        PREPEND_AFTER_LINE_NUM=$TARGET_DASHES_LINE_NUM
+        echo "Info: Dashes line '---' found at line $TARGET_DASHES_LINE_NUM. Text will be inserted after it."
+    else
+        echo "Info: No dashes line found at line $TARGET_DASHES_LINE_NUM. Text will be inserted after heading line $HEADING_LINE_NUMBER."
+    fi
 else
-    # Insert right before the next heading
-    INSERT_LINE=$((NEXT_HEADING_LINE - 1))
+    echo "Info: Heading is at or near end of file (or file too short for dashes line). Text will be inserted after heading line $HEADING_LINE_NUMBER."
 fi
 
-# Use the heading line + 1 as a minimum insertion point
-if [ "$INSERT_LINE" -lt "$NEXT_CONTENT_LINE" ]; then
-    INSERT_LINE="$NEXT_CONTENT_LINE"
-fi
-
-echo "Inserting text after line $HEADING_LINE_NUMBER and before line $INSERT_LINE"
+echo "Info: New text will be inserted after line $PREPEND_AFTER_LINE_NUM of the original file."
 
 # Create a temporary file for the modified content
 TMP_FILE=$(mktemp)
 
-# Copy the file content up to the insertion point
-head -n "$INSERT_LINE" "$SELECTED_FILE" > "$TMP_FILE"
+# 1. Copy lines from the beginning of the file up to and including PREPEND_AFTER_LINE_NUM
+if [ "$PREPEND_AFTER_LINE_NUM" -gt 0 ]; then
+    head -n "$PREPEND_AFTER_LINE_NUM" "$SELECTED_FILE" > "$TMP_FILE"
+else
+    # This case (PREPEND_AFTER_LINE_NUM=0) should not be reached if HEADING_LINE_NUMBER >= 1.
+    : > "$TMP_FILE" # Creates an empty TMP_FILE if it were to happen.
+fi
 
-# Add a blank line and the input text
+# 2. Add a blank line for separation, then the input text 
+# This maintains a similar behavior to the original script's insertion style.
 echo "" >> "$TMP_FILE"
 echo "$INPUT" >> "$TMP_FILE"
 
-# Add the rest of the file content, if any
-if [ "$INSERT_LINE" -lt "$TOTAL_LINES" ]; then
-    tail -n +$((INSERT_LINE + 1)) "$SELECTED_FILE" >> "$TMP_FILE"
+# 3. Append the rest of the original file, starting from the line *after* PREPEND_AFTER_LINE_NUM
+LINE_TO_START_TAIL=$((PREPEND_AFTER_LINE_NUM + 1))
+if [ "$LINE_TO_START_TAIL" -le "$TOTAL_LINES_IN_FILE" ]; then
+    tail -n "+${LINE_TO_START_TAIL}" "$SELECTED_FILE" >> "$TMP_FILE"
 fi
 
 # Replace the original file with the modified content
