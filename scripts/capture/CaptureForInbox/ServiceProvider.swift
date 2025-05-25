@@ -13,12 +13,28 @@ class ServiceProvider: NSObject {
         
         for item in items {
             if let string = item.string(forType: .string) {
-                // Here you would implement the logic to send the text to your inbox
-                // For now, we'll just print it to the console
-                NSLog("Captured text: \(string)")
-                
-                // Example: Save to a file in the user's Documents directory
-                saveToInbox(text: string)
+                // Launching captured text in kitty popup
+                NSLog("Captured text to be sent to kitty: \(string)")
+                let task = Process()
+                task.executableURL = URL(fileURLWithPath: "/Users/jeff/.config/scripts/launchers/launch_in_kitty_popup")
+                // The 'string' variable (captured text) is passed as an argument to echo.
+                // The Process API handles spaces within arguments correctly.
+                // The 'string' variable is the captured text.
+// These parts will be joined by launch_in_kitty_popup and executed by fish.
+let commandParts = ["echo", string, "|", "gum", "write", "|", "insert_into_obsidian_heading"]
+
+var argumentsForLauncher = [ "--"] // Options for launch_in_kitty_popup
+argumentsForLauncher.append(contentsOf: commandParts) // Command for launch_in_kitty_popup to run
+task.arguments = argumentsForLauncher
+
+                do {
+                    try task.run()
+                    // task.run() is non-blocking by default if waitUntilExit() is not called.
+                    // This is generally preferred for a service so it doesn't hang the calling app.
+                    NSLog("launch_in_kitty_popup process initiated.")
+                } catch {
+                    NSLog("Failed to run launch_in_kitty_popup: \(error)")
+                }
             }
         }
     }
@@ -49,18 +65,18 @@ class ServiceProvider: NSObject {
             NSLog("Successfully saved capture to \(fileURL.path)")
             
             // Show a notification dialog
-            showNotification(message: "Text successfully captured to Inbox")
+            showNotification(message: "Text successfully captured to:", filepath: fileURL.path)
         } catch {
             NSLog("Error saving to inbox: \(error.localizedDescription)")
         }
     }
     
-    private func showNotification(message: String) {
+    private func showNotification(message: String, filepath: String) {
         // Ensure UI updates happen on the main thread
         DispatchQueue.main.async {
             // Create a temporary window for notification
             let notification = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 300, height: 80),
+                contentRect: NSRect(x: 0, y: 0, width: 300, height: 100),
                 styleMask: [.titled, .fullSizeContentView],
                 backing: .buffered,
                 defer: false)
@@ -78,8 +94,8 @@ class ServiceProvider: NSObject {
             
             // Create label for the notification text
             // Position it lower to avoid overlap with the window title
-            let label = NSTextField(frame: NSRect(x: 10, y: 15, width: 280, height: 30))
-            label.stringValue = message
+            let label = NSTextField(frame: NSRect(x: 10, y: 10, width: 280, height: 50))
+            label.stringValue = "\(message)\n\(filepath)"
             label.isEditable = false
             label.isBezeled = false
             label.drawsBackground = false

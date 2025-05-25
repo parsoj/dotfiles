@@ -69,11 +69,13 @@ if $keep_window_open; then
     kitty_base_args+=(--hold)
 fi
 
+# Join all elements of command_to_run_in_kitty into a single string.
+full_command_string="${command_to_run_in_kitty[*]}"
+
 # Launch kitty.
-# 'open -n' attempts to open a new instance.
-# '--args' passes subsequent arguments to the application (kitty.app).
-# Kitty itself uses '--' to separate its own options from the program it should run.
-# So we provide our collected kitty_base_args, then '--', then the command and its args.
-open "$KITTY_APP_PATH" -n --args "${kitty_base_args[@]}" -- "${command_to_run_in_kitty[@]}"
+# Now, explicitly tell Kitty to run 'fish -c' with the full command string.
+# This ensures shell features like pipes in full_command_string are interpreted by fish.
+# Standard execution line. Ensuring quotes are correct for full_command_string.
+open "$KITTY_APP_PATH" -n --args "${kitty_base_args[@]}" -- fish -c "$full_command_string"
 
 exit 0
