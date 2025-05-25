@@ -25,3 +25,7 @@ packer/*
 AWSVPNCLIENT/*
 
 **/*.swp
+
+alacritty/*
+github-copilot/*
+semantic-grep/*
