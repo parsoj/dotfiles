@@ -97,12 +97,28 @@ ctrl - x:  kitty --single-instance --directory ~/
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
 #ctrl - i: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 2"
+# cmd - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" launch_osx_app 
 
-cmd - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" launch_osx_app 
 cmd + alt - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" 
 ctrl - t: open /Applications/kitty.app -n  
 
 ctrl + alt + cmd - r: open /Applications/Raycast.app
+
+cmd + alt - p: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- ipython
+cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- /Users/jeff/.config/scripts/launchers/launch_osx_app 
+
+##########################################################################################
+# Quick Capture
+
+# cmd + alt - n: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" /Users/jeff/.config/scripts/building_blocks/read_selected_text
+
+# cmd + shift - n: osascript -e 'tell application "System Events" to keystroke "c" using command down' && sleep 0.1 && pbpaste > /tmp/selected_text
+# cmd + shift - n: osascript -e 'display notification "A"' && osascript -e 'display notification "B"'
+# cmd + shift - n: echo "foo" > /tmp/selected_text
+# cmd + shift - n: osascript -e 'tell application "System Events" to keystroke "c" using command down' 
+#cmd + shift - n: open -g /Users/jeff/.config/scripts/building_blocks/TextCapture/TextCapture.app
+#cmd + shift - n: /Users/jeff/.config/scripts/building_blocks/TextCapture/TextCapture.app/Contents/MacOS/TextCapture
+
 
 
 ##########################################################################################
