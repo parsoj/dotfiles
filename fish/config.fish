@@ -4,8 +4,14 @@
 
 alias rrr="source ~/.config/fish/config.fish"
 
-fish_add_path /opt/homebrew/bin
-fish_add_path (brew --prefix python)/libexec/bin
+# Individual script paths (commented out):
+#fish_add_path ~/.config/scripts/launchers/
+#fish_add_path ~/.config/scripts/capture/
+
+# Recursively add all directories containing executable scripts (excluding test files)
+for dir in (find ~/.config/scripts -type f -perm +111 -not -name "*test*" -print0 | xargs -0 dirname | sort | uniq)
+    fish_add_path $dir
+end
 
 # DBL stuff
 
@@ -21,6 +27,7 @@ fish_add_path (brew --prefix python)/libexec/bin
 fish_vi_key_bindings
 
 alias gs="git status"
+alias ws="windsurf"
 
 alias tg=terragrunt
 alias tf=terraform
@@ -44,13 +51,17 @@ STARSHIP_CONFIG=~/.config/starship/starship.toml starship init fish | source
 #set -x LUA_CPATH "$HOME/.luaver/lua/5.1/lib/lua/5.1/?.so;./?.so"
 #set -x LUAROCKS_CONFIG "$HOME/.luaver/lua/5.1/luarocks/config-5.1.lua"
 
-fish_add_path ~/.config/scripts/launchers/
+for dir in (find ~/.config/scripts -type f -perm +111 -not -name "*test*" -print0 | xargs -0 dirname | sort | uniq)
+    fish_add_path $dir
+end
 
 ################################################################################
 # Workspaces settings
 
 # load workspaces functions
-set -U fish_function_path $fish_function_path ~/.config/fish/functions/workspaces
+if not contains -- ~/.config/fish/functions/workspaces $fish_function_path
+    set -U fish_function_path $fish_function_path ~/.config/fish/functions/workspaces
+end
 
 alias wr=cd_workspace_root
 
