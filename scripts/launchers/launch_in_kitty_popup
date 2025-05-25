@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# Script to launch a given command/script in a kitty popup window.
+
+keep_window_open=false
+declare -a command_to_run_in_kitty=() # Use declare -a for safety
+
+# Parse options for launch_in_kitty_popup itself
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        -k|--keep-open)
+            keep_window_open=true
+            shift # past argument
+            ;;
+        --)
+            shift # past '--' separator
+            command_to_run_in_kitty=("$@") # All remaining arguments are the command and its args
+            break # Stop option processing for launch_in_kitty_popup
+            ;;
+        -*)
+            # An option not recognized by this script, or an option for the command to be run.
+            # Assume it's the start of the command if '--' hasn't been used.
+            command_to_run_in_kitty=("$@")
+            break
+            ;;
+        *)
+            # Not an option, so it must be the start of the command and its arguments
+            command_to_run_in_kitty=("$@")
+            break
+            ;;
+    esac
+done
+
+
+# Check if a command was provided to run in kitty
+if [ "${#command_to_run_in_kitty[@]}" -eq 0 ]; then
+  echo "Usage: $(basename "$0") [-k|--keep-open] [--] <command_to_run> [args...]" >&2
+  echo "" >&2
+  echo "Launches a command in a kitty popup window." >&2
+  echo "" >&2
+  echo "OPTIONS:" >&2
+  echo "  -k, --keep-open    Keep the kitty window open after the command completes." >&2
+  echo "  --                 Separates options for this script from the command to be run." >&2
+  echo "                     Useful if the command itself starts with an option that might" >&2
+  echo "                     be confused with an option for $(basename "$0")." >&2
+  echo "" >&2
+  echo "EXAMPLES:" >&2
+  echo "  $(basename "$0") -k -- ls -l /          # Keeps window open after 'ls' completes" >&2
+  echo "  $(basename "$0") -- ls -l /             # Closes window after 'ls' (default)" >&2
+  echo "  $(basename "$0") ls -l /                # Closes window ('--' is optional if no launcher options)" >&2
+  echo "  $(basename "$0") echo \"Hello\"            # Closes window" >&2
+  echo "  $(basename "$0") -k echo \"Hello\"         # Keeps window open" >&2
+  exit 1
+fi
+
+# Path to kitty application
+# Ensure this path is correct for your system.
+KITTY_APP_PATH="/Applications/kitty.app"
+
+# Base arguments for kitty itself to configure the popup window
+declare -a kitty_base_args=(\
+    --single-instance\
+    --instance-group popup\
+    --title "kitty-popup"\
+)
+
+# Add --hold if requested
+if $keep_window_open; then
+    kitty_base_args+=(--hold)
+fi
+
+# Launch kitty.
+# 'open -n' attempts to open a new instance.
+# '--args' passes subsequent arguments to the application (kitty.app).
+# Kitty itself uses '--' to separate its own options from the program it should run.
+# So we provide our collected kitty_base_args, then '--', then the command and its args.
+open "$KITTY_APP_PATH" -n --args "${kitty_base_args[@]}" -- "${command_to_run_in_kitty[@]}"
+
+exit 0
