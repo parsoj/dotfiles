@@ -106,6 +106,7 @@ ctrl + alt + cmd - r: open /Applications/Raycast.app
 
 cmd + alt - p: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- ipython
 cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- /Users/jeff/.config/scripts/launchers/launch_osx_app 
+cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- gum write \| insert_into_obsidian_heading
 
 ##########################################################################################
 # Quick Capture
