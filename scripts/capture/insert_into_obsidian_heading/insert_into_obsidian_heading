@@ -50,28 +50,15 @@ echo "Extracting headings from $SELECTED_FILE..."
 
 # First create a temporary file with the headings
 TMP_HEADINGS=$(mktemp)
-grep -n "^#" "$SELECTED_FILE" > "$TMP_HEADINGS" || true
+# Add "Start of File" option as the first choice, with line number 0
+echo "0:--- Prepend to Start of File ---" > "$TMP_HEADINGS"
+# Append actual headings from the file, if any
+grep -n "^#" "$SELECTED_FILE" >> "$TMP_HEADINGS" || true
 
-# Check if any headings were found
-if [ ! -s "$TMP_HEADINGS" ]; then
-    echo "No headings found in $SELECTED_FILE. Prepending text to the beginning of the file."
-    rm "$TMP_HEADINGS" # Clean up the empty temp headings file
-
-    # Create a temporary file for prepending
-    PREPEND_TMP_FILE=$(mktemp)
-
-    # Write the new input first, then append the original file content
-    echo "$INPUT" > "$PREPEND_TMP_FILE"
-    echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
-    cat "$SELECTED_FILE" >> "$PREPEND_TMP_FILE"
-
-    # Replace the original file
-    mv "$PREPEND_TMP_FILE" "$SELECTED_FILE"
-
-    echo "Text successfully prepended to $SELECTED_FILE"
-    exit 0 # Successfully prepended, so exit normally
-fi
-# If we reach here, headings were found, so the script continues to heading selection.
+# The original 'if [ ! -s "$TMP_HEADINGS" ]' block (checking for no headings)
+# and its associated comment are removed. If no actual headings are found, 
+# fzf will still show the "--- Prepend to Start of File ---" option. 
+# Selecting it will result in HEADING_LINE_NUMBER=0, which is handled in Step 4.
 
 # Display found headings for debugging
 echo "Found headings:"
@@ -100,6 +87,27 @@ echo "Selected heading: $HEADING_TEXT (line $HEADING_LINE_NUMBER)"
 
 ##########################################################################################
 # Step 4: Implement text insertion under the selected heading
+
+# Handle "Prepend to Start of File" option if HEADING_LINE_NUMBER is 0
+if [ "$HEADING_LINE_NUMBER" -eq 0 ]; then
+    echo "Prepending text to the beginning of the file (selected '--- Prepend to Start of File ---')."
+    
+    # Create a temporary file for prepending
+    PREPEND_TMP_FILE=$(mktemp)
+
+    # Write the new input first, then append the original file content
+    echo "$INPUT" > "$PREPEND_TMP_FILE"
+    echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
+    cat "$SELECTED_FILE" >> "$PREPEND_TMP_FILE"
+
+    # Replace the original file
+    mv "$PREPEND_TMP_FILE" "$SELECTED_FILE"
+
+    echo "Text successfully prepended to $SELECTED_FILE"
+    exit 0 # Successfully prepended, so exit normally
+fi
+
+# Original Step 4 logic continues here if HEADING_LINE_NUMBER is not 0
 
 TOTAL_LINES_IN_FILE=$(wc -l < "$SELECTED_FILE" | tr -d ' ') # For boundary checks
 
