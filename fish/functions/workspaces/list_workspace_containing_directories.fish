@@ -20,6 +20,10 @@ function __list_workspace_containing_directories_helper
         return
     end
 
+    if test -e "$current_dir/.workspace.json"
+        return
+    end
+
     # Append the current directory to the result array
     set -a $result_array_name $current_dir
 

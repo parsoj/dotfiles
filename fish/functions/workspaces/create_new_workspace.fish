@@ -22,8 +22,8 @@ function create_new_workspace
     echo "Creating new workspace at: $full_path"
     mkdir -p "$full_path"
 
-    touch "$full_path/.workspace"
-    echo "Created .workspace file in $full_path"
+    touch "$full_path/.workspace.json"
+    echo "Created .workspace.json file in $full_path"
 
     cd "$full_path"
     echo "Changed directory to: $full_path"

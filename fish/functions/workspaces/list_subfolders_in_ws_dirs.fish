@@ -15,7 +15,7 @@ function _list_subfolders_in_ws_dirs_recursive
     # Filter out directories containing a .workspace file
     set -l filtered_subfolders
     for dir in $subfolders
-        if not test -e "$dir/.workspace"
+        if not test -e "$dir/.workspace.json"
             set filtered_subfolders $filtered_subfolders $dir
         end
     end
