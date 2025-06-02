@@ -26,7 +26,6 @@ end
 
 fish_vi_key_bindings
 
-alias gs="git status"
 alias ws="windsurf"
 
 alias tg=terragrunt
@@ -56,12 +55,25 @@ for dir in (find ~/.config/scripts -type f -perm +111 -not -name "*test*" -print
 end
 
 ################################################################################
+# git settings
+
+
+alias gs="git status"
+#alias ga="git add"
+
+function ga
+    git add $argv
+    git status
+end
+
+
+################################################################################
 # Workspaces settings
 
 # load workspaces functions
-if not contains -- ~/.config/fish/functions/workspaces $fish_function_path
-    set -U fish_function_path $fish_function_path ~/.config/fish/functions/workspaces
-end
+#if not contains -- ~/.config/fish/functions/workspaces $fish_function_path
+#    set -U fish_function_path $fish_function_path ~/.config/fish/functions/workspaces
+#end
 
 alias wr=cd_workspace_root
 

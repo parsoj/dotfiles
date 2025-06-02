@@ -52,7 +52,7 @@ SETUVAR fish_color_selection:\x2d\x2dbackground\x3dE6B450
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_function_path:/Users/jeff/\x2econfig/fish/functions/workspaces\x1e/opt/homebrew/Cellar/fish/3\x2e7\x2e1/share/fish/functions
+SETUVAR fish_function_path:/Users/jeff/\x2econfig/fish/functions/workspaces\x1e/opt/homebrew/Cellar/fish/3\x2e7\x2e1/share/fish/functions\x1e/Users/jeff/\x2econfig/fish/functions
 SETUVAR fish_greeting:\x1d
 SETUVAR fish_key_bindings:fish_vi_key_bindings
 SETUVAR fish_pager_color_background:\x1d
