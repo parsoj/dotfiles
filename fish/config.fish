@@ -66,6 +66,22 @@ function ga
     git status
 end
 
+function gc
+    # Check if any arguments were provided for the commit message
+    if test -z "$argv"
+        echo "Error: No commit message provided."
+        echo "Usage: gc <commit message>"
+        return 1 # Exit the function with an error status
+    end
+
+    # Join all arguments to form the commit message
+    set commit_message (string join " " $argv)
+
+    git commit -m "$commit_message"
+    git push
+    git status
+end
+
 
 ################################################################################
 # Workspaces settings
