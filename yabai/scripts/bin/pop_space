@@ -2,21 +2,42 @@
 
 #set PREV_SPACE_INDEX (yabai -m query --spaces --space prev | jq '.index')
 set CURR_SPACE_INDEX (yabai -m query --spaces --space | jq '.index')
+echo "Initial CURR_SPACE_INDEX: $CURR_SPACE_INDEX"
 
-if test $CURR_SPACE_INDEX -le 1
+# Check if yabai command was successful and CURR_SPACE_INDEX is set
+if test -z "$CURR_SPACE_INDEX" # Check if the variable is empty
+  echo "Error: Failed to get current space index. Yabai might not be running or accessible."
+  exit 1
+end
+
+# Now that we know CURR_SPACE_INDEX is not empty, we can proceed with the numeric comparison
+if test "$CURR_SPACE_INDEX" -le 1
   echo "cannot delete first space. exiting..." 
   exit 
 end
 set NEXT_LOWEST_SPACE (math $CURR_SPACE_INDEX - 1)
+echo "NEXT_LOWEST_SPACE: $NEXT_LOWEST_SPACE"
 
-set windows_query (yabai -m query --windows --space)
+set windows_query (yabai -m query --windows --space $CURR_SPACE_INDEX) # Query for the specific space
+echo "Querying windows for space $CURR_SPACE_INDEX. Status: $status"
 
-for window in (echo $windows_query | jq -c '.[]')
-  set window_id (echo $window | jq '.id')
-  yabai -m window $window_id --close
+# Check if windows_query is empty JSON array '[]' or contains windows
+if test (echo $windows_query | jq 'length') -gt 0
+    for window in (echo $windows_query | jq -c '.[]')
+      set window_id (echo $window | jq '.id')
+      yabai -m window $window_id --close
+      echo "Closed window $window_id in space $CURR_SPACE_INDEX. Status: $status"
+    end
+else
+    echo "No windows found to close in space $CURR_SPACE_INDEX."
 end
 
 
+echo "Attempting to focus space $NEXT_LOWEST_SPACE"
 yabai -m space --focus $NEXT_LOWEST_SPACE
+echo "Focus command status: $status"
+
+echo "Attempting to destroy space $CURR_SPACE_INDEX"
 yabai -m space --destroy $CURR_SPACE_INDEX
+echo "Destroy command status: $status"
 
