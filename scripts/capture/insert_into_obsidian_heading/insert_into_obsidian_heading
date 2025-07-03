@@ -23,7 +23,15 @@ if [ ! -d "$OBSIDIAN_VAULT" ]; then
 fi
 
 # Pre-defined files to include (format: filepath|action|display_name)
-PREDEFINED_ENTRIES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md|prepend|📥 Inbox (Quick Capture)"
+# Generate today's daily plan path
+YEAR=$(date +"%Y")
+MONTH=$(date +"%B")
+DAY_FILENAME=$(date +"%Y-%m-%d-%A.md")
+TODAY_PLAN_PATH="$HOME/Documents/Obsidian-Synced/3 - Plans/3 - Daily_Plans/$YEAR/$MONTH/$DAY_FILENAME"
+TODAY_DISPLAY=$(date +"📅 Today's Plan (%B %d)")
+
+PREDEFINED_ENTRIES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md|prepend|📥 Inbox (Quick Capture)
+$TODAY_PLAN_PATH|prepend|$TODAY_DISPLAY"
 
 # Find all markdown files in the vault
 VAULT_FILES=$(find "$OBSIDIAN_VAULT" -type f -name "*.md")
@@ -67,6 +75,13 @@ echo "Action: $ACTION"
 # If action is "prepend", prepend to the beginning without asking for heading
 if [ "$ACTION" = "prepend" ]; then
     echo "Prepending to file: $FILE_PATH"
+    
+    # Check if file exists, if not create it (and parent directories if needed)
+    if [ ! -f "$FILE_PATH" ]; then
+        echo "File doesn't exist. Creating: $FILE_PATH"
+        mkdir -p "$(dirname "$FILE_PATH")"
+        touch "$FILE_PATH"
+    fi
     
     # Create a temporary file for prepending
     PREPEND_TMP_FILE=$(mktemp)
