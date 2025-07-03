@@ -8,8 +8,8 @@ INPUT=$(cat)
 
 # Check if input is empty
 if [ -z "$INPUT" ]; then
-    echo "Error: No text provided. Please provide text via stdin."
-    exit 1
+  echo "Error: No text provided. Please provide text via stdin."
+  exit 1
 fi
 
 ##########################################################################################
@@ -18,8 +18,8 @@ OBSIDIAN_VAULT="$HOME/Documents/Obsidian-Synced"
 
 # Check if Obsidian vault exists
 if [ ! -d "$OBSIDIAN_VAULT" ]; then
-    echo "Error: Obsidian vault not found at $OBSIDIAN_VAULT"
-    exit 1
+  echo "Error: Obsidian vault not found at $OBSIDIAN_VAULT"
+  exit 1
 fi
 
 # Pre-defined files to include (format: filepath|action|display_name)
@@ -28,9 +28,9 @@ YEAR=$(date +"%Y")
 MONTH=$(date +"%B")
 DAY_FILENAME=$(date +"%Y-%m-%d-%A.md")
 TODAY_PLAN_PATH="$HOME/Documents/Obsidian-Synced/3 - Plans/3 - Daily_Plans/$YEAR/$MONTH/$DAY_FILENAME"
-TODAY_DISPLAY=$(date +"📅 Today's Plan (%B %d)")
+TODAY_DISPLAY=$(date +"Today's Plan (%B %d)")
 
-PREDEFINED_ENTRIES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md|prepend|📥 Inbox (Quick Capture)
+PREDEFINED_ENTRIES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md|prepend|Inbox (Quick Capture)
 $TODAY_PLAN_PATH|prepend|$TODAY_DISPLAY"
 
 # Find all markdown files in the vault
@@ -49,17 +49,17 @@ ALL_ENTRIES=$(echo -e "$PREDEFINED_ENTRIES\n$FORMATTED_VAULT_FILES" | grep -v '^
 
 # Check if any files were found
 if [ -z "$ALL_ENTRIES" ]; then
-    echo "Error: No markdown files found"
-    exit 1
+  echo "Error: No markdown files found"
+  exit 1
 fi
 
 # Use fzf to select a file (showing only the display name)
-SELECTED_FILE=$(echo "$ALL_ENTRIES" | fzf --delimiter='|' --with-nth=3 --height=40% --layout=reverse --border --prompt="Select Obsidian file: ")
+SELECTED_FILE=$(echo "$ALL_ENTRIES" | fzf --delimiter='|' --tiebreak=index --with-nth=3 --height=40% --layout=reverse --border --prompt="Select Obsidian file: ")
 
 # Check if a file was selected
 if [ -z "$SELECTED_FILE" ]; then
-    echo "No file selected. Exiting."
-    exit 1
+  echo "No file selected. Exiting."
+  exit 1
 fi
 
 echo "Selected: $SELECTED_FILE"
@@ -74,28 +74,28 @@ echo "Action: $ACTION"
 
 # If action is "prepend", prepend to the beginning without asking for heading
 if [ "$ACTION" = "prepend" ]; then
-    echo "Prepending to file: $FILE_PATH"
-    
-    # Check if file exists, if not create it (and parent directories if needed)
-    if [ ! -f "$FILE_PATH" ]; then
-        echo "File doesn't exist. Creating: $FILE_PATH"
-        mkdir -p "$(dirname "$FILE_PATH")"
-        touch "$FILE_PATH"
-    fi
-    
-    # Create a temporary file for prepending
-    PREPEND_TMP_FILE=$(mktemp)
-    
-    # Write the new input first, then append the original file content
-    echo "$INPUT" > "$PREPEND_TMP_FILE"
-    echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
-    cat "$FILE_PATH" >> "$PREPEND_TMP_FILE"
-    
-    # Replace the original file
-    mv "$PREPEND_TMP_FILE" "$FILE_PATH"
-    
-    echo "Text successfully prepended to $FILE_PATH"
-    exit 0
+  echo "Prepending to file: $FILE_PATH"
+
+  # Check if file exists, if not create it (and parent directories if needed)
+  if [ ! -f "$FILE_PATH" ]; then
+    echo "File doesn't exist. Creating: $FILE_PATH"
+    mkdir -p "$(dirname "$FILE_PATH")"
+    touch "$FILE_PATH"
+  fi
+
+  # Create a temporary file for prepending
+  PREPEND_TMP_FILE=$(mktemp)
+
+  # Write the new input first, then append the original file content
+  echo "$INPUT" >"$PREPEND_TMP_FILE"
+  echo "" >>"$PREPEND_TMP_FILE" # Add a blank line after the prepended text
+  cat "$FILE_PATH" >>"$PREPEND_TMP_FILE"
+
+  # Replace the original file
+  mv "$PREPEND_TMP_FILE" "$FILE_PATH"
+
+  echo "Text successfully prepended to $FILE_PATH"
+  exit 0
 fi
 
 ##########################################################################################
@@ -107,13 +107,13 @@ echo "Extracting headings from $FILE_PATH..."
 # First create a temporary file with the headings
 TMP_HEADINGS=$(mktemp)
 # Add "Start of File" option as the first choice, with line number 0
-echo "0:--- Prepend to Start of File ---" > "$TMP_HEADINGS"
+echo "0:--- Prepend to Start of File ---" >"$TMP_HEADINGS"
 # Append actual headings from the file, if any
-grep -n "^#" "$FILE_PATH" >> "$TMP_HEADINGS" || true
+grep -n "^#" "$FILE_PATH" >>"$TMP_HEADINGS" || true
 
 # The original 'if [ ! -s "$TMP_HEADINGS" ]' block (checking for no headings)
-# and its associated comment are removed. If no actual headings are found, 
-# fzf will still show the "--- Prepend to Start of File ---" option. 
+# and its associated comment are removed. If no actual headings are found,
+# fzf will still show the "--- Prepend to Start of File ---" option.
 # Selecting it will result in HEADING_LINE_NUMBER=0, which is handled in Step 4.
 
 # Display found headings for debugging
@@ -129,8 +129,8 @@ rm "$TMP_HEADINGS"
 
 # Check if a heading was selected
 if [ -z "$SELECTED_HEADING" ]; then
-    echo "No heading selected. Exiting."
-    exit 1
+  echo "No heading selected. Exiting."
+  exit 1
 fi
 
 # Extract the line number cleanly
@@ -146,26 +146,26 @@ echo "Selected heading: $HEADING_TEXT (line $HEADING_LINE_NUMBER)"
 
 # Handle "Prepend to Start of File" option if HEADING_LINE_NUMBER is 0
 if [ "$HEADING_LINE_NUMBER" -eq 0 ]; then
-    echo "Prepending text to the beginning of the file (selected '--- Prepend to Start of File ---')."
-    
-    # Create a temporary file for prepending
-    PREPEND_TMP_FILE=$(mktemp)
+  echo "Prepending text to the beginning of the file (selected '--- Prepend to Start of File ---')."
 
-    # Write the new input first, then append the original file content
-    echo "$INPUT" > "$PREPEND_TMP_FILE"
-    echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
-    cat "$FILE_PATH" >> "$PREPEND_TMP_FILE"
+  # Create a temporary file for prepending
+  PREPEND_TMP_FILE=$(mktemp)
 
-    # Replace the original file
-    mv "$PREPEND_TMP_FILE" "$FILE_PATH"
+  # Write the new input first, then append the original file content
+  echo "$INPUT" >"$PREPEND_TMP_FILE"
+  echo "" >>"$PREPEND_TMP_FILE" # Add a blank line after the prepended text
+  cat "$FILE_PATH" >>"$PREPEND_TMP_FILE"
 
-    echo "Text successfully prepended to $FILE_PATH"
-    exit 0 # Successfully prepended, so exit normally
+  # Replace the original file
+  mv "$PREPEND_TMP_FILE" "$FILE_PATH"
+
+  echo "Text successfully prepended to $FILE_PATH"
+  exit 0 # Successfully prepended, so exit normally
 fi
 
 # Original Step 4 logic continues here if HEADING_LINE_NUMBER is not 0
 
-TOTAL_LINES_IN_FILE=$(wc -l < "$FILE_PATH" | tr -d ' ') # For boundary checks
+TOTAL_LINES_IN_FILE=$(wc -l <"$FILE_PATH" | tr -d ' ') # For boundary checks
 
 # Determine the line number after which the new text should be prepended.
 # This will be the heading line itself, or the line of dashes if it exists immediately after the heading.
@@ -176,18 +176,18 @@ echo "Debug: Checking for dashes line at $TARGET_DASHES_LINE_NUM (Heading on $HE
 
 # Check for '---' line
 if [ "$TARGET_DASHES_LINE_NUM" -le "$TOTAL_LINES_IN_FILE" ]; then
-    LINE_CONTENT_AFTER_HEADING=$(sed -n "${TARGET_DASHES_LINE_NUM}p" "$FILE_PATH")
-    TRIMMED_LINE_CONTENT=$(echo "$LINE_CONTENT_AFTER_HEADING" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+  LINE_CONTENT_AFTER_HEADING=$(sed -n "${TARGET_DASHES_LINE_NUM}p" "$FILE_PATH")
+  TRIMMED_LINE_CONTENT=$(echo "$LINE_CONTENT_AFTER_HEADING" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
-    if [[ "$TRIMMED_LINE_CONTENT" =~ ^-{3,}$ ]]; then
-        # Found a dashes line, so we will prepend new text after this dashes line
-        PREPEND_AFTER_LINE_NUM=$TARGET_DASHES_LINE_NUM
-        echo "Info: Dashes line '---' found at line $TARGET_DASHES_LINE_NUM. Text will be inserted after it."
-    else
-        echo "Info: No dashes line found at line $TARGET_DASHES_LINE_NUM. Text will be inserted after heading line $HEADING_LINE_NUMBER."
-    fi
+  if [[ "$TRIMMED_LINE_CONTENT" =~ ^-{3,}$ ]]; then
+    # Found a dashes line, so we will prepend new text after this dashes line
+    PREPEND_AFTER_LINE_NUM=$TARGET_DASHES_LINE_NUM
+    echo "Info: Dashes line '---' found at line $TARGET_DASHES_LINE_NUM. Text will be inserted after it."
+  else
+    echo "Info: No dashes line found at line $TARGET_DASHES_LINE_NUM. Text will be inserted after heading line $HEADING_LINE_NUMBER."
+  fi
 else
-    echo "Info: Heading is at or near end of file (or file too short for dashes line). Text will be inserted after heading line $HEADING_LINE_NUMBER."
+  echo "Info: Heading is at or near end of file (or file too short for dashes line). Text will be inserted after heading line $HEADING_LINE_NUMBER."
 fi
 
 echo "Info: New text will be inserted after line $PREPEND_AFTER_LINE_NUM of the original file."
@@ -197,21 +197,21 @@ TMP_FILE=$(mktemp)
 
 # 1. Copy lines from the beginning of the file up to and including PREPEND_AFTER_LINE_NUM
 if [ "$PREPEND_AFTER_LINE_NUM" -gt 0 ]; then
-    head -n "$PREPEND_AFTER_LINE_NUM" "$FILE_PATH" > "$TMP_FILE"
+  head -n "$PREPEND_AFTER_LINE_NUM" "$FILE_PATH" >"$TMP_FILE"
 else
-    # This case (PREPEND_AFTER_LINE_NUM=0) should not be reached if HEADING_LINE_NUMBER >= 1.
-    : > "$TMP_FILE" # Creates an empty TMP_FILE if it were to happen.
+  # This case (PREPEND_AFTER_LINE_NUM=0) should not be reached if HEADING_LINE_NUMBER >= 1.
+  : >"$TMP_FILE" # Creates an empty TMP_FILE if it were to happen.
 fi
 
-# 2. Add a blank line for separation, then the input text 
+# 2. Add a blank line for separation, then the input text
 # This maintains a similar behavior to the original script's insertion style.
-echo "" >> "$TMP_FILE"
-echo "$INPUT" >> "$TMP_FILE"
+echo "" >>"$TMP_FILE"
+echo "$INPUT" >>"$TMP_FILE"
 
 # 3. Append the rest of the original file, starting from the line *after* PREPEND_AFTER_LINE_NUM
 LINE_TO_START_TAIL=$((PREPEND_AFTER_LINE_NUM + 1))
 if [ "$LINE_TO_START_TAIL" -le "$TOTAL_LINES_IN_FILE" ]; then
-    tail -n "+${LINE_TO_START_TAIL}" "$FILE_PATH" >> "$TMP_FILE"
+  tail -n "+${LINE_TO_START_TAIL}" "$FILE_PATH" >>"$TMP_FILE"
 fi
 
 # Replace the original file with the modified content
