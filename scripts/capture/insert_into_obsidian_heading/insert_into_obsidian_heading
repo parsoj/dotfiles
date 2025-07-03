@@ -22,26 +22,31 @@ if [ ! -d "$OBSIDIAN_VAULT" ]; then
     exit 1
 fi
 
-# Pre-defined files to include
-PREDEFINED_FILES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md"
+# Pre-defined files to include (format: filepath|action|display_name)
+PREDEFINED_ENTRIES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md|prepend|📥 Inbox (Quick Capture)"
 
 # Find all markdown files in the vault
 VAULT_FILES=$(find "$OBSIDIAN_VAULT" -type f -name "*.md")
 
-# Combine predefined files with vault files (keeping predefined files at top)
-# First, get unique vault files that aren't in predefined list
-UNIQUE_VAULT_FILES=$(echo "$VAULT_FILES" | grep -Fxv -f <(echo "$PREDEFINED_FILES") || true)
-# Then combine: predefined files first, then sorted unique vault files
-MARKDOWN_FILES=$(echo -e "$PREDEFINED_FILES\n$UNIQUE_VAULT_FILES" | grep -v '^$')
+# Format vault files with action (format: filepath|action|display_name)
+# Extract just the filepaths from predefined entries for deduplication
+PREDEFINED_PATHS=$(echo "$PREDEFINED_ENTRIES" | cut -d'|' -f1)
+# Get unique vault files that aren't in predefined list
+UNIQUE_VAULT_FILES=$(echo "$VAULT_FILES" | grep -Fxv -f <(echo "$PREDEFINED_PATHS") || true)
+# Format vault files with "select_heading" action and use filename as display
+FORMATTED_VAULT_FILES=$(echo "$UNIQUE_VAULT_FILES" | awk -F'/' '{print $0"|select_heading|"$NF}')
 
-# Check if any markdown files were found
-if [ -z "$MARKDOWN_FILES" ]; then
-    echo "Error: No markdown files found in $OBSIDIAN_VAULT"
+# Combine predefined entries with formatted vault files
+ALL_ENTRIES=$(echo -e "$PREDEFINED_ENTRIES\n$FORMATTED_VAULT_FILES" | grep -v '^$')
+
+# Check if any files were found
+if [ -z "$ALL_ENTRIES" ]; then
+    echo "Error: No markdown files found"
     exit 1
 fi
 
-# Use fzf to select a file
-SELECTED_FILE=$(echo "$MARKDOWN_FILES" | fzf --height=40% --layout=reverse --border --prompt="Select Obsidian file: ")
+# Use fzf to select a file (showing only the display name)
+SELECTED_FILE=$(echo "$ALL_ENTRIES" | fzf --delimiter='|' --with-nth=3 --height=40% --layout=reverse --border --prompt="Select Obsidian file: ")
 
 # Check if a file was selected
 if [ -z "$SELECTED_FILE" ]; then
@@ -49,20 +54,47 @@ if [ -z "$SELECTED_FILE" ]; then
     exit 1
 fi
 
-echo "Selected file: $SELECTED_FILE"
+echo "Selected: $SELECTED_FILE"
+
+# Parse the selected entry
+FILE_PATH=$(echo "$SELECTED_FILE" | cut -d'|' -f1)
+ACTION=$(echo "$SELECTED_FILE" | cut -d'|' -f2)
+DISPLAY_NAME=$(echo "$SELECTED_FILE" | cut -d'|' -f3)
+
+echo "File: $FILE_PATH"
+echo "Action: $ACTION"
+
+# If action is "prepend", prepend to the beginning without asking for heading
+if [ "$ACTION" = "prepend" ]; then
+    echo "Prepending to file: $FILE_PATH"
+    
+    # Create a temporary file for prepending
+    PREPEND_TMP_FILE=$(mktemp)
+    
+    # Write the new input first, then append the original file content
+    echo "$INPUT" > "$PREPEND_TMP_FILE"
+    echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
+    cat "$FILE_PATH" >> "$PREPEND_TMP_FILE"
+    
+    # Replace the original file
+    mv "$PREPEND_TMP_FILE" "$FILE_PATH"
+    
+    echo "Text successfully prepended to $FILE_PATH"
+    exit 0
+fi
 
 ##########################################################################################
-# Step 3: Use fzf to select a heading from the file
+# Step 3: Use fzf to select a heading from the file (only for select_heading action)
 
 # Extract headings (lines starting with #) from the selected file
-echo "Extracting headings from $SELECTED_FILE..."
+echo "Extracting headings from $FILE_PATH..."
 
 # First create a temporary file with the headings
 TMP_HEADINGS=$(mktemp)
 # Add "Start of File" option as the first choice, with line number 0
 echo "0:--- Prepend to Start of File ---" > "$TMP_HEADINGS"
 # Append actual headings from the file, if any
-grep -n "^#" "$SELECTED_FILE" >> "$TMP_HEADINGS" || true
+grep -n "^#" "$FILE_PATH" >> "$TMP_HEADINGS" || true
 
 # The original 'if [ ! -s "$TMP_HEADINGS" ]' block (checking for no headings)
 # and its associated comment are removed. If no actual headings are found, 
@@ -107,18 +139,18 @@ if [ "$HEADING_LINE_NUMBER" -eq 0 ]; then
     # Write the new input first, then append the original file content
     echo "$INPUT" > "$PREPEND_TMP_FILE"
     echo "" >> "$PREPEND_TMP_FILE" # Add a blank line after the prepended text
-    cat "$SELECTED_FILE" >> "$PREPEND_TMP_FILE"
+    cat "$FILE_PATH" >> "$PREPEND_TMP_FILE"
 
     # Replace the original file
-    mv "$PREPEND_TMP_FILE" "$SELECTED_FILE"
+    mv "$PREPEND_TMP_FILE" "$FILE_PATH"
 
-    echo "Text successfully prepended to $SELECTED_FILE"
+    echo "Text successfully prepended to $FILE_PATH"
     exit 0 # Successfully prepended, so exit normally
 fi
 
 # Original Step 4 logic continues here if HEADING_LINE_NUMBER is not 0
 
-TOTAL_LINES_IN_FILE=$(wc -l < "$SELECTED_FILE" | tr -d ' ') # For boundary checks
+TOTAL_LINES_IN_FILE=$(wc -l < "$FILE_PATH" | tr -d ' ') # For boundary checks
 
 # Determine the line number after which the new text should be prepended.
 # This will be the heading line itself, or the line of dashes if it exists immediately after the heading.
@@ -129,7 +161,7 @@ echo "Debug: Checking for dashes line at $TARGET_DASHES_LINE_NUM (Heading on $HE
 
 # Check for '---' line
 if [ "$TARGET_DASHES_LINE_NUM" -le "$TOTAL_LINES_IN_FILE" ]; then
-    LINE_CONTENT_AFTER_HEADING=$(sed -n "${TARGET_DASHES_LINE_NUM}p" "$SELECTED_FILE")
+    LINE_CONTENT_AFTER_HEADING=$(sed -n "${TARGET_DASHES_LINE_NUM}p" "$FILE_PATH")
     TRIMMED_LINE_CONTENT=$(echo "$LINE_CONTENT_AFTER_HEADING" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
     if [[ "$TRIMMED_LINE_CONTENT" =~ ^-{3,}$ ]]; then
@@ -150,7 +182,7 @@ TMP_FILE=$(mktemp)
 
 # 1. Copy lines from the beginning of the file up to and including PREPEND_AFTER_LINE_NUM
 if [ "$PREPEND_AFTER_LINE_NUM" -gt 0 ]; then
-    head -n "$PREPEND_AFTER_LINE_NUM" "$SELECTED_FILE" > "$TMP_FILE"
+    head -n "$PREPEND_AFTER_LINE_NUM" "$FILE_PATH" > "$TMP_FILE"
 else
     # This case (PREPEND_AFTER_LINE_NUM=0) should not be reached if HEADING_LINE_NUMBER >= 1.
     : > "$TMP_FILE" # Creates an empty TMP_FILE if it were to happen.
@@ -164,11 +196,11 @@ echo "$INPUT" >> "$TMP_FILE"
 # 3. Append the rest of the original file, starting from the line *after* PREPEND_AFTER_LINE_NUM
 LINE_TO_START_TAIL=$((PREPEND_AFTER_LINE_NUM + 1))
 if [ "$LINE_TO_START_TAIL" -le "$TOTAL_LINES_IN_FILE" ]; then
-    tail -n "+${LINE_TO_START_TAIL}" "$SELECTED_FILE" >> "$TMP_FILE"
+    tail -n "+${LINE_TO_START_TAIL}" "$FILE_PATH" >> "$TMP_FILE"
 fi
 
 # Replace the original file with the modified content
-cp "$TMP_FILE" "$SELECTED_FILE"
+cp "$TMP_FILE" "$FILE_PATH"
 rm "$TMP_FILE"
 
-echo "Successfully inserted text under heading '$HEADING_TEXT' in $SELECTED_FILE"
+echo "Successfully inserted text under heading '$HEADING_TEXT' in $FILE_PATH"
