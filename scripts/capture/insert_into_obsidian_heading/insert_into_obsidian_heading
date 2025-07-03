@@ -22,8 +22,17 @@ if [ ! -d "$OBSIDIAN_VAULT" ]; then
     exit 1
 fi
 
+# Pre-defined files to include
+PREDEFINED_FILES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md"
+
 # Find all markdown files in the vault
-MARKDOWN_FILES=$(find "$OBSIDIAN_VAULT" -type f -name "*.md" | sort)
+VAULT_FILES=$(find "$OBSIDIAN_VAULT" -type f -name "*.md")
+
+# Combine predefined files with vault files (keeping predefined files at top)
+# First, get unique vault files that aren't in predefined list
+UNIQUE_VAULT_FILES=$(echo "$VAULT_FILES" | grep -Fxv -f <(echo "$PREDEFINED_FILES") || true)
+# Then combine: predefined files first, then sorted unique vault files
+MARKDOWN_FILES=$(echo -e "$PREDEFINED_FILES\n$UNIQUE_VAULT_FILES" | grep -v '^$')
 
 # Check if any markdown files were found
 if [ -z "$MARKDOWN_FILES" ]; then
