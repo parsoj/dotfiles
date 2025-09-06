@@ -1,0 +1,9 @@
+[
+  {
+    "context": "Editor && VimNormal",
+
+    "bindings": {
+      "space space": "command_palette::Toggle"
+    }
+  }
+]
