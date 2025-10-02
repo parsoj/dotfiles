@@ -11,7 +11,6 @@
     "bindings": {
       "space space": "command_palette::Toggle",
       // show keymap
-      "space f e d": "zed::OpenKeymap",
 
       // copy file absolute path
       "space f y y": "workspace::CopyPath",
@@ -29,7 +28,15 @@
       "space g b": "git::Blame",
       "space g l l": "editor::OpenPermalinkToLine",
 
-      "space o t": "workspace::NewCenterTerminal",
+      "space o t": "workspace::NewTerminal",
+      "space o k": "zed::OpenKeymap",
+      "space o s": "zed::OpenSettings",
+
+      "cmd-o": "file_finder::Toggle",
+
+      "space t t": "editor::ToggleTabBar",
+      "space t l": "editor::ToggleLineNumbers",
+      "space t m": "editor::ToggleMinimap",
 
       // tab
       "space b b": "file_finder::Toggle",
@@ -78,20 +85,20 @@
       "space a i": "agent::ToggleFocus"
     }
   },
-  {
-    // terminal bottom tab
-    "context": "Terminal && screen==normal",
-    "bindings": {
-      "escape": "workspace::ToggleBottomDock"
-    }
-  },
-  {
-    // terminal search screen
-    "context": "Terminal && screen==alt",
-    "bindings": {
-      "escape": "pane::CloseActiveItem"
-    }
-  },
+  // {
+  //   // terminal bottom tab
+  //   "context": "Terminal && screen==normal",
+  //   "bindings": {
+  //     "escape": "workspace::ToggleBottomDock"
+  //   }
+  // },
+  // {
+  //   // terminal search screen
+  //   "context": "Terminal && screen==alt",
+  //   "bindings": {
+  //     "escape": "pane::CloseActiveItem"
+  //   }
+  // },
   {
     "use_key_equivalents": true,
     "bindings": {
