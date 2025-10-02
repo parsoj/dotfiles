@@ -12,24 +12,21 @@ end
 
 function __fish_print_kubernetes_namespaces --description 'Print a list of all Kubernetes namespaces'
     set -l current_cluster (__fish_get_current_cluster)
-    set -l cache_key "__kubectl_namespaces_cache_$current_cluster"
-    set -l expiry_key "__kubectl_namespaces_expiry_$current_cluster"
+    set -l cache_file "/tmp/.kubectl_namespaces_cache_$current_cluster"
     set -l current_time (date +%s)
-
-    if not set -q $cache_key
-        set -g $cache_key ""
+    
+    # Check if cache file exists and is less than 5 minutes old
+    if test -f $cache_file
+        set -l file_time (stat -f %m $cache_file 2>/dev/null; or stat -c %Y $cache_file 2>/dev/null)
+        if test (math $current_time - $file_time) -lt 300
+            # Cache is still valid, use it
+            cat $cache_file
+            return
+        end
     end
-    if not set -q $expiry_key
-        set -g $expiry_key 0
-    end
-
-    if test -z "$$cache_key" -o $current_time -ge $$expiry_key
-        set -g $cache_key (command kubectl get namespaces -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}')
-        # Set cache to expire after 5 minutes (300 seconds)
-        set -g $expiry_key (math $current_time + 300)
-    end
-
-    printf '%s\n' $$cache_key
+    
+    # Cache is expired or doesn't exist, refresh it
+    command kubectl get namespaces -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | tee $cache_file
 end
 
 complete -f -c kubectl_set_namespace -a '(__fish_print_kubernetes_namespaces)'

@@ -1,9 +1,11 @@
 function list_workspaces
+    echo $WS_DIRS
     set -l dirs (string split : $WS_DIRS)
     set -l result
 
     for dir in $dirs
         if test -d $dir
+            echo "checking dir $dir"
             set result $result (rg --files --glob '**/.workspace.json' --hidden --no-messages ~/workspaces/ | xargs -I {} dirname {})
         end
     end
