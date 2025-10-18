@@ -14,7 +14,7 @@ fi
 
 ##########################################################################################
 # Step 2: Use fzf to select an Obsidian file
-OBSIDIAN_VAULT="$HOME/Documents/Obsidian-Synced"
+OBSIDIAN_VAULT="$HOME/Obsidian"
 
 # Check if Obsidian vault exists
 if [ ! -d "$OBSIDIAN_VAULT" ]; then
@@ -27,10 +27,10 @@ fi
 YEAR=$(date +"%Y")
 MONTH=$(date +"%B")
 DAY_FILENAME=$(date +"%Y-%m-%d-%A.md")
-TODAY_PLAN_PATH="$HOME/Documents/Obsidian-Synced/3 - Plans/3 - Daily_Plans/$YEAR/$MONTH/$DAY_FILENAME"
+TODAY_PLAN_PATH="$HOME/Obsidian/Obsidian-Synced/3 - Plans/3 - Daily_Plans/$YEAR/$MONTH/$DAY_FILENAME"
 TODAY_DISPLAY=$(date +"Today's Plan (%B %d)")
 
-PREDEFINED_ENTRIES="$HOME/Documents/Obsidian-Synced/4 - Inbox/Inbox.md|prepend|Inbox (Quick Capture)
+PREDEFINED_ENTRIES="$HOME/Obsidian/Obsidian-Synced/5 - Inbox/Inbox.md|prepend|Inbox (Quick Capture)
 $TODAY_PLAN_PATH|prepend|$TODAY_DISPLAY"
 
 # Find all markdown files in the vault
