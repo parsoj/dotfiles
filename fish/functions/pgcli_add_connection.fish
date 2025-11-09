@@ -1,0 +1,121 @@
+function pgcli_add_connection
+    set -l connection_string $argv[1]
+    set -l alias host user password database port hostdb hostport
+
+    # Parse connection string if provided
+    if test -n "$connection_string"
+        # Expected format: postgresql://user:password@host:port/database
+        # or postgres://user:password@host:port/database
+        set connection_string (string replace -ra '^postgres(ql)?://' '' "$connection_string")
+        
+        # Extract user and password
+        if string match -q '*@*' "$connection_string"
+            set -l userpass (string split '@' "$connection_string")[1]
+            set hostdb (string split '@' "$connection_string")[2]
+            
+            if string match -q '*:*' "$userpass"
+                set user (string split ':' "$userpass")[1]
+                set password (string split ':' "$userpass")[2]
+            else
+                set user "$userpass"
+            end
+        else
+            set hostdb "$connection_string"
+        end
+        
+        # Extract host, port, database
+        if string match -q '*/*' "$hostdb"
+            set hostport (string split '/' "$hostdb")[1]
+            set database (string split '/' "$hostdb")[2]
+            # Strip query string parameters (e.g., ?sslmode=require)
+            if string match -q '*\?*' "$database"
+                set database (string split '?' "$database")[1]
+            end
+        else
+            set hostport "$hostdb"
+            set database ""
+        end
+        
+        if string match -q '*:*' "$hostport"
+            set host (string split ':' "$hostport")[1]
+            set port (string split ':' "$hostport")[2]
+        else
+            set host "$hostport"
+            set port "5432"
+        end
+    end
+
+    # Always prompt for alias (with database name as default if available)
+    if test -n "$database"
+        read -P "Enter connection alias [$database]: " -l alias
+        if test -z "$alias"
+            set alias "$database"
+        end
+    else
+        read -P "Enter connection alias: " -l alias
+    end
+    
+    # Prompt for other missing fields
+    if test -z "$host"
+        read -P "Enter host (e.g., localhost): " -l host
+    end
+    
+    if test -z "$user"
+        read -P "Enter username: " -l user
+    end
+    
+    if test -z "$password"
+        read -P "Enter password: " -s -l password
+    end
+    
+    if test -z "$database"
+        read -P "Enter database name: " -l database
+    end
+    
+    if test -z "$port"
+        set port "5432"
+    end
+
+    # Validate inputs
+    if test -z "$alias" -o -z "$host" -o -z "$user" -o -z "$database"
+        echo "Error: Missing required fields"
+        return 1
+    end
+
+    # Ensure directories exist
+    mkdir -p ~/.config/pgcli
+    touch ~/.pgpass
+
+    # Add to .pgpass
+    set -l pgpass_entry "$host:$port:$database:$user:$password"
+    
+    # Remove existing entry for this host/port/database/user if it exists
+    if test -f ~/.pgpass
+        string match -v "^$host:$port:$database:$user:" ~/.pgpass > /tmp/pgpass.tmp
+        mv /tmp/pgpass.tmp ~/.pgpass
+    end
+    
+    # Append new entry
+    echo "$pgpass_entry" >> ~/.pgpass
+    chmod 600 ~/.pgpass
+
+    # Add to pgcli config
+    set -l config_file ~/.config/pgcli/config
+    
+    # Check if config exists and create if not
+    if not test -f "$config_file"
+        echo '[main]' > "$config_file"
+        echo '# pgcli config file' >> "$config_file"
+    end
+
+    # Add alias section
+    echo "" >> "$config_file"
+    echo "[[alias_$alias]]" >> "$config_file"
+    echo "host = $host" >> "$config_file"
+    echo "user = $user" >> "$config_file"
+    echo "database = $database" >> "$config_file"
+    echo "port = $port" >> "$config_file"
+
+    echo "✓ Connection '$alias' added successfully!"
+    echo "  Connect with: pgcli -D $alias"
+end

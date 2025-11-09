@@ -59,8 +59,6 @@ KITTY_APP_PATH="/Applications/kitty.app"
 
 # Base arguments for kitty itself to configure the popup window
 declare -a kitty_base_args=(\
-    --single-instance\
-    --instance-group popup\
     --title "kitty-popup"\
 )
 

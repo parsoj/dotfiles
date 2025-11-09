@@ -27,4 +27,12 @@ function create_new_workspace
 
     cd "$full_path"
     echo "Changed directory to: $full_path"
+
+    if type -q zed
+        echo "Opening workspace in Zed..."
+        zed "$full_path"
+    else
+        echo "Workspace created. Zed is not installed or not found in PATH."
+        echo "Open $full_path manually in your editor of choice."
+    end
 end

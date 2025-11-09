@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Script to launch a given command in Ghostty's quick terminal popup.
+
+declare -a command_to_run_in_ghostty=()
+
+# Parse options for launch_in_ghostty_popup itself
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --)
+            shift # past '--' separator
+            command_to_run_in_ghostty=("$@") # All remaining arguments are the command and its args
+            break # Stop option processing
+            ;;
+        -*)
+            # An option not recognized by this script, or an option for the command to be run.
+            # Assume it's the start of the command if '--' hasn't been used.
+            command_to_run_in_ghostty=("$@")
+            break
+            ;;
+        *)
+            # Not an option, so it must be the start of the command and its arguments
+            command_to_run_in_ghostty=("$@")
+            break
+            ;;
+    esac
+done
+
+# Check if a command was provided
+if [ "${#command_to_run_in_ghostty[@]}" -eq 0 ]; then
+  echo "Usage: $(basename "$0") [--] <command_to_run> [args...]" >&2
+  echo "" >&2
+  echo "Launches a command in Ghostty's quick terminal popup window." >&2
+  echo "" >&2
+  echo "OPTIONS:" >&2
+  echo "  --                 Separates options for this script from the command to be run." >&2
+  echo "" >&2
+  echo "EXAMPLES:" >&2
+  echo "  $(basename "$0") -- ls -l /       # Run 'ls -l /' in quick terminal" >&2
+  echo "  $(basename "$0") ls -l /          # Same (-- is optional)" >&2
+  echo "  $(basename "$0") \"echo Hello\"     # Run 'echo Hello' in quick terminal" >&2
+  exit 1
+fi
+
+# Join all arguments into a single command string
+command_to_run="${command_to_run_in_ghostty[*]}"
+
+# Create a compound command that runs the user's command, then closes the quick terminal
+# Properly escape for AppleScript - backslashes and quotes need special handling
+close_command='osascript -e '\''tell application "System Events" to key code 49 using {command down, option down}'\'
+full_command="$command_to_run; $close_command"
+
+# Escape backslashes and quotes for AppleScript keystroke
+escaped_full_command="${full_command//\\/\\\\}"
+escaped_full_command="${escaped_full_command//\"/\\\"}"
+
+# Use AppleScript to trigger the quick terminal and send the command
+osascript -e 'tell application "System Events"' \
+  -e '  key code 49 using {command down, option down}' \
+  -e '  delay 0.3' \
+  -e "  keystroke \"$escaped_full_command\"" \
+  -e '  delay 0.1' \
+  -e '  key code 36' \
+  -e 'end tell'
+
+exit 0

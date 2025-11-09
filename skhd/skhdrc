@@ -83,9 +83,10 @@ ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with titl
 ################################################################################
 # Launch Apps
 
-ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window 
+ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
+#ctrl - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
-# ctrl - b: osascript -e 'tell application "Safari" to make new document & activate' 
+# ctrl - b: osascript -e 'tell application "Safari" to make new document & activate'
 
 #ctrl - b: osascript -e 'tell application "Safari" to make new document' && osascript -e 'tell application "System Events" to tell process "Safari" to set frontmost to true'
 #ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
@@ -97,16 +98,21 @@ ctrl - x:  kitty --single-instance --directory ~/
 
 #ctrl - o: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 1"
 #ctrl - i: /Applications/Thorium.app/Contents/MacOS/Thorium -new-window --profile-directory="Profile 2"
-# cmd - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" launch_osx_app 
+# cmd - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" launch_osx_app
 
-cmd + alt - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup" 
-ctrl - t: open /Applications/kitty.app -n  
+#cmd + alt - space: open /Applications/kitty.app -n --args --single-instance --instance-group popup --title="kitty-popup"
+#ctrl - t: open /Applications/kitty.app -n
 
-ctrl + alt + cmd - r: open /Applications/Raycast.app
+#ctrl + alt + cmd - r: open /Applications/Raycast.app
 
 cmd + alt - p: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- ipython
-cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- /Users/jeff/.config/scripts/launchers/launch_osx_app 
+#cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
+cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_ghostty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
 cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- gum write \| insert_into_obsidian_heading
+
+alt - t: zed ~/code/repos/Tennr
+alt - c: zed ~/.config
+ctrl + cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- open_repo
 
 ##########################################################################################
 # Quick Capture
@@ -116,11 +122,15 @@ cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- gu
 # cmd + shift - n: osascript -e 'tell application "System Events" to keystroke "c" using command down' && sleep 0.1 && pbpaste > /tmp/selected_text
 # cmd + shift - n: osascript -e 'display notification "A"' && osascript -e 'display notification "B"'
 # cmd + shift - n: echo "foo" > /tmp/selected_text
-# cmd + shift - n: osascript -e 'tell application "System Events" to keystroke "c" using command down' 
+# cmd + shift - n: osascript -e 'tell application "System Events" to keystroke "c" using command down'
 #cmd + shift - n: open -g /Users/jeff/.config/scripts/building_blocks/TextCapture/TextCapture.app
 #cmd + shift - n: /Users/jeff/.config/scripts/building_blocks/TextCapture/TextCapture.app/Contents/MacOS/TextCapture
 
 
+##########################################################################################
+# Quick Open
+
+ctrl + alt + cmd - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- open_repo
 
 ##########################################################################################
 # Window Resizing
