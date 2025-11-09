@@ -57,9 +57,8 @@ escaped_full_command="${escaped_full_command//\"/\\\"}"
 # Use AppleScript to trigger the quick terminal and send the command
 osascript -e 'tell application "System Events"' \
   -e '  key code 49 using {command down, option down}' \
-  -e '  delay 0.3' \
+  -e '  delay 0.15' \
   -e "  keystroke \"$escaped_full_command\"" \
-  -e '  delay 0.1' \
   -e '  key code 36' \
   -e 'end tell'
 
