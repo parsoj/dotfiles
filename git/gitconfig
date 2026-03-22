@@ -12,7 +12,7 @@
 [push]
 	default = matching
 [core]
-	editor = emacsclient
+	editor = zed
 [github]
 	user = jeff@jeffparsons.me
 [filter "lfs"]

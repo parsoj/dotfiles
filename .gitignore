@@ -25,6 +25,17 @@ packer/*
 AWSVPNCLIENT/*
 
 **/*.swp
+**/*.sqlite
+**/*.mdb
+**/*.wasm
+tmux/plugins/
+pagerduty-cli/
+pgcli/log
+pgcli/history
+pgcli/config
+tcld/tokens.json
+graphite/user_config
+marimo/marimo.toml
 
 alacritty/*
 github-copilot/*

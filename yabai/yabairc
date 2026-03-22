@@ -37,7 +37,7 @@ yabai -m rule --add app=".*" manage=off
 ##########################################################################################
 # OSX App Settings
 
-yabai -m rule --add app="AWS VPN Client" title="AWS VPN Client" manage=off
+yabai -m rule --add app="Ghostty" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=off
 yabai -m rule --add app="Music" title="Music" manage=off
@@ -51,14 +51,13 @@ yabai -m rule --add app="Firefox" role="AXWindow" subrole="AXStandardWindow" man
 yabai -m rule --add app="Hyper" title="Hyper" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Safari" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Arc" title=".+" role="AXWindow" subrole="AXStandardWindow" manage=on
-yabai -m rule --add app="Thorium" title=".+" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="Thorium" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="Google Chrome" role="AXWindow" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="Xcode" role="AXWindow" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="Zed" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
 yabai -m rule --add app="Cursor" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
-yabai -m rule --add app="iTerm" role="AXWindow" subrole="AXStandardWindow" manage=on
-yabai -m rule --add app="kitty" role="AXWindow" subrole="AXStandardWindow" manage=on
-yabai -m rule --add app="kitty" title="kitty-popup" role="AXWindow" subrole="AXStandardWindow" grid=4:6:1:1:4:2 manage=off
 
 yabai -m rule --add app="GoodTask" title="GoodTask" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="OmniFocus" role="AXWindow" subrole="AXStandardWindow" manage=on

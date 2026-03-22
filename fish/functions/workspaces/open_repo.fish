@@ -1,4 +1,4 @@
 function open_repo
-    zed (pick_repo)
+    cd (pick_repo)
 
 end

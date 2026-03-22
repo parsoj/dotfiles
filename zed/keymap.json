@@ -17,16 +17,26 @@
 
       // terminal
       "space '": "terminal_panel::ToggleFocus",
+      "space ;": "agent::ToggleFocus",
 
       // magit
       // if you want to use buildin git panel
-      "space g s": "git_panel::ToggleFocus",
       // "space g s": [
       //   "task::Spawn",
       //   { "task_name": "magit", "reveal_target": "center" }
       // ],
-      "space g b": "git::Blame",
-      "space g l l": "editor::OpenPermalinkToLine",
+
+      // "space g s": "git_panel::ToggleFocus",
+      // "space g b": "git::Blame",
+      // "space g l l": "editor::OpenPermalinkToLine",
+
+      "g r": "editor::FindAllReferences",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g b": "pane::GoBack",
 
       "space o t": "workspace::NewTerminal",
       "space o k": "zed::OpenKeymap",
@@ -41,6 +51,8 @@
       // tab
       "space b b": "file_finder::Toggle",
       "space b d": "pane::CloseActiveItem",
+
+      "space p s": "project_search::SearchInNew",
 
       "space b s": "workspace::NewFile",
       "space tab": "pane::AlternateFile",
@@ -104,6 +116,15 @@
     "bindings": {
       // disable chat panel as no one use it
       "cmd-shift-c": null
+    }
+  },
+  {
+    "bindings": {
+      "cmd-h": "workspace::ToggleLeftDock",
+      "cmd-l": "workspace::ToggleRightDock",
+      "cmd-a": "agent::ToggleFocus",
+      "cmd-t": "terminal_panel::ToggleFocus",
+      "cmd-k": "assistant::InlineAssist"
     }
   },
   {

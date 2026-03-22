@@ -1,5 +1,19 @@
 set -q FZF_TMUX_HEIGHT; or set -U FZF_TMUX_HEIGHT "40%"
-set -q FZF_DEFAULT_OPTS; or set -U FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT"
+
+# Theme fzf based on macOS dark/light mode
+# Dark: Catppuccin Frappe | Light: Nord Light
+if defaults read -g AppleInterfaceStyle &>/dev/null
+    set -gx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT" \
+        "--color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284" \
+        "--color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF" \
+        "--color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284" \
+        "--color=selected-bg:#51576D,border:#737994,label:#C6D0F5"
+else
+    set -gx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT" \
+        "--color=bg+:#c2d0e7,bg:#e5e9f0,spinner:#398eac,hl:#3b6ea8" \
+        "--color=fg:#60728c,header:#3b6ea8,info:#9a7500,pointer:#398eac" \
+        "--color=marker:#398eac,fg+:#3b4252,prompt:#9a7500,hl+:#3b6ea8"
+end
 set -q FZF_LEGACY_KEYBINDINGS; or set -U FZF_LEGACY_KEYBINDINGS 1
 set -q FZF_DISABLE_KEYBINDINGS; or set -U FZF_DISABLE_KEYBINDINGS 0
 set -q FZF_PREVIEW_FILE_CMD; or set -U FZF_PREVIEW_FILE_CMD "head -n 10"

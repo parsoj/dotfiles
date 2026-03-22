@@ -11,11 +11,11 @@
 # equalize size of windows
 shift + alt - 0 : chunkc tiling::desktop --equalize
 
-# swap window
-shift + alt - h : chunkc tiling::window --swap west
-shift + alt - j : chunkc tiling::window --swap south
-shift + alt - k : chunkc tiling::window --swap north
-shift + alt - l : chunkc tiling::window --swap east
+# swap window (disabled — Alt+Shift+hjkl used for tmux pane splits)
+#shift + alt - h : chunkc tiling::window --swap west
+#shift + alt - j : chunkc tiling::window --swap south
+#shift + alt - k : chunkc tiling::window --swap north
+#shift + alt - l : chunkc tiling::window --swap east
 
 # move window
 shift + cmd - h : chunkc tiling::window --warp west
@@ -83,7 +83,9 @@ ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with titl
 ################################################################################
 # Launch Apps
 
-ctrl - b: /Applications/Firefox.app/Contents/MacOS/firefox -new-window
+ctrl - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 1"
+ctrl + shift - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 2"
+ctrl + alt + cmd - g: /Applications/Ghostty.app/Contents/MacOS/ghostty
 #ctrl - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt
 # ctrl - b: osascript -e 'tell application "Safari" to make new document & activate'
@@ -107,8 +109,8 @@ ctrl - x:  kitty --single-instance --directory ~/
 
 cmd + alt - p: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- ipython
 #cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
-cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_ghostty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
-cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- gum write \| insert_into_obsidian_heading
+#cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_ghostty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
+cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_ghostty_popup -- gum write \| insert_into_obsidian_heading
 
 alt - t: zed ~/code/repos/Tennr
 alt - c: zed ~/.config
@@ -130,7 +132,7 @@ ctrl + cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popu
 ##########################################################################################
 # Quick Open
 
-ctrl + alt + cmd - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- open_repo
+# ctrl + alt + cmd - o: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- open_repo
 
 ##########################################################################################
 # Window Resizing

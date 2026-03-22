@@ -1,0 +1,101 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"]
+  },
+  "context_servers": {
+    "postgres-context-server": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "database_url": "postgresql://myuser:mypassword@localhost:5432/mydatabase"
+      }
+    }
+  },
+  "agent": {
+    "message_editor_min_lines": 2,
+    "default_width": 630.0,
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
+    },
+    "dock": "right",
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-1-latest"
+    }
+  },
+  "vim_mode": true,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé"
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "telemetry": {
+    "metrics": false
+  },
+  "edit_predictions": {
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_text_threads": false
+  },
+
+  "git_panel": {
+    "dock": "left"
+  },
+
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
+
+  "gutter": {
+    "line_numbers": false,
+    "breakpoints": false,
+    "runnables": false,
+    "folds": false
+  },
+
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_sign_in": false,
+    "show_user_picture": true
+  },
+  "outline_panel": {
+    "button": false
+  },
+  "preferred_line_length": 100,
+
+  "terminal": {
+    "dock": "right",
+    "copy_on_select": false,
+    "font_family": "Iosevka Term"
+  },
+
+  "icon_theme": {
+    "dark": "Zed (Default)",
+    "light": "Catppuccin Latte",
+    // Mode to use (dark, light) or "system" to follow the OS's light/dark mode (default)
+    "mode": "system"
+  },
+
+  "ui_font_size": 15,
+  "buffer_font_size": 14,
+  "buffer_font_family": "Iosevka Term",
+  "ui_font_family": "Iosevka Term"
+}

@@ -1,0 +1,135 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+
+# format = "$time$all$character"
+format = '''
+
+[┌──────────────────────────────────────────────────────────────<](bold green)
+[│](bold green)$directory $git_branch$git_state
+[│](bold green)$kubernetes $aws$nodejs
+[└─>](bold green) '''
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+[cmd_duration]
+show_notifications = true
+min_time_to_notify = 10_000
+
+[line_break]
+disabled = false
+
+[time]
+disabled = true
+format ="[$time -]($style) "
+
+[directory]
+read_only = " 󰌾"
+truncation_length = 5
+truncate_to_repo = false
+repo_root_style = "bold purple"
+before_repo_root_style = "bold blue"
+
+
+[directory.substitutions]
+'~/code/workspaces/' = '|'
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+style = "bold blue"
+
+[git_state]
+disabled = true
+
+[git_status]
+disabled = true
+
+[direnv]
+disabled = false
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+symbol = "󰏗 "
+disabled = true
+
+# aws
+[aws]
+disabled = false
+format = '[$symbol$profile](fg:#FF9900) '
+
+[kubernetes]
+disabled = false
+style = "yellow"
+format = '[$symbol$context( \($namespace\))]($style)'
+detect_extensions = []
+detect_files = []
+detect_folders = []
+
+[terraform]
+disabled = true
+
+[gcloud]
+disabled = true
+
+
+[docker_context]
+disabled = true
+format = "[](fg:#23B9EB)"
+symbol = " "
+
+[golang]
+symbol = " "
+
+[memory_usage]
+disabled = true
+symbol = "󰍛 "
+
+[nodejs]
+format ="[$symbol($version )]($style)"
+symbol = " "
+
+[python]
+format ="[$symbol($version )](fg:#3872A2)"
+symbol = " "
+
+[rust]
+symbol = " "
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+Emscripten = " "
+Fedora = " "
+FreeBSD = " "
+Gentoo = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "

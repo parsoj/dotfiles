@@ -1,38 +1,42 @@
 function create_new_workspace
+    set -l no_clipboard false
+    set -l args
 
-    set parent_folder (list_workspace_containing_directories | fzf)
+    for arg in $argv
+        if test "$arg" = "--no-clipboard"
+            set no_clipboard true
+        else
+            set -a args $arg
+        end
+    end
 
-    # Check if fzf was exited without a selection
-    if test -z "$parent_folder"
-        echo "No parent directory selected. Aborting."
+    set -l name (string join "-" $args)
+
+    if test -z "$name"
+        read -P "Workspace name: " name
+    end
+
+    if test -z "$name"
+        echo "No workspace name provided. Aborting."
         return 1
     end
 
-    read -P "New workspace folder:
-     $parent_folder/" new_sub_directory
-
-    # Check if the user didn't provide a subdirectory name
-    if test -z "$new_sub_directory"
-        echo "No subdirectory path provided. Aborting."
-        return 1
-    end
-
-    set full_path "$parent_folder/$new_sub_directory"
+    set -l full_path ~/code/workspaces/$name
 
     echo "Creating new workspace at: $full_path"
     mkdir -p "$full_path"
-
     touch "$full_path/.workspace.json"
-    echo "Created .workspace.json file in $full_path"
 
     cd "$full_path"
-    echo "Changed directory to: $full_path"
 
-    if type -q zed
-        echo "Opening workspace in Zed..."
-        zed "$full_path"
-    else
-        echo "Workspace created. Zed is not installed or not found in PATH."
-        echo "Open $full_path manually in your editor of choice."
+    # If clipboard contains a GitHub URL, add that repo to the workspace
+    if test "$no_clipboard" = false
+        set -l clip (pbpaste | string trim)
+        if string match -rq '^(https://github\.com/|git@github\.com:)' "$clip"
+            echo "Found GitHub URL in clipboard: $clip"
+            add_repo "$clip"
+        end
     end
+
+    echo "Ready."
 end
