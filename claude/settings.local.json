@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:code.claude.com)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(ls:*)",
+      "Bash(git status:*)",
+      "Bash(claude mcp --help:*)",
+      "Bash(claude mcp add --help:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(awk:*)",
+      "Bash(find:*)",
+      "Bash(ls * | grep * | awk *)",
+      "Bash(tail:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

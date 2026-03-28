@@ -40,3 +40,5 @@ marimo/marimo.toml
 alacritty/*
 github-copilot/*
 semantic-grep/*
+
+claude/plugins/
