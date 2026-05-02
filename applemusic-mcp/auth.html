@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apple Music Authorization</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        h1 { color: #fa586a; }
+        button {
+            background: #fa586a;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover { background: #ff6b7a; }
+        button:disabled { background: #666; cursor: not-allowed; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        #status { margin: 20px 0; }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #666;
+            border-radius: 50%;
+            border-top-color: #fa586a;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Apple Music Authorization</h1>
+    <p>Click the button below to authorize access to your Apple Music library.</p>
+    <button id="authButton" onclick="authorize()">Authorize with Apple Music</button>
+    <div id="status"></div>
+    <script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" data-web-components async></script>
+    <script>
+        const developerToken = "eyJhbGciOiJFUzI1NiIsImtpZCI6Ilo5NldCQUEzSFgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJMOTdKV0hQQ0tVIiwiaWF0IjoxNzc1NzU4MzgzLCJleHAiOjE3OTEzMTAzODN9.umrtmC4qtgMhv7rQJHHkomv7bqk12FbjRE7XfkvLgcDFEIfPH80bm6ochjwccMJO7JC4m4suHA5V9Gr73Ydhyw";
+        const serverPort = 8765;
+
+        document.addEventListener('musickitloaded', async () => {
+            try {
+                await MusicKit.configure({
+                    developerToken: developerToken,
+                    app: { name: 'Apple Music MCP Server', build: '1.0.0' }
+                });
+                document.getElementById('status').innerHTML = '<p class="success">MusicKit loaded. Click the button to authorize.</p>';
+            } catch (err) {
+                document.getElementById('status').innerHTML = '<p class="error">Error loading MusicKit: ' + err.message + '</p>';
+            }
+        });
+
+        async function authorize() {
+            const button = document.getElementById('authButton');
+            const status = document.getElementById('status');
+            button.disabled = true;
+            status.innerHTML = '<p><span class="spinner"></span>Waiting for Apple authorization...</p>';
+
+            try {
+                const music = MusicKit.getInstance();
+                const musicUserToken = await music.authorize();
+
+                status.innerHTML = '<p><span class="spinner"></span>Saving token...</p>';
+
+                // POST token back to local server
+                const response = await fetch('http://localhost:' + serverPort + '/save-token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'token=' + encodeURIComponent(musicUserToken)
+                });
+
+                if (response.ok) {
+                    status.innerHTML = '<p class="success">✓ Authorization successful! Token saved.</p><p>You can close this window and return to the terminal.</p>';
+                } else {
+                    throw new Error('Failed to save token to server');
+                }
+            } catch (err) {
+                status.innerHTML = '<p class="error">Failed: ' + err.message + '</p>';
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
