@@ -1,10 +1,4 @@
 function open_workspace_file
-    set selected_file (workspace_file_list | fzf)
-
-    if test -z "$selected_file"
-        echo "No file selected"
-        return 1
-    end
-
-    nvim "$selected_file"
+    set -l selected (workspace_file_list | fzf)
+    test -n "$selected"; and nvim_open $selected
 end

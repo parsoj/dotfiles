@@ -1,10 +1,4 @@
 function open_cwd_child_file
-    set selected_file (cwd_file_list | fzf)
-
-    if test -z "$selected_file"
-        echo "No file selected"
-        return 1
-    end
-
-    nvim "$selected_file"
+    set -l selected (cwd_file_list | fzf)
+    test -n "$selected"; and nvim_open $selected
 end

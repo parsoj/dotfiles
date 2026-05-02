@@ -1,4 +1,4 @@
-function send_to_inbox -d "Prepend text to INBOX_FILE_PATH (reads stdin or prompts for input)"
+function inbox_send -d "Prepend text to INBOX_FILE_PATH (reads stdin or prompts for input)"
     if not set -q INBOX_FILE_PATH
         echo "Error: INBOX_FILE_PATH is not set" >&2
         return 1

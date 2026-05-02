@@ -6,8 +6,8 @@ alias rrr="source ~/.config/fish/config.fish"
 alias vo="vim (fzf)"
 alias watch=entr
 alias l=launch_app_or_function
-alias ib=send_to_inbox
-alias wib=send_to_work_inbox
+alias ib=inbox_send
+alias wib=work_inbox_send
 
 # Individual script paths (commented out):
 #fish_add_path ~/.config/scripts/launchers/

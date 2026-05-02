@@ -1,9 +1,9 @@
-function public_echo_server -d "Start an echo server exposed via ngrok"
+function echo_server_public_start -d "Start an echo server exposed via ngrok"
     argparse 'h/help' 'p/port=!_validate_int' -- $argv
     or return 1
 
     if set -q _flag_help
-        echo "Usage: public_echo_server [--port PORT]"
+        echo "Usage: echo_server_public_start [--port PORT]"
         echo ""
         echo "Starts a local echo server and exposes it publicly via ngrok."
         echo "All incoming requests are logged with headers and body."
@@ -61,7 +61,7 @@ function public_echo_server -d "Start an echo server exposed via ngrok"
     echo "--- echo server ---"
 
     # Echo server runs in foreground — Ctrl+C kills it
-    localhost_echo_server --port $port
+    echo_server_local_start --port $port
 
     # Clean up ngrok when echo server exits
     kill $ngrok_pid 2>/dev/null

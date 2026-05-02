@@ -1,4 +1,4 @@
-function spinout
+function workspace_spinout
     # Verify we're inside a repo under ~/code/repos/
     set -l repo_root (git rev-parse --show-toplevel 2>/dev/null)
     or begin

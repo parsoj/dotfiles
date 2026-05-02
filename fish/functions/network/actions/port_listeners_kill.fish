@@ -1,6 +1,6 @@
-function kill_port_listeners
+function port_listeners_kill
     if test -z "$argv[1]"
-        echo "Usage: kill_port_listeners <port>" >&2
+        echo "Usage: port_listeners_kill <port>" >&2
         return 1
     end
     set -l pids (lsof -ti :$argv[1])

@@ -1,9 +1,9 @@
-function localhost_echo_server -d "Start a local-only HTTP echo server for debugging"
+function echo_server_local_start -d "Start a local-only HTTP echo server for debugging"
     argparse 'h/help' 'p/port=!_validate_int' -- $argv
     or return 1
 
     if set -q _flag_help
-        echo "Usage: localhost_echo_server [--port PORT]"
+        echo "Usage: echo_server_local_start [--port PORT]"
         echo ""
         echo "Starts a minimal HTTP echo server bound to 127.0.0.1."
         echo "Logs every request (method, path, headers, body) to stdout"

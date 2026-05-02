@@ -1,4 +1,4 @@
-function tmux_create_workspace
+function tmux_workspace_create
     read -P "Name: " name
     or return 1
     test -n "$name"
