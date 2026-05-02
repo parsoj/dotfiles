@@ -37,8 +37,7 @@ function pagerduty_bulk_triage -d "Triage PagerDuty incidents using LLM categori
 
     # Step 1: Pick a service using fzf
     echo "Fetching PagerDuty services..."
-    set service (pd service list --json 2>/dev/null \
-        | jq -r '.[] | "\(.id)\t\(.name)"' \
+    set service (pd_service_list \
         | fzf --with-nth=2.. --delimiter='\t' --prompt="Select a service: " --height=~40%)
 
     if test -z "$service"

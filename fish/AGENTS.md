@@ -15,11 +15,11 @@ Every interactive shell utility decomposes into three roles:
 - **Action** — takes a single candidate (typically as `$argv[1]` or stdin) and
   performs a side effect: open a file, switch a context, send a request, etc.
 - **Flow** — terminal entry point a human types at a prompt. Composes a
-  producer + a picker (usually `fzf`) + an action. The `fzf` picker lives only
-  inside flows; producers and actions are picker-agnostic.
+  producer + an interactive selector (usually `fzf`) + an action. `fzf`
+  lives only inside flows; producers and actions are selector-agnostic.
 
-The **api layer** is producers + actions — picker-agnostic, callable by any
-frontend. The **cli layer** is flows — what a human types.
+The **api layer** is producers + actions — selector-agnostic, callable by
+any frontend. The **cli layer** is flows — what a human types.
 
 Keeping these separate means the same producer/action pair can be driven by
 `fzf` from a terminal *or* by a Raycast `<List>` extension that shells out to
@@ -40,7 +40,7 @@ prompts inside producers or actions.
         shared/             # cross-feature, user-callable utilities
             producers/      # list all producers/actions/flows
             actions/        # generic actions (notify, copy, open_in_editor, …)
-            flows/          # cross-feature flows (e.g. "pick anything")
+            flows/          # cross-feature flows (e.g. "select anything")
         <feature>/
             producers/      # *_list, *_search, *_candidates
             actions/        # *_open, *_archive, *_set, *_send, …
@@ -227,20 +227,10 @@ needs to move.
       restructured into `<feature>/{producers,actions,flows}/` (utils
       removed entirely; reverse-phone-lookup moved to `phone/`).
 - [ ] Raycast extension scaffolded at
-      `~/code/workspaces/raycast/fish-pickers/`.
+      `~/code/workspaces/raycast/fish-flows/`.
 
-### Faithful-port caveats (things to clean up later)
+### Caveats (things still to clean up later)
 
-The bulk migration was a faithful port — same logic, new locations. Several
-small cleanups were deliberately deferred:
-
-- Many flows (e.g. `kns`, `kx`, `ax`, `pick_pod`, `rd`, `pg_connect`) still
-  embed their producer logic inline rather than calling out to a separate
-  producer function. Fine for terminal use; needs decomposition before they
-  can drive a Raycast `<List>`.
-- `pagerduty_bulk_resolve` and `pagerduty_bulk_triage` are large monolithic
-  flows. Their `pd_service_list` query is a clear shared-producer candidate
-  but wasn't extracted.
 - Dependency-check blocks (`if not command -q fzf … brew install`) appear in
   `pagerduty_bulk_*` and elsewhere. A single `_lib/_lib_require` helper
   would replace ~40 lines.
@@ -254,6 +244,9 @@ small cleanups were deliberately deferred:
   `_nvm_*`, `bass`, `fisher`, `fzf_key_bindings`, `nvm`,
   `fish_user_key_bindings` (the last has a special filename fish loads
   unconditionally, so it must stay flat).
+- `pagerduty_bulk_triage` still bundles `_pd_triage_batch_cmd` and
+  `_pd_triage_relative_time` inline at the bottom of its file. They could
+  move to `pagerduty/_lib/`. Faithful for now.
 
 ### Functions to migrate
 
@@ -347,4 +340,4 @@ feature as `actions/phone_lookup.fish`.
    subfolder.
 4. **`workspaces/`** — biggest, save for last when the pattern is solid.
 5. **Cleanup pass on `config.fish`** — extract remaining inline functions.
-6. **Scaffold the Raycast extension** and port the first picker.
+6. **Scaffold the Raycast extension** and port the first flow.
