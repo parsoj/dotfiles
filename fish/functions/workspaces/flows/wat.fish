@@ -1,5 +1,5 @@
 function wat
-    add_repo Tennr
+    repo_add Tennr
     or return 1
 
     cd (workspace_root)/Tennr

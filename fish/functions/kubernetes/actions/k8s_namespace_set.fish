@@ -1,8 +1,9 @@
-function kubectl_set_namespace --description 'Set Kubernetes namespace'
+# @runs-in     background
+function k8s_namespace_set --description 'Set Kubernetes namespace'
     if test (count $argv) = 1
         kubectl config set-context --current --namespace=$argv[1]
     else
-        echo "Usage: kubectl_set_namespace <namespace>"
+        echo "Usage: k8s_namespace_set <namespace>"
     end
 end
 
@@ -29,4 +30,4 @@ function __fish_print_kubernetes_namespaces --description 'Print a list of all K
     command kubectl get namespaces -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | tee $cache_file
 end
 
-complete -f -c kubectl_set_namespace -a '(__fish_print_kubernetes_namespaces)'
+complete -f -c k8s_namespace_set -a '(__fish_print_kubernetes_namespaces)'

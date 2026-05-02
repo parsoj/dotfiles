@@ -1,5 +1,5 @@
 function open_cwd_child_file
-    set selected_file (list_cwd_child_files | fzf)
+    set selected_file (cwd_file_list | fzf)
 
     if test -z "$selected_file"
         echo "No file selected"

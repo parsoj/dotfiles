@@ -32,10 +32,10 @@ function spinout
     end
 
     # Create workspace and add repo as worktree
-    create_new_workspace --no-clipboard $name
+    workspace_create --no-clipboard $name
     or return 1
 
-    add_repo $repo_name
+    repo_add $repo_name
     or return 1
 
     cd $repo_name

@@ -1,5 +1,5 @@
 function open_workspace_file
-    set selected_file (list_workspace_files | fzf)
+    set selected_file (workspace_file_list | fzf)
 
     if test -z "$selected_file"
         echo "No file selected"

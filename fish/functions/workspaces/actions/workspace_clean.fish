@@ -1,4 +1,4 @@
-function clean_workspaces
+function workspace_clean
     # Gather workspace paths sorted by modification time (oldest first)
     set -l dirs (string split : $WS_DIRS)
     set -l workspaces

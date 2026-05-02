@@ -1,4 +1,5 @@
-function kubectl_set_cluster --description 'Switch Kubernetes cluster'
+# @runs-in     background
+function k8s_context_set --description 'Switch Kubernetes cluster'
     if test (count $argv) = 1
         kubectl config use-context $argv[1]
     else
@@ -10,4 +11,4 @@ function __fish_print_kubernetes_clusters --description 'Print a list of all Kub
     kubectl config get-contexts -o name
 end
 
-complete -c kubectl_set_cluster -f -a '(__fish_print_kubernetes_clusters)'
+complete -c k8s_context_set -f -a '(__fish_print_kubernetes_clusters)'

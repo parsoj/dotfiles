@@ -1,5 +1,5 @@
 function go_to_workspace
-    set workspace_path (list_workspaces | fzf)
+    set workspace_path (workspace_list | fzf)
 
     # Check if fzf was exited without a selection
     if test -z "$workspace_path"

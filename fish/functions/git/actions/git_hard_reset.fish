@@ -1,5 +1,5 @@
 # @destructive yes
-function git-hard-reset
+function git_hard_reset
     git reset --hard
     git clean -fd
     git status

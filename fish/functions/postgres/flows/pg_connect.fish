@@ -1,3 +1,8 @@
+# @raycast              yes
+# @raycast-title        Connect to Postgres
+# @raycast-description  Pick a .pgpass entry and connect with pgcli
+# @raycast-producer     pgpass_list
+# @raycast-action       pgpass_connect
 function pg_connect --description "pick a .pgpass entry and connect with pgcli"
     type -q fzf; or begin
         echo "pg_connect: fzf not found in PATH" >&2
@@ -10,5 +15,5 @@ function pg_connect --description "pick a .pgpass entry and connect with pgcli"
         return 1
     end
 
-    pg_connect_to $entry
+    pgpass_connect $entry
 end

@@ -1,4 +1,4 @@
-function create_new_workspace
+function workspace_create
     set -l no_clipboard false
     set -l args
 
@@ -34,7 +34,7 @@ function create_new_workspace
         set -l clip (pbpaste | string trim)
         if string match -rq '^(https://github\.com/|git@github\.com:)' "$clip"
             echo "Found GitHub URL in clipboard: $clip"
-            add_repo "$clip"
+            repo_add "$clip"
         end
     end
 

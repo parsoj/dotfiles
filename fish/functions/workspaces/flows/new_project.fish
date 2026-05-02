@@ -16,5 +16,5 @@ function new_project --description "Create a tmux window + Tennr workspace in on
     end
 
     tmux new-window -n $name
-    tmux send-keys "create_new_workspace $name" Enter
+    tmux send-keys "workspace_create $name" Enter
 end

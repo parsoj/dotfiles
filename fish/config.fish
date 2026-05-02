@@ -28,6 +28,10 @@ end
 
 envsource ~/.secret_env_vars
 
+# Selects the adapter used by _lib_terminal_window. Override per-machine if
+# you switch terminal apps. See ~/.config/fish/AGENTS.md.
+set -gx FISH_TERMINAL ghostty
+
 if status is-interactive
     set -g fish_greeting
 
@@ -105,7 +109,7 @@ alias gtc="gt create"
 ################################################################################
 # Workspaces aliases (functions are autoloaded from functions/workspaces/)
 
-alias wr=cd_workspace_root
+alias wr=workspace_root_cd
 
 alias wd=cd_workspace_directory
 alias wf=open_workspace_file
@@ -114,10 +118,10 @@ alias df=open_cwd_child_file
 alias gw=go_to_workspace
 alias gr=open_repo
 alias grt="cd ~/code/repos/Tennr"
-alias war=add_repo
-alias wab="add_repo odd-bits"
-alias wc=create_new_workspace
-alias wrn=rename_workspace
+alias war=repo_add
+alias wab="repo_add odd-bits"
+alias wsc=workspace_create  # was `wc`, which shadowed /usr/bin/wc
+alias wrn=workspace_rename
 
 ##########################################################################################
 

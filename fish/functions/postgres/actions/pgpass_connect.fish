@@ -1,8 +1,9 @@
-# @inputs entry:string  (host:port:db:user, * means default)
-function pg_connect_to --argument-names entry --description "connect via pgcli using a host:port:db:user pgpass-style entry"
+# @inputs    entry:string  (host:port:db:user, * means default)
+# @runs-in   terminal
+function pgpass_connect --argument-names entry --description "connect via pgcli using a host:port:db:user pgpass-style entry"
     test -n "$entry"; or return 1
     type -q pgcli; or begin
-        echo "pg_connect_to: pgcli not found in PATH" >&2
+        echo "pgpass_connect: pgcli not found in PATH" >&2
         return 1
     end
 

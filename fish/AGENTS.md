@@ -71,18 +71,35 @@ function names stay valid. See section 9.
 
 ## 3. Naming conventions
 
-Suffixes carry meaning **but are not the source of truth** (the folder is).
-The suffix is a hint for tab completion and human reading.
+Folder placement is the source of truth for role. Filenames follow
+`<subject>_<role-or-verb>` consistently — **subject first, role/verb last**.
+This makes tab completion group by subject (`workspace_<TAB>` shows
+everything related to workspaces) and reinforces the feature/role folder
+structure.
 
-| Role     | Folder       | Typical suffix(es)                          | Example       |
-|----------|--------------|---------------------------------------------|---------------|
-| producer | `producers/` | `_list`, `_search`, `_candidates`           | `repo_list`   |
-| action   | `actions/`   | `_open`, `_archive`, `_set`, `_send`, etc.  | `repo_open`   |
-| flow     | `flows/`     | bare feature name                           | `repo`        |
-| internal | `_lib/`      | `_lib_*` prefix                             | `_lib_role`   |
+| Role     | Folder       | Filename shape                              | Examples                          |
+|----------|--------------|---------------------------------------------|-----------------------------------|
+| producer | `producers/` | `<subject>_list` (or `_search`, `_candidates`) | `repo_list`, `workspace_list`, `k8s_namespace_list` |
+| producer | `producers/` | `<subject>` for single-value queries        | `workspace_root`                  |
+| action   | `actions/`   | `<subject>_<verb>`                          | `repo_open`, `workspace_clean`, `aws_profile_set`, `k8s_namespace_set` |
+| flow     | `flows/`     | open-ended; English-friendly is fine        | `con`, `kns`, `pg_connect`, `open_workspace`, `cd_workspace_directory` |
+| internal | `_lib/`      | `_lib_*` prefix                             | `_lib_role`, `_lib_meta`, `_lib_terminal_window` |
 
-Action suffixes are open-ended on purpose — the role lookup uses the folder,
-not a suffix regex, so verbs can be whatever reads best.
+**Hard rules:**
+
+- **Underscores throughout. No hyphens.** Fish accepts hyphens in function
+  names but they're a typing hazard and inconsistent with the codebase.
+- **For actions, verb goes last.** `aws_profile_set`, not `set_aws_profile`
+  or `aws_set_profile`. Subject (potentially compound) first; verb last.
+- **For producers emitting lists, `_list` is the convention** even if
+  more specific words exist. `repo_list`, not `repos`. Single-value
+  producers (e.g. `workspace_root`) drop the `_list` suffix.
+- **Flows are exempt** from the subject-first rule — they're human entry
+  points and English readability wins. `open_workspace` reads naturally;
+  `workspace_open` does not. Flows can also be idiomatic short aliases
+  (`gm`, `gs`, `cc`, `kns`, `ax`, `rr`).
+- **The role suffix is a hint, not the type tag.** The folder is the type
+  tag. Don't classify a function by suffix regex.
 
 ## 4. Metadata DSL
 
@@ -105,9 +122,10 @@ Conventional keys (extend as needed; no enforcement):
 - `@destructive yes|no` — action mutates remote/shared state; flows should
   confirm before invoking.
 - `@inputs <name>:<type>, ...` — action's expected argv shape (documentation).
-- `@raycast yes|no` — explicit opt-in/out for exposure to the Raycast
-  extension layer (default: yes for producers/actions, no for flows because
-  flows are tty-only).
+- `@runs-in <terminal|background|window>` — where this action expects to
+  run. See § 7.1.
+- `@raycast yes` (and the `@raycast-*` family) — opt a flow into the
+  Raycast extension. See § 7.3.
 
 ## 5. Query helpers
 
@@ -172,16 +190,146 @@ frontends call the same producer + action pair.
 ## 7. Raycast layer (brief)
 
 The Raycast TypeScript extension is a separate code project at
-`~/code/workspaces/raycast/<ext>/` (not in this directory). It:
+`~/code/workspaces/raycast/odd-bits/raycast/fish-flows/` (a sibling of this
+config tree, not part of it). It:
 
 - Lists candidates by running `fish -c "<producer>"` and parsing stdout.
-- Runs the chosen action via `fish -c "<action>"`, passing the selection on
-  stdin to avoid quoting issues.
+- Runs the chosen action via `fish -c "<action> <args…>"`.
 - Never invokes flows (they assume a tty for fzf and would hang in Raycast).
 
 State that lives in your shell (cwd, exported env vars) cannot cross the
 Raycast boundary. Actions that `cd` or modify the parent shell are
 terminal-only by definition.
+
+### 7.1 Action portability — `@runs-in`
+
+Actions fall into three categories, marked with the `@runs-in` metadata
+header so frontends know how to invoke them:
+
+| `@runs-in`   | Meaning                                                     | Examples                                  |
+|--------------|-------------------------------------------------------------|-------------------------------------------|
+| `background` | Spawns a process detached from any tty. Runs anywhere.      | `chrome_open`, `clipboard_set`, API calls |
+| `terminal`   | Needs a tty.                                                | `config_open` (nvim), `htop`, `less`      |
+| `window`     | Spawns its own GUI window of some kind. Runs anywhere.      | `cursor_open`, future `claude_desktop_in` |
+
+**There is one action per behavior**, not one per frontend. Frontends decide
+how to invoke based on `@runs-in`:
+
+- **Terminal frontend** (fish flows): always invokes the action directly —
+  the user already has a tty, so no wrapping is needed.
+- **Raycast frontend** (TSX): invokes `background` and `window` actions
+  directly. For `@runs-in terminal` actions, wraps via
+  `_lib_terminal_window <action> <args>` so the action runs in a freshly
+  spawned terminal window.
+
+Rules:
+
+- Actions do **one thing**. Don't add context-detection (`if Raycast …`)
+  inside an action — that conflates "what" with "where." If two contexts
+  legitimately want different behavior (e.g. claude TUI vs claude desktop
+  app), make them separate, named actions.
+- Don't create per-frontend variants of the same action (no
+  `config_open_in_window` next to `config_open`). Wrapping is a frontend
+  concern; do it at the call site.
+
+### 7.2 The `_lib_terminal_window` interface
+
+`_lib/_lib_terminal_window` is the primitive for "open a new terminal
+window running this command." It's an **interface** that dispatches to a
+configurable **adapter**:
+
+```
+$FISH_TERMINAL=ghostty   →   _lib_terminal_window_ghostty
+$FISH_TERMINAL=iterm     →   _lib_terminal_window_iterm     (not yet implemented)
+```
+
+The default `$FISH_TERMINAL=ghostty` is set in `config.fish`. To add a new
+terminal app, drop a sibling function `_lib_terminal_window_<name>` in
+`_lib/`. The dispatcher discovers it automatically. No core changes.
+
+Usage:
+
+```fish
+_lib_terminal_window nvim /path/to/file
+_lib_terminal_window htop
+_lib_terminal_window fish -c 'long_command --with --args'
+```
+
+Argument shape: command name first, then its args. The adapter is
+responsible for shell-safe quoting when handing the command to the OS.
+
+This is the primitive frontends use to wrap `@runs-in terminal` actions
+when they need to spawn a terminal first. Example: a Raycast TSX command
+running a terminal-class fish action shells out as
+
+```ts
+fish -c "_lib_terminal_window config_open '<path>'"
+```
+
+The fish process started by Raycast loads `config.fish` (which sets
+`$FISH_TERMINAL`), `_lib_terminal_window` dispatches to the configured
+adapter, and the adapter spawns a new terminal window running
+`fish -c 'config_open …'`. That inner fish autoloads `config_open` and
+runs it with a real tty. The action itself is unchanged.
+
+### 7.3 Exposing a flow as a Raycast command — the `@raycast-*` headers
+
+The Raycast extension at `~/code/workspaces/raycast/odd-bits/raycast/fish-flows/`
+generates its `package.json` `commands[]` and per-command TSX files from
+metadata headers on flow files. Each Raycast command corresponds to one
+fish flow file marked `# @raycast yes`.
+
+**Headers** (all `# @<key> <value>`, placed above the `function …` line):
+
+| Header                  | Required? | Meaning                                                                                              |
+|-------------------------|-----------|------------------------------------------------------------------------------------------------------|
+| `@raycast`              | yes       | Set to `yes` to opt this flow into the Raycast extension. Anything else is ignored.                  |
+| `@raycast-title`        | yes       | Human-readable title (Title Case). Shown in Raycast root search.                                     |
+| `@raycast-description`  | recommended | One-line subtitle in Raycast root search.                                                          |
+| `@raycast-producer`     | yes       | Name of the producer fish function that emits candidates (one per line on stdout).                   |
+| `@raycast-action`       | yes       | Name of the action fish function that runs on Enter. The action's `@runs-in` decides wrapping.       |
+| `@raycast-name`         | optional  | Internal Raycast command slug. Defaults to the flow's filename (e.g. `con` from `con.fish`).         |
+| `@raycast-display`      | optional  | `path` shows `basename(item)` as title with full path as subtitle. Default `item` shows the line as-is. |
+
+**Example (`config/flows/con.fish`):**
+
+```fish
+# @raycast              yes
+# @raycast-title        Open Config File
+# @raycast-description  Pick a file under ~/.config and open it
+# @raycast-producer     config_list
+# @raycast-action       config_open
+# @raycast-display      path
+function con --description "pick a file under ~/.config and open it in nvim"
+    set -l file (config_list | fzf --prompt="~/.config> ")
+    test -n "$file"; and config_open $file
+end
+```
+
+**Workflow to add or remove a Raycast command:**
+
+1. Edit headers on a flow file (add/remove `@raycast yes` and the rest).
+2. From the extension folder, run `pnpm generate-fish-flow-commands`.
+3. The generator rewrites `package.json` `commands[]`, regenerates
+   `src/<name>.tsx`, and removes any orphaned TSX files.
+4. If `npm run dev` is running, it hot-reloads automatically.
+
+**What the generator does NOT touch:**
+
+- Any non-`commands[]` field in `package.json` (deps, scripts, name, etc.).
+- TSX files for commands that aren't in the discovered set (they're deleted
+  if they exist at the top level of `src/`, but anything under `src/lib/`
+  or other subdirectories is preserved).
+- The fish files themselves.
+
+**What translates cleanly to Raycast and what doesn't:**
+
+| Translates                                                              | Doesn't                                                                              |
+|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| Producer + action where the action mutates persistent state (file, kubeconfig, remote API). | Actions that `cd` or modify the parent shell — Raycast can't change your terminal cwd. |
+| Producer + `@runs-in terminal` action — wraps via `_lib_terminal_window`. | Actions that export shell env vars (e.g. `set -gx AWS_PROFILE`) — those vanish when the spawned fish process exits. |
+| Producer + `@runs-in background` action — runs silently with a HUD blip. | Heavily interactive flows (multiple `read -P` prompts, branching dialogs) — better as terminal-only. |
+| Producer + `@runs-in window` action — spawns its own GUI.                | Composition flows that orchestrate multiple producers/actions internally — refactor first. |
 
 ## 8. Anti-patterns
 
@@ -203,141 +351,58 @@ terminal-only by definition.
   invisible to scripts and to functions calling them. Always call the real
   command (`git`, not `g`).
 
-## 9. Migration plan
+## 9. Migration history
 
-The structure above is partially in place. This section tracks what still
-needs to move.
+The migration into the feature/role layout is **complete**. This section
+captures the remaining tidies + history.
 
 ### Status
 
 - [x] `config.fish` recursively registers `functions/**/` on
       `$fish_function_path`.
-- [x] `_lib/_lib_role.fish` + `_lib/_lib_meta.fish` exist.
-- [x] `shared/producers/{producers,actions,flows}.fish` exist.
-- [x] Pilot feature `config/` migrated (`cf` deleted as dead code,
-      `config_list`, `con`).
-- [x] Remaining fzf-using functions migrated into feature/role folders
-      (`rd`, `pg_connect`, `pagerduty_bulk_*`, `tmux_watch_ci`, `lports`,
-      echo servers, `ip_lookup`, `send_to_*`, `rand_string`, phone lookup).
-- [x] Remaining inline functions in `config.fish` extracted (`cc`, `ccp`,
-      `ecr_login`, `workspace_root`, `run_steampipe_service`, `kns`, `kx`,
-      `pick_pod`, `ax`, `gs`, `ga`, `git-hard-reset`, `gm`, `gms`,
-      `git_add_github_fork`, `rr`, `kill_port_listeners`).
-- [x] Existing `workspaces/`, `kubernetes/`, `utils/` flat folders
-      restructured into `<feature>/{producers,actions,flows}/` (utils
-      removed entirely; reverse-phone-lookup moved to `phone/`).
-- [ ] Raycast extension scaffolded at
-      `~/code/workspaces/raycast/fish-flows/`.
+- [x] `_lib/` infrastructure (`_lib_role`, `_lib_meta`,
+      `_lib_terminal_window`, `_lib_terminal_window_ghostty`).
+- [x] `shared/producers/{producers,actions,flows}.fish` query helpers.
+- [x] Every fzf-using function migrated into `<feature>/{producers,actions,flows}/`.
+- [x] Every inline function in `config.fish` extracted into a feature
+      folder (only `nvm` remains inline; load-order sensitive).
+- [x] `workspaces/`, `kubernetes/` flat folders restructured into role
+      subfolders.
+- [x] `utils/` removed; sole occupant moved to `phone/`.
+- [x] Naming convention pass: producers and actions follow
+      `<subject>_<role-or-verb>` consistently. Flows stay open-ended.
+- [x] Raycast extension at
+      `~/code/workspaces/raycast/odd-bits/raycast/fish-flows/`. Commands
+      generated from `@raycast yes` headers via
+      `pnpm generate-fish-flow-commands`.
 
-### Caveats (things still to clean up later)
+### Pending tidies (small things)
 
 - Dependency-check blocks (`if not command -q fzf … brew install`) appear in
   `pagerduty_bulk_*` and elsewhere. A single `_lib/_lib_require` helper
-  would replace ~40 lines.
-- `gs`, `gms` are flows that produce formatted human output, not candidate
-  lists. The role classification is a best fit, not a great fit.
-- A handful of trivial flat files were left flat per the "ad-hoc when
-  touched" rule: `!!`, `authme`, `clear_empty_spaces`, `envsource`, `gtc`,
-  `gtm`, `pgcli_add_connection`, `pop_space`, `push_space`, `tf`,
-  `vaultssh`, `vl`, `y`.
-- Plugin-managed flat files were intentionally left flat: `__fzf_*`,
-  `_nvm_*`, `bass`, `fisher`, `fzf_key_bindings`, `nvm`,
-  `fish_user_key_bindings` (the last has a special filename fish loads
-  unconditionally, so it must stay flat).
-- `pagerduty_bulk_triage` still bundles `_pd_triage_batch_cmd` and
-  `_pd_triage_relative_time` inline at the bottom of its file. They could
-  move to `pagerduty/_lib/`. Faithful for now.
+  would replace ~40 lines of repeated boilerplate.
+- `pagerduty_bulk_triage` bundles `_pd_triage_batch_cmd` and
+  `_pd_triage_relative_time` inline at the bottom of its file. They
+  could move to `pagerduty/_lib/`.
+- `pagerduty_bulk_*` could be decomposed further (categorize step
+  extractable into a producer). Not blocking.
+- `workspaces/producers/list_workspace_containing_directories.fish` and
+  `list_subfolders_in_ws_dirs.fish` appear unused. Candidates for
+  deletion or rename to convention.
+- `gs`, `gms` are flows that produce formatted human output, not
+  candidate lists. The role classification is a best fit, not a great
+  fit.
+- A handful of trivial flat files remain at the top of `functions/` per
+  the "ad-hoc when touched" rule: `!!`, `authme`, `clear_empty_spaces`,
+  `envsource`, `gtc`, `gtm`, `pgcli_add_connection`, `pop_space`,
+  `push_space`, `tf`, `vaultssh`, `vl`, `y`. Categorize these only when
+  you happen to be editing them.
+- Plugin-managed flat files stay flat by design: `__fzf_*`, `_nvm_*`,
+  `bass`, `fisher`, `fzf_key_bindings`, `nvm`, `fish_user_key_bindings`
+  (the last has a special filename fish loads unconditionally).
 
-### Functions to migrate
+### Historical migration tables
 
-#### From `functions/` flat → feature folders
-
-| Current file                          | Target feature | Producer            | Action(s)              | Flow              | Notes                                         |
-|---------------------------------------|----------------|---------------------|------------------------|-------------------|-----------------------------------------------|
-| `cf.fish` (+ `cfls.fish`)             | `config/`      | `config_list`       | `config_open`          | `cf`              | `cfls` becomes the producer; `cf` the flow.   |
-| `rd.fish`                             | `git/`         | `git_dir_list`      | `git_dir_cd`*          | `rd`              | *cd is tty-only; action sets a global var or echoes path; flow does the cd. Likely keep flow-only. |
-| `pg_connect.fish`                     | `postgres/`    | `pgpass_list`       | `pg_connect_to`        | `pg_connect`      | Action takes a host:port:db:user tuple.       |
-| `pagerduty_bulk_resolve.fish`         | `pagerduty/`   | `pd_service_list`   | `pd_resolve_service`   | `pd_resolve`      | Confirmation stays in the flow, not action.   |
-| `pagerduty_bulk_triage.fish`          | `pagerduty/`   | `pd_service_list` (shared) | `pd_triage_service` | `pd_triage`     | Helper `_pd_triage_*` → `pagerduty/_lib_*`.   |
-| `tmux_watch_ci.fish`                  | `ci/` or `tmux/` | n/a (action only) | `tmux_watch_ci`        | n/a               | Already action-shaped.                        |
-| `lports.fish`                         | `network/`     | `lports`            | n/a                    | n/a               | Pure list output → producer.                  |
-| `localhost_echo_server.fish`          | `network/`     | n/a                 | `echo_server_local`    | n/a               | Action only.                                  |
-| `public_echo_server.fish`             | `network/`     | n/a                 | `echo_server_public`   | n/a               | Action only.                                  |
-| `ip_lookup.fish`                      | `network/`     | n/a                 | `ip_lookup`            | n/a               | Action that echoes; producer-action hybrid OK as action. |
-| `send_to_inbox.fish`                  | `inbox/`       | n/a                 | `send_to_inbox`        | n/a               | Already action-shaped.                        |
-| `send_to_work_inbox.fish`             | `inbox/`       | n/a                 | `send_to_work_inbox`   | n/a               | Same.                                         |
-| `rand_string.fish`                    | `shared/`      | `rand_string`       | n/a                    | n/a               | Generic; lives in `shared/producers/`.        |
-| Plugin-owned (`__fzf_*`, `_nvm_*`, `fisher.fish`, `bass.fish`, `fzf_key_bindings.fish`, `fish_user_key_bindings.fish`, `nvm.fish`) | — | — | — | — | **Leave flat.** Plugins own these. |
-| Trivial (`!!.fish`, `q`, `y.fish`, `vl.fish`, `tf.fish`, `gtc.fish`, `gtm.fish`, `clear_empty_spaces.fish`, `authme.fish`, `vaultssh.fish`, `pop_space.fish`, `push_space.fish`, `envsource.fish`, `pgcli_add_connection.fish`) | varies | — | — | — | Categorize ad-hoc when touched; not blocking. |
-
-#### From `config.fish` inline → feature folders
-
-| Current inline fn      | Target feature  | Producer            | Action               | Flow         |
-|------------------------|-----------------|---------------------|----------------------|--------------|
-| `con`                  | `config/`       | reuse `config_list` | reuse `config_open`  | `con`        |
-| `kns`                  | `kubernetes/`   | `k8s_namespace_list` | `k8s_set_namespace` | `kns`        |
-| `kx`                   | `kubernetes/`   | `k8s_context_list`  | `k8s_set_context`    | `kx`         |
-| `pick_pod`             | `kubernetes/`   | `k8s_pod_list`      | n/a                  | `pick_pod` (echoes) |
-| `ax`                   | `aws/`          | `aws_profile_list`  | `aws_set_profile`    | `ax`         |
-| `ecr_login`            | `aws/`          | n/a                 | `ecr_login`          | n/a          |
-| `workspace_root`       | `workspaces/`   | `workspace_root`    | n/a                  | n/a          |
-| `rr`                   | `git/`          | n/a                 | `git_root_cd`*       | n/a          | *Same cd-is-tty caveat as `rd`. |
-| `kill_port_listeners`  | `network/`      | n/a                 | `kill_port_listeners`| n/a          |
-| `gs`, `ga`, `gm`, `gms`, `git-hard-reset`, `git_add_github_fork` | `git/` | n/a | each an action | n/a | Many are workflow flows (compose multiple git ops) but no fzf — call them flows. |
-| `run_steampipe_service`| `steampipe/`    | n/a                 | `steampipe_restart`  | n/a          |
-| `cc`, `ccp`            | `claude/`       | n/a                 | `cc`, `ccp`          | n/a          |
-| `nvm`                  | leave inline    | —                   | —                    | —            | Sources bass; load-order sensitive. Keep in `config.fish`. |
-
-#### Existing subfolder restructuring
-
-**`functions/workspaces/`** has 27 files and is the largest group. Already
-naturally aligned with our convention; just needs to split into subfolders:
-
-| Current file                                  | Role     |
-|-----------------------------------------------|----------|
-| `list_workspaces.fish`                        | producer |
-| `list_workspace_directories.fish`             | producer |
-| `list_workspace_files.fish`                   | producer |
-| `list_workspace_containing_directories.fish`  | producer |
-| `list_subfolders_in_ws_dirs.fish`             | producer |
-| `list_cwd_child_directories.fish`             | producer |
-| `list_cwd_child_files.fish`                   | producer |
-| `print_workspace_root.fish`                   | producer |
-| `add_repo.fish`                               | action   |
-| `cd_cwd_child_directory.fish`                 | action (tty-only) |
-| `cd_workspace_directory.fish`                 | action (tty-only) |
-| `cd_workspace_root.fish`                      | action (tty-only) |
-| `clean_workspaces.fish`                       | action   |
-| `create_new_workspace.fish`                   | action   |
-| `open_cwd_child_file.fish`                    | action   |
-| `open_repo.fish`                              | action   |
-| `open_workspace_file.fish`                    | action   |
-| `open_workspace.fish`                         | action   |
-| `rename_workspace.fish`                       | action   |
-| `spinout.fish`                                | action   |
-| `tmux_create_workspace.fish`                  | action   |
-| `tmux_open_workspace.fish`                    | action   |
-| `pick_repo.fish`                              | flow     |
-| `go_to_workspace.fish`                        | flow     |
-| `new_project.fish`                            | flow     |
-| `wat.fish`                                    | flow (inspect) |
-| `rprt.fish`                                   | flow (inspect) |
-
-**`functions/kubernetes/`**: merge with the inline `kns`/`kx`/`pick_pod`
-extractions above. Existing `kubectl_set_namespace` / `kubectl_set_cluster`
-become `actions/k8s_set_namespace.fish` / `actions/k8s_set_context.fish`.
-
-**`functions/utils/`**: `reverse-phone-lookup.fish` → its own `phone/`
-feature as `actions/phone_lookup.fish`.
-
-### Migration order (suggested)
-
-1. **Pilot — one small feature.** `config/` (just `cf` + `cfls` + `con`).
-   Validates the structure end-to-end with low risk.
-2. **`pagerduty/`** — well-bounded, complex enough to exercise `_lib/`
-   helpers and `@destructive`.
-3. **`kubernetes/`** — folds inline `kns`/`kx`/`pick_pod` into the existing
-   subfolder.
-4. **`workspaces/`** — biggest, save for last when the pattern is solid.
-5. **Cleanup pass on `config.fish`** — extract remaining inline functions.
-6. **Scaffold the Raycast extension** and port the first flow.
+The detailed tables that previously lived here (mapping pre-migration
+filenames → final names) have been removed now that migration is
+complete. See git history for the original mapping if needed.

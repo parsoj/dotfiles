@@ -1,4 +1,4 @@
-function add_repo
+function repo_add
     set -l current_workspace
     begin
         workspace_root

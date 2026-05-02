@@ -1,4 +1,4 @@
-function rename_workspace
+function workspace_rename
     set -l new_name (string join "-" $argv)
 
     # Find current workspace root

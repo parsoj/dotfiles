@@ -1,5 +1,5 @@
-function cd_workspace_root
-    set workspace_dir (print_workspace_root)
+function workspace_root_cd
+    set workspace_dir (workspace_root)
 
     if test $status -ne 0
         echo "Workspace root not found"
