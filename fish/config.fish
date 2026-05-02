@@ -3,22 +3,6 @@
 #end
 
 alias rrr="source ~/.config/fish/config.fish"
-function cc
-    set -lx CLAUDE_CONFIG_DIR $HOME/.claude
-    set -lx BROWSER $HOME/.config/scripts/launchers/open-chrome-work
-    if not claude auth status 2>/dev/null | jq -e '.loggedIn == true' >/dev/null 2>&1
-        claude auth login --sso; or return 1
-    end
-    claude -c; or claude
-end
-function ccp
-    set -lx CLAUDE_CONFIG_DIR $HOME/.claude-personal
-    set -lx BROWSER $HOME/.config/scripts/launchers/open-chrome-personal
-    if not claude auth status 2>/dev/null | jq -e '.loggedIn == true' >/dev/null 2>&1
-        claude auth login; or return 1
-    end
-    claude -c; or claude
-end
 alias vo="vim (fzf)"
 alias watch=entr
 alias l=launch_app_or_function
@@ -34,8 +18,13 @@ for dir in (find ~/.config/scripts -type f -perm +111 -not -name "*test*" -print
     fish_add_path $dir
 end
 
-# Add function subdirectories to function path
-set -g fish_function_path ~/.config/fish/functions/workspaces ~/.config/fish/functions/kubernetes ~/.config/fish/functions/utils $fish_function_path
+# Auto-register every subdirectory under functions/ on $fish_function_path so
+# nested feature/role folders autoload. See ~/.config/fish/AGENTS.md.
+for dir in ~/.config/fish/functions/**/
+    if not contains -- $dir $fish_function_path
+        set -p fish_function_path $dir
+    end
+end
 
 envsource ~/.secret_env_vars
 
@@ -106,175 +95,15 @@ end
 #     fish_add_path $dir
 # end
 
-##########################################################################################
-# AWS stuff
-
-function ecr_login
-    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 408930492337.dkr.ecr.us-east-1.amazonaws.com
-end
-
-##########################################################################################
-# workspacey stuff
-#
-
-function workspace_root
-    set -l current_path (pwd)
-    set -l home_path ~
-
-    # Loop until we hit / or ~/
-    while test "$current_path" != / -a "$current_path" != "$home_path"
-        # Check if .workspace file exists in current directory
-        if test -f "$current_path/.workspace.json"
-            echo "$current_path"
-            return 0
-        end
-
-        # Move up one directory
-        set current_path (dirname "$current_path")
-    end
-
-    # Check the final directory (/ or ~/)
-    if test -f "$current_path/.workspace.json"
-        echo "$current_path"
-        return 0
-    end
-
-    # If we got here, we didn't find a .workspace file
-    echo "not in a workspace" >&2
-    return 1
-end
-
 ################################################################################
-# Steampipe
-
-function run_steampipe_service
-    steampipe service stop
-    steampipe service start --database-password pwd
-
-end
-
-################################################################################
-# kubernetes
-
-function kns
-    set -l target_namespace (kubectl get ns -o custom-columns=NAME:.metadata.name --no-headers | fzf)
-    kubectl config set-context --current --namespace=$target_namespace
-end
-
-function kx
-    set -l context (kubectl config get-contexts -o name| fzf)
-    kubectl config use-context $context
-
-end
-
-function pick_pod
-    set -l pod_name (kubectl get pods -o custom-columns=NAME:.metadata.name --no-headers | fzf)
-    echo $pod_name
-end
-
-################################################################################
-# aws 
-
-function ax
-    set -gx AWS_PROFILE (aws configure list-profiles | fzf)
-end
-
-################################################################################
-# git settings
+# git aliases (functions are autoloaded from functions/git/)
 
 alias gd="git difftool"
 alias gco="git checkout"
 alias gtc="gt create"
 
-function gs
-    gt ls --stack 2>/dev/null
-    git status
-end
-
-function ga
-    git add $argv
-    git status
-end
-
-function git-hard-reset
-    git reset --hard
-    git clean -fd
-    git status
-end
-
-function gm
-    if test -z "$argv"
-        echo "Error: No commit message provided." >&2
-        return 1
-    end
-
-    set commit_message (string join " " $argv)
-
-    if test (git diff --cached --name-only | line_count) -gt 0
-        gt modify -c -m "$commit_message" 2>/dev/null
-        or git commit -m "$commit_message"
-    else
-        gt modify -c -a -m "$commit_message" 2>/dev/null
-        or git commit -a -m "$commit_message"
-    end
-end
-
-function gms
-    gm $argv
-    or return 1
-    gt submit --stack --draft --ai 2>/dev/null
-    or echo "Graphite submit skipped (not a graphite repo)"
-end
-
-function git_add_github_fork
-    set -l url $argv[1]
-    set -l parts (string split / $url)
-    set -l name $parts[4]
-    set -l branch $parts[7]
-    set -l repo_url "https://github.com/$name/$parts[5].git"
-    git remote add $name $repo_url
-    git fetch $name
-    git checkout -b $name-$branch $name/$branch
-end
-
 ################################################################################
-# Workspaces settings
-
-# load workspaces functions
-#if not contains -- ~/.config/fish/functions/workspaces $fish_function_path
-#    set -U fish_function_path $fish_function_path ~/.config/fish/functions/workspaces
-#end
-
-# function tw
-#     create_new_workspace
-#     git clone
-#     git clone --depth 1 git@github.com:Tennr-Inc/Tennr.git
-#     cursor ./Tennr
-
-# end
-
-function rr
-    set -l git_root (git rev-parse --show-toplevel 2>/dev/null)
-    if test -z "$git_root"
-        echo "Not inside a git repository."
-    else
-        cd $git_root
-    end
-end
-
-function kill_port_listeners
-    if test -z "$argv[1]"
-        echo "Usage: kill_port_listeners <port>" >&2
-        return 1
-    end
-    set -l pids (lsof -ti :$argv[1])
-    if test -z "$pids"
-        echo "No processes listening on port $argv[1]"
-        return 0
-    end
-    kill $pids
-    echo "Killed processes on port $argv[1]: $pids"
-end
+# Workspaces aliases (functions are autoloaded from functions/workspaces/)
 
 alias wr=cd_workspace_root
 
@@ -289,16 +118,6 @@ alias war=add_repo
 alias wab="add_repo odd-bits"
 alias wc=create_new_workspace
 alias wrn=rename_workspace
-
-################################################################################
-# Config browsing
-
-function con
-    set -l config_file (find -L ~/.config -type f | fzf)
-    if test -n "$config_file"
-        nvim "$config_file"
-    end
-end
 
 ##########################################################################################
 
