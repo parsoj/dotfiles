@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"]
   },
@@ -76,6 +82,7 @@
     "show_user_picture": true
   },
   "outline_panel": {
+    "dock": "left",
     "button": false
   },
   "preferred_line_length": 100,

@@ -1,4 +1,24 @@
 {
+  "permissions": {
+    "deny": [
+      "Bash(tofu apply*)",
+      "Bash(terraform apply*)",
+      "Bash(helmfile apply*)",
+      "Bash(tofu destroy*)",
+      "Bash(terraform destroy*)",
+      "Bash(kubectl get secret*-o*)",
+      "Bash(kubectl get secrets*-o*)",
+      "Bash(kubectl describe secret*)",
+      "Bash(kubectl describe secrets*)",
+      "Bash(kubectl exec*printenv*)",
+      "Bash(kubectl exec*env*)",
+      "Bash(kubectl exec*cat*)",
+      "Bash(kubectl exec*-- env*)",
+      "Bash(*base64 -d*)",
+      "Bash(*base64 --decode*)"
+    ],
+    "defaultMode": "auto"
+  },
   "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
@@ -85,7 +105,8 @@
   },
   "enabledPlugins": {
     "lua-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "compound-engineering@compound-engineering-plugin": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -99,9 +120,19 @@
         "source": "github",
         "repo": "Tennr-Inc/Tennr"
       }
+    },
+    "compound-engineering-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "EveryInc/compound-engineering-plugin"
+      }
     }
   },
   "effortLevel": "medium",
+  "tui": "fullscreen",
+  "theme": "auto",
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true,
   "voiceEnabled": false,
   "allowedTools": [
     "Bash(grep:*)",

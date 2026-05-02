@@ -61,7 +61,7 @@ RedHatEnterprise = "󱄛"
 # aws
 [aws]
 disabled = false
-format = '[$symbol$profile (\($region\) )(\[$duration\] )]($style)'
+format = '[$symbol$profile (\[$duration\] )]($style)'
 style = 'bg:yellow fg:crust'
 symbol = " "
 force_display = true

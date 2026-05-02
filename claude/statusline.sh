@@ -8,6 +8,13 @@ used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 cost=$(echo "$input" | jq -r '.total_cost_usd // 0')
 branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
 
+# Account type from config dir
+if echo "$CLAUDE_CONFIG_DIR" | grep -q "personal"; then
+  account="personal"
+else
+  account="work"
+fi
+
 # Colors
 reset="\033[0m"
 bold="\033[1m"
@@ -29,13 +36,8 @@ else
   model_color="$cyan"
 fi
 
-# Line 1: Model + Context bar
+# Line 1: Model + Context usage
 if [ -n "$used" ]; then
-  bar_length=20
-  filled=$(printf "%.0f" "$(echo "$used * $bar_length / 100" | bc -l)")
-  empty=$((bar_length - filled))
-
-  # Color based on usage threshold
   if [ "$(echo "$used < 60" | bc)" -eq 1 ]; then
     bar_color="$green"
   elif [ "$(echo "$used < 85" | bc)" -eq 1 ]; then
@@ -44,13 +46,9 @@ if [ -n "$used" ]; then
     bar_color="$red"
   fi
 
-  bar=""
-  [ "$filled" -gt 0 ] && bar=$(printf '█%.0s' $(seq 1 "$filled"))
-  [ "$empty" -gt 0 ] && bar="${bar}$(printf '░%.0s' $(seq 1 "$empty"))"
-
-  printf "${bold}${model_color}%s${reset}  ${dim}│${reset}  Context: ${bar_color}%s %3.0f%%${reset}\n" "$model" "$bar" "$used"
+  printf "${dim}%s${reset}  ${dim}│${reset}  ${bold}${model_color}%s${reset}  ${dim}│${reset}  ${bar_color}%3.0f%%${reset}\n" "$account" "$model" "$used"
 else
-  printf "${bold}${model_color}%s${reset}  ${dim}│${reset}  Context: ${dim}N/A${reset}\n" "$model"
+  printf "${dim}%s${reset}  ${dim}│${reset}  ${bold}${model_color}%s${reset}\n" "$account" "$model"
 fi
 
 # Line 2: Directory + Cost + Git branch

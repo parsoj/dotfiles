@@ -83,8 +83,8 @@ ctrl - s: osascript -e "display notification \"Current SHELL: $SHELL\" with titl
 ################################################################################
 # Launch Apps
 
-ctrl - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 1"
-ctrl + shift - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 2"
+cmd - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 1"
+cmd + shift - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window --profile-directory="Profile 2"
 ctrl + alt + cmd - g: /Applications/Ghostty.app/Contents/MacOS/ghostty
 #ctrl - b: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 #ctrl - b: osascript ~/.config/osx/applescripts/launch_arc.scpt

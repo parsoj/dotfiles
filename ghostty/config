@@ -47,7 +47,8 @@ theme = dark:Catppuccin Frappe,light:Catppuccin Latte
 quit-after-last-window-closed = true
 
 
-keybind = global:cmd+space=toggle_quick_terminal
+# Disabled — using Raycast on Cmd+Space instead
+# keybind = global:cmd+space=toggle_quick_terminal
 keybind = shift+enter=text:\x1b\r
 
 # Unbind default Cmd+D splits

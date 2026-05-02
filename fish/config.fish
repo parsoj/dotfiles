@@ -3,7 +3,22 @@
 #end
 
 alias rrr="source ~/.config/fish/config.fish"
-alias cc="claude -c; or claude"
+function cc
+    set -lx CLAUDE_CONFIG_DIR $HOME/.claude
+    set -lx BROWSER $HOME/.config/scripts/launchers/open-chrome-work
+    if not claude auth status 2>/dev/null | jq -e '.loggedIn == true' >/dev/null 2>&1
+        claude auth login --sso; or return 1
+    end
+    claude -c; or claude
+end
+function ccp
+    set -lx CLAUDE_CONFIG_DIR $HOME/.claude-personal
+    set -lx BROWSER $HOME/.config/scripts/launchers/open-chrome-personal
+    if not claude auth status 2>/dev/null | jq -e '.loggedIn == true' >/dev/null 2>&1
+        claude auth login; or return 1
+    end
+    claude -c; or claude
+end
 alias vo="vim (fzf)"
 alias watch=entr
 alias l=launch_app_or_function
@@ -93,7 +108,6 @@ end
 
 ##########################################################################################
 # AWS stuff
-set -gx AWS_PROFILE prod-admin
 
 function ecr_login
     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 408930492337.dkr.ecr.us-east-1.amazonaws.com
@@ -248,6 +262,20 @@ function rr
     end
 end
 
+function kill_port_listeners
+    if test -z "$argv[1]"
+        echo "Usage: kill_port_listeners <port>" >&2
+        return 1
+    end
+    set -l pids (lsof -ti :$argv[1])
+    if test -z "$pids"
+        echo "No processes listening on port $argv[1]"
+        return 0
+    end
+    kill $pids
+    echo "Killed processes on port $argv[1]: $pids"
+end
+
 alias wr=cd_workspace_root
 
 alias wd=cd_workspace_directory
@@ -260,6 +288,7 @@ alias grt="cd ~/code/repos/Tennr"
 alias war=add_repo
 alias wab="add_repo odd-bits"
 alias wc=create_new_workspace
+alias wrn=rename_workspace
 
 ################################################################################
 # Config browsing
