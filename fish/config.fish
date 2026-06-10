@@ -87,6 +87,26 @@ alias q=exit
 #source /Users/Jeff.Parsons/.docker/init-fish.sh || true # Added by Docker Desktop
 direnv hook fish | source
 if not set -q QUICK_TERM
+    # Per-host starship hostname color: hot = personal, cool = work.
+    # Regenerates a cached copy of starship.toml with `hostcolor` swapped.
+    set -l ss_base ~/.config/starship/starship.toml
+    set -l ss_color
+    switch (hostname -s)
+        case TNR-726TG622
+            set ss_color "#f38ba8" # red — personal air
+        case DWK9HLXCJC-jeff
+            set ss_color "#74c7ec" # sapphire — tennr mbp
+    end
+    if test -n "$ss_color"; and test -f $ss_base
+        set -l ss_gen ~/.cache/starship/starship-host.toml
+        if not test -f $ss_gen
+            or test $ss_base -nt $ss_gen
+            or not grep -q "hostcolor = \"$ss_color\"" $ss_gen
+            mkdir -p ~/.cache/starship
+            sed "s/^hostcolor = .*/hostcolor = \"$ss_color\"/" $ss_base >$ss_gen
+        end
+        set -gx STARSHIP_CONFIG $ss_gen
+    end
     starship init fish | source
 end
 

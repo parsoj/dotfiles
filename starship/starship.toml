@@ -87,7 +87,7 @@ format = '[ $user]($style)'
 ssh_only = false
 style = "bg:hostcolor fg:crust"
 format = '[ $hostname ]($style)'
-aliases = { "TNR-726TG622" = "air", "DWK9HLXCJC-jeff" = "tennr" }
+aliases = { "TNR-726TG622" = "home", "DWK9HLXCJC-jeff" = "work" }
 
 [directory]
 style = "bg:lavender fg:crust"
