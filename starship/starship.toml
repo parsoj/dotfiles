@@ -9,9 +9,9 @@ $kubernetes\
 $fill\
 $cmd_duration\
 $line_break
-[](peach)\
+[](hostcolor)\
 $hostname\
-[](fg:peach bg:lavender)\
+[](fg:hostcolor bg:lavender)\
 $directory\
 [](bg:red fg:lavender)\
 $git_branch\
@@ -85,8 +85,9 @@ format = '[ $user]($style)'
 
 [hostname]
 ssh_only = false
-style = "bg:peach fg:crust"
+style = "bg:hostcolor fg:crust"
 format = '[ $hostname ]($style)'
+aliases = { "TNR-726TG622" = "air", "DWK9HLXCJC-jeff" = "tennr" }
 
 [directory]
 style = "bg:lavender fg:crust"
@@ -199,6 +200,7 @@ show_notifications = true
 min_time_to_notify = 45000
 
 [palettes.catppuccin_mocha]
+hostcolor = "#fab387"
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
 pink = "#f5c2e7"
@@ -227,6 +229,7 @@ mantle = "#181825"
 crust = "#11111b"
 
 [palettes.catppuccin_frappe]
+hostcolor = "#ef9f76"
 rosewater = "#f2d5cf"
 flamingo = "#eebebe"
 pink = "#f4b8e4"
@@ -255,6 +258,7 @@ mantle = "#292c3c"
 crust = "#232634"
 
 [palettes.catppuccin_latte]
+hostcolor = "#fe640b"
 rosewater = "#dc8a78"
 flamingo = "#dd7878"
 pink = "#ea76cb"
@@ -283,6 +287,7 @@ mantle = "#e6e9ef"
 crust = "#dce0e8"
 
 [palettes.catppuccin_macchiato]
+hostcolor = "#f5a97f"
 rosewater = "#f4dbd6"
 flamingo = "#f0c6c6"
 pink = "#f5bde6"
