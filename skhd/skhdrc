@@ -17,10 +17,11 @@ shift + alt - 0 : chunkc tiling::desktop --equalize
 #shift + alt - k : chunkc tiling::window --swap north
 #shift + alt - l : chunkc tiling::window --swap east
 
-# move window
-shift + cmd - h : chunkc tiling::window --warp west
-shift + cmd - j : chunkc tiling::window --warp south
-shift + cmd - k : chunkc tiling::window --warp north
+# move window (disabled: chunkwm is dead, and these swallowed cmd+shift+hjk
+# needed by kitty/tmux split bindings)
+#shift + cmd - h : chunkc tiling::window --warp west
+#shift + cmd - j : chunkc tiling::window --warp south
+#shift + cmd - k : chunkc tiling::window --warp north
 #shift + cmd - l : chunkc tiling::window --warp east
 
 #alt + cmd - 1: yabai -m window --display 1
