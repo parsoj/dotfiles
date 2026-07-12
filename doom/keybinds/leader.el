@@ -17,6 +17,12 @@
       :desc "window"                "w"    evil-window-map
       :desc "help"                  "h"    help-map
 
+      ;;; <leader> a --- AI / Pi
+      (:prefix-map ("a" . "AI / Pi")
+       :desc "Pi: agent-shell"          "p" #'agent-shell-pi-start-agent
+       :desc "Pi: resume latest"        "r" #'my/agent-shell-pi-resume-latest
+       :desc "Pi: choose/new session"   "R" #'my/agent-shell-pi-choose-session)
+
       (:when (featurep! :ui popup)
        :desc "Toggle last popup"     "~"    #'+popup/toggle)
 
@@ -24,8 +30,11 @@
       :desc "Switch buffer"         ","    #'switch-to-buffer
 
       (:when (featurep! :ui workspaces)
-       :desc "Switch workspace buffer" "," #'persp-switch-to-buffer
-       :desc "Switch buffer"           "<" #'switch-to-buffer)
+       :desc "Switch workspace buffer" "," #'persp-switch-to-buffer)
+      ;; Doom's default logic for SPC < is "shifted comma": SPC , switches
+      ;; workspace buffers, SPC < switches all buffers. Prefer SPC b b for the
+      ;; all-buffer switcher instead.
+      "<" nil
       :desc "Switch to last buffer" "`"    #'evil-switch-to-windows-last-buffer
       :desc "Resume last search"    "'" #'vertico-repeat
 
@@ -67,8 +76,8 @@
        :desc "Previous buffer"             "["   #'previous-buffer
        :desc "Next buffer"                 "]"   #'next-buffer
        (:when (featurep! :ui workspaces)
-        :desc "Switch workspace buffer" "b" #'persp-switch-to-buffer
-        :desc "Switch buffer"           "B" #'switch-to-buffer)
+        :desc "Switch buffer"           "b" #'switch-to-buffer
+        :desc "Switch workspace buffer" "B" #'persp-switch-to-buffer)
        (:unless (featurep! :ui workspaces)
         :desc "Switch buffer"           "b" #'switch-to-buffer)
        :desc "Clone buffer"                "c"   #'clone-indirect-buffer
@@ -357,7 +366,7 @@
 
        ;:desc "Compile in project"           "c" #'projectile-compile-project
        ;:desc "Repeat last command"          "C" #'projectile-repeat-last-command
-       :desc "create new project"           "C" #'+create-new-workspace
+       :desc "Create workspace"             "C" #'+create-new-workspace
        :desc "clone repo into project"      "c" #'clone-project-repo-for-organization
 
        :desc "Remove known project"         "d" #'projectile-remove-known-project

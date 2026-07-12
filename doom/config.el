@@ -4,10 +4,71 @@
 ;; sync' after modifying this file!
 
 
+;; Ensure GUI Emacs launched from Finder/Spotlight has the Homebrew environment
+;; needed to compile native modules like vterm/libvterm.
+(setenv "HOME" "/Users/jeff")
+(let ((homebrew-bin "/opt/homebrew/bin")
+      (homebrew-sbin "/opt/homebrew/sbin")
+      (nvm-node-bin "/Users/jeff/.nvm/versions/node/v24.12.0/bin"))
+  (dolist (dir (list homebrew-bin homebrew-sbin nvm-node-bin))
+    (when (file-directory-p dir)
+      (add-to-list 'exec-path dir)
+      (unless (string-match-p (regexp-quote dir) (or (getenv "PATH") ""))
+        (setenv "PATH" (concat dir path-separator (or (getenv "PATH") "")))))))
+
+;; Prefer straight's newer Transient source over Emacs 30's bundled Transient.
+;; The compiled straight transient.elc has been unreliable in this setup
+;; (`static-when' left unexpanded), but loading the source from the repo is
+;; stable and satisfies newer Magit/Pi packages.
+(let ((transient-source-dir
+       (expand-file-name "straight/repos/transient/lisp" doom-local-dir)))
+  (when (file-directory-p transient-source-dir)
+    (add-to-list 'load-path transient-source-dir)))
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Jeff Parsons"
       user-mail-address "jeff@gjeffparsons.me")
+
+;; Belt-and-suspenders: make Doom's SPC leader available directly from Evil's
+;; core state maps. This avoids first-use/lazy-load races where SPC can briefly
+;; fall through and the following `p p' is interpreted as paste commands.
+(after! evil
+  (define-key evil-normal-state-map (kbd "SPC") #'doom/leader)
+  (define-key evil-motion-state-map (kbd "SPC") #'doom/leader)
+  (define-key evil-visual-state-map (kbd "SPC") #'doom/leader))
+
+;; Keep Emacs internals on a POSIX shell, while interactive terminals use fish.
+(setq shell-file-name (or (executable-find "bash") "/bin/bash"))
+(setq-default vterm-shell "/opt/homebrew/bin/fish")
+(setq-default explicit-shell-file-name "/opt/homebrew/bin/fish")
+
+;; Pi integration experiment: agent-shell/ACP only. Do not switch to a
+;; terminal/vterm-based approach unless explicitly requested.
+(defun pi ()
+  "Start a Pi agent-shell session."
+  (interactive)
+  (agent-shell-pi-start-agent))
+
+(defun my/agent-shell-pi-resume-latest ()
+  "Resume the latest Pi agent-shell session via agent-shell."
+  (interactive)
+  (require 'agent-shell-pi)
+  (let ((agent-shell-session-strategy 'latest))
+    (agent-shell-pi-start-agent)))
+
+(defun my/agent-shell-pi-choose-session ()
+  "Prompt for an existing Pi agent-shell session, or start a new one."
+  (interactive)
+  (require 'agent-shell-pi)
+  (let ((agent-shell-session-strategy 'prompt))
+    (agent-shell-pi-start-agent)))
+
+(use-package! agent-shell-pi
+  :commands (agent-shell-pi-start-agent)
+  :config
+  (setq agent-shell-pi-acp-command
+        '("/Users/jeff/.nvm/versions/node/v24.12.0/bin/pi-acp")))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,11 +86,18 @@
  ;; doom-font (font-spec :family "Fira Code" :size 15 :weight 'thin)
  doom-font (font-spec :family "Fira Code" :size 15)
  ;; doom-font (font-spec :family "Fira Code Light" :size 15)
- doom-variable-pitch-font (font-spec :family "EB Garamond" :size 20)
+ ;; EB Garamond cask currently fails to download; Georgia is built into macOS.
+ doom-variable-pitch-font (font-spec :family "Georgia" :size 20)
  )
 
 (setq doom-big-font-increment 6)
 
+;; Doom's Magit module enables `global-git-commit-mode' on first file open. With
+;; Emacs 30's bundled transient plus this config's newer Magit/transient pins,
+;; that can trip a duplicate `transient--init-suffix-key' definition during
+;; startup. Git commit buffers still get `git-commit-mode' by file name; this
+;; only disables the global startup hook.
+(remove-hook 'doom-first-file-hook #'global-git-commit-mode)
 
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 (after! treemacs (treemacs-follow-mode 1))
@@ -38,9 +106,12 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-palenight)
 (setq doom-themes-treemacs-theme 'doom-colors)
-(after! (:and projectile treemacs
-         )
-  (add-hook! 'treemacs-pre-refresh-hook #'treemacs-display-current-project-exclusively))
+(after! (:and projectile treemacs)
+  ;; Keep Treemacs rooted at the active Projectile project, rather than letting
+  ;; Treemacs infer from its own buffer/default-directory during refresh.
+  (add-hook! 'treemacs-pre-refresh-hook
+    (when (fboundp 'jeff/treemacs-display-project-root-exclusively)
+      (ignore-errors (jeff/treemacs-display-project-root-exclusively)))))
 
 ;; use the emacs-plus hook to change the doom theme to match OSX dark mode
 (defun sync-osx-dark-mode (appearance)
@@ -229,6 +300,9 @@
 
 ;; (set-popup-rule! "^magit" :side 'right :size 90)
 
+;; Let ordinary vterm buffers opened with `M-x vterm' behave like normal buffers
+;; instead of Doom popups. `+vterm/toggle' still uses its dedicated popup below.
+(set-popup-rule! "^\\*vterm" :ignore t)
 (set-popup-rule! "^\\*doom:vterm-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 (set-popup-rule! "^\\*doom:eshell-popup" :side 'bottom :size 20 :select t :ttl nil :quit t)
 
@@ -300,7 +374,7 @@
 ;; unset company backends for magit commit msg buffers
 (set-company-backend! 'text-mode nil)
 
-(setq workspaces-root "~/workspaces")
+(setq workspaces-root "~/code/workspaces")
 (setq project-notes-file "README.org")
 (setq emacs-env-dir "~/emacs-confs")
 (setq keybinds-dir "~/emacs-confs")

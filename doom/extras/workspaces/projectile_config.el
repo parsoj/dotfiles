@@ -127,29 +127,140 @@
 ;;   :package-version '(projectile . "2.3.0"))
 
 
+(require 'cl-lib)
+
+(defvar jeff/workspace-search-path '("~/code/workspaces" "~/.config")
+  "Directories that contain, or are themselves, workspace roots marked by .workspace.json.")
+
+(defvar jeff/workspace-search-depth 4
+  "Maximum depth to search below `jeff/workspace-search-path'.")
+
+(defun jeff/workspace-roots ()
+  "Return all workspace roots found under `jeff/workspace-search-path'."
+  (let ((roots nil))
+    (dolist (base jeff/workspace-search-path)
+      (let ((base (file-truename (expand-file-name base))))
+        (when (file-directory-p base)
+          (if (executable-find "fd")
+              (dolist (marker (process-lines
+                               "fd" ".workspace.json" base
+                               "--hidden" "--glob" "--type" "f"
+                               "--max-depth" (number-to-string jeff/workspace-search-depth)
+                               "--exclude" ".git"))
+                (push (file-name-directory marker) roots))
+            (dolist (marker (directory-files-recursively base "^\\.workspace\\.json$" nil))
+              (when (<= (length (file-name-split (file-relative-name marker base)))
+                        (1+ jeff/workspace-search-depth))
+                (push (file-name-directory marker) roots)))))))
+    (sort (delete-dups (mapcar #'file-truename roots)) #'string<)))
+
+(defun jeff/projectile-discover-workspaces ()
+  "Add all `.workspace.json' roots under `jeff/workspace-search-path' to Projectile."
+  (interactive)
+  (require 'projectile)
+  (let ((count 0))
+    (dolist (root (jeff/workspace-roots))
+      (projectile-add-known-project root)
+      (cl-incf count))
+    (message "Projectile discovered %d workspaces" count)))
+
 (defun jeff/projectile-discover-projects-in-directory (directory &optional recursion-depth)
-  "Discover any projects in DIRECTORY and add them to the projectile cache.
-This function is not recursive and only adds projects with roots
-at the top level of DIRECTORY."
-  (interactive
-   (list (read-directory-name "Starting directory: ")))
-  (if (file-exists-p directory)
-      (let ((subdirs (directory-files directory t)))
-        (mapcar
-         (lambda (dir)
-           (when (and (file-directory-p dir)
-                      (not (member (file-name-nondirectory dir) '(".." "."))))
-             (if (projectile-project-p dir)
-                 (projectile-add-known-project dir)
-               (when (> recursion-depth 1)
-                 (jeff/projectile-discover-projects-in-directory dir (- recursion-depth 1))
-                 )
-               )))
-         subdirs))
-    (message "Project search path directory %s doesn't exist" directory)))
+  "Backward-compatible wrapper around `projectile-discover-projects-in-directory'."
+  (interactive (list (read-directory-name "Starting directory: ")))
+  (projectile-discover-projects-in-directory directory recursion-depth))
 
 
 
+
+;;------------------------------------------------------------------------------------------
+;; project workspace/layout restoration
+;;
+
+(defvar jeff/project-workspace-prefix "project:"
+  "Prefix for Doom workspace names that mirror Projectile projects.")
+
+(defvar jeff/current-project-root nil
+  "Last Projectile project root opened through `jeff/projectile-switch-project-restore-layout'.")
+
+(defun jeff/project-workspace-name (&optional project-root)
+  "Return the Doom workspace name for PROJECT-ROOT."
+  (let* ((root (file-truename (or project-root (projectile-project-root))))
+         (name (file-name-nondirectory (directory-file-name root))))
+    (concat jeff/project-workspace-prefix name)))
+
+(defun jeff/project-workspace-name-p (&optional name)
+  "Return non-nil if NAME is one of our project workspaces."
+  (string-prefix-p jeff/project-workspace-prefix (or name (+workspace-current-name))))
+
+(defun jeff/saved-project-workspace-p (name)
+  "Return non-nil if workspace NAME has been persisted by Doom workspaces."
+  (let ((file (expand-file-name +workspaces-data-file persp-save-dir)))
+    (and (file-exists-p file)
+         (member name (persp-list-persp-names-in-file file)))))
+
+(defun jeff/save-current-project-workspace ()
+  "Persist the current project workspace, if it is one of ours."
+  (when (and (featurep 'persp-mode)
+             (+workspace-current-name)
+             (jeff/project-workspace-name-p))
+    (ignore-errors (+workspace-save (+workspace-current-name)))))
+
+(defun jeff/treemacs-display-project-root-exclusively (&optional project-root)
+  "Force Treemacs to show PROJECT-ROOT as its sole root.
+
+When PROJECT-ROOT is nil, use `jeff/current-project-root' or the current
+Projectile root. This avoids Treemacs guessing a different root from its current
+buffer/default-directory (notably for ~/.config)."
+  (interactive)
+  (require 'treemacs)
+  (require 'projectile)
+  (let* ((root (file-truename
+                (file-name-as-directory
+                 (or project-root
+                     jeff/current-project-root
+                     (projectile-project-root)))))
+         (path (treemacs-canonical-path root))
+         (name (file-name-nondirectory (directory-file-name path))))
+    (unless (treemacs-current-workspace)
+      (treemacs--find-workspace))
+    (treemacs--show-single-project path name)))
+
+(defun jeff/project-open-treemacs-root (project-root)
+  "Open Treemacs rooted at PROJECT-ROOT as a fallback project layout."
+  (require 'treemacs)
+  (let ((default-directory (file-name-as-directory project-root)))
+    (delete-other-windows)
+    (dired default-directory)
+    (jeff/treemacs-display-project-root-exclusively project-root)))
+
+(defun jeff/projectile-switch-project-restore-layout ()
+  "Projectile switch action: restore project layout, else open Treemacs at root.
+
+Layouts are persisted as Doom workspaces named `project:<workspace-name>'. They
+are saved when switching away from a project workspace and on Emacs exit."
+  (interactive)
+  (require 'projectile)
+  (require 'persp-mode)
+  (let* ((root (file-truename (file-name-as-directory (projectile-project-root))))
+         (workspace-name (jeff/project-workspace-name root))
+         (had-saved-layout (jeff/saved-project-workspace-p workspace-name)))
+    (setq jeff/current-project-root root)
+    (cond
+     ((+workspace-exists-p workspace-name)
+      (+workspace-switch workspace-name))
+     (had-saved-layout
+      (+workspace-load workspace-name)
+      (+workspace-switch workspace-name))
+     (t
+      (+workspace-switch workspace-name t)
+      (jeff/project-open-treemacs-root root)))
+    ;; Restored workspaces may contain a stale Treemacs root. Always force it to
+    ;; the Projectile root for the selected project.
+    (jeff/treemacs-display-project-root-exclusively root)
+    (message "Opened project workspace: %s" workspace-name)))
+
+(add-hook 'projectile-before-switch-project-hook #'jeff/save-current-project-workspace)
+(add-hook 'kill-emacs-hook #'jeff/save-current-project-workspace)
 
 ;;------------------------------------------------------------------------------------------
 ;; projectile jump-to-project action
@@ -192,7 +303,7 @@ at the top level of DIRECTORY."
   ;;(setq projectile-project-root-functions '(projectile-root-bottom-up))
   ;; (setq projectile-project-root-files-bottom-up '(".projectile"))
 
-  (setq projectile-switch-project-action #'+projectile-jump-to-notes)
+  (setq projectile-switch-project-action #'jeff/projectile-switch-project-restore-layout)
   (set-popup-rule! "^\\*compilation\\*"  :side 'right :quit nil :select t)
 
   (map! :leader
@@ -204,15 +315,19 @@ at the top level of DIRECTORY."
         )
 
 
-  (setq projectile-project-search-path '("~/workspaces/"))
+  ;; Don't let Projectile recursively auto-discover nested git repos under each
+  ;; workspace. Your unit of work is a workspace root marked by .workspace.json.
+  ;; `jeff/projectile-discover-workspaces' handles discovery from
+  ;; `jeff/workspace-search-path' instead, including ~/.config.
+  (setq projectile-project-search-path nil)
 
+  ;; Treat your workspace marker as a first-class Projectile root marker.
+  ;; Keep .projectile as a fallback for older projects.
+  (setq projectile-project-root-files-bottom-up '(".workspace.json" ".projectile"))
+  (setq projectile-project-root-files '(".workspace.json" ".projectile"))
+  (setq projectile-auto-discover nil)
 
-  (setq projectile-project-root-files-bottom-up '(".projectile"))
-  (setq projectile-project-root-files '(".projectile"))
-  (setq projectile-auto-discover t)
-
-
-  (jeff/projectile-discover-projects-in-directory "~/workspaces" 25)
+  (jeff/projectile-discover-workspaces)
 
 
   ;; (setq projectile-project-root-files-top-down-recurring '(".projectile"))

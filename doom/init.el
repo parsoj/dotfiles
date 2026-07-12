@@ -91,11 +91,12 @@
        hl-todo                ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
        indent-guides                    ; highlighted indent columns
-       (ligatures
-;;; ligature module flags ignored in emacs-mac
-        ;; +extra
-        ;; +fira
-        )
+       ;; Disabled for Homebrew/emacs-app build: it lacks Harfbuzz and Doom was
+       ;; erroring on `global-ligature-mode` at startup.
+       ;; (ligatures
+       ;;  ;; +extra
+       ;;  ;; +fira
+       ;;  )
        minimap     ; show a map of the code on the side
        (modeline    ; snazzy, Atom-inspired modeline, plus API
         +light
