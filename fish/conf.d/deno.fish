@@ -1,1 +1,0 @@
-source "/Users/jeff/.deno/env.fish"

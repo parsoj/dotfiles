@@ -42,3 +42,8 @@ github-copilot/*
 semantic-grep/*
 
 claude/plugins/
+# secrets / runtime state
+graphite/auth
+cmux/.surface-resume-approval-secret
+herdr/
+spur/
