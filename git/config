@@ -1,0 +1,24 @@
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+[user]
+	name = Jeff Parsons
+	email = parsoj@gmail.com
+[color]
+	#ui and diff colors need to be set to "auto" to avoid messing with magit
+	ui = auto
+	diff = auto
+[push]
+	default = matching
+[core]
+	editor = zed
+[github]
+	user = jeff@jeffparsons.me
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "prod-data-mcp": {
+      "url": "https://product-data-mcp.prod.internal.tennr.com/mcp"
+    }
+  }
+}

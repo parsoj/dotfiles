@@ -94,7 +94,7 @@ ctrl + alt + cmd - g: /Applications/Ghostty.app/Contents/MacOS/ghostty
 #ctrl - b: osascript -e 'tell application "Safari" to make new document' && osascript -e 'tell application "System Events" to tell process "Safari" to set frontmost to true'
 #ctrl - x: osascript -e 'tell application "iTerm2" to create window with default profile'
 #ctrl - x: osascript -e 'tell application "Kitty" to create window with default profile'
-ctrl - x:  kitty --single-instance --directory ~/
+ctrl - x: /Applications/kitty.app/Contents/MacOS/kitty --single-instance --directory ~/
 
 #ctrl -x: kitty -o  --single-instance --listen-on unix:/tmp/mykitty --directory ~/
 #ctrl - t: /Applications/Hyper.app/Contents/MacOS/Hyper
@@ -108,10 +108,24 @@ ctrl - x:  kitty --single-instance --directory ~/
 
 #ctrl + alt + cmd - r: open /Applications/Raycast.app
 
-cmd + alt - p: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- ipython
-#cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
-#cmd - space: /Users/jeff/.config/scripts/launchers/launch_in_ghostty_popup -- /Users/jeff/.config/scripts/launchers/launch_app_or_function.fish
+# Python REPL popup is handled in kitty/kitty.conf.
+#cmd + alt - p: /Users/jeff/.config/scripts/launchers/launch_in_kitty_popup -- ipython
+# Kitty quick-access Cmd+Space is handled globally by skhd.
+# On newer macOS / Apple keyboards this may arrive as the Spotlight keycode
+# instead of physical Space, so bind both variants.
+#cmd - space: /Applications/kitty.app/Contents/MacOS/kitten quick-access-terminal --config /Users/jeff/.config/kitty/quick-access-launcher.conf --instance-group launcher /Users/jeff/.config/kitty/quick-access-launcher.sh >/tmp/kitty-quick-access-skhd.log 2>&1 &
+#cmd - 0xB1: /Applications/kitty.app/Contents/MacOS/kitten quick-access-terminal --config /Users/jeff/.config/kitty/quick-access-launcher.conf --instance-group launcher /Users/jeff/.config/kitty/quick-access-launcher.sh >/tmp/kitty-quick-access-skhd.log 2>&1 &
+#0xB1: /Applications/kitty.app/Contents/MacOS/kitten quick-access-terminal --config /Users/jeff/.config/kitty/quick-access-launcher.conf --instance-group launcher /Users/jeff/.config/kitty/quick-access-launcher.sh >/tmp/kitty-quick-access-skhd.log 2>&1 &
+#cmd - space: /Users/jeff/.config/kitty/toggle-quick-access.sh
 cmd + alt - o: /Users/jeff/.config/scripts/launchers/launch_in_ghostty_popup -- gum write \| insert_into_obsidian_heading
+
+##########################################################################################
+# Focus / distraction logging
+
+# rcmd + [  => log distraction/randomization
+# rcmd + ]  => log return to focus
+rcmd - 0x21: /Users/jeff/.config/scripts/focus/distraction_toggle start
+rcmd - 0x1E: /Users/jeff/.config/scripts/focus/distraction_toggle return
 
 alt - t: zed ~/code/repos/Tennr
 alt - c: zed ~/.config

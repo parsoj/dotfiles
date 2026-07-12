@@ -18,6 +18,11 @@ configurations for an OSX system.
 - most of my hotkeys are bound either to calls to yabai's chunkc for window management,
   or to bash or apple scripts (located in the /scripts directory) that automate
   common desktop actions
+** Dock
+- I don't use the Dock, so ~dock_defaults.sh~ effectively disables it
+  (auto-hide with a huge reveal delay — macOS won't let you kill the Dock
+  process outright since it also runs Mission Control and cmd+tab).
+  Run it once on a new machine; undo instructions are in the script.
 ** Menu Bar
 - I use Bartenter to organize and hide menu bar items
 *** in the menu bar

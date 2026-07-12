@@ -1,0 +1,158 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Distraction/randomization logger.
+#
+# Modes:
+#   start | distraction | randomized  -> log that focus was lost
+#   return | focus | end              -> log return to focus
+#   toggle | no arg                   -> start if idle, return if active
+
+mode="${1:-toggle}"
+
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/focus-log"
+current_file="$state_dir/current.json"
+events_log="$state_dir/events.jsonl"
+sessions_log="$state_dir/sessions.jsonl"
+daily_dir="$state_dir/daily"
+
+today="$(date '+%Y-%m-%d')"
+daily_log="$daily_dir/$today.md"
+
+mkdir -p "$state_dir" "$daily_dir"
+
+now_epoch="$(date +%s)"
+now_iso="$(date '+%Y-%m-%dT%H:%M:%S%z')"
+time_human="$(date '+%H:%M')"
+
+front_app="$(osascript -e 'tell application "System Events" to get name of first application process whose frontmost is true' 2>/dev/null || true)"
+window_title="$(osascript -e 'tell application "System Events" to tell (first application process whose frontmost is true) to if exists front window then get name of front window' 2>/dev/null || true)"
+
+flash() {
+  local title="$1"
+  local syncfu_bin="/Users/jeff/.syncfu/bin/syncfu"
+
+  if [ -x "$syncfu_bin" ] && curl -fsS http://127.0.0.1:9868/health >/dev/null 2>&1; then
+    "$syncfu_bin" send -t "$title" --timeout 3 "" >/dev/null 2>&1 || true
+    return
+  fi
+
+  # Fallback if syncfu is unavailable. Avoid `display notification` because it
+  # persists in Notification Center.
+  /usr/bin/osascript \
+    -e "display dialog \"$title\" buttons {} giving up after 0.6" \
+    >/dev/null 2>&1 &
+}
+
+ensure_daily_header() {
+  if [ ! -s "$daily_log" ]; then
+    cat >"$daily_log" <<EOF
+# Focus Log — $today
+
+EOF
+  fi
+}
+
+start_distraction() {
+  if [ -s "$current_file" ]; then
+    flash "Distraction Already Active"
+    echo "distraction already active"
+    exit 0
+  fi
+
+  jq -cn \
+    --arg event randomized \
+    --arg ts "$now_iso" \
+    --arg front_app "$front_app" \
+    --arg window_title "$window_title" \
+    --argjson epoch "$now_epoch" \
+    '{event:$event,ts:$ts,epoch:$epoch,start_iso:$ts,start_epoch:$epoch,context:{app:$front_app,window:$window_title}}' \
+    >"$current_file"
+
+  cat "$current_file" >>"$events_log"
+
+  ensure_daily_header
+  {
+    echo "- $time_human — ⚠️ logged distraction/randomization"
+    [ -n "$front_app" ] && echo "  - Context: $front_app — $window_title"
+  } >>"$daily_log"
+
+  flash "Distraction Logged"
+  echo "logged distraction"
+}
+
+return_to_focus() {
+  if [ ! -s "$current_file" ]; then
+    flash "No Active Distraction"
+    echo "no active distraction"
+    exit 0
+  fi
+
+  start_epoch="$(jq -r '.start_epoch // .epoch' "$current_file")"
+  start_iso="$(jq -r '.start_iso // .ts' "$current_file")"
+  start_app="$(jq -r '.context.app // ""' "$current_file")"
+  start_window="$(jq -r '.context.window // ""' "$current_file")"
+  duration_sec=$((now_epoch - start_epoch))
+  duration_min=$(( (duration_sec + 30) / 60 ))
+
+  jq -cn \
+    --arg event returned \
+    --arg ts "$now_iso" \
+    --arg start_iso "$start_iso" \
+    --arg end_iso "$now_iso" \
+    --arg start_app "$start_app" \
+    --arg start_window "$start_window" \
+    --arg return_app "$front_app" \
+    --arg return_window "$window_title" \
+    --argjson epoch "$now_epoch" \
+    --argjson start_epoch "$start_epoch" \
+    --argjson end_epoch "$now_epoch" \
+    --argjson duration_sec "$duration_sec" \
+    '{event:$event,ts:$ts,epoch:$epoch,start_iso:$start_iso,end_iso:$end_iso,start_epoch:$start_epoch,end_epoch:$end_epoch,duration_sec:$duration_sec,start_context:{app:$start_app,window:$start_window},return_context:{app:$return_app,window:$return_window}}' \
+    >>"$events_log"
+
+  jq -cn \
+    --arg start_iso "$start_iso" \
+    --arg end_iso "$now_iso" \
+    --arg start_app "$start_app" \
+    --arg start_window "$start_window" \
+    --arg return_app "$front_app" \
+    --arg return_window "$window_title" \
+    --argjson start_epoch "$start_epoch" \
+    --argjson end_epoch "$now_epoch" \
+    --argjson duration_sec "$duration_sec" \
+    '{start_iso:$start_iso,end_iso:$end_iso,start_epoch:$start_epoch,end_epoch:$end_epoch,duration_sec:$duration_sec,start_context:{app:$start_app,window:$start_window},return_context:{app:$return_app,window:$return_window}}' \
+    >>"$sessions_log"
+
+  ensure_daily_header
+  {
+    echo "- $time_human — ✅ returned to focus after ${duration_min}m"
+    echo "  - Started: $start_iso"
+    [ -n "$start_app" ] && echo "  - Start context: $start_app — $start_window"
+    [ -n "$front_app" ] && echo "  - Return context: $front_app — $window_title"
+  } >>"$daily_log"
+
+  rm -f "$current_file"
+  flash "Return-To-Focus Logged"
+  echo "logged return to focus (${duration_sec}s)"
+}
+
+case "$mode" in
+  start|distraction|randomized)
+    start_distraction
+    ;;
+  return|focus|end)
+    return_to_focus
+    ;;
+  toggle)
+    if [ -s "$current_file" ]; then
+      return_to_focus
+    else
+      start_distraction
+    fi
+    ;;
+  *)
+    echo "usage: $(basename "$0") [start|return|toggle]" >&2
+    exit 2
+    ;;
+esac

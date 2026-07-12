@@ -38,6 +38,7 @@ yabai -m rule --add app=".*" manage=off
 # OSX App Settings
 
 yabai -m rule --add app="Ghostty" subrole="AXStandardWindow" manage=on
+yabai -m rule --add app="kitty" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="TIDAL" title="^TIDAL$" manage=off
 yabai -m rule --add app="Music" title="Music" manage=off
@@ -55,6 +56,8 @@ yabai -m rule --add app="Thorium" role="AXWindow" subrole="AXStandardWindow" man
 yabai -m rule --add app="Google Chrome" role="AXWindow" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="Xcode" role="AXWindow" subrole="AXStandardWindow" manage=on
+# Emacs.app reports its main frame role as AXTextField, not AXWindow.
+yabai -m rule --add app="Emacs" role="AXTextField" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Zed" role="AXWindow" subrole="AXStandardWindow" manage=on
 yabai -m rule --add app="Code" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
 yabai -m rule --add app="Cursor" role="AXWindow" subrole="AXStandardWindow" manage=on layer=below
@@ -63,5 +66,11 @@ yabai -m rule --add app="GoodTask" title="GoodTask" role="AXWindow" subrole="AXS
 yabai -m rule --add app="OmniFocus" role="AXWindow" subrole="AXStandardWindow" manage=on
 
 yabai -m rule --add app="Perimeter 81" role="" subrole="" sticky=on
+
+# kitty-popup-terminal: popup pool windows (odd-bits/tools/kitty-popup-terminal).
+# Titles follow the pool's convention: popup-prepared:<id> while pooled,
+# popup-* once active. Keep them floating and centered (grid is
+# rows:cols:start-x:start-y:width:height — half-size, slightly above center).
+yabai -m rule --add app="kitty" title="^popup-" manage=off grid="12:12:3:2:6:6"
 
 echo "yabai configuration loaded.."
