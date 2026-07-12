@@ -1,10 +1,7 @@
 #!/bin/bash
-# Wrapper for Stop event: update tmux tab state first, then notify.
-# Sequential order ensures the notification subtitle shows the correct indicator.
+# Stop event: update tmux tab state to idle (🟢).
+# Desktop notifications are handled natively by cmux (claudeCodeIntegration);
+# the old terminal-notifier scripts were removed when we went all-in on cmux.
 input=$(cat)
 
-# Update tab state to idle (🟢) first
 echo "$input" | ~/.claude/hooks/tmux-tab-state.sh idle
-
-# Then send notification (reads window name which now has 🟢)
-echo "$input" | ~/.claude/hooks/notify-stop.sh

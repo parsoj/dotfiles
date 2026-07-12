@@ -15,11 +15,17 @@
       "Bash(kubectl exec*cat*)",
       "Bash(kubectl exec*-- env*)",
       "Bash(*base64 -d*)",
-      "Bash(*base64 --decode*)"
+      "Bash(*base64 --decode*)",
+      "Read(~/.aws/**)",
+      "Read(~/.kube/**)",
+      "Edit(~/.aws/**)",
+      "Edit(~/.kube/**)",
+      "Edit(~/code/repos/**)",
+      "Write(~/code/repos/**)"
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -52,6 +58,24 @@
             "command": "~/.claude/hooks/tmux-tab-state.sh working"
           }
         ]
+      },
+      {
+        "matcher": "Bash|Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/protect-aws-kube.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Write|Edit|NotebookEdit|Read|Grep|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/protect-code-repos.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -76,17 +100,6 @@
         ]
       }
     ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/notify-input.sh"
-          }
-        ]
-      }
-    ],
     "PermissionRequest": [
       {
         "matcher": "",
@@ -106,7 +119,10 @@
   "enabledPlugins": {
     "lua-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "compound-engineering@compound-engineering-plugin": true
+    "compound-engineering@compound-engineering-plugin": true,
+    "swift-lsp@claude-plugins-official": true,
+    "datadog@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -130,9 +146,17 @@
   },
   "effortLevel": "medium",
   "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "editorMode": "vim",
   "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "hard_deny": [
+      "$defaults",
+      "Any command that sets, exports, overrides, or unsets the AWS_PROFILE or KUBECONFIG environment variables (including inline prefixes like AWS_PROFILE=x cmd, env wrappers, export/set/setenv, or sourcing scripts that change them)",
+      "Any direct read or modification of files under ~/.aws or ~/.kube (cat, cp, sed, redirects, editors, or writing scripts that access those paths). Invoking CLI tools like aws/kubectl/helm that read those folders internally is fine."
+    ]
+  },
   "voiceEnabled": false,
   "allowedTools": [
     "Bash(grep:*)",

@@ -1,0 +1,43 @@
+{
+  "name": "Codex",
+  "base": "dark",
+  "overrides": {
+    "claude": "#10a37f",
+    "claudeShimmer": "#0d8a6a",
+
+    "briefLabelYou": "#e8e8e8",
+    "briefLabelClaude": "#10a37f",
+
+    "userMessageBackground": "#4c566a",
+    "userMessageBackgroundHover": "#556070",
+    "bashMessageBackgroundColor": "#3b4252",
+    "messageActionsBackground": "#3b4252",
+
+    "promptBorder": "#10a37f",
+    "promptBorderShimmer": "#0d8a6a",
+    "bashBorder": "#2d7a5f",
+
+    "text": "#d4d4d4",
+    "inactive": "#6b7280",
+    "subtle": "#404040",
+    "suggestion": "#2d7a5f",
+
+    "success": "#10a37f",
+    "error": "#f87171",
+    "warning": "#fbbf24",
+
+    "diffAdded": "#1e3d2a",
+    "diffAddedWord": "#2a5438",
+    "diffAddedDimmed": "#162d1f",
+    "diffRemoved": "#3d1e1e",
+    "diffRemovedWord": "#542a2a",
+    "diffRemovedDimmed": "#2d1616",
+
+    "planMode": "#10a37f",
+    "autoAccept": "#2d7a5f",
+    "fastMode": "#0d8a6a",
+
+    "rate_limit_fill": "#10a37f",
+    "rate_limit_empty": "#2a2a2a"
+  }
+}
