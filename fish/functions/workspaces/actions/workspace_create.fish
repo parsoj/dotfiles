@@ -21,10 +21,31 @@ function workspace_create
         return 1
     end
 
-    set -l full_path ~/code/workspaces/$name
+    set -l ws_home ~/code/repos/workspace-home
+    if not test -d $ws_home
+        ~/.config/scripts/workspaces/workspace_home_bootstrap
+        or return 1
+    end
 
-    echo "Creating new workspace at: $full_path"
-    mkdir -p "$full_path"
+    set -l full_path ~/code/workspaces/$name
+    if test -e "$full_path"
+        echo "Error: $full_path already exists." >&2
+        return 1
+    end
+
+    # Workspace root is a worktree of workspace-home; branch = workspace name.
+    # This is what makes claude session lookup span workspaces (see
+    # ~/.config/docs/workspace-shell-repo-design.md).
+    set -l branch (workspace_branch_name "$name")
+    echo "Creating new workspace at: $full_path (branch: $branch)"
+    git -C $ws_home worktree add -q -b "$branch" "$full_path" main
+    or begin
+        echo "Error: could not create workspace worktree." >&2
+        echo "If branch '$branch' already exists (stale workspace?), remove it:" >&2
+        echo "  git -C ~/code/repos/workspace-home branch -D '$branch'" >&2
+        return 1
+    end
+
     touch "$full_path/.workspace.json"
 
     cd "$full_path"

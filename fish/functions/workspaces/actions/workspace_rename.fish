@@ -61,6 +61,24 @@ function workspace_rename
         end
     end
 
+    # Update the root's own worktree registration (roots are worktrees of
+    # workspace-home) and rename its branch to track the workspace name —
+    # the branch name is what keeps future workspace forks collision-free.
+    if test -f "$new_path/.git"
+        set -l root_gitdir_content (string trim (cat "$new_path/.git"))
+        set -l root_wt_dir (string replace "gitdir: " "" "$root_gitdir_content")
+        if test -f "$root_wt_dir/gitdir"
+            echo "$new_path/.git" > "$root_wt_dir/gitdir"
+        end
+
+        set -l old_branch (git -C "$new_path" branch --show-current)
+        set -l new_branch (workspace_branch_name "$new_name")
+        if test -n "$old_branch" -a "$old_branch" != "$new_branch"
+            git -C "$new_path" branch -m "$old_branch" "$new_branch"
+            or echo "Warning: could not rename root branch '$old_branch' → '$new_branch'." >&2
+        end
+    end
+
     cd "$new_path"
     echo "Renamed workspace: $old_name → $new_name"
 end

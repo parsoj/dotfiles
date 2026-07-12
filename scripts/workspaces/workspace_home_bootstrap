@@ -1,0 +1,20 @@
+#!/usr/bin/env fish
+# Bootstrap ~/code/repos/workspace-home — the shell repo whose worktrees are
+# workspace roots. See ~/.config/docs/workspace-shell-repo-design.md.
+# Idempotent: safe to re-run; also re-applies repo config.
+
+set ws_home ~/code/repos/workspace-home
+
+if not test -d $ws_home
+    git init -q -b main $ws_home
+    or exit 1
+    git -C $ws_home commit -q --allow-empty -m "workspace-home: shell repo for workspace roots"
+    or exit 1
+    echo "Initialized $ws_home"
+end
+
+# Hooks are versioned in the config repo (git doesn't track .git/hooks).
+# Repo-local config is shared by all worktrees — exactly what we want.
+git -C $ws_home config core.hooksPath ~/.config/workspace-home/hooks
+
+echo "workspace-home ready (hooksPath → ~/.config/workspace-home/hooks)"

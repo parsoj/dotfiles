@@ -1,0 +1,17 @@
+#!/bin/bash
+# workspace-home pre-commit: refuse gitlink (nested-repo) entries.
+#
+# Child repos in a workspace are untracked BY DESIGN (gitignoring them would
+# blind ripgrep/Claude's Grep from the root — see
+# ~/.config/docs/workspace-shell-repo-design.md). A `git add .` at a workspace
+# root would stage them as gitlinks (mode 160000, submodule pointers), which
+# we never want.
+set -euo pipefail
+
+bad=$(git diff --cached --raw | awk '$2 == "160000"' || true)
+if [ -n "$bad" ]; then
+  echo "pre-commit: refusing commit — nested repos staged as gitlinks:" >&2
+  echo "$bad" | sed 's/^/  /' >&2
+  echo "Unstage with: git rm --cached -r <path>" >&2
+  exit 1
+fi

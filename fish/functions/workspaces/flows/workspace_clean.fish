@@ -1,4 +1,4 @@
-function workspace_clean
+function workspace_clean --description "pick workspaces and remove them (worktree-aware)"
     # Gather workspace paths sorted by modification time (oldest first)
     set -l dirs (string split : $WS_DIRS)
     set -l workspaces
@@ -51,9 +51,6 @@ function workspace_clean
     end
 
     for ws in $selected
-        echo "Deleting $ws ..."
-        command rm -rf "$ws" &
+        workspace_remove "$ws"
     end
-
-    echo "Delete jobs launched in background."
 end

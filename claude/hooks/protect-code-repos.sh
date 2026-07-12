@@ -27,7 +27,17 @@ PATH_RE='(~|\$HOME|/Users/jeff)/code/repos'
 case "$tool" in
   Bash)
     cmd=$(jq -r '.tool_input.command // ""' <<<"$input")
+    # Double-force git clean deletes nested git repos — in a workspace root
+    # that means the child repo worktrees. Never allowed, anywhere.
+    if grep -qE 'git[^|;&]*\bclean\b' <<<"$cmd" \
+       && grep -qE '(^| )-[A-Za-z]*f[A-Za-z]*f|--force[^|;&]*--force|(^| )-f( .*)? -f( |$)' <<<"$cmd"; then
+      deny "git clean with double force (-ff) deletes nested git repos — in a workspace root that destroys the child repo worktrees. Use workspace_remove / git worktree remove instead."
+    fi
     if grep -qE "$PATH_RE" <<<"$cmd"; then
+      # Allowed: read-only worktree/branch inspection of a repo (no pipes/chains)
+      if grep -qE "^git -C \"?$PATH_RE(/[A-Za-z0-9._-]+)?\"?/? (worktree list|branch( --list| -a| --show-current)?)$" <<<"$cmd"; then
+        exit 0
+      fi
       # Allowed: a single plain `ls` of the repos dir (no pipes/chains)
       if grep -qE "^ls( -[A-Za-z1]+)* ($PATH_RE/?|$PATH_RE/[A-Za-z0-9._-]+/?)$" <<<"$cmd"; then
         exit 0

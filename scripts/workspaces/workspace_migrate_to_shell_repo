@@ -1,0 +1,60 @@
+#!/usr/bin/env fish
+# One-time migration: adopt every existing workspace root under
+# ~/code/workspaces as a worktree of workspace-home, then prune stale
+# worktree registrations across ~/code/repos (debt left by the old
+# rm -rf-based workspace_clean).
+#
+# Idempotent: already-adopted roots are skipped. Non-destructive: adoption
+# only adds a .git file to the root; child repos and files are untouched.
+# See ~/.config/docs/workspace-shell-repo-design.md.
+
+~/.config/scripts/workspaces/workspace_home_bootstrap >/dev/null
+or exit 1
+
+set ws_home ~/code/repos/workspace-home
+
+for ws in ~/code/workspaces/*/
+    set ws (string trim -rc / "$ws")
+    test -f "$ws/.workspace.json"; or continue
+
+    if test -e "$ws/.git"
+        echo "skip (already adopted): $ws"
+        continue
+    end
+
+    set name (basename "$ws")
+    set branch (string replace -ra '[^A-Za-z0-9._-]' '-' -- "$name" | string trim -c '-.')
+
+    if git -C $ws_home show-ref --verify --quiet "refs/heads/$branch"
+        echo "SKIP $ws — branch '$branch' already exists in workspace-home" >&2
+        continue
+    end
+
+    # The root dir already exists and is non-empty, so `worktree add` can't
+    # target it directly: create the worktree in a temp dir (main is an empty
+    # commit, so nothing is checked out), then move the .git file into the
+    # real root and repoint the admin dir's back-reference.
+    set tmp (mktemp -d)
+    git -C $ws_home worktree add -q -b "$branch" "$tmp/wt" main
+    or begin
+        echo "FAIL worktree add for $ws" >&2
+        rm -rf "$tmp"
+        continue
+    end
+
+    mv "$tmp/wt/.git" "$ws/.git"
+    set wt_admin_dir (string replace 'gitdir: ' '' (string trim (cat "$ws/.git")))
+    echo "$ws/.git" > "$wt_admin_dir/gitdir"
+    rm -rf "$tmp"
+
+    echo "adopted: $ws (branch $branch)"
+end
+
+# Prune stale registrations everywhere (historical rm -rf'd workspaces)
+for repo in ~/code/repos/*/
+    if test -e "$repo/.git"
+        git -C "$repo" worktree prune
+    end
+end
+
+echo "migration complete"
