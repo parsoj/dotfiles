@@ -1,0 +1,12 @@
+#!/bin/bash
+# workspace-home post-checkout: materialize child repos after a worktree is
+# created (or a branch checked out) in a workspace root. This is what makes a
+# bare `git worktree add` of workspace-home — by ANY tool — yield a fully
+# populated workspace. workspace_sync is idempotent; extra firings are no-ops.
+flag="${3:-0}"
+[ "$flag" = "1" ] || exit 0            # branch checkouts only, not file checkouts
+[ -f .workspace.json ] || exit 0
+
+FISH="$(command -v fish || echo /opt/homebrew/bin/fish)"
+[ -x "$FISH" ] || exit 0
+"$FISH" -c "workspace_sync" || true

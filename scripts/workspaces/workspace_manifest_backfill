@@ -1,0 +1,53 @@
+#!/usr/bin/env fish
+# One-time backfill: build a manifest for every adopted workspace from its
+# current contents (child worktrees + their branches), preserving any existing
+# .workspace.json fields (e.g. obsidian_project), and commit it on the
+# workspace branch. Idempotent: skips workspaces whose manifest already has a
+# repos array.
+
+for ws in ~/code/workspaces/*/
+    set ws (string trim -rc / "$ws")
+    test -f "$ws/.workspace.json"; or continue
+    test -f "$ws/.git"; or begin
+        echo "SKIP (not adopted): $ws" >&2
+        continue
+    end
+
+    set manifest "$ws/.workspace.json"
+
+    # Existing content (empty/invalid file → {})
+    set existing (cat "$manifest" 2>/dev/null | jq -c . 2>/dev/null)
+    test -n "$existing"; or set existing '{}'
+
+    if echo $existing | jq -e '.repos' >/dev/null 2>&1
+        echo "skip (already has manifest): $ws"
+        continue
+    end
+
+    # Collect child repo entries
+    set repos_json '[]'
+    for d in $ws/*/
+        set -l child (string trim -rc / "$d")
+        test -f "$child/.git"; or continue
+        set -l rname (basename "$child")
+        set -l rbranch (git -C "$child" branch --show-current)
+        test -n "$rbranch"; or continue
+        set repos_json (echo $repos_json | jq -c --arg n "$rname" --arg b "$rbranch" '. += [{name: $n, branch: $b}]')
+    end
+
+    # created = directory birth time (best available approximation)
+    set created (stat -f '%SB' -t '%Y-%m-%dT%H:%M:%SZ' "$ws" 2>/dev/null)
+
+    echo $existing | jq --argjson repos "$repos_json" --arg created "$created" \
+        '.repos = $repos | if $created != "" then .created //= $created else . end' > "$manifest"
+    or begin
+        echo "FAIL manifest write: $ws" >&2
+        continue
+    end
+
+    git -C "$ws" add .workspace.json
+    git -C "$ws" commit -q -m "workspace: backfill manifest"
+    echo "backfilled: $ws ("(echo $repos_json | jq length)" repos)"
+end
+
+echo "backfill complete"

@@ -46,7 +46,10 @@ function workspace_create
         return 1
     end
 
-    touch "$full_path/.workspace.json"
+    # Seed the manifest and commit it on the workspace branch
+    jq -n --arg created (date -u +%Y-%m-%dT%H:%M:%SZ) '{created: $created, repos: []}' > "$full_path/.workspace.json"
+    git -C "$full_path" add .workspace.json
+    git -C "$full_path" commit -q -m "workspace: create $name"
 
     cd "$full_path"
 

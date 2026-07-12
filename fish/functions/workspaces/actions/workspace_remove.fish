@@ -27,9 +27,15 @@ function workspace_remove --argument-names ws --description "remove a workspace:
             set -l common (git -C "$child" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
             if test -n "$common"
                 set -l main_repo (dirname "$common")
+                set -l child_branch (git -C "$child" branch --show-current)
                 echo "Removing worktree $child"
                 git -C "$main_repo" worktree remove --force --force "$child"
                 or echo "Warning: failed to remove worktree $child — remove manually." >&2
+                # Safe-delete the child branch: -d only succeeds if it has no
+                # unmerged work, so branches backing PRs/WIP are kept.
+                if test -n "$child_branch"
+                    git -C "$main_repo" branch -d "$child_branch" >/dev/null 2>&1
+                end
             end
         end
     end

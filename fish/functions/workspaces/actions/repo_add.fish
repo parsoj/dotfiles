@@ -54,7 +54,7 @@ function repo_add
     # Add repo to workspace as a git worktree
     set -l repo_name (basename "$repo_path")
     set -l workspace_name (basename "$current_workspace")
-    set -l branch_name "$workspace_name"
+    set -l branch_name (workspace_branch_name "$workspace_name")
 
     if test -d "$current_workspace/$repo_name"
         echo "Error: $repo_name already exists in workspace at $current_workspace/$repo_name" >&2
@@ -113,18 +113,8 @@ function repo_add
     cd -
 
     # Process .worktree-setup if it exists in the main repo
-    set -l worktree_path "$current_workspace/$repo_name"
-    if test -f "$repo_path/.worktree-setup"
-        while read -l line
-            set -l parts (string split " " $line)
-            if test "$parts[1]" = "symlink"; and test -n "$parts[2]"
-                set -l src "$repo_path/$parts[2]"
-                set -l dst "$worktree_path/$parts[2]"
-                if test -e "$src"; and not test -e "$dst"
-                    ln -s "$src" "$dst"
-                    echo "Symlinked $parts[2] from main repo"
-                end
-            end
-        end < "$repo_path/.worktree-setup"
-    end
+    worktree_setup_apply "$repo_path" "$current_workspace/$repo_name"
+
+    # Record the repo in the workspace manifest (workspace_sync reads this)
+    workspace_manifest_add_repo "$current_workspace" "$repo_name" "$branch_name"
 end
