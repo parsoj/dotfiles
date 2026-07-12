@@ -1,18 +1,19 @@
 set -q FZF_TMUX_HEIGHT; or set -U FZF_TMUX_HEIGHT "40%"
 
-# Theme fzf based on macOS dark/light mode
-# Dark: Catppuccin Frappe | Light: Nord Light
-if defaults read -g AppleInterfaceStyle &>/dev/null
+# Theme fzf to match cmux/Ghostty automatic light/dark themes.
+# Light: Seoulbones Light. Dark: Doom One.
+if defaults read -g AppleInterfaceStyle >/dev/null 2>/dev/null
     set -gx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT" \
-        "--color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284" \
-        "--color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF" \
-        "--color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284" \
-        "--color=selected-bg:#51576D,border:#737994,label:#C6D0F5"
+        "--color=bg:#282c34,bg+:#3f444a,selected-bg:#3f444a" \
+        "--color=fg:#bbc2cf,fg+:#dfdfdf,header:#51afef,info:#46D9FF" \
+        "--color=prompt:#51afef,pointer:#c678dd,marker:#98be65,spinner:#c678dd" \
+        "--color=hl:#ECBE7B,hl+:#ECBE7B,border:#5B6268,label:#bbc2cf"
 else
     set -gx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT" \
-        "--color=bg+:#c2d0e7,bg:#e5e9f0,spinner:#398eac,hl:#3b6ea8" \
-        "--color=fg:#60728c,header:#3b6ea8,info:#9a7500,pointer:#398eac" \
-        "--color=marker:#398eac,fg+:#3b4252,prompt:#9a7500,hl+:#3b6ea8"
+        "--color=bg:#e2e2e2,bg+:#cccccc,selected-bg:#cccccc" \
+        "--color=fg:#555555,fg+:#4b4b4b,header:#006f89,info:#008586" \
+        "--color=prompt:#0084a3,pointer:#be3c6d,marker:#487249,spinner:#7f4c7e" \
+        "--color=hl:#a76b48,hl+:#be3c6d,border:#a5a0a1,label:#555555"
 end
 set -q FZF_LEGACY_KEYBINDINGS; or set -U FZF_LEGACY_KEYBINDINGS 1
 set -q FZF_DISABLE_KEYBINDINGS; or set -U FZF_DISABLE_KEYBINDINGS 0

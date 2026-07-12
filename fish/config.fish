@@ -2,10 +2,13 @@
 # Commands to run in interactive sessions can go here
 #end
 
-alias rrr="source ~/.config/fish/config.fish"
-alias vo="vim (fzf)"
+function rrr --description 'reload fish config and launcher cache'
+    source ~/.config/fish/config.fish
+    launcher_cache_refresh >/dev/null
+end
+alias cnf="cd ~/.config"
+alias vo="nvim (fzf)"
 alias watch=entr
-alias l=launch_app_or_function
 alias ib=inbox_send
 alias wib=work_inbox_send
 
@@ -13,10 +16,12 @@ alias wib=work_inbox_send
 #fish_add_path ~/.config/scripts/launchers/
 #fish_add_path ~/.config/scripts/capture/
 
-# Recursively add all directories containing executable scripts (excluding test files)
-for dir in (find ~/.config/scripts -type f -perm +111 -not -name "*test*" -print0 | xargs -0 dirname | sort | uniq)
-    fish_add_path $dir
-end
+# Doom Emacs CLI (`doom sync`, `doom doctor`, etc.).
+fish_add_path ~/.emacs.d/bin
+
+# Default Node version. Keep this static for faster shell startup instead of
+# sourcing nvm on every new fish shell.
+fish_add_path ~/.nvm/versions/node/v24.12.0/bin
 
 # Auto-register every subdirectory under functions/ on $fish_function_path so
 # nested feature/role folders autoload. See ~/.config/fish/AGENTS.md.
@@ -64,6 +69,14 @@ end
 
 fish_vi_key_bindings
 
+# Fish autosuggestions render incorrectly in Emacs vterm on this setup: the
+# history suggestion can appear to be accepted before newly typed characters
+# (e.g. typing "mv" ends up after the grey suggestion). Disable only inside
+# vterm; keep autosuggestions in normal terminal emulators.
+if set -q INSIDE_EMACS; and string match -q "*vterm*" -- $INSIDE_EMACS
+    set -g fish_autosuggestion_enabled 0
+end
+
 # alias ws="windsurf"
 
 alias char_count="/usr/bin/wc -m"
@@ -76,6 +89,27 @@ alias tfi="tofu init"
 alias tfa="tofu apply"
 alias tfp="tofu plan"
 # alias vssh="vault-ssh connect"
+
+# rendered markdown preview pane in current cmux workspace (live-reloads)
+alias mdp="cmux markdown open"
+
+# open a file in nvim in a new split pane in the current cmux workspace
+function vp
+    set -l out (cmux new-pane --direction right --focus true)
+    or begin
+        echo "vp: cmux new-pane failed: $out" >&2
+        return 1
+    end
+    set -l surface (string match -r 'surface:\S+' -- "$out")
+    if test -z "$surface"
+        echo "vp: could not parse surface from: $out" >&2
+        return 1
+    end
+    if set -q argv[1]
+        cmux send --surface $surface -- "nvim "(string escape -- (path resolve -- $argv[1]))
+        cmux send-key --surface $surface enter
+    end
+end
 
 alias vv=nvim
 alias k=kubectl
@@ -141,18 +175,12 @@ alias grt="cd ~/code/repos/Tennr"
 alias war=repo_add
 alias wab="repo_add odd-bits"
 alias wsc=workspace_create  # was `wc`, which shadowed /usr/bin/wc
+alias cw=workspace_create
 alias wrn=workspace_rename
 
 ##########################################################################################
 
 # file contents
-
-function nvm
-    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
-end
-
-set -x NVM_DIR ~/.nvm
-nvm use default --silent
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
@@ -169,7 +197,14 @@ end
 
 # set -U fish_user_paths /Users/jeff/.groundcover/bin $fish_user_paths
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Static Homebrew environment. Avoid `eval "$(brew shellenv)"` here: it shells
+# out to brew/path_helper on every new Fish shell and costs ~20–25ms.
+set -gx HOMEBREW_PREFIX /opt/homebrew
+set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
+set -gx HOMEBREW_REPOSITORY /opt/homebrew
+fish_add_path --prepend /opt/homebrew/bin /opt/homebrew/sbin
+set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
 
 # uv
 fish_add_path "/Users/jeff/.local/bin"
+spur init fish | source

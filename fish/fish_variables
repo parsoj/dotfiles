@@ -9,10 +9,12 @@ SETUVAR FZF_PREVIEW_FILE_CMD:head\x20\x2dn\x2010
 SETUVAR FZF_TMUX_HEIGHT:40\x25
 SETUVAR --export --path INBOX_FILE_PATH:/Users/jeff/Obsidian/Inbox/Inbox\x2emd
 SETUVAR --export KUBE_EDITOR:nvim
+SETUVAR --export SHELL:/opt/homebrew/bin/fish
 SETUVAR --export STARSHIP_CONFIG:/Users/jeff/\x2econfig/starship/starship\x2etoml
+SETUVAR --export VAULT_ADDR:https\x3a//vault\x2einternal\x2etennr\x2ecom
 SETUVAR --export --path WORK_INBOX_FILE_PATH:/Users/jeff/Obsidian/Inbox/Work_Inbox\x2emd
 SETUVAR WS_DIRS:/Users/jeff/code/workspaces/
-SETUVAR __fish_initialized:3800
+SETUVAR __fish_initialized:4300
 SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_g_2D_plane_2F_pnpm_2D_shell_2D_completion_files:\x7e/\x2econfig/fish/conf\x2ed/pnpm\x2dshell\x2dcompletion\x2efish
 SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
@@ -20,32 +22,4 @@ SETUVAR _fisher_jukben_2F_fish_2D_nx_files:\x7e/\x2econfig/fish/completions/nx\x
 SETUVAR _fisher_plugins:jorgebucaran/nvm\x2efish\x1eg\x2dplane/pnpm\x2dshell\x2dcompletion\x1ejukben/fish\x2dnx\x1eedc/bass
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR all_environments:\x0a\x7b\x0a\x20\x20\x20\x20\x22prod\x22\x3a\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22VAULT_ADDR\x22\x3a\x20\x22https\x3a//vault\x2emgmt\x2eprod\x2edreambox\x2enet\x22\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22AWS_PROFILE\x22\x3a\x20\x22dbl\x2dprod\x2dsre\x22\x0a\x20\x20\x20\x20\x7d\x2c\x0a\x20\x20\x20\x20\x22rpprod\x22\x3a\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22AWS_PROFILE\x22\x3a\x20\x22dbl\x2drpprod\x2dsre\x22\x0a\x20\x20\x20\x20\x7d\x2c\x0a\x20\x20\x20\x20\x22shared\x22\x3a\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22VAULT_ADDR\x22\x3a\x20\x22https\x3a//vault\x2emgmt\x2eshared\x2edreambox\x2enet\x22\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22AWS_PROFILE\x22\x3a\x20\x22dbl\x2dshared\x2dsre\x22\x0a\x20\x20\x20\x20\x7d\x2c\x0a\x20\x20\x20\x20\x22stage\x22\x3a\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22VAULT_ADDR\x22\x3a\x20\x22https\x3a//vault\x2emgmt\x2estage\x2edreambox\x2enet\x22\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22AWS_PROFILE\x22\x3a\x20\x22dbl\x2dstage\x2dsre\x22\x0a\x20\x20\x20\x20\x7d\x2c\x0a\x20\x20\x20\x20\x22sre\x22\x3a\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22VAULT_ADDR\x22\x3a\x20\x22https\x3a//vault\x2emgmt\x2esre\x2edreambox\x2enet\x22\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22AWS_PROFILE\x22\x3a\x20\x22dbl\x2dsre\x2dsre\x22\x0a\x20\x20\x20\x20\x7d\x2c\x0a\x20\x20\x20\x20\x22dev\x22\x3a\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22VAULT_ADDR\x22\x3a\x20\x22https\x3a//vault\x2emgmt\x2edev\x2edreambox\x2enet\x22\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x22AWS_PROFILE\x22\x3a\x20\x22dbl\x2ddev\x2dsre\x22\x0a\x20\x20\x20\x20\x7d\x0a\x7d\x0a
-SETUVAR fish_color_autosuggestion:brblack
-SETUVAR fish_color_cancel:\x2dr
-SETUVAR fish_color_command:blue
-SETUVAR fish_color_comment:red
-SETUVAR fish_color_cwd:green
-SETUVAR fish_color_cwd_root:red
-SETUVAR fish_color_end:green
-SETUVAR fish_color_error:brred
-SETUVAR fish_color_escape:brcyan
-SETUVAR fish_color_history_current:\x2d\x2dbold
-SETUVAR fish_color_host:normal
-SETUVAR fish_color_host_remote:yellow
-SETUVAR fish_color_normal:normal
-SETUVAR fish_color_operator:brcyan
-SETUVAR fish_color_param:cyan
-SETUVAR fish_color_quote:yellow
-SETUVAR fish_color_redirection:cyan\x1e\x2d\x2dbold
-SETUVAR fish_color_search_match:white\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_status:red
-SETUVAR fish_color_user:brgreen
-SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_key_bindings:fish_vi_key_bindings
-SETUVAR fish_pager_color_completion:normal
-SETUVAR fish_pager_color_description:yellow\x1e\x2di
-SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
-SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/Applications/Obsidian\x2eapp/Contents/MacOS\x1e/Users/jeff/\x2elocal/bin\x1e/Users/jeff/go/bin\x1e/Users/jeff/\x2ecargo/bin\x1e/Users/jeff/\x2egroundcover/bin\x1e/Users/jeff/\x2ecodeium/windsurf/bin\x1e/Users/jeff/\x2econfig/scripts/launchers\x1e/Users/jeff/\x2econfig/scripts/capture/link_detection_and_parsing\x1e/Users/jeff/\x2econfig/scripts/capture/insert_into_obsidian_heading\x1e/Users/jeff/\x2econfig/scripts/building_blocks
+SETUVAR fish_user_paths:/opt/homebrew/bin\x1e/opt/homebrew/sbin\x1e/Users/jeff/\x2esyncfu/bin\x1e/Users/jeff/\x2envm/versions/node/v24\x2e12\x2e0/bin\x1e/Users/jeff/\x2eemacs\x2ed/bin\x1e/Applications/Obsidian\x2eapp/Contents/MacOS\x1e/Users/jeff/\x2elocal/bin\x1e/Users/jeff/go/bin\x1e/Users/jeff/\x2ecargo/bin\x1e/Users/jeff/\x2egroundcover/bin\x1e/Users/jeff/\x2ecodeium/windsurf/bin\x1e/Users/jeff/\x2econfig/scripts/launchers\x1e/Users/jeff/\x2econfig/scripts/capture/link_detection_and_parsing\x1e/Users/jeff/\x2econfig/scripts/capture/insert_into_obsidian_heading\x1e/Users/jeff/\x2econfig/scripts/building_blocks

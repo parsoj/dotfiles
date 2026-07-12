@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/launcher"
+functions_cache="$cache_dir/fish-functions.tsv"
+tmp="$(mktemp "$cache_dir/fish-functions.tsv.XXXXXX" 2>/dev/null || true)"
+
+mkdir -p "$cache_dir"
+if [[ -z "${tmp:-}" ]]; then
+  tmp="$(mktemp "$cache_dir/fish-functions.tsv.XXXXXX")"
+fi
+cleanup() {
+  rm -f "$tmp"
+}
+trap cleanup EXIT
+
+# Match the historical launcher format:
+#   FUNC:<name> ## <name>
+/opt/homebrew/bin/fish -c 'functions' \
+  | awk '{print "FUNC:" $0 " ## " $0}' \
+  > "$tmp"
+
+mv "$tmp" "$functions_cache"
+trap - EXIT
+
+echo "$functions_cache"
