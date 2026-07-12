@@ -45,6 +45,10 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/tmux-tab-state.sh working"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/session-id-snapshot.sh"
           }
         ]
       }
