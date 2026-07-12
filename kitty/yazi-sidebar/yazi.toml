@@ -1,0 +1,9 @@
+# Dedicated Yazi profile for kitty's sidebar mode.
+# Keep it simple: one file-list pane, no parent pane, no preview pane.
+
+[mgr]
+ratio = [0, 1, 0]
+linemode = "none"
+show_hidden = true
+show_symlink = true
+scrolloff = 3

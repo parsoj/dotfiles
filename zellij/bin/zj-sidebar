@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Tiny always-on Zellij sidebar. Keep this simple and dependency-light so it can
+# run in every tab as a dashboard / cheat sheet.
+while true; do
+  clear
+  printf '\033[1;36m%s\033[0m\n' "zellij"
+  printf '%s\n' "$(date '+%a %b %d  %H:%M')"
+  printf '\n'
+
+  printf '\033[1m%s\033[0m\n' "palette"
+  printf '  Alt-Space  command palette\n'
+  printf '  Ctrl-e     zellij filepicker\n'
+  printf '\n'
+
+  printf '\033[1m%s\033[0m\n' "panes"
+  printf '  Alt-h/j/k/l  focus\n'
+  printf '  Ctrl-p r/d   split right/down\n'
+  printf '  Ctrl-p f     fullscreen\n'
+  printf '  Alt-f        floating panes\n'
+  printf '\n'
+
+  printf '\033[1m%s\033[0m\n' "tabs"
+  printf '  Ctrl-t n     new tab\n'
+  printf '  Alt-1..9     goto tab\n'
+  printf '  Alt-[ / ]    layouts\n'
+  printf '\n'
+
+  if git rev-parse --show-toplevel >/dev/null 2>&1; then
+    printf '\033[1m%s\033[0m\n' "git"
+    git branch --show-current 2>/dev/null | sed 's/^/  /'
+    git status --short 2>/dev/null | head -12 | sed 's/^/  /'
+    printf '\n'
+  fi
+
+  printf '\033[2m%s\033[0m\n' "cwd"
+  pwd | sed "s#^$HOME#~#" | fold -w 24 | sed 's/^/  /'
+
+  sleep 5
+done

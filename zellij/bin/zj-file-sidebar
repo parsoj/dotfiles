@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Sidebar file explorer for Zellij.
+# Yazi/ranger-style column browsers are a poor fit in a narrow sidebar because
+# they spend width on parent/current/preview columns. Broot gives us a proper
+# one-pane expandable tree, which is much closer to an editor sidebar.
+exec broot --hidden --no-git-ignored --show-git-info --sort-by-type-dirs-first --tree "$PWD"

@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Helm/Ivy-ish command palette for Zellij, powered by fzf.
+# It intentionally shells out to zellij's CLI so it works from a floating pane.
+
+have() { command -v "$1" >/dev/null 2>&1; }
+editor_name="${EDITOR:-${VISUAL:-nvim}}"
+
+choose() {
+  fzf --ansi --height=100% --border=rounded --prompt='zj › ' \
+      --preview-window='right:55%:wrap' \
+      --preview 'bash -lc '\''
+        line="$1"; kind="${line%%:*}"; rest="${line#*:}"
+        case "$kind" in
+          file) bat --style=numbers --color=always --line-range=:200 "$rest" 2>/dev/null || sed -n "1,200p" "$rest" 2>/dev/null ;;
+          grep) file="${rest%%:*}"; lineno="${rest#*:}"; lineno="${lineno%%:*}"; bat --style=numbers --color=always --highlight-line "$lineno" --line-range "$((lineno>8?lineno-8:1)):$((lineno+20))" "$file" 2>/dev/null || sed -n "$((lineno>8?lineno-8:1)),$((lineno+20))p" "$file" 2>/dev/null ;;
+          repo|workspace|dir) ls -la "$rest" 2>/dev/null | sed -n "1,120p" ;;
+          *) printf "%s\n" "$line" ;;
+        esac
+      '\'' -- {}'
+}
+
+repo_dirs() {
+  for root in "$HOME/code/repos" "$HOME/code" "$HOME/workspaces" "$HOME/Developer"; do
+    [[ -d "$root" ]] || continue
+    find "$root" -mindepth 1 -maxdepth 3 -type d \( -name .git -o -name node_modules \) -prune -o -type d -print 2>/dev/null \
+      | while read -r d; do [[ -d "$d/.git" ]] && printf 'repo:%s\n' "$d"; done
+  done
+}
+
+workspace_dirs() {
+  for root in "$HOME/code/workspaces" "$HOME/workspaces"; do
+    [[ -d "$root" ]] || continue
+    find "$root" -mindepth 1 -maxdepth 2 -type d -print 2>/dev/null | sed 's/^/workspace:/'
+  done
+}
+
+file_entries() {
+  if have fd; then
+    fd --type f --hidden --exclude .git --exclude node_modules --exclude .direnv . 2>/dev/null | sed 's#^./##; s/^/file:/'
+  else
+    find . -type f -not -path '*/.git/*' -not -path '*/node_modules/*' 2>/dev/null | sed 's#^./##; s/^/file:/'
+  fi
+}
+
+grep_entries() {
+  # Prompt for search text, then return rg matches as selectable entries.
+  local q
+  q="$(printf '' | fzf --print-query --phony --prompt='rg › ' --height=100% --border=rounded | head -1)"
+  [[ -n "${q:-}" ]] || exit 0
+  rg --line-number --no-heading --color=never --hidden --glob '!.git' --glob '!node_modules' "$q" 2>/dev/null | sed 's/^/grep:/' | choose
+}
+
+open_dir_tab() {
+  local dir="$1" name
+  name="$(basename "$dir")"
+  if zellij action new-tab --cwd "$dir" --name "$name" >/dev/null 2>&1; then
+    return
+  fi
+  # Fallback for older Zellij builds.
+  zellij run --cwd "$dir" --name "$name" -- "$SHELL" -l >/dev/null 2>&1 || true
+}
+
+run_action() {
+  local selection="$1" kind rest file line
+  kind="${selection%%:*}"
+  rest="${selection#*:}"
+  case "$kind" in
+    action)
+      case "$rest" in
+        "grep") grep_entries | { read -r s || exit 0; run_action "$s"; } ;;
+        "new tab") zellij action new-tab ;;
+        "sessions") zellij action launch-or-focus-plugin session-manager --floating true 2>/dev/null || zellij run --floating -- zellij attach ;;
+        "lazygit") zellij run --floating --width 90% --height 90% --close-on-exit -- lazygit ;;
+        "shell here") zellij run --name shell -- "$SHELL" -l ;;
+      esac
+      ;;
+    file)
+      zellij edit "$rest" >/dev/null 2>&1 || zellij run --close-on-exit -- "$editor_name" "$rest"
+      ;;
+    grep)
+      file="${rest%%:*}"
+      line="${rest#*:}"; line="${line%%:*}"
+      zellij edit --line-number "$line" "$file" >/dev/null 2>&1 || zellij run --close-on-exit -- "$editor_name" "+$line" "$file"
+      ;;
+    repo|workspace|dir)
+      open_dir_tab "$rest"
+      ;;
+  esac
+}
+
+main() {
+  local selection
+  selection="$({
+    printf 'action:grep\n'
+    printf 'action:new tab\n'
+    printf 'action:sessions\n'
+    have lazygit && printf 'action:lazygit\n'
+    printf 'action:shell here\n'
+    workspace_dirs
+    repo_dirs
+    file_entries
+  } | awk '!seen[$0]++' | choose)"
+
+  [[ -n "${selection:-}" ]] || exit 0
+  run_action "$selection"
+}
+
+main "$@"

@@ -1,0 +1,24 @@
+# popup-terminal config — see tools/terminal-popup/README.md in odd-bits.
+# Reload with: launchctl kickstart -k gui/$(id -u)/io.oddbits.popup-terminal
+
+defaultCommand = ["/opt/homebrew/bin/fish"]
+
+[[hotkeys]]
+chord = "cmd+space"
+command = ["/opt/homebrew/bin/fish", "-ic", "l"]
+
+[[hotkeys]]
+chord = "cmd+opt+p"
+command = ["/Users/jeff/.config/kitty/python-repl-popup.sh"]
+
+[[hotkeys]]
+chord = "cmd+opt+space"
+command = ["/opt/homebrew/bin/fish"]
+
+[[hotkeys]]
+chord = "cmd+opt+m"
+command = ["/bin/sh", "-c", "/opt/homebrew/bin/timg -pi -C /Users/jeff/code/workspaces/popup-pool/map.png && exec sleep 864000"]
+reusable = true
+width = 1030
+height = 890
+dismissOnEscape = true

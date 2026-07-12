@@ -1,36 +1,15 @@
 layout {
     default_tab_template {
-        children
-        pane size=1 borderless=true {
-            plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
-                format_left  "{mode}#[fg=#303446,bg=#8caaee,bold] {session} #[fg=#8caaee,bg=#303446]{tabs}"
-                format_right "#[fg=#303446,bg=#838ba7]{datetime}"
-                format_space "#[bg=#303446]"
-
-                hide_frame_for_single_pane "true"
-
-                mode_normal        "#[bg=#8caaee] "
-                mode_locked        "#[bg=#e78284] "
-                mode_pane          "#[bg=#a6d189] "
-                mode_tab           "#[bg=#ef9f76] "
-                mode_resize        "#[bg=#ca9ee6] "
-                mode_scroll        "#[bg=#eebebe] "
-                mode_session       "#[bg=#f4b8e4] "
-                mode_move          "#[bg=#85c1dc] "
-                mode_tmux          "#[bg=#ef9f76] "
-                mode_default_to_mode "normal"
-
-                tab_normal              "#[fg=#303446,bg=#51576d] #[fg=#c6d0f5,bg=#51576d]{index}  {name} #[fg=#51576d,bg=#303446]"
-                tab_normal_fullscreen   "#[fg=#51576d,bg=#303446] {index} {name} [] "
-                tab_normal_sync         "#[fg=#51576d,bg=#303446] {index} {name} <> "
-                tab_active              "#[fg=#303446,bg=#c6d0f5,bold,italic] {index}  {name} #[fg=#c6d0f5,bg=#303446]"
-                tab_active_fullscreen   "#[fg=#c6d0f5,bg=#303446,bold,italic] {index} {name} [] "
-                tab_active_sync         "#[fg=#c6d0f5,bg=#303446,bold,italic] {index} {name} <> "
-
-                datetime          "#[fg=#303446,bg=#838ba7,bold] {format} "
-                datetime_format   "%a %b %d  %H:%M"
-                datetime_timezone "America/New_York"
-            }
+        pane split_direction="vertical" {
+            pane command="/Users/jeff/.config/zellij/bin/zj-file-sidebar" size="24%" borderless=false
+            children
         }
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="main" {
+        pane
     }
 }

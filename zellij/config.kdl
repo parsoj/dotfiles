@@ -1,6 +1,20 @@
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
+        bind "Ctrl Space" { SwitchToMode "tmux"; }
+    }
+    normal {
+        bind "Ctrl Space" { SwitchToMode "tmux"; }
+        bind "Alt Space" {
+            Run "/Users/jeff/.config/zellij/bin/zj-palette" {
+                floating true
+                close_on_exit true
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
+            }
+        }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -241,7 +255,31 @@ keybinds clear-defaults=true {
         bind "down" { MoveFocus "down"; SwitchToMode "normal"; }
         bind "up" { MoveFocus "up"; SwitchToMode "normal"; }
         bind "right" { MoveFocus "right"; SwitchToMode "normal"; }
-        bind "space" { NextSwapLayout; }
+        bind "space" {
+            Run "/opt/homebrew/bin/fish" {
+                args "-lc" "l"
+                floating true
+                close_on_exit true
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
+            }
+            SwitchToMode "normal"
+        }
+        bind "l" {
+            Run "/opt/homebrew/bin/fish" {
+                args "-lc" "l"
+                floating true
+                close_on_exit true
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
+            }
+            SwitchToMode "normal"
+        }
+        bind "esc" { SwitchToMode "normal"; }
         bind "\"" { NewPane "down"; SwitchToMode "normal"; }
         bind "%" { NewPane "right"; SwitchToMode "normal"; }
         bind "," { SwitchToMode "renametab"; }

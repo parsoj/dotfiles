@@ -42,7 +42,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+theme = Kanagawa Lotus
 
 quit-after-last-window-closed = true
 
