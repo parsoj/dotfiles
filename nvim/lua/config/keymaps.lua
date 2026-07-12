@@ -26,3 +26,7 @@ end, { desc = "Toggle Spelling" })
 vim.keymap.set("n", "<leader><leader>", function()
   Snacks.picker.commands()
 end, { desc = "Commands" })
+
+-- Find files: prefer cwd on lowercase, project/root on uppercase.
+vim.keymap.set("n", "<leader>ff", LazyVim.pick("files", { root = false }), { desc = "Find Files (cwd)" })
+vim.keymap.set("n", "<leader>fF", LazyVim.pick("files"), { desc = "Find Files (Project)" })

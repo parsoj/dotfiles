@@ -4,6 +4,10 @@
 
 vim.opt.clipboard = "unnamedplus"
 
+-- TypeScript LSP: use LazyVim's tsgo integration instead of vtsls.
+-- Mason provides tsgo at ~/.local/share/nvim/mason/bin/tsgo.
+vim.g.lazyvim_ts_lsp = "tsgo"
+
 -- No left margin by default
 vim.opt.signcolumn = "no"
 vim.opt.number = false
