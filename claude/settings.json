@@ -126,7 +126,8 @@
     "compound-engineering@compound-engineering-plugin": true,
     "swift-lsp@claude-plugins-official": true,
     "datadog@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {

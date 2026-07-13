@@ -27,8 +27,15 @@ Workspace management:
 | `wab` | Workspace add odd-bits |
 | `wc` | Workspace create |
 | `spinout` | Spin current repo changes into a new workspace |
+| `workspace_remove <path>` | Remove a workspace (child worktrees + root worktree + branches) |
+| `workspace_sync [path]` | Materialize child repos from the manifest (also fires via post-checkout hook) |
+| `workspace_fork <name>` | Fork current workspace: children branched off source HEADs, dirty state copied |
 
 When adding new navigation commands, follow this scheme. New scopes get a single-letter prefix, targets stay consistent (d/r/f/g).
+
+### Workspace architecture (2026-07)
+
+Every workspace root under `~/code/workspaces/` is a git worktree of the shell repo `~/code/repos/workspace-home` (branch = sanitized workspace name), and `.workspace.json` is a tracked manifest (repos, branches, created timestamp — plus pre-existing fields like `obsidian_project`). Child repos are worktrees of `~/code/repos/*`, deliberately untracked-and-NOT-gitignored in workspace-home. Never `mkdir` or `rm -rf` workspace roots directly — use the verbs above, or stale worktree registrations pile up. Full design: `docs/workspace-shell-repo-design.md`.
 
 ## Codex Directory Layout
 
