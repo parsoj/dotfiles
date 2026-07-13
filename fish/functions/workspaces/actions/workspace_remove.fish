@@ -53,6 +53,11 @@ function workspace_remove --argument-names ws --description "remove a workspace:
         end
         if test -n "$branch"
             git -C $ws_home branch -D "$branch" >/dev/null 2>&1
+            # Best-effort remote backup cleanup (backgrounded; offline is fine)
+            if git -C $ws_home remote get-url origin >/dev/null 2>&1
+                git -C $ws_home push --quiet origin --delete "$branch" >/dev/null 2>&1 &
+                disown 2>/dev/null
+            end
         end
     else
         command rm -rf "$ws"
