@@ -118,3 +118,61 @@ of the whole config repo.)
 1. Bootstrap workspace-home + rewrite `create`/`clean` + migration (standalone value).
 2. Manifest schema + `workspace_sync` + post-checkout hook.
 3. `workspace_fork` + `/wsfork` skill + cmux launch integration.
+
+## Operations runbook
+
+### Backup model
+
+- Remote: **github.com/parsoj/workspace-home** (private, personal account).
+- A `post-commit` hook (versioned here, `workspace-home/hooks/`) background-pushes the
+  workspace branch on every manifest commit; `workspace_remove` deletes the remote
+  branch. Both best-effort — offline never blocks anything; the next commit catches up.
+- **Backed up**: manifests, anything committed on workspace branches (notes if you
+  commit them), the structure to regenerate every workspace.
+- **NOT backed up**: uncommitted child-repo work, untracked root files. Child repo
+  branches are backed up by their own repos' remotes when pushed, as always.
+
+### New machine bootstrap
+
+1. Set up dotfiles (this repo) first — the fish verbs and hooks dir must exist.
+2. `git clone git@github.com:parsoj/workspace-home.git ~/code/repos/workspace-home`
+3. `~/.config/scripts/workspaces/workspace_home_bootstrap` — idempotent; skips init on
+   an existing clone and (re)points `core.hooksPath` at `~/.config/workspace-home/hooks`.
+4. Clone needed canonical repos into `~/code/repos/` (`repo_add <github-url>` from
+   anywhere does clone-only).
+5. Recreate any workspace:
+   `git -C ~/code/repos/workspace-home worktree add ~/code/workspaces/<name> <branch>`
+   — the post-checkout hook + `workspace_sync` materialize the child repos from the
+   manifest. (Skipped repos are reported if their canonical clone is missing: clone it,
+   then run `workspace_sync` again.)
+
+### Restore a single deleted workspace (branch still on remote)
+
+```
+git -C ~/code/repos/workspace-home fetch origin
+git -C ~/code/repos/workspace-home worktree add ~/code/workspaces/<name> <branch>
+```
+Hook syncs children. Note `workspace_remove` deletes the remote branch too — this path
+covers accidental local deletion (`rm -rf`), not an intentional remove.
+
+### Repair scenarios
+
+- **Stale worktree registrations** (workspace dir deleted without `workspace_remove`):
+  `git worktree prune` in workspace-home and/or the affected child repo. The migration
+  script's tail does this for everything: `workspace_migrate_to_shell_repo` (idempotent).
+- **Workspace dir moved with plain `mv`** (broken back-pointers): use
+  `workspace_rename`'s surgery as the model — fix `<root>/.git`'s admin dir's `gitdir`
+  file to the new `.git` path (root and each child have one). Or move it back and use
+  `workspace_rename`.
+- **Manifest lost/wrong but children exist**: `workspace_manifest_backfill` (idempotent;
+  skips workspaces whose manifest already has a `repos` array — delete the bad manifest
+  file first to force rebuild).
+- **Root not adopted** (plain-dir workspace from before the migration, or hand-made):
+  `workspace_migrate_to_shell_repo` adopts any root with `.workspace.json` and no `.git`.
+
+### Claude session continuity
+
+Transcripts live in `~/.claude/projects/<encoded-cwd>/` on the machine where the session
+ran — they are NOT part of this backup. Same-machine recovery: as long as the workspace
+path is recreated identically, old sessions resume (`claude --resume` from the root).
+Cross-machine: transcripts must be copied separately; paths must match.
