@@ -4,11 +4,11 @@ Status: **built 2026-07-12** (all three phases; see commits `workspaces phase 1/
 Empirical claims below were verified by experiment, not assumed. Remaining open items:
 interactive `--resume` picker noise across worktrees (cosmetic, evaluate in use), the
 "last worked on" manifest timestamp (deferred).
-Live-fire /branch run verified 2026-07-12.
+Live-fire /wsfork run verified 2026-07-12.
 
 ## Goal
 
-An elaborate `/branch` for Claude Code: one verb that forks the **claude session**, the
+An elaborate workspace-fork verb for Claude Code (skill: `/wsfork`; named to avoid shadowing the built-in `/branch`): one verb that forks the **claude session**, the
 **whole multi-repo workspace** (worktrees + dirty state), and opens a **new cmux
 workspace** running the forked session — leaving the original session and checkout
 untouched.
@@ -59,7 +59,7 @@ possibly derived (child reflog dates / mtimes) rather than stored; decide at bui
 - **`workspace_fork <name>`** — root worktree off the source root's branch → sync →
   per child repo: worktree on branch `<name>` based at the source worktree's HEAD, dirty
   state duplicated (diff-apply + untracked copy), `gt track` where source was tracked.
-- **`/branch <name>`** (claude skill) — `workspace_fork`, then `cmux new-workspace --cwd
+- **`/wsfork <name>`** (claude skill) — `workspace_fork`, then `cmux new-workspace --cwd
   <new-root>` launching `claude --resume <session-id> --fork-session` (env scrubbed of
   `CLAUDE_CODE_CHILD_SESSION` — see cmux-dev.fish for why), first prompt = relocation
   note ("you were forked; you now live in <path> on branch <name>").
@@ -83,7 +83,7 @@ possibly derived (child reflog dates / mtimes) rather than stored; decide at bui
 | `workspace_rename` | extend: root gitdir-pointer surgery (or `worktree move`) + `git branch -m` root branch. Child branches keep old names (matches today) |
 | `repo_add` | record repo in manifest; mechanics unchanged |
 | `repo_list` | exclude workspace-home |
-| `workspace_sync`, `workspace_fork`, `/branch` skill | new |
+| `workspace_sync`, `workspace_fork`, `/wsfork` skill | new |
 | Migration | one-time: adopt each existing root as a worktree, seed manifests; plus `git worktree prune` sweep across `~/code/repos/*` |
 
 Everything else — all pickers/flows (`gw`, `wat`, spinout, kitty/tmux/zellij/doom/starship
@@ -117,4 +117,4 @@ of the whole config repo.)
 
 1. Bootstrap workspace-home + rewrite `create`/`clean` + migration (standalone value).
 2. Manifest schema + `workspace_sync` + post-checkout hook.
-3. `workspace_fork` + `/branch` skill + cmux launch integration.
+3. `workspace_fork` + `/wsfork` skill + cmux launch integration.

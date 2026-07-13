@@ -1,9 +1,12 @@
 ---
-name: branch
-description: Fork this claude session AND the current workspace into a new cmux workspace — new worktrees of every repo, dirty state duplicated, conversation context carried over via --fork-session. Use when jeff invokes /branch <name>, or asks to "branch this session/workspace", "fork this workspace", or "spin this conversation into a new workspace". Requires being inside a workspace (a directory under ~/code/workspaces).
+name: wsfork
+description: Fork this claude session AND the current workspace into a new cmux workspace — new worktrees of every repo, dirty state duplicated, conversation context carried over via --fork-session. Use when jeff invokes /wsfork <name>, or asks to "branch this session/workspace", "fork this workspace", or "spin this conversation into a new workspace". Requires being inside a workspace (a directory under ~/code/workspaces).
 ---
 
-# /branch — fork session + workspace + cmux workspace
+# /wsfork — fork session + workspace + cmux workspace
+
+(Named wsfork because the built-in /branch — same-cwd session fork — would be
+shadowed by a skill of the same name; skills take precedence over built-ins.)
 
 Forks three things at once, leaving the original completely untouched:
 1. the **workspace** (new root worktree of workspace-home; child repos branched
@@ -50,7 +53,7 @@ Design: ~/.config/docs/workspace-shell-repo-design.md
    ```
 
    Relocation note (single line, adjust paths/branch): *"This session was
-   forked with /branch. You now live in ~/code/workspaces/<name> (branch
+   forked with /wsfork. You now live in ~/code/workspaces/<name> (branch
    <branch>), a fork of <old-workspace> — same repos as worktrees on new
    branches, dirty state duplicated. The original session continues
    separately; re-verify paths before acting on earlier file references."*
@@ -65,5 +68,5 @@ Design: ~/.config/docs/workspace-shell-repo-design.md
   don't create the cmux workspace.
 - cmux CLI unavailable (not running / headless): give jeff the exact `claude
   --resume <id> --fork-session` command to run manually from the new root.
-- Session id not found: ask jeff to send any message and re-invoke /branch
+- Session id not found: ask jeff to send any message and re-invoke /wsfork
   (the hook snapshots on every prompt), rather than guessing an id.
