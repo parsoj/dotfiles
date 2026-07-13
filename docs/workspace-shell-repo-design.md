@@ -1,7 +1,10 @@
 # Workspace Shell-Repo Redesign
 
-Status: **design settled 2026-07-12, not built.** Designed via /dp discussion; empirical
-claims below were verified by experiment, not assumed.
+Status: **built 2026-07-12** (all three phases; see commits `workspaces phase 1/2/3`).
+Empirical claims below were verified by experiment, not assumed. Remaining open items:
+interactive `--resume` picker noise across worktrees (cosmetic, evaluate in use), the
+"last worked on" manifest timestamp (deferred), and first real-world `/branch` run
+(headless chain fully verified; the cmux launch step runs first in anger).
 
 ## Goal
 
