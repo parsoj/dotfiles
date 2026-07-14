@@ -39,18 +39,32 @@ In a single message:
 - A numbered one-liner list of every extracted question ("The open questions: ...").
   Invite corrections briefly: the user can say "drop N" or "add: ..." at any point
   during the interview, not just now.
-- Then immediately pose **Question 1 of N**: restate the question with enough
-  surrounding context to answer it without scrolling back. If the original message
-  embedded a proposal or recommendation for it, surface that explicitly ("Proposal
-  on the table: ...") so the user can simply say "agreed".
+- Then immediately pose **Question 1 of N** using the question format below.
 - Stop and wait. Do not answer any questions yourself. Do not start any work.
+
+### Question format
+
+Each question is posed as a small structured block so the user can orient fast,
+skim deeper if needed, and see exactly what's being asked of them:
+
+- **TLDR** — one line: what this topic is and, if there's a proposal on the table,
+  the proposed answer ("Proposal: daemon hides on blur").
+- **Context** — a few sentences of the surrounding situation needed to answer
+  without scrolling back: constraints, trade-offs, what earlier answers imply.
+- **Question / upshot** — the actual decision being requested, phrased so a
+  one-line answer resolves it. If the original message embedded a recommendation,
+  restate it here so the user can simply say "agreed".
+
+Render the labels as bold lead-ins under the **Question k of N** header. Collapse
+the structure when it doesn't earn its keep: a genuinely simple question with no
+needed context can be a single sentence — don't pad empty sections.
 
 ### 3. Step
 
 For each subsequent turn:
 - If resolved: confirm with a one-line lock-in ("**Locked: daemon hides; PREPARED
   begins after hide.**"), then pose the next question in the same message
-  ("**Question 2 of 3:** ...").
+  ("**Question 2 of 3:** ...") using the question format above.
 - If not resolved: iterate on the current question only.
 
 Understand this shorthand from the user:
