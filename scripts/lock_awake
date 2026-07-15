@@ -1,0 +1,15 @@
+#!/bin/bash
+# Start a 30-minute Amphetamine keep-awake session, then lock the screen.
+# Amphetamine has no CLI; its AppleScript API is the official automation surface.
+# displaySleepAllowed:true — the display may sleep behind the locked screen;
+# the Mac itself stays awake (agents, downloads, servers keep running).
+set -euo pipefail
+
+DURATION_MINUTES="${1:-30}"
+
+osascript -e "tell application \"Amphetamine\" to start new session with options {duration:${DURATION_MINUTES}, interval:minutes, displaySleepAllowed:true}"
+
+# ⌃⌘Q = macOS lock screen. CGSession -suspend is gone on modern macOS, so we
+# send the system shortcut; requires Accessibility for the invoking process
+# (skhd already has it).
+osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}'

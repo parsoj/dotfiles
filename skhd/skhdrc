@@ -161,3 +161,6 @@ winresize < k : yabai -m window --resize top:0:10
 winresize < l : yabai -m window --resize right:10:0
 
 winresize < escape ; default
+
+# Keep-awake lock: 30-min Amphetamine session, then lock screen
+ctrl + alt + cmd - q: /Users/jeff/.config/scripts/lock_awake
