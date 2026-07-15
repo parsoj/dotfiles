@@ -94,6 +94,28 @@ function tfp
         or return
     end
     tofu plan $argv
+    set -l plan_status $status
+    if test $plan_status -ne 0
+        # Plan can fail because init is stale, not just missing. Probe with
+        # `tofu providers` (fast, read-only) to classify.
+        set -l probe (tofu providers 2>&1 | string join ' ')
+        if string match -q '*Backend initialization required*' -- $probe
+            # Backend config changed: never auto-pick between -reconfigure and
+            # -migrate-state — the wrong one can strand or move state.
+            read -l -P "Backend config changed. Run 'tofu init -reconfigure'? (state stays put; run 'tofu init -migrate-state' yourself to move it) [y/N] " ans
+            if string match -qri '^y' -- $ans
+                tofu init -reconfigure
+                and tofu plan $argv
+                return
+            end
+        else if string match -qri 'run "tofu init"' -- $probe
+            # Non-backend init needs (new modules/providers): plain init is safe.
+            tofu init
+            and tofu plan $argv
+            return
+        end
+    end
+    return $plan_status
 end
 # alias vssh="vault-ssh connect"
 
