@@ -87,7 +87,14 @@ alias line_count="/usr/bin/wc -l"
 alias tf=tofu
 alias tfi="tofu init"
 alias tfa="tofu apply"
-alias tfp="tofu plan"
+# tofu plan, auto-running `tofu init` first if this dir hasn't been initialized
+function tfp
+    if not test -d .terraform
+        tofu init
+        or return
+    end
+    tofu plan $argv
+end
 # alias vssh="vault-ssh connect"
 
 # rendered markdown preview pane in current cmux workspace (live-reloads)
