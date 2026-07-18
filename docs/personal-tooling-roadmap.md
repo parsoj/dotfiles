@@ -8,7 +8,7 @@ resolved into one system plus one independent track.
 
 ```
 capture (desktop + mobile) → AI router → Notion inbox / Linear / dispatch
-feeds (Linear, GitHub review requests, access requests, Notion tasks/goals)
+feeds (GitHub PRs, Linear, Notion tasks/goals)
     → unified planning view (extends existing Notion ceremony skills)
     → execution: me, or cmux/remote workers
 ```
@@ -40,17 +40,19 @@ Evolve `scripts/capture/` (CaptureForInbox, link parsing → Notion inbox).
 - [ ] Wire existing desktop capture (launcher/CaptureForInbox) through the router
 - [ ] Daily "what I filed" digest
 
-### 2. Work-queue feed: PRs / tickets / access requests
-An inbox aggregator, not a todo app — items stay at their sources.
-- [ ] Feed collectors: `gh` review requests, Linear assigned issues,
-      access requests (source TBD — where do these arrive?)
+### 2. PR review queue
+A unified view of PRs — this is the main, main, main thing. Items stay in
+GitHub as source of truth; this is a queue view, not a todo app.
+- [ ] Collector: `gh` review-requested PRs (plus my own PRs awaiting action?)
 - [ ] Queue view (cmux pane TUI or morning digest from a scheduled agent)
 - [ ] Staleness/priority annotations
-- [ ] Later: hand queue items to Claude sessions pre-loaded with diff/context
+- [ ] Later: hand PRs to Claude sessions pre-loaded with diff/context
+- [ ] Future maybe: unify with tickets/access requests or a planning project —
+      explicitly out of scope for v1
 
 ### 3. Unified planning view
 Extend the existing Notion ceremony skills to see both lives.
-- [ ] Pull Linear goals/projects + the work queue into daily-plan / whats-next
+- [ ] Pull Linear goals/projects + the PR queue into daily-plan / whats-next
 - [ ] Score tasks against goals (surface "loudest vs. what goals say")
 - [ ] Weekly view combining personal goals + work commitments
 - [ ] Optional: scheduled morning agent that composes the day's view
@@ -68,6 +70,6 @@ Goal: more of what I want + pave the way for remote workers and phone access.
 ## Build order
 
 1. Capture v2 (small, immediately useful, seeds the router/endpoint)
-2. Work-queue feed (plugs into the same router/notification spine)
+2. PR review queue (plugs into the same router/notification spine)
 3. Planning-view extensions (needs the feeds)
 4. cmux rework (own track, can proceed in parallel)
