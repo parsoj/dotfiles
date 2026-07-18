@@ -57,7 +57,21 @@ Extend the existing Notion ceremony skills to see both lives.
 - [ ] Weekly view combining personal goals + work commitments
 - [ ] Optional: scheduled morning agent that composes the day's view
 
-### 4. cmux rework (independent track)
+### 4. Agent progress sync (Linear + personal tracking)
+Skills/prompts/hooks so agents sync current work progress to Linear, personal
+task tracking (Notion), or both — status stays current without me being the
+scribe. Prior art: project-log / project-update skills (Obsidian project files).
+- [ ] Decide the trigger model: explicit skill (/sync-progress), Stop-hook
+      nudge, scheduled sweep of active sessions/workspaces, or a mix
+- [ ] Skill: detect what the current workspace/session is working on
+      (branch, workspace manifest, Obsidian project file) → map to a Linear
+      issue and/or Notion task
+- [ ] Write-back conventions: Linear comment vs. status change; Notion task
+      update; when to touch both
+- [ ] Guardrails: never invent status; agent drafts, terse factual updates
+- [ ] Later: fold into cmux remote workers so they report progress the same way
+
+### 5. cmux rework (independent track)
 Goal: more of what I want + pave the way for remote workers and phone access.
 - [ ] Inventory pass: what in cmux is load-bearing vs. incidental
 - [ ] Decide architecture: local app + remote-worker layer (A) vs.
@@ -72,4 +86,5 @@ Goal: more of what I want + pave the way for remote workers and phone access.
 1. Capture v2 (small, immediately useful, seeds the router/endpoint)
 2. PR review queue (plugs into the same router/notification spine)
 3. Planning-view extensions (needs the feeds)
-4. cmux rework (own track, can proceed in parallel)
+4. Agent progress sync (independent, small enough to slot in anywhere)
+5. cmux rework (own track, can proceed in parallel)
