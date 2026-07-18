@@ -98,9 +98,13 @@ alias tfa="tofu apply"
 # Hash of everything whose change can invalidate init in the root module:
 # config files (backend/provider/module blocks) + the dependency lock file.
 function _tfp_fingerprint
+    # Hash BOTH sides of what init reconciles: the config side (*.tf, lock
+    # file) and .terraform's own record of the initialized backend
+    # (.terraform/terraform.tfstate). Backend drift shows up as those two
+    # disagreeing, and either side can be the one that changed.
     # Globs expand inside `set` without erroring on no-match (unlike in a
     # command position); /dev/null keeps cat off stdin when the list is empty.
-    set -l files *.tf *.tf.json .terraform.lock.hcl
+    set -l files *.tf *.tf.json .terraform.lock.hcl .terraform/terraform.tfstate
     cat /dev/null $files 2>/dev/null | md5
 end
 
