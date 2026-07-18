@@ -87,7 +87,11 @@ alias line_count="/usr/bin/wc -l"
 alias tf=tofu
 alias tfi="tofu init"
 alias tfa="tofu apply"
-# tofu plan, auto-running `tofu init` first if this dir hasn't been initialized
+# tofu plan with init-on-demand. No error classification: on any plan
+# failure, plain `tofu init` runs once as both probe and fix — it is the
+# authoritative judge of lock/module/provider drift and a fast no-op when
+# nothing is needed. The only interactive case is a backend change, where
+# choosing -reconfigure vs -migrate-state must stay a human decision.
 function tfp
     if not test -d .terraform
         tofu init
@@ -95,25 +99,25 @@ function tfp
     end
     tofu plan $argv
     set -l plan_status $status
-    if test $plan_status -ne 0
-        # Plan can fail because init is stale, not just missing. Probe with
-        # `tofu providers` (fast, read-only) to classify.
-        set -l probe (tofu providers 2>&1 | string join ' ')
-        if string match -q '*Backend initialization required*' -- $probe
-            # Backend config changed: never auto-pick between -reconfigure and
-            # -migrate-state — the wrong one can strand or move state.
-            read -l -P "Backend config changed. Run 'tofu init -reconfigure'? (state stays put; run 'tofu init -migrate-state' yourself to move it) [y/N] " ans
-            if string match -qri '^y' -- $ans
-                tofu init -reconfigure
-                and tofu plan $argv
-                return
-            end
-        else if string match -qri 'run "tofu init"' -- $probe
-            # Non-backend init needs (new modules/providers): plain init is safe.
-            tofu init
+    if test $plan_status -eq 0
+        return 0
+    end
+    echo "tfp: plan failed — running 'tofu init' in case of init drift..." >&2
+    set -l init_out (tofu init -input=false 2>&1)
+    if test $status -eq 0
+        tofu plan $argv
+        return
+    end
+    if printf '%s\n' $init_out | string match -q -e -- '-reconfigure'
+        printf '%s\n' $init_out
+        read -l -P "Backend config changed. Run 'tofu init -reconfigure'? (state stays put; run 'tofu init -migrate-state' yourself to move it) [y/N] " ans
+        if string match -qri '^y' -- $ans
+            tofu init -reconfigure
             and tofu plan $argv
             return
         end
+    else
+        printf '%s\n' $init_out
     end
     return $plan_status
 end
