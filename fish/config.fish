@@ -113,6 +113,17 @@ function _tfp_stamp
 end
 
 function tfp
+    # No config in cwd: plan/init emit misleading backend errors (a stale
+    # .terraform/ still "remembers" its backend) or silently no-op. Say the
+    # actual problem instead.
+    set -l cfg *.tf *.tf.json
+    if test (count $cfg) -eq 0
+        echo "tfp: no OpenTofu config files (*.tf) in "(pwd)" — wrong directory?" >&2
+        if test -d .terraform
+            echo "tfp: note: .terraform/ from a previous init exists here, so raw tofu errors would be misleading" >&2
+        end
+        return 1
+    end
     if not test -d .terraform
         tofu init
         or return
