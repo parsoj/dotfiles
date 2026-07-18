@@ -87,24 +87,48 @@ alias line_count="/usr/bin/wc -l"
 alias tf=tofu
 alias tfi="tofu init"
 alias tfa="tofu apply"
-# tofu plan with init-on-demand. No error classification: on any plan
-# failure, plain `tofu init` runs once as both probe and fix — it is the
-# authoritative judge of lock/module/provider drift and a fast no-op when
-# nothing is needed. The only interactive case is a backend change, where
-# choosing -reconfigure vs -migrate-state must stay a human decision.
+# tofu plan with init-on-demand. No error classification: on plan failure,
+# plain `tofu init` runs once as both probe and fix — it is the authoritative
+# judge of lock/module/provider drift. A config fingerprint gates the recovery
+# init so iterating on a genuine plan error doesn't pay an init per attempt:
+# init can only help if something init-relevant changed since the last init.
+# The only interactive case is a backend change, where choosing -reconfigure
+# vs -migrate-state must stay a human decision.
+
+# Hash of everything whose change can invalidate init in the root module:
+# config files (backend/provider/module blocks) + the dependency lock file.
+function _tfp_fingerprint
+    # Globs expand inside `set` without erroring on no-match (unlike in a
+    # command position); /dev/null keeps cat off stdin when the list is empty.
+    set -l files *.tf *.tf.json .terraform.lock.hcl
+    cat /dev/null $files 2>/dev/null | md5
+end
+
+function _tfp_stamp
+    _tfp_fingerprint > .terraform/tfp.fingerprint 2>/dev/null
+end
+
 function tfp
     if not test -d .terraform
         tofu init
         or return
+        _tfp_stamp
     end
     tofu plan $argv
     set -l plan_status $status
     if test $plan_status -eq 0
         return 0
     end
-    echo "tfp: plan failed — running 'tofu init' in case of init drift..." >&2
+    # Nothing init-relevant changed since an init we ran → this is a real
+    # plan error; don't burn time re-initing.
+    if test -f .terraform/tfp.fingerprint
+        and test (_tfp_fingerprint) = (cat .terraform/tfp.fingerprint)
+        return $plan_status
+    end
+    echo "tfp: plan failed and config changed since last init — running 'tofu init'..." >&2
     set -l init_out (tofu init -input=false 2>&1)
     if test $status -eq 0
+        _tfp_stamp
         tofu plan $argv
         return
     end
@@ -113,7 +137,9 @@ function tfp
         read -l -P "Backend config changed. Run 'tofu init -reconfigure'? (state stays put; run 'tofu init -migrate-state' yourself to move it) [y/N] " ans
         if string match -qri '^y' -- $ans
             tofu init -reconfigure
-            and tofu plan $argv
+            or return
+            _tfp_stamp
+            tofu plan $argv
             return
         end
     else
