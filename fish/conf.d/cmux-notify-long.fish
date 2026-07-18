@@ -18,7 +18,8 @@ if status is-interactive; and set -q CMUX_SURFACE_ID; and command -q cmux
         less more man bat \
         ssh mosh et tmux zellij \
         fzf yazi br broot ranger nnn \
-        claude \
+        claude cc ccp \
+        vv vo con wf df nvim_open open_workspace_file open_cwd_child_file \
         python python3 ipython node irb pry psql mysql sqlite3 \
         top htop btop k9s lazygit tig watch
 
