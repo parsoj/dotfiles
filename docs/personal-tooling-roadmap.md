@@ -21,9 +21,11 @@ Key locked decisions:
 - **Personal store = Notion.** Already built: goals DB, inbox, daily-plan /
   weekly-planning / monthly-review / quarterly-kickoff / process-inbox /
   whats-next skills.
-- **Mobile capture = iOS Shortcut → webhook → AI router**, Slack as the
-  feedback channel (confirmations/digest), not the capture channel. The
-  webhook endpoint is deliberately the seed of the future worker-dispatch API.
+- **Mobile capture = native iOS app → HTTPS ingress → Temporal CaptureWorkflow**
+  (revised 2026-07-18 from the earlier Shortcut-only plan), Slack as the
+  feedback channel (confirmations/digest), not the capture channel. The app +
+  ingress are deliberately the seed of the future worker-dispatch surface.
+  Full design: `capture-v2-architecture.md` in the personal-tools workspace.
 - **Capture metadata is the AI's job** — capture surfaces take raw text/voice/
   URL only; the router classifies, enriches, and routes (Notion inbox vs.
   Linear vs. eventually "dispatch a worker").
