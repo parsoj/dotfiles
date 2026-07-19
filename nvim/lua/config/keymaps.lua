@@ -23,9 +23,10 @@ vim.keymap.set("n", "<leader>uS", function()
 end, { desc = "Toggle Spelling" })
 
 -- Spacemacs-style SPC SPC -> command palette (M-x equivalent)
+-- Includes keymaps so toggles (e.g. <leader>uw Toggle Wrap) are searchable by description
 vim.keymap.set("n", "<leader><leader>", function()
-  Snacks.picker.commands()
-end, { desc = "Commands" })
+  Snacks.picker({ multi = { "commands", "keymaps" } })
+end, { desc = "Commands + Keymaps" })
 
 -- Find files: prefer cwd on lowercase, project/root on uppercase.
 vim.keymap.set("n", "<leader>ff", LazyVim.pick("files", { root = false }), { desc = "Find Files (cwd)" })
