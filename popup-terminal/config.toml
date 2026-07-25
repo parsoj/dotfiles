@@ -34,7 +34,7 @@ chord = "cmd+opt+a"
 command = ["/Users/jeff/.config/popup-terminal/ai-chat.sh"]
 poolTTLSeconds = 0.0
 width = 900
-height = 620
+height = 780
 
 [[hotkeys]]
 chord = "cmd+opt+m"
