@@ -16,6 +16,27 @@ chord = "cmd+opt+space"
 command = ["/opt/homebrew/bin/fish"]
 
 [[hotkeys]]
+chord = "cmd+opt+n"
+command = ["/Users/jeff/.local/bin/quick-capture", "text"]
+poolSize = 1
+width = 640
+height = 160
+
+[[hotkeys]]
+chord = "cmd+opt+shift+n"
+command = ["/Users/jeff/.local/bin/quick-capture", "edit"]
+poolSize = 1
+width = 900
+height = 560
+
+[[hotkeys]]
+chord = "cmd+opt+a"
+command = ["/Users/jeff/.config/popup-terminal/ai-chat.sh"]
+poolTTLSeconds = 0.0
+width = 900
+height = 620
+
+[[hotkeys]]
 chord = "cmd+opt+m"
 command = ["/bin/sh", "-c", "/opt/homebrew/bin/timg -pi -C /Users/jeff/code/workspaces/popup-pool/map.png && exec sleep 864000"]
 reusable = true
