@@ -2,6 +2,7 @@
 # Reload with: launchctl kickstart -k gui/$(id -u)/io.oddbits.popup-terminal
 
 defaultCommand = ["/opt/homebrew/bin/fish"]
+panelHeight = 600.0
 
 [[hotkeys]]
 chord = "cmd+space"
