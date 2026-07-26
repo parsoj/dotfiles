@@ -20,6 +20,27 @@
     "suppressSubagentNotifications": true
   },
 
+  // Pane navigation and split creation share the hjkl direction vocabulary:
+  // cmd+hjkl moves focus, holding opt turns the move into a split on that side.
+  // ctrl+opt+cmd+hjkl stays with yabai (OS window focus). cmd+l displaced the
+  // address bar to cmd+shift+l, which displaced Open Browser to cmd+shift+b.
+  "shortcuts": {
+    "bindings": {
+      "focusLeft": "cmd+h",
+      "focusDown": "cmd+j",
+      "focusUp": "cmd+k",
+      "focusRight": "cmd+l",
+      "splitLeft": "cmd+opt+h",
+      "splitDown": "cmd+opt+j",
+      "splitUp": "cmd+opt+k",
+      "splitRight": "cmd+opt+l",
+      "splitBrowserRight": null,
+      "splitBrowserDown": null,
+      "focusBrowserAddressBar": "cmd+shift+l",
+      "openBrowser": "cmd+shift+b"
+    }
+  },
+
   // This file uses JSON with comments (JSONC).
   // Uncomment and edit any setting to make it file-managed.
   // Remove a setting to fall back to the value saved in Settings.
