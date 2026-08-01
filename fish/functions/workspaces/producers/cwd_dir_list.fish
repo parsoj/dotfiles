@@ -1,5 +1,5 @@
 function cwd_dir_list
 
-    # Use ripgrep to list all directories under the workspace root
-    find . -type d -not -path "*/.git*"
+    # list every directory under the cwd (excluding .git), absolute paths
+    find (pwd) -mindepth 1 -name .git -prune -o -mindepth 1 -type d -print
 end

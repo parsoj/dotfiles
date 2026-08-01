@@ -7,5 +7,5 @@ function workspace_dir_list
     end
 
     # Use ripgrep to list all directories under the workspace root
-    find "$workspace_dir" -type d -not -path "*/.git*"
+    find "$workspace_dir" -mindepth 1 -type d -not -path "*/.git*"
 end
