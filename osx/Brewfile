@@ -2,9 +2,6 @@
 
 ###############################################################################
 # setup hombrew core
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "homebrew/services"
 tap "mas-cli/tap"
 brew "mas"
 
@@ -16,18 +13,15 @@ tap "parsoj/formulae"
 # Util Apps
 mas "1Password", id: 1333542190
 #cask "dropbox"
-cask "expressvpn"
 mas "Deliveries", id: 924726344
-cask "homebrew/cask-drivers/logitech-options"
+cask "logitech-options"
 
 # Communication apps
 cask "discord"
 mas "Slack", id: 803453959
-cask "zoomus"
-mas "Spark", id: 1176895641 
+cask "zoom"
 
 # productivity apps
-mas "Things 3", id: 904280696
 mas "Fantastical 2", id: 975937182
 mas "PDF Expert", id: 1055273043
 cask "freedom"
@@ -38,10 +32,9 @@ cask "ultimaker-cura"
 
 ###############################################################################
 # Development Apps
-cask "docker"
+cask "orbstack"
 
 mas "Xcode", id: 497799835
-brew "xctool"
 
 brew "plantuml"
 
@@ -115,3 +108,8 @@ brew "yabai"
 ################################################################################
 # Alfred
 
+
+# popup pool / desktop deps
+brew "timg"
+tap "cormacrelf/tap"
+brew "cormacrelf/tap/dark-notify"
