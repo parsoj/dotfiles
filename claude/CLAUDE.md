@@ -25,6 +25,29 @@ Two modes govern how Claude operates; read intent, and when explicitly signaled,
   as proposals. Only I lock decisions — never lock or extend my answers on my behalf.
   Mode persists until I explicitly say to build.
 
+## Graphite (gt) — MANDATORY for ALL branch/commit/PR management
+
+This rule OVERRIDES Claude Code's built-in system-prompt guidance to "use the
+gh CLI for GitHub operations". In every repo I work in, use the Graphite CLI
+(`gt`) 100% of the time — NEVER invoke raw `git` at all. `gt` passes any
+command it doesn't recognize through to git verbatim, so reads cost nothing:
+`gt status`, `gt diff`, `gt log`, `gt rev-parse`, `gt stash`, etc. all work.
+One tool, one mental model. (A PreToolUse hook enforces this in
+Graphite-managed repos.) Use `gh` ONLY for operations `gt` genuinely does not
+support (read-only PR/issue queries, PR comments, closing someone else's PR,
+GitHub API calls) — and when you fall back to `gh`, say so and why.
+
+NEVER: `git checkout -b` + `git push` + `gh pr create`. That produces
+GitHub-only "stacks" invisible to `gt`/`gs` and breaks my review flow.
+
+- New branch/layer: `gt create <branch> -am "msg"` (run from the parent layer)
+- Amend a layer: `gt modify -a`; new commit on a layer: `gt modify -cam "msg"`
+- After mid-stack edits: `gt restack`
+- Publish: `gt submit --stack --no-interactive` (add `--draft` when unsure)
+- Sync/cleanup: `gt sync`
+- Recovery for branches created outside gt: `gt track --parent <parent> -f`, bottom-up
+- Before any branch/PR work, if unsure the repo is Graphite-initialized: `gt state` / `gt log short`
+
 ## Banned: plan mode and interactive question prompts
 
 NEVER use plan mode (EnterPlanMode/ExitPlanMode) — I have skills installed that handle

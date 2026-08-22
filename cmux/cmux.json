@@ -37,7 +37,8 @@
       "splitBrowserRight": null,
       "splitBrowserDown": null,
       "focusBrowserAddressBar": "cmd+shift+l",
-      "openBrowser": "cmd+shift+b"
+      "openBrowser": "cmd+shift+b",
+      "toggleSidebar": "cmd+b"
     }
   },
 

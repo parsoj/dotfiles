@@ -20,6 +20,7 @@ command = ["/opt/homebrew/bin/fish"]
 chord = "cmd+opt+n"
 command = ["/Users/jeff/.local/bin/quick-capture", "text"]
 poolSize = 1
+poolTTLSeconds = 0.0
 width = 640
 height = 160
 
@@ -27,6 +28,7 @@ height = 160
 chord = "cmd+opt+shift+n"
 command = ["/Users/jeff/.local/bin/quick-capture", "edit"]
 poolSize = 1
+poolTTLSeconds = 0.0
 width = 900
 height = 560
 
